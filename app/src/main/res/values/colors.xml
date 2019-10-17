@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright 2011 Wglxy.com
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources>
+
+    <color name="stpi_default_circle_color">#b3bdc2</color>
+    <color name="stpi_default_primary_color">#00b47c</color>
+    <color name="stpi_default_line_color">#b3bdc2</color>
+    <!--
+        <color name="light_green">#94d5ad</color>
+        <color name="grey_light">#e8e7e3</color>
+        <color name="add_group_grey">#b3b3b1</color>
+
+        <color name="horizontal_divider">#8f8f8f</color>
+        <color name="horizontal_vertical">#8f8f8f</color>
+        &lt;!&ndash;  &ndash;&gt;
+        <color name="gray_d">#D0D0D0</color>
+        <color name="gray_f">#F0F0F0</color>
+        <color name="gray_e">#E0E0E0</color>
+        <color name="gray_a">#A0A0A0</color>
+        <color name="gray_bg">#E3E3E3</color>-->
+
+
+    <color name="colorPrimary">#001C5C</color>
+    <color name="fab_material_blue_900">#001C5C</color>
+    <color name="divcolor">#939393</color>
+    <color name="colorPrimaryDark">#fbc02d</color>
+
+    <drawable name="red">#7f00</drawable>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="blue">#0000FF</color>
+    <color name="nbkyellow">#EDB421</color>
+    <color name="nbklightblue">#9CC2CF</color>
+    <color name="grey">#D3D3D3</color>
+    <color name="lightpink">#CA226B</color>
+
+    3C2415
+
+    <color name="borderhmground">#F5F5F5</color>
+    <color name="textcolorcircle">#001C5C</color>
+    <color name="nbklightbrown">#766151</color>
+    <color name="nbkdarkbrown">#3C2415</color>
+
+
+    <color name="warning_color">#f4511e</color>
+    <color name="hint_color">#42000000</color>
+    <color name="success_color">#009688</color>
+
+    <color name="blue_btn_bg_color">#001C5C</color>
+    <color name="blue_btn_bg_pressed_color">#001C5C</color>
+
+    <color name="gray_btn_bg_color">#7f00</color>
+
+
+    <color name="fab_material_amber_500">#ffc107</color>
+    <color name="fab_material_amber_900">#ff6f00</color>
+    <color name="fab_material_black">#000000</color>
+    <color name="fab_material_blue_500">#2196f3</color>
+    <color name="fab_material_blue_grey_500">#607d8b</color>
+    <color name="fab_material_blue_grey_900">#263238</color>
+    <color name="fab_material_brown_500">#795548</color>
+    <color name="fab_material_brown_900">#3e2723</color>
+    <color name="fab_material_cyan_500">#00bcd4</color>
+    <color name="fab_material_cyan_900">#006064</color>
+    <color name="fab_material_deep_orange_500">#ff5722</color>
+    <color name="fab_material_deep_orange_900">#bf360c</color>
+    <color name="fab_material_deep_purple_500">#673ab7</color>
+    <color name="fab_material_deep_purple_900">#311b92</color>
+    <color name="fab_material_green_500">#4caf50</color>
+    <color name="fab_material_green_900">#1b5e20</color>
+    <color name="fab_material_grey_500">#9e9e9e</color>
+    <color name="fab_material_grey_900">#212121</color>
+    <color name="fab_material_indigo_500">#3f51b5</color>
+    <color name="fab_material_indigo_900">#1a237e</color>
+    <color name="fab_material_light_blue_500">#03a9f4</color>
+    <color name="fab_material_light_blue_900">#01579b</color>
+    <color name="fab_material_light_green_500">#8bc34a</color>
+    <color name="fab_material_light_green_900">#33691e</color>
+    <color name="fab_material_lime_500">#cddc39</color>
+    <color name="fab_material_lime_900">#827717</color>
+    <color name="fab_material_orange_500">#ff9800</color>
+    <color name="fab_material_orange_900">#e65100</color>
+    <color name="fab_material_pink_500">#e91e63</color>
+    <color name="fab_material_pink_900">#880e4f</color>
+    <color name="fab_material_purple_500">#9c27b0</color>
+    <color name="fab_material_purple_900">#4a148c</color>
+    <color name="fab_material_red_500">#f44336</color>
+    <color name="fab_material_red_900">#b71c1c</color>
+    <color name="fab_material_teal_500">#009688</color>
+    <color name="fab_material_teal_900">#004d40</color>
+    <color name="fab_material_white">#ffffff</color>
+    <color name="fab_material_yellow_500">#ffeb3b</color>
+    <color name="fab_material_yellow_900">#f57f17</color>
+</resources>
