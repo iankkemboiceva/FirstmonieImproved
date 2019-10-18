@@ -38,7 +38,7 @@ public class RetrofitInstance {
 
     /**
      * Create an instance of Retrofit object
-     * */
+     */
 
     public static Retrofit getRetrofitInstance() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

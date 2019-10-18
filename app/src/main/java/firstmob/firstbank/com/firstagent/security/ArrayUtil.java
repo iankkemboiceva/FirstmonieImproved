@@ -46,15 +46,15 @@ public class ArrayUtil {
         return xor(op1, xor(op2, op3));
     }
 
-    public static final byte[] concat(byte abyte0[], byte abyte1[]) {
+    public static final byte[] concat(byte[] abyte0, byte[] abyte1) {
         byte[] ai = new byte[abyte0.length + abyte1.length];
         System.arraycopy(abyte0, 0, ai, 0, abyte0.length);
         System.arraycopy(abyte1, 0, ai, abyte0.length, abyte1.length);
         return ai;
     }
 
-    public static final byte[] concat(byte abyte0[], byte abyte1[],
-            byte[] abyte2) {
+    public static final byte[] concat(byte[] abyte0, byte[] abyte1,
+                                      byte[] abyte2) {
         byte[] ai = new byte[abyte0.length + abyte1.length];
         System.arraycopy(abyte0, 0, ai, 0, abyte0.length);
         System.arraycopy(abyte1, 0, ai, abyte0.length, abyte1.length);
@@ -72,9 +72,9 @@ public class ArrayUtil {
      */
     public static byte[] merge(byte[] array1, byte[] array2) {
         if (array1 == null) {
-            return (byte[]) array2.clone();
+            return array2.clone();
         } else if (array2 == null) {
-            return (byte[]) array1.clone();
+            return array1.clone();
         } else {
             byte[] result = new byte[array1.length + array2.length];
 
@@ -108,7 +108,7 @@ public class ArrayUtil {
         return result;
     }
 
-    public static final void split(byte abyte0[], byte left[], byte[] right) {
+    public static final void split(byte[] abyte0, byte[] left, byte[] right) {
 
         System.arraycopy(abyte0, 0, left, 0, abyte0.length / 2);
         System.arraycopy(abyte0, abyte0.length / 2, right, 0,abyte0.length / 2);

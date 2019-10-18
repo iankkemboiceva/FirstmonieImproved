@@ -22,6 +22,8 @@ import android.util.Base64;
 
 
 import firstmob.firstbank.com.firstagent.security.EncryptTransactionPin;
+import firstmob.firstbank.com.firstagent.security.SecurityLayer;
+
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -40,6 +42,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
@@ -73,8 +76,9 @@ public class Utility {
 	public static final String KEY_TOKEN = "token";
 	private static final String SPEC_CHARPATTERN = "[a-zA-Z0-9]+";
 	public static final String AGMOB = "agmobno";
-	 static  Context context;
-
+	public static  Context context;
+	@Inject
+	SecurityLayer sl;
 
 	/**
 	 * Validate Email with regular expression
@@ -91,7 +95,7 @@ public class Utility {
 
 	@Inject
 	public Utility(@Named("ApplicationContext") Context context) {
-		this.context = context;
+		Utility.context = context;
 
 	}
 
@@ -154,8 +158,8 @@ public class Utility {
 	 * @param txt
 	 * @return true for not null and false for null String object
 	 */
-	public static boolean isNotNull(String txt) {
-		return txt != null && txt.trim().length() > 0 ? true : false;
+	public  boolean isNotNull(String txt) {
+		return txt != null && txt.trim().length() > 0;
 	}
 
 	public static String MaskAccNo(String pan) {
@@ -219,10 +223,10 @@ public static JSONArray getNubanAlgo(String account){
 		//	String account = "2009415379";
 			String nubanserial = account.substring(0, account.length() - 1);
 			int checkdigit = Integer.parseInt(account.substring(account.length() - 1)); //9
-			String allbankspref[] = nubanprefix.split("\\|");
-			String allbanksprefname[] = respectivebanks.split("\\|");
+			String[] allbankspref = nubanprefix.split("\\|");
+			String[] allbanksprefname = respectivebanks.split("\\|");
 			int numberofmatchedbanks = 0;
-			int constants[] = {3, 7, 3, 3, 7, 3, 3, 7, 3, 3, 7, 3};
+			int[] constants = {3, 7, 3, 3, 7, 3, 3, 7, 3, 3, 7, 3};
 			String prependprefix = null;
 			JSONObject obj = new JSONObject();
 
@@ -312,8 +316,8 @@ public static JSONArray getNubanAlgo(String account){
 		}
 		return number.toString();
 	}
-	public static boolean checkInternetConnection(Context c) {
-		ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+	public static boolean checkInternetConnection() {
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (cm.getActiveNetworkInfo() != null
 				&& cm.getActiveNetworkInfo().isAvailable()
 				&& cm.getActiveNetworkInfo().isConnected()) {
@@ -322,7 +326,7 @@ public static JSONArray getNubanAlgo(String account){
 		} else {
 
 			Toast.makeText(
-					c,
+					context,
 					"No Internet Connection. Please check your internet settings",
 					Toast.LENGTH_LONG).show();
 			return false;
@@ -336,8 +340,8 @@ public static JSONArray getNubanAlgo(String account){
 		}
 	}
 
-	public static String getDevImei(Context c) {
-		TelephonyManager telephonyManager = (TelephonyManager) c.getSystemService(c.TELEPHONY_SERVICE);
+	public  String getDevImei() {
+		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		String imei = telephonyManager.getDeviceId();
 		return imei;
 	}
@@ -356,8 +360,8 @@ public static JSONArray getNubanAlgo(String account){
 
 	}
 
-	public static String getMacAddress(Context c){
-		WifiManager wifiManager = (WifiManager) c.getSystemService(c.WIFI_SERVICE);
+	public  String getMacAddress(){
+		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		WifiInfo wInfo = wifiManager.getConnectionInfo();
 		String mac = wInfo.getMacAddress();
 		if(mac == null || mac.equals("")){
@@ -365,8 +369,8 @@ public static JSONArray getNubanAlgo(String account){
 		}
 		return convertStringFromNull(mac);
 	}
-	public static String getIP(Context c){
-		WifiManager wifiManager = (WifiManager) c.getSystemService(c.WIFI_SERVICE);
+	public  String getIP(){
+		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
 		String ip = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
 		if(ip == null || ip.equals("")){
@@ -375,26 +379,22 @@ public static JSONArray getNubanAlgo(String account){
 		return convertStringFromNull(ip);
 	}
 
-	public static String getSerial(){
+	public  String getSerial(){
 		String build = Build.SERIAL;
 		return build;
 	}
 	public static boolean checkStateCollect(String servid){
 		boolean trf = false;
-		if(servid.equals("3")){
-			trf = true;
-		}else{
-			trf = false;
-		}
+		trf = servid.equals("3");
 		return trf;
 	}
-	public static String getDevVersion(){
+	public  String getDevVersion(){
 		int bld = Build.VERSION.SDK_INT;
 		String blid = Integer.toString(bld);
 		return convertStringFromNull(blid);
 	}
 
-	public static String getDevModel(){
+	public  String getDevModel(){
 		String myDeviceModel = Build.MODEL;
 		return convertStringFromNull(myDeviceModel);
 	}
@@ -433,7 +433,7 @@ public static JSONArray getNubanAlgo(String account){
 
 	}
 	public static String toHex(String arg) throws UnsupportedEncodingException {
-		return String.format("%040x", new BigInteger(1, arg.getBytes("UTF-8")));
+		return String.format("%040x", new BigInteger(1, arg.getBytes(StandardCharsets.UTF_8)));
 	}
 
 	public static String convertDate(String date){
@@ -470,7 +470,7 @@ public static JSONArray getNubanAlgo(String account){
 	}
 
 
-	public static String getAppVersion(final Context context) {
+	public static String getAppVersion() {
 		String bvers = "";
 		try {
 			PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -525,7 +525,7 @@ public static JSONArray getNubanAlgo(String account){
 	public static  String generateHashString(String data) throws UnsupportedEncodingException {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			byte[] dataInBytes = data.getBytes("UTF-8");
+			byte[] dataInBytes = data.getBytes(StandardCharsets.UTF_8);
 			md.update(dataInBytes);
 
 			byte[] mdbytes = md.digest();
@@ -610,7 +610,21 @@ fslash = arg;
 		return outputString;
 	}
 
+public   String firsttimelogin(String params,String endpoint){
 
+
+		String urlparams = "";
+	try {
+		urlparams = sl.firstLogin(params,endpoint);
+		//SecurityLayer.Log("cbcurl",url);
+		SecurityLayer.Log("RefURL",urlparams);
+		SecurityLayer.Log("refurl", urlparams);
+		SecurityLayer.Log("params", params);
+	} catch (Exception e) {
+		SecurityLayer.Log("encryptionerror",e.toString());
+	}
+return urlparams;
+}
 	public static String getencryptedpin(String finpin,String key) {
 
 
@@ -642,10 +656,10 @@ String key = "97206B46CE46376894703ECE161F31F2";
 
 		return encrypted;
 	}
-static  public  String changeDate(String olddate){
+  public  String changeDate(String olddate){
 	 	String changeddate = "";
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	if (Utility.isNotNull(olddate)) {
+	if (isNotNull(olddate)) {
 		String dateInString = olddate;
 
 

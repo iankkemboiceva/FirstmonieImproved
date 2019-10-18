@@ -53,7 +53,7 @@ public class SecurityLayer {
 
     @Inject
     public SecurityLayer(@Named("ApplicationContext") Context context) {
-        this.context = context;
+        SecurityLayer.context = context;
 
     }
 
@@ -62,12 +62,12 @@ public class SecurityLayer {
         Log("Am i In?");
 
 
-        if (Utility.checkInternetConnection(context)) {
+        if (Utility.checkInternetConnection()) {
             StringBuffer sb = new StringBuffer();
             String vers = "2.0.0";
-            String year = Utility.getAppVersion(context);
+            String year = Utility.getAppVersion();
             String hexkey = getrandkey();
-            String imei = Utility.getDevImei(context);
+            String imei = ul.getDevImei();
             String session_id = UUID.randomUUID().toString();
 
             Prefs.putString(KEY_SESSION_ID, session_id);
@@ -111,13 +111,13 @@ public class SecurityLayer {
         return symmKey;
     }
 
-    public static String beforeLogin(String params,@Named("ApplicationContext") Context context, String endpoint) throws UnsupportedEncodingException {
+    public  String beforeLogin(String params,@Named("ApplicationContext") Context context, String endpoint) throws UnsupportedEncodingException {
         String finpoint = "";
-        if (Utility.checkInternetConnection(context)) {
+        if (ul.checkInternetConnection()) {
             StringBuffer sb = new StringBuffer();
             String vers = "2.0.0";
-            String year = Utility.getAppVersion(context);
-            String imei = Utility.getDevImei(context);
+            String year = Utility.getAppVersion();
+            String imei = ul.getDevImei();
 
             String hexkey = getrandkey();
             try {
@@ -215,9 +215,9 @@ String tken = newjs.optString("token");
 
     }
 
-    public static String generalLogin( String params, String session_id, @Named("ApplicationContext") Context context,String endpoint) throws Exception {
+    public  String generalLogin( String params, String session_id, @Named("ApplicationContext") Context context,String endpoint) throws Exception {
         String finpoint = "";
-        if (Utility.checkInternetConnection(context)) {
+        if (Utility.checkInternetConnection()) {
 
             String skey = Prefs.getString(SecurityLayer.KEY_SKEY,"NA");
             //  String skey = "4UhIX09CelA75Rdao2u+j/vnnkAopFQbbO/nbHnebf4=";
@@ -244,7 +244,7 @@ String tken = newjs.optString("token");
             SecurityLayer.Log("appid gott", encappid);
             StringBuffer sb = new StringBuffer();
 
-            String imei = Utility.getDevImei(context);
+            String imei = ul.getDevImei();
 
             byte[] randomKey = base64Decode(skey);
             byte[] randomSIV = base64Decode(siv);
@@ -254,13 +254,13 @@ String tken = newjs.optString("token");
             String encryptedUrl = encrypt(base64Decode(skey), base64Decode(siv), params);
             SecurityLayer.Log("Base Decode Pkey", new String(base64Decode(pkey)));
             SecurityLayer.Log("Base Decode PIV", new String(base64Decode(piv)));
-            SecurityLayer.Log("Base Encode RandomKey", new String(base64Encode(randomKey)));
+            SecurityLayer.Log("Base Encode RandomKey", base64Encode(randomKey));
             String encryptedpkey = toHex(encrypt(base64Decode(pkey), base64Decode(piv), base64Encode(randomKey)));//LoginAESProcess.getEncryptedUrlByPropKey(randkey, pkey);
             String encryptedRandomIV = toHex(encrypt(base64Decode(pkey), base64Decode(piv), base64Encode(randomSIV)));
 
 
 
-            String vers = Utility.getAppVersion(context);
+            String vers = Utility.getAppVersion();
 SecurityLayer.Log("encappid",encappid);
 
             finpoint = sb.append(Constants.NET_URL + endpoint)
@@ -330,9 +330,9 @@ SecurityLayer.Log("encappid",encappid);
         return new JSONObject(finalresp);
 
     }
-    public static String genURLCBC(String params,String endpoint,  Context c) {
+    public  String genURLCBC(String params,String endpoint,  Context c) {
         String finpoint = "";
-        if(Utility.checkInternetConnection(c)) {
+        if(ul.checkInternetConnection()) {
 
             String token = Prefs.getString(KEY_TOKEN,"NA");
             SecurityLayer.Log("existing_token", token);
@@ -394,7 +394,7 @@ SecurityLayer.Log("encappid",encappid);
             Log("Imei", imei);
 System.out.println(imei);
 SecurityLayer.Log("Imei chosen",imei);
-            String year = Utility.getAppVersion(c);
+            String year = Utility.getAppVersion();
             Log("vers",year);
             try {
                 encryptedpkey = toHex(AESCBCEncryption.encrypt(base64Decode(pkey), base64Decode(piv), base64Encode(AESCBCEncryption.generateSessionKey())));
@@ -483,13 +483,13 @@ SecurityLayer.Log("Imei chosen",imei);
 
     public static void Log(String tag, String message) {
         if (isDebug) {
-Log.i(tag,message);
+Log.v(tag,message);
         }
     }
 
     public static void Log(String message) {
         if (isDebug) {
-            Log.i("",message);
+            Log.v("",message);
         }
     }
 }

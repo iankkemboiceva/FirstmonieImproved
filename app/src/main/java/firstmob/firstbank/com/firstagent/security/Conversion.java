@@ -246,7 +246,7 @@ public final class Conversion {
 	 * @param oid
 	 * 		Array containing object identifier elements
 	 */
-	protected static byte[] fromIntArray(int oid[]) {
+	protected static byte[] fromIntArray(int[] oid) {
 		int i, j, size, val;
 
 		if ((oid.length < 2) || (oid[0] < 0) || (oid[0] > 2) || (oid[1] < 0) || (oid[1] > 39))

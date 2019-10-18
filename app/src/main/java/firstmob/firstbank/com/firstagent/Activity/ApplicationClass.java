@@ -13,7 +13,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 
 public class ApplicationClass extends Application {
-    private static  MyComponent myComponent;
+    private static MyComponent myComponent;
 
     @Override
     public void onCreate() {
@@ -22,10 +22,6 @@ public class ApplicationClass extends Application {
         myComponent = DaggerMyComponent.builder()
                 .contextModule(new ContextModule(getApplicationContext()))
                 .build();
-
-
-
-
 
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -45,7 +41,7 @@ public class ApplicationClass extends Application {
                 .build();
     }
 
-    public static    MyComponent getMyComponent() {
+    public static MyComponent getMyComponent() {
         return myComponent;
     }
 }

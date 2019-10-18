@@ -1,4 +1,4 @@
-package firstmob.firstbank.com.firstagent.presenter;
+package firstmob.firstbank.com.firstagent.contract;
 
 import android.content.Context;
 

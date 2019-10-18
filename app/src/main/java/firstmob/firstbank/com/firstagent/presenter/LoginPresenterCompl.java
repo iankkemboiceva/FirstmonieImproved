@@ -1,27 +1,17 @@
 package firstmob.firstbank.com.firstagent.presenter;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
-import android.widget.Toast;
-
-import firstmob.firstbank.com.firstagent.Activity.ApplicationClass;
-import firstmob.firstbank.com.firstagent.model.IUser;
-import firstmob.firstbank.com.firstagent.security.SecurityLayer;
-import firstmob.firstbank.com.firstagent.utils.Utility;
-import com.pixplicity.easyprefs.library.Prefs;
-
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID;
+import firstmob.firstbank.com.firstagent.Activity.ApplicationClass;
+import firstmob.firstbank.com.firstagent.contract.MainContract;
+import firstmob.firstbank.com.firstagent.model.IUser;
+import firstmob.firstbank.com.firstagent.security.SecurityLayer;
+import firstmob.firstbank.com.firstagent.utils.Utility;
 
 public class LoginPresenterCompl implements MainContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
     MainContract.ILoginView iLoginView;
@@ -34,43 +24,39 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
 
     @Inject
     Utility ul;
-    public  LoginPresenterCompl(MainContract.ILoginView iLoginView, MainContract.GetDataIntractor getDataIntractor) {
+
+    public LoginPresenterCompl(MainContract.ILoginView iLoginView, MainContract.GetDataIntractor getDataIntractor) {
         this.iLoginView = iLoginView;
-        this.getDataIntractor=getDataIntractor;
+        this.getDataIntractor = getDataIntractor;
 
         ApplicationClass.getMyComponent().inject(this);
-       // initUser();
+        // initUser();
     }
-
 
 
     @Override
     public void doLogin(String name) {
 
-     //   ul.checkpermissions();
+        //   ul.checkpermissions();
 
-            iLoginView.showProgress();
+        iLoginView.showProgress();
 
-        String endpoint= "otp/generateotp.action/";
-String params = "1/"+name;
+        String endpoint = "otp/generateotp.action/";
+        String params = "1/" + name;
         String urlparams = "";
         try {
-            urlparams = sl.firstLogin(params,endpoint);
+            urlparams = sl.firstLogin(params, endpoint);
             //SecurityLayerStanbic.Log("cbcurl",url);
-            SecurityLayer.Log("RefURL",urlparams);
+            SecurityLayer.Log("RefURL", urlparams);
             SecurityLayer.Log("refurl", urlparams);
             SecurityLayer.Log("params", params);
         } catch (Exception e) {
-            SecurityLayer.Log("encryptionerror",e.toString());
+            SecurityLayer.Log("encryptionerror", e.toString());
         }
 
-        getDataIntractor.getResults(this,urlparams);
+        getDataIntractor.getResults(this, urlparams);
 
     }
-
-
-
-
 
 
     @Override
@@ -85,40 +71,36 @@ String params = "1/"+name;
                  /*   JSONObject jsdatarsp = obj.optJSONObject("data");
                     SecurityLayer.Log("JSdata resp", jsdatarsp.toString());
                     //obj = Utility.onresp(obj,getActivity()); */
-            obj = sl.decryptFirstTimeLogin(obj);
+            obj = SecurityLayer.decryptFirstTimeLogin(obj);
             SecurityLayer.Log("decrypted_response", obj.toString());
 
             String respcode = obj.optString("responseCode");
             String responsemessage = obj.optString("message");
 
 
-
             //session.setString(SecurityLayer.KEY_APP_ID,appid);
 
-            if (Utility.isNotNull(respcode) && Utility.isNotNull(responsemessage)) {
+            if (ul.isNotNull(respcode) && ul.isNotNull(responsemessage)) {
                 SecurityLayer.Log("Response Message", responsemessage);
 
                 if (respcode.equals("00")) {
                     JSONObject datas = obj.optJSONObject("data");
 
 
-                iLoginView.showToast("SUCCESS");
+                    iLoginView.showToast("SUCCESS");
 
 
-                }
-                else {
+                } else {
 
                     iLoginView.showToast(responsemessage);
 
 
                 }
 
-            }
-            else {
+            } else {
 
 
                 iLoginView.showToast("There was an error on your request");
-
 
 
             }
@@ -136,9 +118,7 @@ String params = "1/"+name;
         }
 
 
-
-
-     //   iLoginView.onLoginResult(response);
+        //   iLoginView.onLoginResult(response);
         iLoginView.hideProgress();
     }
 
@@ -151,14 +131,8 @@ String params = "1/"+name;
 
     @Override
     public void ondestroy() {
-        iLoginView=null;
+        iLoginView = null;
     }
-
-
-
-
-
-
 
 
 }

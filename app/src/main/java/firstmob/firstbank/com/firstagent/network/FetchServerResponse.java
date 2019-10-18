@@ -2,7 +2,7 @@ package firstmob.firstbank.com.firstagent.network;
 
 import android.util.Log;
 
-import firstmob.firstbank.com.firstagent.presenter.MainContract;
+import firstmob.firstbank.com.firstagent.contract.MainContract;
 
 
 import retrofit2.Call;
@@ -16,7 +16,7 @@ import retrofit2.Response;
 public class FetchServerResponse implements MainContract.GetDataIntractor {
 
     @Override
-    public void getResults(final OnFinishedListener onFinishedListener,String urlparams) {
+    public void getResults(final OnFinishedListener onFinishedListener, String urlparams) {
 
 
         /** Create handle for the RetrofitInstance interface*/
@@ -26,14 +26,14 @@ public class FetchServerResponse implements MainContract.GetDataIntractor {
         Call<String> call = service.setGenericRequestRaw(urlparams);
 
         /**Log the URL called*/
-        Log.i("URL Called",  urlparams );
+        Log.i("URL Called", urlparams);
 
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                try{
+                try {
                     onFinishedListener.onFinished(response.body());
-                }catch (Exception e){
+                } catch (Exception e) {
                     onFinishedListener.onFailure(e);
                 }
 

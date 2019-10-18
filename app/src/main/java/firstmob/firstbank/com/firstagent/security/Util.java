@@ -162,22 +162,22 @@ public class Util {
 	}
 
 
-	public static final void split(byte abyte0[], byte left[], byte[] right) {
+	public static final void split(byte[] abyte0, byte[] left, byte[] right) {
 
 		System.arraycopy(abyte0, 0, left, 0, abyte0.length / 2);
 		System.arraycopy(abyte0, abyte0.length / 2, right, 0,abyte0.length / 2);
 		//return null;
 	}
 
-	public static final byte[] concat(byte abyte0[], byte abyte1[]) {
+	public static final byte[] concat(byte[] abyte0, byte[] abyte1) {
 		byte[] ai = new byte[abyte0.length + abyte1.length];
 		System.arraycopy(abyte0, 0, ai, 0, abyte0.length);
 		System.arraycopy(abyte1, 0, ai, abyte0.length, abyte1.length);
 		return ai;
 	}
 
-	public static final byte[] concat(byte abyte0[], byte abyte1[],
-			byte[] abyte2) {
+	public static final byte[] concat(byte[] abyte0, byte[] abyte1,
+									  byte[] abyte2) {
 		byte[] ai = new byte[abyte0.length + abyte1.length];
 		System.arraycopy(abyte0, 0, ai, 0, abyte0.length);
 		System.arraycopy(abyte1, 0, ai, abyte0.length, abyte1.length);

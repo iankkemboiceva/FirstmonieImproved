@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse;
-import firstmob.firstbank.com.firstagent.presenter.MainContract;
+import firstmob.firstbank.com.firstagent.contract.MainContract;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -45,7 +45,7 @@ public class ActivateAgentBefore extends AppCompatActivity implements MainContra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activate_agentbefore);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //find view

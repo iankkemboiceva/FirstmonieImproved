@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.Security;
@@ -59,7 +60,7 @@ public class AESCBCEncryption implements SecurityConstants {
 
 
     public static String toString(String hex) throws UnsupportedEncodingException, DecoderException {
-        return new String(Hex.decodeHex(hex.toCharArray()), "UTF-8");
+        return new String(Hex.decodeHex(hex.toCharArray()), StandardCharsets.UTF_8);
     }
 
     public static String decrypt(byte[] key, byte[] initVector, String encrypted) {
