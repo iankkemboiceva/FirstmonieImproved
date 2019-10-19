@@ -26,6 +26,8 @@ import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.base64
 import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.decrypt;
 import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.encrypt;
 import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.initVector;
+import static firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection;
+import static firstmob.firstbank.com.firstagent.utils.Utility.getDevImei;
 import static firstmob.firstbank.com.firstagent.utils.Utility.toHex;
 import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.key;
 
@@ -62,12 +64,12 @@ public class SecurityLayer {
         Log("Am i In?");
 
 
-        if (Utility.checkInternetConnection()) {
+        if (checkInternetConnection()) {
             StringBuffer sb = new StringBuffer();
             String vers = "2.0.0";
             String year = Utility.getAppVersion();
             String hexkey = getrandkey();
-            String imei = ul.getDevImei();
+            String imei = getDevImei();
             String session_id = UUID.randomUUID().toString();
 
             Prefs.putString(KEY_SESSION_ID, session_id);
@@ -113,11 +115,11 @@ public class SecurityLayer {
 
     public  String beforeLogin(String params,@Named("ApplicationContext") Context context, String endpoint) throws UnsupportedEncodingException {
         String finpoint = "";
-        if (ul.checkInternetConnection()) {
+        if (checkInternetConnection()) {
             StringBuffer sb = new StringBuffer();
             String vers = "2.0.0";
             String year = Utility.getAppVersion();
-            String imei = ul.getDevImei();
+            String imei = getDevImei();
 
             String hexkey = getrandkey();
             try {
@@ -217,7 +219,7 @@ String tken = newjs.optString("token");
 
     public  String generalLogin( String params, String session_id, @Named("ApplicationContext") Context context,String endpoint) throws Exception {
         String finpoint = "";
-        if (Utility.checkInternetConnection()) {
+        if (checkInternetConnection()) {
 
             String skey = Prefs.getString(SecurityLayer.KEY_SKEY,"NA");
             //  String skey = "4UhIX09CelA75Rdao2u+j/vnnkAopFQbbO/nbHnebf4=";
@@ -244,7 +246,7 @@ String tken = newjs.optString("token");
             SecurityLayer.Log("appid gott", encappid);
             StringBuffer sb = new StringBuffer();
 
-            String imei = ul.getDevImei();
+            String imei = getDevImei();
 
             byte[] randomKey = base64Decode(skey);
             byte[] randomSIV = base64Decode(siv);
@@ -332,7 +334,7 @@ SecurityLayer.Log("encappid",encappid);
     }
     public  String genURLCBC(String params,String endpoint,  Context c) {
         String finpoint = "";
-        if(ul.checkInternetConnection()) {
+        if(checkInternetConnection()) {
 
             String token = Prefs.getString(KEY_TOKEN,"NA");
             SecurityLayer.Log("existing_token", token);

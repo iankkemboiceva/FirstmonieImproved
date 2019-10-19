@@ -158,7 +158,7 @@ public class Utility {
 	 * @param txt
 	 * @return true for not null and false for null String object
 	 */
-	public  boolean isNotNull(String txt) {
+	public static boolean isNotNull(String txt) {
 		return txt != null && txt.trim().length() > 0;
 	}
 
@@ -340,7 +340,7 @@ public static JSONArray getNubanAlgo(String account){
 		}
 	}
 
-	public  String getDevImei() {
+	public static String getDevImei() {
 		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		String imei = telephonyManager.getDeviceId();
 		return imei;
@@ -360,7 +360,7 @@ public static JSONArray getNubanAlgo(String account){
 
 	}
 
-	public  String getMacAddress(){
+	public  static  String getMacAddress(){
 		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		WifiInfo wInfo = wifiManager.getConnectionInfo();
 		String mac = wInfo.getMacAddress();
@@ -369,7 +369,7 @@ public static JSONArray getNubanAlgo(String account){
 		}
 		return convertStringFromNull(mac);
 	}
-	public  String getIP(){
+	public  static String getIP(){
 		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
 		String ip = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
@@ -379,7 +379,7 @@ public static JSONArray getNubanAlgo(String account){
 		return convertStringFromNull(ip);
 	}
 
-	public  String getSerial(){
+	public static String getSerial(){
 		String build = Build.SERIAL;
 		return build;
 	}
@@ -388,13 +388,13 @@ public static JSONArray getNubanAlgo(String account){
 		trf = servid.equals("3");
 		return trf;
 	}
-	public  String getDevVersion(){
+	public static String getDevVersion(){
 		int bld = Build.VERSION.SDK_INT;
 		String blid = Integer.toString(bld);
 		return convertStringFromNull(blid);
 	}
 
-	public  String getDevModel(){
+	public static String getDevModel(){
 		String myDeviceModel = Build.MODEL;
 		return convertStringFromNull(myDeviceModel);
 	}

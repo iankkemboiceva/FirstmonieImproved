@@ -124,22 +124,13 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
     }
 
 
-    fun showCustomLoadingDialog() {
-        //..show gif and hide after 5 seconds
-
-        viewDialog?.showDialog()
-
-        val handler = Handler()
-        handler.postDelayed(Runnable { viewDialog?.hideDialog() }, 7000)
-    }
-
     override fun showProgress() {
         viewDialog?.showDialog()
     }
 
-    override fun onLoginError(error: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun onLoginError(error: String) {
+        showToast(error)
+   }
 
     override fun onLoginResult(result: String?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
