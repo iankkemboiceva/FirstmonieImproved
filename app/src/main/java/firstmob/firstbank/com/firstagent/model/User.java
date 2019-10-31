@@ -1,22 +1,22 @@
 package firstmob.firstbank.com.firstagent.model;
 
-public class User implements IUser {
-    String name;
-    String passwd;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public User(String name, String passwd) {
-        this.name = name;
-        this.passwd = passwd;
+public class User{
+    @SerializedName("STATUS")
+    @Expose
+    String status;
+    @SerializedName("respdesc")
+    @Expose
+    String respdesc;
+
+    public String getRespdesc() {
+        return respdesc;
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getPasswd() {
-        return passwd;
+    public String getStatus() {
+        return status;
     }
 
 }

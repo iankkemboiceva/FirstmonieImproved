@@ -56,7 +56,7 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
                 SecurityLayer.Log("Encrypted Pin", encrypted)
                 val params = Constants.CH_ID + "/" + agid + "/" + otp + "/" + encrypted + "/secans1/" + "secans2" + "/secans3/" + mac + "/" + ip + "/" + imei + "/" + serial + "/" + version + "/" + devtype + "/" + regId
 
-                val urlparams = ul!!.firsttimelogin(params, endpoint)
+                val urlparams = ul.firsttimelogin(params, endpoint)
                 getDataIntractor.getResults(this, urlparams)
 
             } else {

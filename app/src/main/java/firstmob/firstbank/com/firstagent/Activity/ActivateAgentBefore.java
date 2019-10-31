@@ -11,9 +11,13 @@ import android.widget.Toast;
 
 
 import androidx.appcompat.widget.Toolbar;
+
+import firstmob.firstbank.com.firstagent.model.User;
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
+
+import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -94,15 +98,12 @@ public class ActivateAgentBefore extends AppCompatActivity implements MainContra
     @Override
     public void onLoginResult(String response) {
 
-        try {
-            JSONObject jsonObject1 = new JSONObject(response);
-            String res_description=jsonObject1.getString("respdesc");
-            if(res_description.equals("SUCCESS")){
-                Toast.makeText(this, "successfully loggedin", Toast.LENGTH_SHORT).show();
-            }else
-                Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        User user = new Gson().fromJson(response,User.class);
+        if(user.getRespdesc().equals("SUCCESS")){
+            Toast.makeText(this, "successfully loggedin", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show();
         }
     }
 

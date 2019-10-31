@@ -9,13 +9,11 @@ import javax.inject.Inject;
 
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
-import firstmob.firstbank.com.firstagent.model.IUser;
 import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 import firstmob.firstbank.com.firstagent.utils.Utility;
 
 public class LoginPresenterCompl implements MainContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
     MainContract.ILoginView iLoginView;
-    IUser user;
     Handler handler;
     private MainContract.GetDataIntractor getDataIntractor;
 
@@ -76,8 +74,6 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
 
             String respcode = obj.optString("responseCode");
             String responsemessage = obj.optString("message");
-
-
             //session.setString(SecurityLayer.KEY_APP_ID,appid);
 
             if (ul.isNotNull(respcode) && ul.isNotNull(responsemessage)) {
@@ -85,16 +81,10 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
 
                 if (respcode.equals("00")) {
                     JSONObject datas = obj.optJSONObject("data");
-
-
                     iLoginView.showToast("SUCCESS");
-
-
                 } else {
 
                     iLoginView.showToast(responsemessage);
-
-
                 }
 
             } else {
@@ -116,8 +106,6 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
             iLoginView.showToast("There was an error on your request");
             // SecurityLayer.Log(e.toString());
         }
-
-
         //   iLoginView.onLoginResult(response);
         iLoginView.hideProgress();
     }
