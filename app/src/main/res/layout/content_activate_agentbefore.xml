@@ -4,27 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ActivateAgent"
-    android:background="@color/white"
+    android:background="@color/greybg"
     android:orientation="vertical"
     android:filterTouchesWhenObscured ="true"
     tools:showIn="@layout/activity_activate_agentbefore">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_weight="0.3"
+        android:layout_height="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="216dp"
+            android:background="@drawable/firstmoniewhite"
+            android:layout_centerInParent="true"
+            android:layout_height="50dp">
 
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        </ImageView>
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        android:layout_margin="10dp"
+                android:layout_margin="5dp"
+                android:layout_alignParentBottom="true"
 
-        android:text="Proceed to activate the Agent app with the following details"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp" />
+android:layout_centerHorizontal="true"
+                android:text="Proceed to activate the Agent app with the following details"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="0.7"
+        android:layout_height="0dp">
+
 
     <LinearLayout
 
@@ -41,57 +64,51 @@
 
 
         >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
 android:layout_marginTop="40dp"
         android:layout_marginRight="10dp"
         android:orientation="horizontal">
-
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center"
-            android:layout_weight="1.5"
-            android:text="Attendant ID"
-            android:textColor="@color/black" />
+
+            android:layout_margin="10dp"
+            android:layout_centerHorizontal="true"
+
+            android:text="Enter Attendant ID"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
 
         <EditText
+            android:layout_below="@+id/txt2"
 
             android:layout_gravity="left|center"
-            android:layout_weight="2"
-            android:background="@android:color/transparent"
+
+            android:background="@drawable/edittxtbackground"
 
 android:textColor="@color/black"
             android:id="@+id/agentid"
+            android:padding="5dp"
 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
+            android:layout_width="match_parent"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="40dp"
+android:layout_centerHorizontal="true"
             android:ems="10"
 
-            android:inputType="text"
-            android:layout_margin="10dp"
-            android:hint="Attendant ID"
-android:textColorHint="@color/grey"
+            android:inputType="number"
+
+
+
             android:textSize="16sp"/>
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/nbkyellow"/>
-
-</LinearLayout>
+    </RelativeLayout>
 
 
 
@@ -108,8 +125,8 @@ android:textColorHint="@color/grey"
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
             android:background="@drawable/mybutton"
             android:padding="5dp"
             android:text="NEXT"
@@ -119,6 +136,6 @@ android:textColorHint="@color/grey"
             android:textColor="@color/white" />
     </RelativeLayout>
 
-
+    </LinearLayout>
 
 </LinearLayout>

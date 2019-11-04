@@ -15,7 +15,7 @@ public interface MainContract {
         void ondestroy();
     }
     interface ILoginView {
-        void onLoginResult(String result);
+        void onLoginResult();
         void onLoginError(String error);
         void showToast(String text);
         void showProgress();

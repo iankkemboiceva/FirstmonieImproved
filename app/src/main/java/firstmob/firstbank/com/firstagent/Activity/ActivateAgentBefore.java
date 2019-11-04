@@ -3,6 +3,7 @@ package firstmob.firstbank.com.firstagent.Activity;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 
 import androidx.appcompat.widget.Toolbar;
+
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
@@ -31,7 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ActivateAgentBefore extends AppCompatActivity implements MainContract.ILoginView {
+public class ActivateAgentBefore extends BaseBeforeActivity implements MainContract.ILoginView {
 
     @BindView(R.id.agentid) EditText agentid;
     @BindView(R.id.button2) Button btnLogin;
@@ -65,16 +67,7 @@ public class ActivateAgentBefore extends AppCompatActivity implements MainContra
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    @Override
-    public void showToast(String text) {
 
-        Toast.makeText(
-                getApplicationContext(),
-                text,
-                Toast.LENGTH_LONG).show();
-
-
-    }
 
 
     @OnClick(R.id.button2)
@@ -92,18 +85,12 @@ public class ActivateAgentBefore extends AppCompatActivity implements MainContra
 
 
     @Override
-    public void onLoginResult(String response) {
+    public void onLoginResult() {
+        finish();
+        Intent mIntent = new Intent(getApplicationContext(), ActivateAgent.class);
 
-        try {
-            JSONObject jsonObject1 = new JSONObject(response);
-            String res_description=jsonObject1.getString("respdesc");
-            if(res_description.equals("SUCCESS")){
-                Toast.makeText(this, "successfully loggedin", Toast.LENGTH_SHORT).show();
-            }else
-                Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        startActivity(mIntent);
+
     }
 
     @Override

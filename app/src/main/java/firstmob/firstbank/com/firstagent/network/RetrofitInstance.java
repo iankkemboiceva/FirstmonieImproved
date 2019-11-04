@@ -1,8 +1,13 @@
 package firstmob.firstbank.com.firstagent.network;
 
 
-import firstmob.firstbank.com.firstagent.Activity.BuildConfig;
+import android.widget.Toast;
+
+import com.pixplicity.easyprefs.library.Prefs;
+
+
 import firstmob.firstbank.com.firstagent.constants.Constants;
+import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 import firstmob.firstbank.com.firstagent.security.TLSSocketFactory;
 
 import java.io.IOException;
@@ -28,6 +33,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static firstmob.firstbank.com.firstagent.constants.Constants.AND_POINT;
 import static firstmob.firstbank.com.firstagent.constants.Constants.NET_URL;
+import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_LATITUDE;
+import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_LONGIT;
 
 public class RetrofitInstance {
 
@@ -97,6 +104,12 @@ public class RetrofitInstance {
                 Request request = null;
                 String appidnew = appid;
                 String useridnew = userid;
+
+                String lat = Prefs.getString(KEY_LATITUDE,"NA");
+                String longt = Prefs.getString(KEY_LONGIT,"NA");
+                SecurityLayer.Log("latitude is "+lat);
+                SecurityLayer.Log("longitude is "+longt);
+
 
 
                 if (appid == null) {

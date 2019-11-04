@@ -11,15 +11,18 @@ import javax.inject.Inject
 
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 import firstmob.firstbank.com.firstagent.constants.Constants
-import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.ActivateAgentContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
+import firstmob.firstbank.com.firstagent.contract.SignInContract
 
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.*
 
-class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : ActivateAgentContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
+class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : SignInContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
+
 
     @Inject
     internal lateinit var ul: Utility
@@ -33,52 +36,39 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
     }
 
 
-    override fun DevReg(agpin: String, otp: String) {
+    override fun Login(agpin: String) {
 
 
 
 
         iLoginView!!.showProgress()
 
-        val endpoint = "reg/devReg.action/"
-        val ip = getIP()
-        val mac = getMacAddress()
-        val serial = getSerial()
-        val version = getDevVersion()
-        val devtype = getDevModel()
-        val imei = getDevImei()
+        val endpoint = "login/login.action/"
+
         if (isNotNull(agpin)) {
-            if (isNotNull(otp)) {
+
         if (checkInternetConnection()) {
-            if (isNotNull(imei) && isNotNull(serial)) {
+
 
 
                 //   final   String agid = agentid.getText().toString();
-                val agid = Prefs.getString(KEY_USERID,"NA")
+                val userid = Prefs.getString(KEY_USERID,"NA")
 
-                val regId = "sss"
+
                 val encrypted = b64_sha256(agpin)
                 SecurityLayer.Log("Encrypted Pin", encrypted)
-                val params = Constants.CH_ID + "/" + agid + "/" + otp + "/" + encrypted + "/secans1/" + "secans2" + "/secans3/" + mac + "/" + ip + "/" + imei + "/" + serial + "/" + version + "/" + devtype + "/" + regId
+            val mobnoo = "12345"
 
-                val urlparams = ul.firsttimelogin(params, endpoint)
-                reqtype = "DEVREG"
+                val params = Constants.CH_ID + "/" + userid + "/" + encrypted + "/" + mobnoo
+
+                val urlparams = ul?.generalLogin(params, endpoint)
+
                 getDataIntractor.getResults(this, urlparams)
 
-            } else {
-
-
-                iLoginView!!.showToast("Please ensure this device has an IMEI number")
-
-                iLoginView!!.hideProgress()
-
-            }
         }
-            } else {
-                iLoginView!!.showToast("Please enter a valid value for OTP")
-            }
+
         } else {
-            iLoginView!!.showToast("Please enter a valid value for activation key")
+            iLoginView!!.showToast("Please enter a valid value for PIN")
         }
 
     }
@@ -92,14 +82,13 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
 
 
             var obj = JSONObject(responsebody)
-            /*   JSONObject jsdatarsp = obj.optJSONObject("data");
-                    SecurityLayer.Log("JSdata resp", jsdatarsp.toString());
-                    //obj = Utility.onresp(obj,getActivity()); */
-            obj = SecurityLayer.decryptFirstTimeLogin(obj)
+
+            obj = SecurityLayer.decryptGeneralLogin(obj)
             SecurityLayer.Log("decrypted_response", obj.toString())
 
             val respcode = obj.optString("responseCode")
             val responsemessage = obj.optString("message")
+            val datas = obj.optJSONObject("data")
 
 
             //session.setString(SecurityLayer.KEY_APP_ID,appid);
@@ -109,13 +98,40 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
                 SecurityLayer.Log("Response Message", responsemessage)
 
                 if (respcode == "00") {
-                 if(reqtype.equals("RESENDOTP")) {
+
+                    if (!(datas == null)) {
+
+                        val status = datas.optString ("status")
+                        if (status == "F") {
+
+                        }else{
+
+                            val agentid = datas.optString("agent")
+                            val userid = datas.optString("userId")
+                            val username = datas.optString("userName")
+                            val email = datas.optString("email")
+                            val lastl = datas.optString("lastLoggedIn")
+                            val mobno = datas.optString("mobileNo")
+                            val accno = datas.optString("acountNumber")
+                            val cntopen = datas.optString("canOpenAccount")
+
+                            Prefs.putString(KEY_SETCNTOPEN,cntopen)
+                            Prefs.putString(AGENTID,agentid)
+                            Prefs.putString(KEY_USERID,userid)
+                            Prefs.putString(KEY_EMAIL,email)
+                            Prefs.putString(SharedPrefConstants.AGMOB,mobno)
+                            Prefs.putString(KEY_CUSTNAME,username)
+                            Prefs.putString(KEY_ACCO,accno)
+                            Prefs.putString(LASTL,lastl)
+                            Prefs.putString(CHKLOGIN,"Y")
+
+                            iLoginView?.onLoginResult()
+
+                        }
+                    }
 
 
-                     iLoginView!!.showToast("OTP has been successfully resent")
-                 }else{
-                     iLoginView?.onLoginResult()
-                 }
+
 
 
                 } else {
@@ -153,28 +169,6 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
 
 
 
-    override fun ResendOTP(agid: String) {
-        //   ul.checkpermissions();
-
-        iLoginView?.showProgress()
-
-        val endpoint = "otp/generateotp.action/"
-        val params = Constants.CH_ID+"/"+agid
-        var urlparams = ""
-        try {
-            urlparams = ul.firsttimelogin(params, endpoint)
-            //SecurityLayerStanbic.Log("cbcurl",url);
-            SecurityLayer.Log("RefURL", urlparams)
-            SecurityLayer.Log("refurl", urlparams)
-            SecurityLayer.Log("params", params)
-        } catch (e: Exception) {
-            SecurityLayer.Log("encryptionerror", e.toString())
-        }
-
-        reqtype = "RESENDOTP"
-        getDataIntractor.getResults(this, urlparams)
-    }
-
     override fun onFailure(t: Throwable) {
         iLoginView!!.hideProgress()
         iLoginView!!.showToast("There was an error on your request")
@@ -184,6 +178,11 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
 
     override fun ondestroy() {
         iLoginView = null
+    }
+
+    override fun setAppVersion() {
+       val appversion = getAppVersion()
+        iLoginView?.setTextApp("Version $appversion")
     }
 
 

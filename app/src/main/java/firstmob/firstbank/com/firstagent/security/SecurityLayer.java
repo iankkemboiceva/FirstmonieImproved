@@ -217,7 +217,7 @@ String tken = newjs.optString("token");
 
     }
 
-    public  String generalLogin( String params, String session_id, @Named("ApplicationContext") Context context,String endpoint) throws Exception {
+    public static String generalLogin( String params, String endpoint) throws Exception {
         String finpoint = "";
         if (checkInternetConnection()) {
 
@@ -264,6 +264,7 @@ String tken = newjs.optString("token");
 
             String vers = Utility.getAppVersion();
 SecurityLayer.Log("encappid",encappid);
+String session_id = "121212";
 
             finpoint = sb.append(Constants.NET_URL + endpoint)
                     .append(toHex(encryptedUrl))
@@ -280,7 +281,7 @@ SecurityLayer.Log("encappid",encappid);
         }
         return  finpoint;
     }
-    public static JSONObject decryptGeneralLogin(JSONObject jsonobj, @Named("ApplicationContext") Context context) throws Exception {
+    public static JSONObject decryptGeneralLogin(JSONObject jsonobj) throws Exception {
 
         String status = jsonobj.getString("status");
         String svoke = jsonobj.getString("svoke");

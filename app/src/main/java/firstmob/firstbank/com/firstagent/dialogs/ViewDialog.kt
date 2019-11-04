@@ -7,8 +7,8 @@ import android.widget.ImageView
 
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
-
 import firstmob.firstbank.com.firstagent.Activity.R
+
 
 class ViewDialog(internal var activity: Activity) {
     internal lateinit var dialog: Dialog

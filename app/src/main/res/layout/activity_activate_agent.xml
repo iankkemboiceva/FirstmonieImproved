@@ -11,20 +11,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:layout_marginTop="1dp"
-
-            >
-
-            <include
-                android:id="@+id/toolbar"
-
-                layout="@layout/newtoolbar" />
-
-        </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

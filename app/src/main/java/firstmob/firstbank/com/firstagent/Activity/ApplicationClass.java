@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.ContextWrapper;
 
 import androidx.multidex.MultiDex;
+
 import firstmob.firstbank.com.firstagent.daggermodules.ContextModule;
 import firstmob.firstbank.com.firstagent.daggermodules.DaggerMyComponent;
 import firstmob.firstbank.com.firstagent.daggermodules.MyComponent;
@@ -25,7 +26,7 @@ public class ApplicationClass extends Application {
 
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Montserrat-Light.otf")
+                .setDefaultFontPath("fonts/poppins.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );

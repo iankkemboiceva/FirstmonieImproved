@@ -29,6 +29,10 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import com.pixplicity.easyprefs.library.Prefs
+
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.SESS_REG
 import firstmob.firstbank.com.firstagent.contract.ActivateAgentContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
@@ -48,9 +52,9 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_activate_agent)
-        viewDialog = ViewDialog(this);
+        viewDialog = ViewDialog(this)
 
-        ButterKnife.bind(this)
+
 
         button2.setOnClickListener {
             Dexter.withActivity(this)
@@ -77,19 +81,24 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
         }
 
         resendbutt.setOnClickListener {
-            val i = Intent(this,ActivateAgentBefore::class.java)
-            startActivity(i)
+            /* val i = Intent(this,ActivateAgentBefore::class.java)
+             startActivity(i)*/
+
+            val agid = Prefs.getString(KEY_USERID,"NA")
+
+            presenter.ResendOTP(agid)
         }
 
 
 
-        presenter = ActivateAgentPresenter(this, FetchServerResponse());
+        presenter = ActivateAgentPresenter(this, FetchServerResponse())
     }
 
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
+
 
 
     override fun showToast(text: String) {
@@ -102,6 +111,9 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
 
     }
 
+
+
+
     private fun checkPlayServices() {
         val api = GoogleApiAvailability.getInstance()
         val code = api.isGooglePlayServicesAvailable(applicationContext)
@@ -112,7 +124,7 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
             val agpin = agentpin.text.toString()
             val otp = otp.text.toString()
 
-            presenter.DevReg(agpin, otp);
+            presenter.DevReg(agpin, otp)
 
 
         } else {
@@ -130,14 +142,21 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
 
     override fun onLoginError(error: String) {
         showToast(error)
-   }
-
-    override fun onLoginResult(result: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
     override fun hideProgress() {
         viewDialog?.hideDialog()
     }
+
+
+
+    override fun onLoginResult() {
+        Prefs.putString(SESS_REG,"Y")
+        val i = Intent(this,SignInActivity::class.java)
+        startActivity(i)
+
+    }
+
 
 }
