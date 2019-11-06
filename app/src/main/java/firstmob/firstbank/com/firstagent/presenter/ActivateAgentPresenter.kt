@@ -50,7 +50,6 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
 
                 //   final   String agid = agentid.getText().toString();
                 val agid = "PREF"
-
                 val regId = "sss"
                 val encrypted = Utility.b64_sha256(agpin)
                 SecurityLayer.Log("Encrypted Pin", encrypted)
