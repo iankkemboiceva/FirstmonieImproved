@@ -106,7 +106,8 @@ class SignInActivity : AppCompatActivity(), SignInContract.ILoginView {
 
     override fun onLoginResult() {
 
-        showToast("SUCCESS")
+        val i = Intent(this,FMobActivity::class.java)
+        startActivity(i)
     }
 
 

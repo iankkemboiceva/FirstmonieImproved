@@ -23,13 +23,16 @@
         <!-- Customize color of navigation drawer icon and back arrow -->
         <item name="colorControlNormal">@color/colorPrimary</item>
     </style>
+
     <style name="RedTheme" parent="RedTheme.Base">
 
     </style>
+
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@color/colorPrimary</item>
     </style>
+
     <style name="RedTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -80,17 +83,22 @@
     </style>
 
     <!--<style name="SpinnerAppTheme" parent="Widget.AppCompat.Spinner">-->
-        <!--<item name="android:background">@drawable/apptheme_spinner_background_holo_light</item>-->
-        <!--<item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>-->
+    <!--<item name="android:background">@drawable/apptheme_spinner_background_holo_light</item>-->
+    <!--<item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>-->
     <!--</style>-->
 
     <!--<style name="SpinnerDropDownItemAppTheme" parent="android:Widget.DropDownItem.Spinner">-->
-        <!--<item name="android:checkMark">@drawable/apptheme_btn_radio_holo_light</item>-->
+    <!--<item name="android:checkMark">@drawable/apptheme_btn_radio_holo_light</item>-->
     <!--</style>-->
 
     <style name="MyMaterialTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="MyMaterialTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyMaterialTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
     <!--  <style name="Theme.App" parent="Theme.Sherlock.Light">
           <item name="actionBarStyle">@style/Theme.App.ActionBar</item>
       </style>

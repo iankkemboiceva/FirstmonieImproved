@@ -1,0 +1,406 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:filterTouchesWhenObscured ="true"
+    android:background="@color/colorPrimary"
+
+
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/nav_header_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+
+
+            >
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/profimg"
+                android:background="@drawable/profilepic"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+
+                android:textColor="@color/white"
+
+
+                android:textSize="17sp"
+                android:id="@+id/txuserid"
+                android:layout_below="@+id/profimg"
+                android:textStyle="bold"
+                android:text="User ID:"
+
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/txloglast"
+
+                android:orientation="horizontal"
+                android:layout_below="@+id/txuserid"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+
+
+                   android:layout_marginLeft="20dp"
+
+                    android:textColor="@color/white"
+
+
+                    android:textSize="14sp"
+                    android:id="@+id/sdf2"
+
+
+                    android:text="Last Login: 12 July 2012 "
+
+
+                    /></LinearLayout>
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/home"
+
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:layout_alignParentRight="true"
+                android:id="@+id/home"
+                android:textSize="14sp"
+                android:visibility="gone"
+
+                android:textStyle="bold"
+                android:text=""
+
+
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_he"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:layout_weight="60"
+            android:layout_below="@+id/nav_header_container"
+
+
+
+            >
+            <LinearLayout
+                android:id="@+id/lyvert"
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+
+                android:orientation="vertical"
+
+                >
+
+
+                <RelativeLayout
+                    android:id="@+id/lyid"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="80"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
+                    android:orientation="vertical"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:id="@+id/rl4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+android:layout_marginTop="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp"
+
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+
+
+
+                                android:layout_height="wrap_content">
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/item5"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+
+                                    android:background="@drawable/homeicon"
+
+                                    />
+
+                                <TextView
+                                    android:id="@+id/txt_item5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                 android:layout_marginLeft="60dp"
+                                    android:layout_marginTop="5dp"
+                                    android:textStyle="bold"
+                                    android:text="Home"
+                                    android:textSize="15sp"
+
+                                    android:textColor="@color/white" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/rl3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+
+
+                            android:layout_below="@+id/rl4"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+android:layout_marginTop="10dp"
+                                android:layout_centerInParent="true"
+
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:id="@+id/item6"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+
+
+
+                                    android:background="@drawable/changepin" />
+
+                                <TextView
+                                    android:id="@+id/txt_item6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+
+
+                                    android:layout_marginLeft="60dp"
+
+                                    android:textStyle="bold"
+                                    android:text="Change PIN"
+
+                                    android:textColor="@color/white" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="10dp"
+                                android:padding="5dp"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:id="@+id/item7"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+
+
+
+                                    android:background="@drawable/performance" />
+
+                                <TextView
+                                    android:id="@+id/txt_item7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+
+                                    android:layout_marginLeft="60dp"
+
+                                    android:text="Performance"
+                                    android:textColor="@color/white"
+
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/item8"
+                                android:layout_width="20dp"
+                                android:layout_height="22dp"
+
+
+
+                                android:background="@drawable/agentaccount" />
+
+                            <TextView
+                                android:id="@+id/txt_item8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+
+
+                                android:layout_marginLeft="60dp"
+
+                                android:textStyle="bold"
+                                android:text="Agent Account"
+
+                                android:textColor="@color/white" />
+                        </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/item9"
+                                android:layout_width="25dp"
+                                android:layout_height="20dp"
+
+
+
+                                android:background="@drawable/commissaccount" />
+
+                            <TextView
+                                android:id="@+id/txt_item9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+
+
+                                android:layout_marginLeft="60dp"
+
+                                android:textStyle="bold"
+                                android:text="Commission Account"
+
+                                android:textColor="@color/white" />
+                        </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_marginTop="40dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+android:id="@+id/rlcomplains"
+
+
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/txt_item10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Complaints Management"
+
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/rlcomplains"
+
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/txt_item12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Log Out"
+
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</RelativeLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
+

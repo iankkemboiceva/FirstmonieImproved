@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lingen"
+        android:weightSum="100"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:id="@+id/container_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_height="46dp"
+                android:background="@drawable/firstmoniecolored"></ImageView>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_weight="90"
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/cntry"
+                android:textSize="17sp"
+                android:text=""/>
+
+            <LinearLayout
+                android:id="@+id/lyid"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_weight="20"
+                android:orientation="horizontal"
+
+
+                >
+
+                <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/rl1"
+
+                    android:layout_weight="1"
+
+                    android:background="@drawable/transferbox"
+
+                    >
+
+
+                    <ImageView
+
+                        android:id="@+id/imgt"
+                        android:src="@drawable/transfericon"
+
+
+                        android:layout_width="45dp"
+
+
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="20dp"
+
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transfer"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                     android:layout_alignParentBottom="true"
+                        android:textColor="@color/white"
+
+
+                        />
+
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rl3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/withdrawbox"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="45dp"
+
+
+                        android:src="@drawable/withdrawicon"
+
+
+
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/imgpaybills"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Withdraw"
+
+                        android:textColor="@color/white"
+
+
+
+
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_alignParentBottom="true"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyid2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:layout_weight="20"
+
+                android:orientation="horizontal"
+
+                >
+
+                <RelativeLayout
+                    android:id="@+id/rl5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/depositbox">
+
+                    <ImageView
+                        android:id="@+id/imgwithdraw"
+
+
+
+                        android:layout_width="45dp"
+
+
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="20dp"
+
+                        android:layout_height="40dp"
+                        android:src="@drawable/depositicon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:textColor="@color/white"
+
+
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:text="Deposit" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl1"
+                    android:layout_width="0dp"
+
+                    android:layout_height="match_parent"
+                    android:background="@drawable/airtimebox"
+                    android:layout_weight="1">
+
+                    <ImageView
+
+
+                        android:src="@drawable/airtimeicon"
+
+                        android:id="@+id/imgtdep"
+
+
+
+                        android:layout_width="45dp"
+
+
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="20dp"
+
+                        android:layout_height="40dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="Buy Airtime"
+                        android:textSize="13sp"
+
+                        android:textColor="@color/white"
+
+
+
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_alignParentBottom="true"
+
+                        />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:layout_weight="20"
+
+                android:orientation="horizontal"
+
+                >
+
+
+                <RelativeLayout
+                    android:id="@+id/rl6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/paybillbox">
+
+                    <ImageView
+                        android:id="@+id/imgtair"
+                        android:layout_width="45dp"
+
+
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="20dp"
+
+                        android:layout_height="40dp"
+                        android:src="@drawable/paybillicon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/white"
+                        android:text="Paybill"
+
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_alignParentBottom="true"
+
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layout_weight="1"
+
+
+
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+
+                        android:id="@+id/rlopenaccinside"
+                       android:background="@drawable/openaccountbox"
+
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="45dp"
+
+
+                            android:layout_marginLeft="20dp"
+
+                            android:layout_marginTop="20dp"
+
+                            android:layout_height="40dp"
+                            android:src="@drawable/accountopenicon"
+
+                            android:id="@+id/imgtacc"
+                           />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Open Account"
+
+                            android:textColor="@color/white"
+
+
+
+
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_alignParentBottom="true"
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:layout_weight="20"
+
+                android:orientation="horizontal"
+
+                >
+
+
+                <RelativeLayout
+                    android:id="@+id/rlmerch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/merchservbox">
+
+                    <ImageView
+                        android:id="@+id/merchbximg"
+                        android:layout_width="45dp"
+
+
+                        android:layout_marginLeft="20dp"
+
+                        android:layout_marginTop="20dp"
+
+                        android:layout_height="40dp"
+                        android:src="@drawable/merchservicon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:textColor="@color/white"
+                        android:text="Merchant Services" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlinbox"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:layout_gravity="center"
+
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+
+                        android:id="@+id/rlinboxinside"
+                        android:background="@drawable/inboxbox"
+                        android:layout_gravity="center"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="45dp"
+
+
+                            android:layout_marginLeft="20dp"
+
+                            android:layout_marginTop="20dp"
+
+                            android:layout_height="40dp"
+                            android:src="@drawable/inboxicon"
+
+                            android:id="@+id/inboxacc"
+                             />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Open Account"
+
+
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_alignParentBottom="true"
+                            android:textColor="@color/white"
+
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

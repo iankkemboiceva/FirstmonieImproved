@@ -17,8 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
+        <activity
+            android:name=".FMobActivity"
+            android:label="@string/title_activity_fmob"
+            android:theme="@style/MyMaterialTheme.NoActionBar"></activity>
         <activity android:name=".Splash">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,9 +43,7 @@
 
         <activity android:name=".SignInActivity" />
         <activity android:name=".ActivateAgent" />
-        <activity android:name=".ActivateAgentBefore">
-
-        </activity>
+        <activity android:name=".ActivateAgentBefore" />
     </application>
 
 </manifest>
