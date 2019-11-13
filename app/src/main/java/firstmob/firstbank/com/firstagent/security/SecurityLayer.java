@@ -333,7 +333,7 @@ String session_id = "121212";
         return new JSONObject(finalresp);
 
     }
-    public  String genURLCBC(String params,String endpoint,  Context c) {
+    public  static String genURLCBC(String params,String endpoint) {
         String finpoint = "";
         if(checkInternetConnection()) {
 
@@ -420,7 +420,7 @@ SecurityLayer.Log("Imei chosen",imei);
         }
         return  finpoint;
     }
-    public static JSONObject decryptTransaction(JSONObject jsonobj,@Named("ApplicationContext") Context context) throws Exception {
+    public static JSONObject decryptTransaction(JSONObject jsonobj) throws Exception {
 
         String status = jsonobj.getString("status");
         String svoke = jsonobj.getString("svoke");

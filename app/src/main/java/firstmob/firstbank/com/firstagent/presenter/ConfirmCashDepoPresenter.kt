@@ -11,17 +11,20 @@ import javax.inject.Inject
 
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 import firstmob.firstbank.com.firstagent.constants.Constants
-import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.ActivateAgentContract
+
+import firstmob.firstbank.com.firstagent.contract.ConfirmCashDepoContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
-import firstmob.firstbank.com.firstagent.contract.SignInContract
 
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.*
+import firstmob.firstbank.com.firstagent.constants.Constants.KEY_NAIRA
 
-class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : SignInContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
+
+
+class ConfirmCashDepoPresenter(internal var iLoginView: ConfirmCashDepoContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : ConfirmCashDepoContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
 
 
     @Inject
@@ -34,45 +37,36 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
         ApplicationClass.getMyComponent().inject(this)
         // initUser();
     }
-
-
-    override fun Login(agpin: String) {
-
-
-
-
+    override fun getFeeSec(amou: String?) {
         iLoginView!!.showProgress()
 
-        val endpoint = "login/login.action/"
+        val endpoint = "fee/getfee.action"
 
-        if (isNotNull(agpin)) {
+        if (isNotNull(amou)) {
 
-        if (checkInternetConnection()) {
-
+            if (checkInternetConnection()) {
 
 
                 //   final   String agid = agentid.getText().toString();
-                val userid = Prefs.getString(KEY_USERID,"NA")
+                val userid = Prefs.getString(KEY_USERID, "NA")
+                val agentid = Prefs.getString(AGENTID, "NA")
 
 
-                val encrypted = b64_sha256(agpin)
-                SecurityLayer.Log("Encrypted Pin", encrypted)
-            val mobnoo = "12345"
 
-                val params = Constants.CH_ID + "/" + userid + "/" + encrypted + "/" + mobnoo
 
-                val urlparams = ul?.generalLogin(params, endpoint)
+                val params = Constants.CH_ID + "/" + userid + "/" + agentid + "/CASHDEP/" + amou
+
+                val urlparams = ul?.genURLCBC(params, endpoint)
 
                 getDataIntractor.getResults(this, urlparams)
 
-        }
+            }
 
         } else {
-            iLoginView!!.showToast("Please enter a valid value for PIN")
+            iLoginView!!.showToast("Please enter a valid value for amount")
         }
 
     }
-
 
     override fun onFinished(responsebody: String) {
 
@@ -82,60 +76,71 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
 
 
             var obj = JSONObject(responsebody)
-
-            obj = SecurityLayer.decryptGeneralLogin(obj)
+            /*   JSONObject jsdatarsp = obj.optJSONObject("data");
+                    SecurityLayer.Log("JSdata resp", jsdatarsp.toString());
+                    //obj = Utility.onresp(obj,getActivity()); */
+            obj = SecurityLayer.decryptTransaction(obj)
             SecurityLayer.Log("decrypted_response", obj.toString())
 
             val respcode = obj.optString("responseCode")
             val responsemessage = obj.optString("message")
-            val datas = obj.optJSONObject("data")
+
+            val plan = obj.optJSONObject("data")
 
 
             //session.setString(SecurityLayer.KEY_APP_ID,appid);
 
             if (isNotNull(respcode) && isNotNull(responsemessage)) {
 
+                var respfee = obj.optString("fee")
+                val agbalance = obj.optString("data")
+
+
+
                 SecurityLayer.Log("Response Message", responsemessage)
+                if (!(checkUserLocked(respcode))) {
+                    if (responsebody != null) {
+                        if (respcode == "00") {
 
-                if (respcode == "00") {
+                            SecurityLayer.Log("Response Message", responsemessage);
 
-                    if (!(datas == null)) {
+//                                    SecurityLayer.Log("Respnse getResults",datas.toString());
+                            if (respfee == null || respfee.equals("")) {
 
-                        val status = datas.optString ("status")
-                        if (status == "F") {
+                                iLoginView!!.settextfee("N/A")
+                            } else {
 
-                        }else{
+                                respfee = returnNumberFormat(respfee);
+                                iLoginView!!.settextfee(KEY_NAIRA + respfee)
 
-                            val agentid = datas.optString("agent")
-                            val userid = datas.optString("userId")
-                            val username = datas.optString("userName")
-                            val email = datas.optString("email")
-                            val lastl = datas.optString("lastLoggedIn")
-                            val mobno = datas.optString("mobileNo")
-                            val accno = datas.optString("acountNumber")
-                            val cntopen = datas.optString("canOpenAccount")
+                            }
 
-                            Prefs.putString(KEY_SETCNTOPEN,cntopen)
-                            Prefs.putString(AGENTID,agentid)
-                            Prefs.putString(KEY_USERID,userid)
-                            Prefs.putString(KEY_EMAIL,email)
-                            Prefs.putString(AGMOB,mobno)
-                            Prefs.putString(KEY_CUSTNAME,username)
-                            Prefs.putString(KEY_ACCO,accno)
-                            Prefs.putString(LASTL,lastl)
-                            Prefs.putString(CHKLOGIN,"Y")
-                            Prefs.putBoolean(ISLOGIN,true);
+                        } else if (respcode == "93") {
 
-                            iLoginView?.onLoginResult()
 
+                            iLoginView!!.showToast(responsemessage)
+
+
+
+
+
+                        } else {
+                            if (!(checkUserLocked(respcode))) {
+
+
+
+
+                                iLoginView!!.hidebutton()
+                                iLoginView!!.showToast(responsemessage)
+                            } else {
+
+                            }
                         }
+                    } else {
+                        iLoginView!!.settextfee("N/A")
                     }
 
-
-
-
-
-                } else {
+                }else {
 
                     iLoginView!!.showToast(responsemessage)
 
@@ -168,8 +173,6 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
     }
 
 
-
-
     override fun onFailure(t: Throwable) {
         iLoginView!!.hideProgress()
         iLoginView!!.showToast("There was an error on your request")
@@ -179,11 +182,6 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
 
     override fun ondestroy() {
         iLoginView = null
-    }
-
-    override fun setAppVersion() {
-       val appversion = getAppVersion()
-        iLoginView?.setTextApp("Version $appversion")
     }
 
 

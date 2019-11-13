@@ -1,13 +1,19 @@
 package firstmob.firstbank.com.firstagent.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.Toast
+import firstmob.firstbank.com.firstagent.Activity.CashDepoActivity
+import firstmob.firstbank.com.firstagent.Activity.FMobActivity
 import firstmob.firstbank.com.firstagent.Activity.R
+import kotlinx.android.synthetic.main.fragment_new_home_grid.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,7 +42,17 @@ class NewHomeGrid : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_home_grid, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
+
+        val rldepo: RelativeLayout? = view?.findViewById(R.id.rl5)
+        rldepo?.setOnClickListener(){
+
+            val i = Intent(activity, CashDepoActivity::class.java)
+
+            startActivity(i)
+        }
+
+        return view;
     }
 
 

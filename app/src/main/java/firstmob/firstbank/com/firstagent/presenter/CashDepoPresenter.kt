@@ -11,18 +11,16 @@ import javax.inject.Inject
 
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 import firstmob.firstbank.com.firstagent.constants.Constants
-import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.ActivateAgentContract
+import firstmob.firstbank.com.firstagent.contract.CashDepoContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
-import firstmob.firstbank.com.firstagent.contract.SignInContract
 
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.*
 
-class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : SignInContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
-
+class CashDepoPresenter(internal var iLoginView: CashDepoContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : CashDepoContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
 
     @Inject
     internal lateinit var ul: Utility
@@ -36,43 +34,38 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
     }
 
 
-    override fun Login(agpin: String) {
-
-
+    override fun NameEnquiry(acno: String) {
 
 
         iLoginView!!.showProgress()
 
-        val endpoint = "login/login.action/"
+        val endpoint = "transfer/nameenq.action"
 
-        if (isNotNull(agpin)) {
+        if (isNotNull(acno)) {
 
-        if (checkInternetConnection()) {
-
+            if (checkInternetConnection()) {
 
 
                 //   final   String agid = agentid.getText().toString();
-                val userid = Prefs.getString(KEY_USERID,"NA")
+                val userid = Prefs.getString(KEY_USERID, "NA")
+                val agentid = Prefs.getString(AGENTID, "NA")
+
+                val mobnoo = Prefs.getString(AGMOB, "NA")
 
 
-                val encrypted = b64_sha256(agpin)
-                SecurityLayer.Log("Encrypted Pin", encrypted)
-            val mobnoo = "12345"
+                val params = Constants.CH_ID + "/" + userid + "/" + agentid + "/" + mobnoo + "/0/" + acno
 
-                val params = Constants.CH_ID + "/" + userid + "/" + encrypted + "/" + mobnoo
-
-                val urlparams = ul?.generalLogin(params, endpoint)
+                val urlparams = ul?.genURLCBC(params, endpoint)
 
                 getDataIntractor.getResults(this, urlparams)
 
-        }
+            }
 
         } else {
-            iLoginView!!.showToast("Please enter a valid value for PIN")
+            iLoginView!!.showToast("Please enter a valid value for account number")
         }
 
     }
-
 
     override fun onFinished(responsebody: String) {
 
@@ -82,13 +75,16 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
 
 
             var obj = JSONObject(responsebody)
-
-            obj = SecurityLayer.decryptGeneralLogin(obj)
+            /*   JSONObject jsdatarsp = obj.optJSONObject("data");
+                    SecurityLayer.Log("JSdata resp", jsdatarsp.toString());
+                    //obj = Utility.onresp(obj,getActivity()); */
+            obj = SecurityLayer.decryptTransaction(obj)
             SecurityLayer.Log("decrypted_response", obj.toString())
 
             val respcode = obj.optString("responseCode")
             val responsemessage = obj.optString("message")
-            val datas = obj.optJSONObject("data")
+
+            val plan = obj.optJSONObject("data")
 
 
             //session.setString(SecurityLayer.KEY_APP_ID,appid);
@@ -98,41 +94,23 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
                 SecurityLayer.Log("Response Message", responsemessage)
 
                 if (respcode == "00") {
+                    SecurityLayer.Log("Response Message", responsemessage);
 
-                    if (!(datas == null)) {
+//                                    SecurityLayer.Log("Respnse getResults",datas.toString());
+                    if (plan != null) {
+                        val acname = plan.optString("accountName");
 
-                        val status = datas.optString ("status")
-                        if (status == "F") {
+                        iLoginView?.showToast("Account Name: $acname")
 
-                        }else{
+                        iLoginView?.setaccname(acname)
 
-                            val agentid = datas.optString("agent")
-                            val userid = datas.optString("userId")
-                            val username = datas.optString("userName")
-                            val email = datas.optString("email")
-                            val lastl = datas.optString("lastLoggedIn")
-                            val mobno = datas.optString("mobileNo")
-                            val accno = datas.optString("acountNumber")
-                            val cntopen = datas.optString("canOpenAccount")
+                    } else {
 
-                            Prefs.putString(KEY_SETCNTOPEN,cntopen)
-                            Prefs.putString(AGENTID,agentid)
-                            Prefs.putString(KEY_USERID,userid)
-                            Prefs.putString(KEY_EMAIL,email)
-                            Prefs.putString(AGMOB,mobno)
-                            Prefs.putString(KEY_CUSTNAME,username)
-                            Prefs.putString(KEY_ACCO,accno)
-                            Prefs.putString(LASTL,lastl)
-                            Prefs.putString(CHKLOGIN,"Y")
-                            Prefs.putBoolean(ISLOGIN,true);
+                        iLoginView?.showToast(
+                                "This is not a valid account number.Please check again")
 
-                            iLoginView?.onLoginResult()
 
-                        }
                     }
-
-
-
 
 
                 } else {
@@ -168,8 +146,6 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
     }
 
 
-
-
     override fun onFailure(t: Throwable) {
         iLoginView!!.hideProgress()
         iLoginView!!.showToast("There was an error on your request")
@@ -179,11 +155,6 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
 
     override fun ondestroy() {
         iLoginView = null
-    }
-
-    override fun setAppVersion() {
-       val appversion = getAppVersion()
-        iLoginView?.setTextApp("Version $appversion")
     }
 
 

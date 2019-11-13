@@ -36,7 +36,8 @@ import firstmob.firstbank.com.firstagent.fragments.FragmentDrawer
 
 import firstmob.firstbank.com.firstagent.fragments.NewHomeGrid
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
-import kotlinx.android.synthetic.main.newtoolbar.*
+import kotlinx.android.synthetic.main.activity_fmob.*
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,6 +63,12 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         // session = new SessionManagement(this);
 
 
+        setSupportActionBar(toolbar)
+
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+
 
         drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
 
@@ -69,7 +76,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         drawerFragment = supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as FragmentDrawer?
         //   drawerFragment.setArguments(bundle);
 
-        drawerFragment!!.setUp(R.id.fragment_navigation_drawer, drawerLayout )
+        drawerFragment!!.setUp(R.id.fragment_navigation_drawer, drawerLayout,toolbar )
         drawerFragment!!.setDrawerListener(this)
 
         updateAndroidSecurityProvider(this)
@@ -147,14 +154,6 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         //   getSupportActionBar().setTitle(title);
     }
 
-
-    override fun onDestroy() {
-
-        super.onDestroy()
-        // session.logoutUser();
-        // Put code here.
-
-    }
 
     private fun replaceFragment(fragment: Fragment) {
         val backStateName = fragment.javaClass.name

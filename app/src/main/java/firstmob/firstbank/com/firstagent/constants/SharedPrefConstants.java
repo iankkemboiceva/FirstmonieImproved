@@ -21,6 +21,7 @@ public class SharedPrefConstants {
     public static final String LASTL = "lastl";
 
     public static final String CHKLOGIN = "chklogin";
+    public static final String ISLOGIN = "islogin";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";

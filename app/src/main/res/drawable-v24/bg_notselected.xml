@@ -5,7 +5,7 @@
  
     <!-- Background color -->
     <solid
-        android:color="@color/nbkyellow" >
+        android:color="@color/colorPrimary" >
     </solid>
  
     <!-- Padding -->

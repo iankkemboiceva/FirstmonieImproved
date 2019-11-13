@@ -74,7 +74,7 @@ public class Utility {
     private static final String LWCASE_PATTERN = "[a-z]+";
     public static final String KEY_TOKEN = "token";
     private static final String SPEC_CHARPATTERN = "[a-zA-Z0-9]+";
-    public static final String AGMOB = "agmobno";
+
     public static Context context;
     @Inject
     SecurityLayer sl;
@@ -655,6 +655,22 @@ public class Utility {
         return urlparams;
     }
 
+
+    public String genURLCBC(String params, String endpoint) {
+
+
+        String urlparams = "";
+        try {
+            urlparams = SecurityLayer.genURLCBC(params, endpoint);
+            //SecurityLayer.Log("cbcurl",url);
+            SecurityLayer.Log("RefURL", urlparams);
+            SecurityLayer.Log("refurl", urlparams);
+            SecurityLayer.Log("params", params);
+        } catch (Exception e) {
+            SecurityLayer.Log("encryptionerror", e.toString());
+        }
+        return urlparams;
+    }
     public static String getencryptedpin(String finpin, String key) {
 
 
