@@ -14,7 +14,7 @@ public interface ConfirmCashDepoContract {
 
         void showToast(String text);
 
-        void settextfee(String name);
+        void settextfee(String name,Boolean fee);
 
         void showProgress();
         void hidebutton();

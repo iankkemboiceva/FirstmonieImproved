@@ -7,6 +7,7 @@ import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
 
 import dagger.Component;
 import firstmob.firstbank.com.firstagent.presenter.SignInPresenter;
+import firstmob.firstbank.com.firstagent.presenter.TransactionProcPresenter;
 
 @Component(modules={ContextModule.class})
 public  interface MyComponent {
@@ -15,4 +16,5 @@ public  interface MyComponent {
     void inject(SignInPresenter presenter);
     void inject(CashDepoPresenter presenter);
     void inject(ConfirmCashDepoPresenter presenter);
+    void inject(TransactionProcPresenter presenter);
 }

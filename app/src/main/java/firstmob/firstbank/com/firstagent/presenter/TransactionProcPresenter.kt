@@ -21,15 +21,20 @@ import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.*
 import firstmob.firstbank.com.firstagent.constants.Constants.KEY_NAIRA
+import firstmob.firstbank.com.firstagent.contract.TransactionProcessingContract
+
+import firstmob.firstbank.com.firstagent.Activity.TransactionProcessingActivity
+import androidx.core.content.ContextCompat.startActivity
+import android.content.Intent
 
 
 
-class ConfirmCashDepoPresenter(internal var iLoginView: ConfirmCashDepoContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : ConfirmCashDepoContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
 
+class TransactionProcPresenter(internal var iLoginView: TransactionProcessingContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : TransactionProcessingContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
 
     @Inject
     internal lateinit var ul: Utility
-    private var reqtype = ""
+
 
 
     init {
@@ -37,36 +42,25 @@ class ConfirmCashDepoPresenter(internal var iLoginView: ConfirmCashDepoContract.
         ApplicationClass.getMyComponent().inject(this)
         // initUser();
     }
-    override fun getFeeSec(amou: String?) {
+
+    override fun IntraDepoBankResp(params: String?) {
         iLoginView!!.showProgress()
 
-        val endpoint = "fee/getfee.action"
-
-        if (isNotNull(amou)) {
-
-            if (checkInternetConnection()) {
-
-
-                //   final   String agid = agentid.getText().toString();
-                val userid = Prefs.getString(KEY_USERID, "NA")
-                val agentid = Prefs.getString(AGENTID, "NA")
+        val endpoint = "transfer/intrabank.action"
 
 
 
+        if (checkInternetConnection()) {
 
-                val params = Constants.CH_ID + "/" + userid + "/" + agentid + "/CASHDEP/" + amou
 
-                val urlparams = ul?.genURLCBC(params, endpoint)
+            val urlparams = ul?.genURLCBC(params, endpoint)
 
-                getDataIntractor.getResults(this, urlparams)
+            getDataIntractor.getResults(this, urlparams)
 
-            }
-
-        } else {
-            iLoginView!!.showToast("Please enter a valid value for amount")
         }
 
     }
+
 
     override fun onFinished(responsebody: String) {
 
@@ -92,55 +86,60 @@ class ConfirmCashDepoPresenter(internal var iLoginView: ConfirmCashDepoContract.
 
             if (isNotNull(respcode) && isNotNull(responsemessage)) {
 
-                var respfee = obj.optString("fee")
-                val agbalance = obj.optString("data")
-
 
 
                 SecurityLayer.Log("Response Message", responsemessage)
                 if (!(checkUserLocked(respcode))) {
                     if (responsebody != null) {
-                        if (respcode == "00") {
+                        val respcode = obj.optString("responseCode")
+                        val responsemessage = obj.optString("message")
+                        val agcmsn = obj.optString("fee")
+                        val refcodee = obj.optString("commission")
+                        SecurityLayer.Log("Response Message", responsemessage)
 
-                            SecurityLayer.Log("Response Message", responsemessage);
 
-//                                    SecurityLayer.Log("Respnse getResults",datas.toString());
-                            if (respfee == null || respfee.equals("")) {
+                        val datas = obj.optJSONObject("data")
 
-                                iLoginView!!.settextfee("N/A",false)
+                        if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
+                            if (!Utility.checkUserLocked(respcode)) {
+                                if (respcode == "00") {
+                                    var totfee = "0.00"
+                                    var datetimee = ""
+                                    if (datas != null) {
+                                        totfee = datas.optString("fee")
+                                        datetimee = datas.optString("dateTime")
+                                    }
+
+
+                                    iLoginView!!.CashDepoResult(refcodee,datetimee,agcmsn,totfee)
+
+
+                                } else if (respcode == "002") {
+                                    iLoginView!!.showToast(responsemessage)
+
+                                 //   setAlertDialog()
+
+                                } else {
+
+                                    iLoginView!!.showToast(responsemessage)
+                                }
                             } else {
-
-                                respfee = returnNumberFormat(respfee)
-                                iLoginView!!.settextfee(KEY_NAIRA + respfee,true)
+                                iLoginView!!.onErrorResult(responsemessage)
 
                             }
-
-                        } else if (respcode == "93") {
-
-
-                            iLoginView!!.showToast(responsemessage)
-
-
-
-
-
                         } else {
-                            if (!(checkUserLocked(respcode))) {
 
 
+                            iLoginView!!.showToast("There was an error on your request")
+                            iLoginView!!.setstatus("TRANSACTION FAILURE")
+                            iLoginView!!.setdesc("There was an error on your request")
 
-
-                                iLoginView!!.hidebutton()
-                                iLoginView!!.showToast(responsemessage)
-                            } else {
-
-                            }
                         }
                     } else {
-                        iLoginView!!.settextfee("N/A",false)
+                        iLoginView!!.showToast("There was an error on your request")
                     }
 
-                }else {
+                } else {
 
                     iLoginView!!.showToast(responsemessage)
 
