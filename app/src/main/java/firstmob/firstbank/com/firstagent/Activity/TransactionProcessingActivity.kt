@@ -1,6 +1,6 @@
 package firstmob.firstbank.com.firstagent.Activity
 
-import FinalConfDepoActivity
+
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

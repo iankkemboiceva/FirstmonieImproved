@@ -229,9 +229,10 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="15dip"
                                         android:text="Account Number"
-                                        android:textStyle="bold"
+
                                         android:textSize="@dimen/textsize"
-                                        android:textColor="@color/colorPrimary" />
+                                        android:textColor="@color/colorPrimary"
+                                        android:textStyle="bold"/>
                                     <TextView
                                         android:id="@+id/recacno"
                                         android:layout_width="wrap_content"

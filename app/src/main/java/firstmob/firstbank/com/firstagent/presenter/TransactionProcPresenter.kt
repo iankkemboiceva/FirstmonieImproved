@@ -115,13 +115,12 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
 
 
                                 } else if (respcode == "002") {
-                                    iLoginView!!.showToast(responsemessage)
+                                    iLoginView!!.onErrorResult(responsemessage)
 
                                  //   setAlertDialog()
 
                                 } else {
-
-                                    iLoginView!!.showToast(responsemessage)
+                                    iLoginView!!.onErrorResult(responsemessage)
                                 }
                             } else {
                                 iLoginView!!.onErrorResult(responsemessage)

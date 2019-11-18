@@ -53,7 +53,7 @@
     <color name="greybg">#F5F6FC</color>
     <color name="lightpink">#CA226B</color>
 
-    3C2415
+    <color name="fbnlightblue">#00E6C3</color>
 
     <color name="borderhmground">#F5F5F5</color>
     <color name="textcolorcircle">#001C5C</color>
