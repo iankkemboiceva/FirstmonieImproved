@@ -30,7 +30,7 @@ android:layout_marginLeft="30dp"
                             android:textColor="@color/black"
                             android:textSize="13sp" />
                     <TextView
-                        android:id="@+id/from"
+                        android:id="@+id/txfromdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
@@ -50,7 +50,7 @@ android:layout_marginLeft="30dp"
                             android:layout_gravity="right"
                             android:layout_height="wrap_content">
                             <Button
-                                android:id="@+id/button4"
+                                android:id="@+id/calendar"
                                 android:layout_width="29dp"
                                 android:layout_height="25dp"
 
@@ -85,7 +85,7 @@ android:layout_marginLeft="30dp"
         android:textColor="@color/black"
         android:textSize="13sp" />
                     <TextView
-                        android:id="@+id/bname"
+                        android:id="@+id/txtenddat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                      android:layout_marginLeft="10dp"
@@ -99,14 +99,14 @@ android:layout_marginLeft="30dp"
 </LinearLayout>
 <RelativeLayout
     android:layout_width="wrap_content"
-    android:background="@drawable/backgroundsearch"
+
     android:layout_below="@+id/lyend"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="14dp"
     android:layout_marginRight="14dp"
     android:layout_height="wrap_content">
                     <SearchView
-                        android:id="@+id/searchView1"
+                        android:id="@+id/sv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"

@@ -76,7 +76,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         drawerFragment = supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as FragmentDrawer?
         //   drawerFragment.setArguments(bundle);
 
-        drawerFragment!!.setUp(R.id.fragment_navigation_drawer, drawerLayout,toolbar )
+        drawerFragment!!.setUp(R.id.fragment_navigation_drawer, drawerLayout, toolbar)
         drawerFragment!!.setDrawerListener(this)
 
         updateAndroidSecurityProvider(this)
@@ -127,6 +127,14 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
             4 -> {
             }
             5 -> {
+                finish()
+                val intent = Intent(this, SignInActivity::class.java)
+
+
+                // Staring Login Activity
+                startActivity(intent);
+                //  this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_LONG).show();
             }
 
 

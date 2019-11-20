@@ -70,7 +70,8 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
     TextView tv,home,tvmobno,tvlastl,tvusid;
 
-    Button lyhomeid,lysignout;
+    Button lyhomeid;
+    RelativeLayout lysignout;
     RelativeLayout header;
     //  private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -95,6 +96,8 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     int REQUEST_CAMERA =3293;
     private FragmentDrawerListener drawerListener;
 
+
+
     public FragmentDrawer() {
 
     }
@@ -116,8 +119,9 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.nav_drawer, container, false);
+        lysignout = (RelativeLayout) layout.findViewById(R.id.rllogout);
 
-
+        lysignout.setOnClickListener(this);
 
 
         return layout;
@@ -164,8 +168,13 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-    }
 
+        if (v.getId() == R.id.rllogout) {
+
+            drawerListener.onDrawerItemSelected(v, 5);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+    }
 
     public interface FragmentDrawerListener {
         public void onDrawerItemSelected(View view, int position);

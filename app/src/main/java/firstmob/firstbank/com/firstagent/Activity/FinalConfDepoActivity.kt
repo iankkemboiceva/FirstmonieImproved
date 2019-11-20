@@ -4,8 +4,7 @@ import android.os.Bundle
 import firstmob.firstbank.com.firstagent.constants.Constants.KEY_NAIRA
 import firstmob.firstbank.com.firstagent.utils.Utility.returnNumberFormat
 import android.content.Intent
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
+
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
@@ -32,22 +31,15 @@ import android.graphics.Color
 
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
+
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.net.Uri
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
+
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.provider.MediaStore
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
+
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import java.io.*
@@ -166,7 +158,7 @@ class FinalConfDepoActivity : AppCompatActivity() {
             val flname = String.format("ShareRec_%d", System.currentTimeMillis())
             val photo = File(getExternalFilesDir("FirstAgent"), String.format("ShareR%d.jpg", System.currentTimeMillis()))
             val filename = photo
-            saveBitmapToJPG(signature, photo)
+            //saveBitmapToJPG(signature, photo)
             scanMediaFile(photo)
             result = true
         } catch (e: IOException) {
@@ -176,7 +168,7 @@ class FinalConfDepoActivity : AppCompatActivity() {
         return result
     }
 
-   private fun  saveBitmapToJPG(bitmap: Bitmap, photo: File) {
+  /* private fun  saveBitmapToJPG(bitmap: Bitmap, photo: File) {
         val newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         val canvas =  Canvas(newBitmap)
         canvas.drawColor(Color.WHITE);
@@ -186,7 +178,7 @@ class FinalConfDepoActivity : AppCompatActivity() {
         stream.close();
 
 
-    }
+    }*/
 
     private fun scanMediaFile(photo: File) {
         val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)

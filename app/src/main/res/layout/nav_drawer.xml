@@ -366,7 +366,7 @@ android:layout_marginTop="10dp"
 
             <RelativeLayout
                 android:layout_width="match_parent"
-
+android:id="@+id/rllogout"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/rlcomplains"
 

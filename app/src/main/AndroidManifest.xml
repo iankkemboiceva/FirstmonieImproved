@@ -17,9 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-
+        <activity android:name=".LogComplaint"></activity>
         <activity android:name=".TransactionProcessingActivity" />
-        <activity android:name=".FinalConfDepoActivity"/>
+        <activity android:name=".FinalConfDepoActivity" />
+        <activity android:name=".InboxActivity" />
         <activity android:name=".ConfirmCashDepoActivity" />
         <activity android:name=".CashDepoActivity" />
         <activity
