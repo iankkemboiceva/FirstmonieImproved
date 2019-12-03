@@ -47,7 +47,10 @@ public class CommReceipt extends DialogFragment implements View.OnClickListener 
     LinearLayout lystatus;
     Button logcompl;
 
+
+
     String serv;
+    String recamo, recnarr , recnarrtor,recdatetime,recservtime,recrefno,recstatus;
     public CommReceipt() {
         // Required empty public constructor
     }
@@ -100,13 +103,13 @@ public class CommReceipt extends DialogFragment implements View.OnClickListener 
         logcompl = (Button) view.findViewById(R.id.btnlog);
         logcompl.setOnClickListener(this);
         Bundle bundle = getArguments();
-        String recamo = bundle.getString("amo","");
-        String recnarr = bundle.getString("narr","");
-        String recnarrtor = bundle.getString("narrtor","");
-        String recdatetime = bundle.getString("datetime","");
-        String recservtime = bundle.getString("servtype","");
-        String recrefno = bundle.getString("refno","");
-        String recstatus = bundle.getString("status","");
+       recamo = bundle.getString("amo","");
+        recnarr = bundle.getString("narr","");
+      recnarrtor = bundle.getString("narrtor","");
+        recdatetime = bundle.getString("datetime","");
+       recservtime = bundle.getString("servtype","");
+       recrefno = bundle.getString("refno","");
+       recstatus = bundle.getString("status","");
         txtamo.setText(recamo);
         refnumber.setText(recrefno);
         txtname.setText(recnarr);
@@ -134,7 +137,19 @@ public class CommReceipt extends DialogFragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnlog) {
-            startActivity(new Intent(getActivity(), LogComplaint.class));
+            Intent intent  = new Intent(getActivity(),LogComplaint.class);
+
+
+
+            intent.putExtra("txaco", recnarrtor);
+            intent.putExtra("txamo", recamo);
+            intent.putExtra("txref", recrefno);
+            intent.putExtra("txdate", recdatetime);
+
+
+
+
+            startActivity(intent);
 
         }
     }

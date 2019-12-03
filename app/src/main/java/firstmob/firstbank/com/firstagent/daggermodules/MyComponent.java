@@ -4,6 +4,7 @@ import firstmob.firstbank.com.firstagent.presenter.ActivateAgentPresenter;
 import firstmob.firstbank.com.firstagent.presenter.CashDepoPresenter;
 import firstmob.firstbank.com.firstagent.presenter.ConfirmCashDepoPresenter;
 import firstmob.firstbank.com.firstagent.presenter.InboxPresenter;
+import firstmob.firstbank.com.firstagent.presenter.LogComplaintPresenter;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
 
 import dagger.Component;
@@ -19,4 +20,5 @@ public  interface MyComponent {
     void inject(ConfirmCashDepoPresenter presenter);
     void inject(TransactionProcPresenter presenter);
     void inject(InboxPresenter presenter);
+    void inject(LogComplaintPresenter presenter);
 }

@@ -42,6 +42,7 @@ class CashDepoActivity : AppCompatActivity(), CashDepoContract.ILoginView {
         viewDialog = ViewDialog(this)
 
 
+
         edacc.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (edacc.text.toString().length === 10) {

@@ -325,30 +325,6 @@ android:layout_alignParentRight="true"
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:padding="5dp"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                android:layout_height="wrap_content">
-
-                />
-
-                <Button
-                    android:id="@+id/btnlog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="60dp"
-                    android:layout_marginLeft="60dp"
-                    android:background="@drawable/mybutton"
-                    android:padding="5dp"
-                    android:text="Log complaint"
-                    android:filterTouchesWhenObscured ="true"
-                    android:layout_marginTop="30dip"
-                    android:layout_marginBottom="20dip"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -397,6 +373,32 @@ android:id="@+id/lystatus"
                     android:layout_gravity="center|right"
 
                     />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content">
+
+                />
+
+                <Button
+                    android:id="@+id/btnlog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginLeft="60dp"
+                    android:background="@drawable/mybutton"
+                    android:padding="5dp"
+                    android:text="Log complaint"
+                    android:filterTouchesWhenObscured ="true"
+                    android:layout_marginTop="30dip"
+                    android:layout_marginBottom="20dip"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
         </LinearLayout>
