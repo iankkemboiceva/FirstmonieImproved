@@ -50,6 +50,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,6 +76,7 @@ public class Utility {
     public static final String KEY_TOKEN = "token";
     private static final String SPEC_CHARPATTERN = "[a-zA-Z0-9]+";
     public static final String AGMOB = "agmobno";
+    private static SessionManagement session;
     public static Context context;
     @Inject
     SecurityLayer sl;
@@ -271,12 +273,9 @@ public class Utility {
 		try {
 			Double amou = Double.parseDouble(amount);
 			if (amou > 0) {
-
 				DecimalFormat df = new DecimalFormat("#,###.00");
-
 				fmamo = df.format(amou);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -313,6 +312,63 @@ public class Utility {
             e.printStackTrace();
         }
         return number.toString();
+    }
+    public static String gettUtilAgentId(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getAgentID();
+        String	defac  = defa.get(SessionManagement.AGENTID);
+        return defac;
+    }
+    public static String errornexttoken() {
+        String token = session.getString(KEY_TOKEN);
+        SecurityLayer.Log("existing_token", token);
+        String fnltkt = token;
+        fnltkt = Utility.nextToken(fnltkt);
+        String finall = Utility.nextToken(fnltkt);
+        session.setString(KEY_TOKEN,finall);
+        return fnltkt;
+    }
+    public static String gettUtilUserId(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getUserIdd();
+        String	defac  = defa.get(SessionManagement.KEY_USERID);
+        return defac;
+    }
+
+    public static String gettUtilMobno(Context c){
+        session = new SessionManagement(c);
+        String defac = session.getString(AGMOB);
+        return defac;
+    }
+
+
+    public static String gettUtilEmail(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getEmail();
+        String	defac  = defa.get(SessionManagement.KEY_EMAIL);
+        return defac;
+    }
+    public static String gettUtilCustname(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getCustName();
+        String	defac  = defa.get(SessionManagement.KEY_CUSTNAME);
+        return defac;
+    }
+    public static String getLastl(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getLastl();
+        String	defac  = defa.get(SessionManagement.LASTL);
+        return defac;
+    }
+    public static String getAcountno(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getAccountNo();
+        String	defac  = defa.get(SessionManagement.KEY_ACCO);
+        return defac;
+    }
+
+    public static void showToast(String message){
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
     public static boolean checkInternetConnection() {
@@ -655,6 +711,22 @@ public class Utility {
         return urlparams;
     }
 
+
+    public String genURLCBC(String params, String endpoint) {
+
+
+        String urlparams = "";
+        try {
+            urlparams = SecurityLayer.genURLCBC(params, endpoint);
+            //SecurityLayer.Log("cbcurl",url);
+            SecurityLayer.Log("RefURL", urlparams);
+            SecurityLayer.Log("refurl", urlparams);
+            SecurityLayer.Log("params", params);
+        } catch (Exception e) {
+            SecurityLayer.Log("encryptionerror", e.toString());
+        }
+        return urlparams;
+    }
     public static String getencryptedpin(String finpin, String key) {
 
 

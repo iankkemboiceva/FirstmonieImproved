@@ -1,13 +1,17 @@
 package firstmob.firstbank.com.firstagent.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import firstmob.firstbank.com.firstagent.Activity.AirtimeTransf
 import firstmob.firstbank.com.firstagent.Activity.R
+import firstmob.firstbank.com.firstagent.Activity.Withdraw
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,7 +40,21 @@ class NewHomeGrid : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_home_grid, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_new_home_grid,container,false)
+
+        // Get the text view widget reference from custom layout
+        val open_airtime = view.findViewById<RelativeLayout>(R.id.rl1)
+        val open_withdrwa = view.findViewById<RelativeLayout>(R.id.rl3)
+        // Set a click listener for text view object
+        open_airtime.setOnClickListener{
+            val intent = Intent (getActivity(), AirtimeTransf::class.java)
+            this.startActivity(intent)
+        }
+        open_withdrwa.setOnClickListener{
+            val intent = Intent (getActivity(), Withdraw::class.java)
+            this.startActivity(intent)
+        }
+        return view
     }
 
 

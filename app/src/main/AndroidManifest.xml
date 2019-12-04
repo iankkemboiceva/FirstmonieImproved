@@ -17,10 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
+        <activity android:name=".TransactionProcessingActivity"></activity>
+        <activity android:name="firstmob.firstbank.com.firstagent.fragments.ConfirmWithdrawal" />
+        <activity android:name="firstmob.firstbank.com.firstagent.fragments.Withdraw_Firsts" />
+        <activity android:name=".Withdraw" />
+        <activity
+            android:name=".AirtimeTransf"
+            android:theme="@style/MyMaterialTheme.Base" />
         <activity
             android:name=".FMobActivity"
             android:label="@string/title_activity_fmob"
-            android:theme="@style/MyMaterialTheme.NoActionBar"></activity>
+            android:theme="@style/MyMaterialTheme.NoActionBar" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

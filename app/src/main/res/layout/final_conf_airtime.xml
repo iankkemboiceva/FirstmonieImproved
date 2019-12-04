@@ -1,0 +1,334 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="0dp">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingTop="20dip"
+                android:paddingRight="10dip"
+                android:paddingBottom="10dip"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imgview"
+                    >
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/success2"
+                        />
+
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:paddingTop="20dp"
+                    android:textColor="@color/pink_btncolor"
+                    android:text="Transaction Completed\nSuccessfully"
+                    />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/rl5">
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dip"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dip"
+                        android:background="@drawable/mybutton"
+                        android:backgroundTint="@color/dark_btncolor"
+                        android:padding="5dp"
+                        android:text="Go Home"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="0dp">
+
+            <LinearLayout
+
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingTop="10dip"
+                android:paddingRight="10dip"
+                android:paddingBottom="10dip"
+
+
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl5">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="TRANSACTION SUCCESSFUL"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:id="@+id/textViewnb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dip"
+                        android:text="Mobile Number:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                    <TextView
+                        android:id="@+id/textViewnb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginTop="15dip"
+                        android:text=""
+                        android:textColor="#3C2415"
+                        android:textSize="@dimen/textsize" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+
+
+                    android:id="@+id/rlem"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:id="@+id/textViewrd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dip"
+                        android:text="Amount:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                    <TextView
+                        android:id="@+id/textViewrrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginTop="15dip"
+                        android:text=""
+                        android:textColor="#3C2415"
+                        android:textSize="@dimen/textsize" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+
+
+                    android:id="@+id/rlgend"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:id="@+id/textViewr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dip"
+                        android:text="Telco Operator:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                    <TextView
+                        android:id="@+id/textViewrr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginTop="15dip"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+
+
+                    android:id="@+id/rlfee"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:id="@+id/textfee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dip"
+                        android:text="Fee:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                    <TextView
+                        android:id="@+id/txtfee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginTop="15dip"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+
+
+                    android:id="@+id/rltrref"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+
+
+                    >
+
+                    <TextView
+                        android:id="@+id/tref"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dip"
+                        android:text="Tran. Reference:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                    <TextView
+                        android:id="@+id/txref"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginTop="15dip"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlaccom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:id="@+id/accomm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dip"
+                        android:text="Agent Commision:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textsize" />
+
+                    <TextView
+                        android:id="@+id/txtaccom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginTop="15dip"
+                        android:text="\u20A6 0.00"
+                        android:textColor="#3C2415"
+                        android:textSize="@dimen/textsize" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
