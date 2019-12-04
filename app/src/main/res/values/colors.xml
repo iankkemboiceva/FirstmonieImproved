@@ -42,7 +42,8 @@
 
     <color name="orangedepos">#162D4B</color>
 
-    <drawable name="red">#7f00</drawable>
+    <drawable name="red">#F55B6B</drawable>
+    <drawable name="redcolorr">#F55B6B</drawable>
 
 
     <color name="white">#FFFFFF</color>
