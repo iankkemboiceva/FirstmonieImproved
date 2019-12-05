@@ -14,8 +14,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+
+        android:layout_marginTop="5dp"
 
         android:paddingLeft="10dip"
         android:paddingRight="10dip"
@@ -58,8 +58,8 @@ android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:text="ChargeBack"
-                android:textColor="@color/redcolorr"
+                android:text="Charge Back"
+                android:textColor="@color/nbkdarkbrown"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/txt"
@@ -126,18 +126,31 @@ android:layout_marginRight="5dp"
                 android:textSize="14sp"
 
                 />
-
             <TextView
-                android:id="@+id/txtstatus"
+                android:id="@+id/statsss"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/vw"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Description"
+                android:text="Status:"
                 android:textColor="#3C2415"
-                android:textSize="15sp"
+                android:textSize="13sp"
+
+                />
+
+            <TextView
+                android:id="@+id/txtstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/vw"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:text="PENDING"
+                android:textColor="#3C2415"
+                android:textSize="13sp"
 
                 />
 

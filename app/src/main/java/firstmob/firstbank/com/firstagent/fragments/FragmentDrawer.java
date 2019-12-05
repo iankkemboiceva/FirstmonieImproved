@@ -71,7 +71,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     TextView tv,home,tvmobno,tvlastl,tvusid;
 
     Button lyhomeid;
-    RelativeLayout lysignout;
+    RelativeLayout lysignout,rlcomplains;
     RelativeLayout header;
     //  private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -123,6 +123,10 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
         lysignout.setOnClickListener(this);
 
+        rlcomplains = (RelativeLayout) layout.findViewById(R.id.rlcomplains);
+
+        rlcomplains.setOnClickListener(this);
+
 
         return layout;
     }
@@ -172,6 +176,12 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.rllogout) {
 
             drawerListener.onDrawerItemSelected(v, 5);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+
+        if (v.getId() == R.id.rlcomplains) {
+
+            drawerListener.onDrawerItemSelected(v, 6);
             mDrawerLayout.closeDrawer(containerView);
         }
     }

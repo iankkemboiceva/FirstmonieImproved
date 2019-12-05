@@ -50,7 +50,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 	private ArrayList<CommisionsJSON> origcommissionslist;
 
 	public ComplaintsAdapter(ArrayList<CommisionsJSON> planetLista, Context ctx) {
-		super(ctx, R.layout.inbox_list, planetLista);
+		super(ctx, R.layout.complain_list, planetLista);
 		this.commissionslist = planetLista;
 		this.context = ctx;
 		this.origcommissionslist = planetLista;
@@ -78,13 +78,14 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 		if (convertView == null) {
 			// This a new view we inflate the new layout
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.inbox_list, null);
+			v = inflater.inflate(R.layout.complain_list, null);
 			// Now we can fill the layout with the right values
 			TextView accid = (TextView) v.findViewById(R.id.txt);
 			TextView txttoo = (TextView) v.findViewById(R.id.txtto);
             TextView curr = (TextView) v.findViewById(R.id.txt2);
 			TextView taxref = (TextView) v.findViewById(R.id.txtref);
 			TextView txtstt = (TextView) v.findViewById(R.id.txtstatus);
+			TextView txtchgk = (TextView) v.findViewById(R.id.txtchgbk);
 			Button btnrec = (Button) v.findViewById(R.id.btnrec);
 			Button olbtnshare = (Button) v.findViewById(R.id.btnshr);
 			Button olbmnshare = (Button) v.findViewById(R.id.btncontext);
@@ -97,6 +98,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 			holder.menubutton = olbmnshare;
 		holder.btnreceipt = btnrec;
 		holder.btnshare = olbtnshare;
+		holder.txtchrgbck = txtchgk;
 			
 			v.setTag(holder);
 		}
@@ -108,21 +110,26 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 		final String amo = Utility.returnNumberFormat(p.getAmount());
 		final String toAcnum = p.gettoAcNum();
 		final String toref = p.getrefNumber();
+
+		boolean chkbg = p.getchg();
 		String statss = p.getStatus();
 		String fromacnum = p.getFromAcnum();
 
        // String convd = getDateTimeStamp(tdate);
+		if(chkbg){
+			holder.txtchrgbck.setVisibility(View.VISIBLE);
+		}else{
+			holder.txtchrgbck.setVisibility(View.GONE);
+		}
 		holder.txtname.setText(convertTxnCodetoServ(p.getTxnCode())+" transaction of "+ KEY_NAIRA+amo);
        holder.txtto.setText(" \nTo  "+toAcnum+" \nFrom  "+fromacnum);
         holder.txtmobno.setText(tdate);
 		holder.txttref.setText("Ref Number:"+toref);
-		if(statss.equals("FAILURE")){
-			holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_red_900));
-		}
-		if(statss.equals("SUCCESS")){
-			holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_light_green_900));
-		}
-		holder.txtstatus.setText(statss);
+
+		holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_red_900));
+		holder.txtstatus.setText("PENDING");
+
+
 
 
 		holder.btnreceipt.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +192,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 		public TextView txtmobno;
 		public TextView txttref;
 		public TextView txtstatus;
+		public TextView txtchrgbck;
 		public Button btnreceipt;
 		public Button btnshare;
 		public Button menubutton;

@@ -137,6 +137,17 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
                 Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_LONG).show();
             }
 
+            6 -> {
+
+                val intent = Intent(this, ComplaintsActivity::class.java)
+
+
+                // Staring Login Activity
+                startActivity(intent);
+
+            }
+
+
 
             else -> {
             }

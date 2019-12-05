@@ -60,7 +60,7 @@
     <color name="borderhmground">#F5F5F5</color>
     <color name="textcolorcircle">#001C5C</color>
     <color name="nbklightbrown">#766151</color>
-    <color name="nbkdarkbrown">#3C2415</color>
+    <color name="nbkdarkbrown">#F55B6B</color>
 
 
     <color name="warning_color">#f4511e</color>
@@ -68,6 +68,7 @@
     <color name="success_color">#009688</color>
 
     <color name="blue_btn_bg_color">#001C5C</color>
+    <color name="normalcolor">#1A8DFF</color>
     <color name="blue_btn_bg_pressed_color">#001C5C</color>
 
     <color name="gray_btn_bg_color">#7f00</color>

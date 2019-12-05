@@ -1,0 +1,203 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greybg"
+    android:filterTouchesWhenObscured ="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_below = "@+id/container_toolbar"
+
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorPrimary"
+
+                    android:layout_height="100dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="216dp"
+                            android:background="@drawable/firstmoniewhite"
+                            android:layout_centerInParent="true"
+                            android:layout_height="50dp">
+
+                        </ImageView>
+                        <TextView
+                            android:id="@+id/txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_margin="5dp"
+                            android:layout_alignParentBottom="true"
+
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+
+                    card_view:cardBackgroundColor="@color/white"
+                    card_view:cardCornerRadius="5dp"
+                    card_view:cardElevation="3dp"
+                    >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    android:paddingBottom="10dip"
+
+                    >
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+
+                        android:orientation="vertical" >
+
+
+
+                        <TextView
+                            android:id="@+id/txtcust"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:layout_centerHorizontal="true"
+                            android:text="Upload Files"/>
+
+                        <LinearLayout
+                            android:id="@+id/linear_layout"
+                            android:layout_below="@+id/txtcust"
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="150dp"
+
+                            android:layout_centerHorizontal="true"
+                            android:orientation="vertical"
+                            android:background="@drawable/rectangle_dash_line">
+
+                            <ImageView
+
+                                android:background="@drawable/ic_upload"
+                                android:layout_centerHorizontal="true"
+                                android:layout_below="@+id/txtcust"
+                                android:layout_gravity="center"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+
+                                ></ImageView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Scan ticket"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_height="wrap_content"></TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="or"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_height="wrap_content"></TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="browse"
+                                android:textColor="@color/nbkyellow"
+                                android:layout_height="wrap_content"></TextView>
+                        </LinearLayout>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/lypreview"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:text="PREVIEW"/>
+
+                    <ImageView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/imgview"
+                        android:layout_gravity="center"
+
+                        android:layout_width="200dp"
+                        android:layout_height="200dp" />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/buttonnxt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_margin="20dip"
+                    android:background="@drawable/nextbutton"
+                    android:filterTouchesWhenObscured ="true"
+                    android:textColor="@color/white"
+                    android:text="Submit" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>
