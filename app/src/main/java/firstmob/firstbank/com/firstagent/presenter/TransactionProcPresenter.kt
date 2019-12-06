@@ -34,6 +34,7 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
 
     @Inject
     internal lateinit var ul: Utility
+    private var regtype = ""
 
 
 
@@ -43,10 +44,12 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
         // initUser();
     }
 
-    override fun IntraDepoBankResp(params: String?) {
+    override fun CallActivity(params: String?,endpoint: String?,serv: String) {
         iLoginView!!.showProgress()
 
-        val endpoint = "transfer/intrabank.action"
+        regtype = serv
+
+
 
 
 
@@ -103,17 +106,32 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
                         if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
                             if (!Utility.checkUserLocked(respcode)) {
                                 if (respcode == "00") {
-                                    var totfee = "0.00"
-                                    var datetimee = ""
-                                    if (datas != null) {
-                                        totfee = datas.optString("fee")
-                                        datetimee = datas.optString("dateTime")
+
+                                    if(regtype == "CASHDEPO") {
+                                        var totfee = "0.00"
+                                        var datetimee = ""
+                                        if (datas != null) {
+                                            totfee = datas.optString("fee")
+                                            datetimee = datas.optString("dateTime")
+                                        }
+
+
+                                        iLoginView!!.CashDepoResult(refcodee, datetimee, agcmsn, totfee)
+
                                     }
 
+                                    else if(regtype == "CASHTRAN") {
+                                        var totfee = "0.00"
+                                        var datetimee = ""
+                                        if (datas != null) {
+                                            totfee = datas.optString("fee")
+                                            datetimee = datas.optString("dateTime")
+                                        }
 
-                                    iLoginView!!.CashDepoResult(refcodee,datetimee,agcmsn,totfee)
 
+                                        iLoginView!!.CashDepoTranResult(refcodee, datetimee, agcmsn, totfee)
 
+                                    }
                                 } else if (respcode == "002") {
                                     iLoginView!!.onErrorResult(responsemessage)
 

@@ -10,10 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
-import firstmob.firstbank.com.firstagent.Activity.CashDepoActivity
-import firstmob.firstbank.com.firstagent.Activity.FMobActivity
-import firstmob.firstbank.com.firstagent.Activity.InboxActivity
-import firstmob.firstbank.com.firstagent.Activity.R
+import firstmob.firstbank.com.firstagent.Activity.*
 import kotlinx.android.synthetic.main.fragment_new_home_grid.*
 
 
@@ -58,6 +55,14 @@ class NewHomeGrid : Fragment() {
         rlinboxchos?.setOnClickListener(){
 
             val i = Intent(activity, InboxActivity::class.java)
+
+            startActivity(i)
+        }
+
+        val rltransfer: RelativeLayout? = view?.findViewById(R.id.rltransfer)
+        rltransfer?.setOnClickListener(){
+
+            val i = Intent(activity, FTMenuActivity::class.java)
 
             startActivity(i)
         }

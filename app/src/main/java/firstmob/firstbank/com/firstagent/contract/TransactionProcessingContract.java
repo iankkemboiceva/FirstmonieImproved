@@ -3,7 +3,7 @@ package firstmob.firstbank.com.firstagent.contract;
 public interface TransactionProcessingContract {
 
     interface Presenter {
-        void IntraDepoBankResp(String params);
+        void CallActivity(String params,String endpoint,String serv);
 
 
 
@@ -25,6 +25,8 @@ public interface TransactionProcessingContract {
         void hideProgress();
 
         void CashDepoResult(String refcodee,String datetime,String agcmsn,String totfee);
+
+        void CashDepoTranResult(String refcodee,String datetime,String agcmsn,String totfee);
     }
 
 

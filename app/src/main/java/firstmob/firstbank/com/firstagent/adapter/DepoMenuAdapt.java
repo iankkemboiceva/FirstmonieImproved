@@ -37,7 +37,7 @@ public class DepoMenuAdapt extends ArrayAdapter<OTBList> implements Filterable {
 	private List<OTBList> origPlanetList;
 
 	public DepoMenuAdapt(List<OTBList> planetList, Context ctx) {
-		super(ctx, R.layout.ben_list, planetList);
+		super(ctx, R.layout.depo_list, planetList);
 		this.planetList = planetList;
 		this.context = ctx;
 		this.origPlanetList = planetList;

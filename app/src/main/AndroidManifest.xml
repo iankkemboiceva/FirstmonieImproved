@@ -52,6 +52,9 @@
         <activity android:name=".ActivateAgent" />
         <activity android:name=".ActivateAgentBefore" />
         <activity android:name=".ComplaintsActivity" />
+        <activity android:name=".FTMenuActivity" />
+        <activity android:name=".CashDepoTransActivity" />
+        <activity android:name=".ConfirmCashDepoTransActivity" />
     </application>
 
 </manifest>

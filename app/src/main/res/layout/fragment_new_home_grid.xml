@@ -51,7 +51,7 @@
                 >
 
                 <RelativeLayout
-                    android:id="@+id/rl2"
+                    android:id="@+id/rltransfer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/rl1"
