@@ -111,6 +111,7 @@
 
     <color name="pink_btncolor">#F55B6B</color>
     <color name="dark_btncolor">#162D4B</color>
+    <color name="theme_paybills">#FF6900</color>
 
     <color name="lightgree_withdrcolor">#94CE00</color>
 </resources>

@@ -26,4 +26,6 @@
     <dimen name="custom_tab_layout_height">72dp</dimen>
 
     <dimen name="actionbarheight">80dp</dimen>
+    <dimen name="views_marginleft">10sp</dimen>
+
 </resources>

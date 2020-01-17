@@ -6,11 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import firstmob.firstbank.com.firstagent.contract.MainContract;
-import firstmob.firstbank.com.firstagent.fragments.Airtime_transfirst;
-import firstmob.firstbank.com.firstagent.network.FetchServerResponse;
-import firstmob.firstbank.com.firstagent.presenter.LoadMmbillersPresenter;
-
 public class AirtimeTransf extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

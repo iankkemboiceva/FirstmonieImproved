@@ -224,17 +224,17 @@
              app:digitBackground="@color/nbkyellow"
              app:digitElevation="10dp" />-->
 
-            <EditText
-                android:id="@+id/pin"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:ems="10"
-                android:layout_centerHorizontal="true"
-                android:hint="Enter Agent PIN"
-                android:inputType="numberPassword"
-                android:maxLength="5"
-                android:textSize="14sp" />
+        <EditText
+            android:id="@+id/pin"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:hint="Enter Agent PIN"
+            android:inputType="numberPassword"
+            android:maxLength="5"
+            android:textSize="14sp" />
 
 
     </RelativeLayout>

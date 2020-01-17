@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:filterTouchesWhenObscured="true"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/lin"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="2"
+                android:background="@drawable/mybutton"
+                android:backgroundTint="@color/theme_paybills"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="1"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:text="2"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/views_marginleft"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="@color/dark_btncolor"
+                android:background="@drawable/mybutton" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="2"
+                android:text="3"
+                android:layout_marginLeft="@dimen/views_marginleft"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="@color/dark_btncolor"
+                android:background="@drawable/mybutton" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/views_marginleft"
+                android:text="4"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="@color/dark_btncolor"
+                android:background="@drawable/mybutton" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lin"
+
+            android:layout_gravity="bottom">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/titlte"
+                android:paddingTop="20dp"
+                android:textSize="17dp"
+                android:text="Pay Bills"
+                android:textAlignment="center"
+                />
+            <ListView
+                android:id="@+id/lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titlte"
+                android:layout_marginTop="10dp"
+                android:divider="@color/divcolor"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

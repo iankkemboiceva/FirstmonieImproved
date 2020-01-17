@@ -9,9 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import firstmob.firstbank.com.firstagent.Activity.AirtimeTransf
-import firstmob.firstbank.com.firstagent.Activity.R
-import firstmob.firstbank.com.firstagent.Activity.Withdraw
+import firstmob.firstbank.com.firstagent.Activity.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,6 +43,8 @@ class NewHomeGrid : Fragment() {
         // Get the text view widget reference from custom layout
         val open_airtime = view.findViewById<RelativeLayout>(R.id.rl1)
         val open_withdrwa = view.findViewById<RelativeLayout>(R.id.rl3)
+        val open_paybills = view.findViewById<RelativeLayout>(R.id.rl6)
+        val open_p = view.findViewById<RelativeLayout>(R.id.rlinbox)
         // Set a click listener for text view object
         open_airtime.setOnClickListener{
             val intent = Intent (getActivity(), AirtimeTransf::class.java)
@@ -52,6 +52,15 @@ class NewHomeGrid : Fragment() {
         }
         open_withdrwa.setOnClickListener{
             val intent = Intent (getActivity(), Withdraw::class.java)
+            this.startActivity(intent)
+        }
+        open_p.setOnClickListener{
+            val intent = Intent (getActivity(), MinistatActivity::class.java)
+          //  intent.putExtra("pinna","pinna")
+            this.startActivity(intent)
+        }
+        open_paybills.setOnClickListener{
+            val intent = Intent (getActivity(), BillMenuActivity::class.java)
             this.startActivity(intent)
         }
         return view

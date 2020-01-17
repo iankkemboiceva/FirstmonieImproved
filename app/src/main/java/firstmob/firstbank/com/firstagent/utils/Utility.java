@@ -1,8 +1,11 @@
 package firstmob.firstbank.com.firstagent.utils;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -21,9 +24,15 @@ import android.widget.Toast;
 import android.util.Base64;
 
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import firstmob.firstbank.com.firstagent.Activity.SignInActivity;
 import firstmob.firstbank.com.firstagent.security.EncryptTransactionPin;
 import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -102,8 +111,8 @@ public class Utility {
 
     public void checkpermissions() {
 
-
     }
+
 
     public static boolean isValidWord(String str) {
 //  return str.matches(".*[a-zA-Z]+.*"); // match a number with optional
@@ -259,7 +268,29 @@ public class Utility {
         }
         return arr;
     }
+    public static  String convertTxnCodetoServ(String txncode){
+        if (txncode.equals("FTINTRABANK")){
+            txncode = "FBN Transfer";
+        }else if (txncode.equals("FTINTERBANK")){
+            txncode = "Other Bank";
+        }else if (txncode.equals("CWDBYACT")){
+            txncode = "Cash Withdrawal";
+        }
+        else if (txncode.equals("CASHDEP")){
+            txncode = "Cash Deposit";
+        }
+        else if (txncode.equals("MMO")){
+            txncode = "Airtime";
+        }
+        else if (txncode.equals("BILLPAYMENT")){
+            txncode = "Pay Bills";
+        }
+        else if (txncode.equals("CWDOTRBNK")){
+            txncode = "Other Bank Withdrawal";
+        }
 
+        return txncode;
+    }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -780,7 +811,37 @@ public class Utility {
 
         return changeddate;
     }
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean checkPermission(final Context context)
+    {
+        int currentAPIVersion = Build.VERSION.SDK_INT;
+        if(currentAPIVersion>=android.os.Build.VERSION_CODES.M)
+        {
+            if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                    alertBuilder.setCancelable(true);
+                    alertBuilder.setTitle("Permission necessary");
+                    alertBuilder.setMessage("External storage permission is necessary");
+                    alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions((Activity) context, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                        }
+                    });
+                    AlertDialog alert = alertBuilder.create();
+                    alert.show();
+                } else {
+                    ActivityCompat.requestPermissions((Activity) context, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                }
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }
     public static boolean compareversionsupdate(String server, String device) {
         String[] v1 = device.split("\\.");
         String[] v2 = server.split("\\.");

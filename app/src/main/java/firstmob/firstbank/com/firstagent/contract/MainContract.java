@@ -25,38 +25,7 @@ public interface MainContract {
         void showProgress();
         void hideProgress();
     }
-    interface IViewGen {
-        void onfetchResult(String flag, String response);
-        void onError(String error);
-        void showProgress();
-        void hideProgress();
-    }
-    interface PresenterGen{
-        void requestCall(String extraparam);
-        void ondestroy();
-    }
-    interface Presenterloadbillers{
-        void loadbiller();
-        void ondestroy();
-    }
-    interface IViewbillers {
-        void onLoginResult(List<GetAirtimeBillersData> planetsList);
-        void onProcessingError(String error);
-        void showProgress();
-        void hideProgress();
-    }
 
-    interface PresenterGetFee {
-        void loaddata(String extraparam);
-        void ondestroy();
-    }
-
-    interface IViewFee {
-        void onfetchResult(String flag, String response);
-        void onError(String error);
-        void showProgress();
-        void hideProgress();
-    }
 
         interface GetDataIntractor {
         interface OnFinishedListener {

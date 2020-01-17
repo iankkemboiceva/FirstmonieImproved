@@ -5,12 +5,9 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.MaterialDialog
-import firstmob.firstbank.com.firstagent.fragments.Airtime_transfirst
-import firstmob.firstbank.com.firstagent.fragments.Withdraw_Firsts
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
 
