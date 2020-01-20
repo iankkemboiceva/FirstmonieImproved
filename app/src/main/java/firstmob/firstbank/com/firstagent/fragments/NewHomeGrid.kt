@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
 import firstmob.firstbank.com.firstagent.Activity.*
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
+import firstmob.firstbank.com.firstagent.security.SecurityLayer
+import firstmob.firstbank.com.firstagent.utils.Utility.generateHashString
 import kotlinx.android.synthetic.main.fragment_new_home_grid.*
 
 
@@ -42,6 +45,9 @@ class NewHomeGrid : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
 
+
+
+
         val rldepo: RelativeLayout? = view?.findViewById(R.id.rl5)
         rldepo?.setOnClickListener(){
 
@@ -66,6 +72,10 @@ class NewHomeGrid : Fragment() {
 
             startActivity(i)
         }
+
+        val pin = "12346";
+        val hashedpin = generateHashString(pin);
+        SecurityLayer.Log(hashedpin)
 
         return view;
     }

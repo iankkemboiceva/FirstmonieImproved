@@ -4,6 +4,7 @@ public class SharedPrefConstants {
     public static final String KEY_USERID = "userid";
     public final static String KEY_LATITUDE = "latitude";
     public final static String KEY_LONGIT = "longitude";
+
     public final static String SESS_REG = "sessreg";
 
     public static final String KEY_SETAIRTIME = "setairtime";

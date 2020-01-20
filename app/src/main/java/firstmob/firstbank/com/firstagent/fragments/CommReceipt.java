@@ -153,4 +153,8 @@ public class CommReceipt extends DialogFragment implements View.OnClickListener 
 
         }
     }
+
+
+
+
 }

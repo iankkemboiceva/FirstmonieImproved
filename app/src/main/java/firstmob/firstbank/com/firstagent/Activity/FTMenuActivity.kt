@@ -36,7 +36,10 @@ class FTMenuActivity : AppCompatActivity() {
                 val intent = Intent(this, CashDepoTransActivity::class.java)
 
                 startActivity(intent)
-            } else if (position == 1) { //  startActivity(new Intent(FTMenuActivity.this, SendOTBActivity.class));
+            } else if (position == 1) {
+                val intent = Intent(this, SendOTBActivity::class.java)
+
+                startActivity(intent)
             } else if (position == 2) { // startActivity(new Intent(FTMenuActivity.this, SendOtherWalletActivity.class));
             }
         }
