@@ -859,5 +859,30 @@ public class Utility {
         }
         return chk;
     }
+    public static String getToday() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SecurityLayer.Log("Date Today is", sdf.format(date));
+        String datetod = sdf.format(date);
+        return datetod;
+    }
 
+    public static String getWeek() {
+        long DAY_IN_MS = 1000 * 60 * 60 * 24;
+
+        Date date = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SecurityLayer.Log("Date Week is", sdf.format(date));
+        String datetod = sdf.format(date);
+        return datetod;
+    }
+
+    public static String getMonth() {
+        long DAY_IN_MS = 1000 * 60 * 60 * 24;
+        Date date = new Date(System.currentTimeMillis() - (30 * DAY_IN_MS));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SecurityLayer.Log("Date Month is", sdf.format(date));
+        String datetod = sdf.format(date);
+        return datetod;
+    }
 }

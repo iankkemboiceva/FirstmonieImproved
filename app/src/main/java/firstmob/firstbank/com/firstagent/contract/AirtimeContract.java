@@ -20,7 +20,6 @@ public interface AirtimeContract {
 
     interface PresenterConfirmAirtime {
         void fetchServerfee(String flag,String extraparam);
-        void fetchServerConfirm(String flag,String extraparam);
         void ondestroy();
     }
 
@@ -29,7 +28,7 @@ public interface AirtimeContract {
         void setviewvisibility();
         void onProcessingError(String error);
         void onBackNavigate();
-        void openSignIn();
+        void logout();
         void openFinalConfirmAirtime(String agcmsn,String totfee,String tref);
         void showProgress();
         void hideProgress();

@@ -81,7 +81,6 @@ class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.On
         calendar = findViewById(R.id.button4) as Button
         calendar!!.setOnClickListener(this)
         presenter = MinstatementPresenter(applicationContext, this, FetchServerResponse())
-       // presenterbalance = BalanceEnquirePresenter(applicationContext, this, FetchServerResponse())
         emptyView = findViewById(R.id.empty_view) as TextView
 
         val accnoo = Utility.getAcountno(this)

@@ -55,7 +55,7 @@ class NewHomeGrid : Fragment() {
             this.startActivity(intent)
         }
         open_p.setOnClickListener{
-            val intent = Intent (getActivity(), MinistatActivity::class.java)
+            val intent = Intent (getActivity(), MyPerfActivity::class.java)
           //  intent.putExtra("pinna","pinna")
             this.startActivity(intent)
         }

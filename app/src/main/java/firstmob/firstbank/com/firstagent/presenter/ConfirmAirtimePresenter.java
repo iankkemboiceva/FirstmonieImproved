@@ -2,6 +2,7 @@ package firstmob.firstbank.com.firstagent.presenter;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -56,25 +57,6 @@ public class ConfirmAirtimePresenter implements AirtimeContract.PresenterConfirm
         }
         getDataIntractor.getResults(this, urlparams);
     }
-    @Override
-    public void fetchServerConfirm(String flag,String extraparam) {
-        iView.showProgress();
-        session.setTranstype(flag);
-        String endpoint = "billpayment/mobileRecharge.action";
-       // Log.v("Before Req Tok", session.getString(KEY_TOKEN));
-
-        String urlparams = "";
-        try {
-            urlparams = SecurityLayer.genURLCBC(extraparam, endpoint);
-            //Log.d("cbcurl",url);
-            Log.v("RefURL", urlparams);
-            SecurityLayer.Log("refurl", urlparams);
-            SecurityLayer.Log("params", extraparam);
-        } catch (Exception e) {
-            Log.e("encryptionerror", e.toString());
-        }
-        getDataIntractor.getResults(this, urlparams);
-    }
 
     @Override
     public void ondestroy() {
@@ -96,84 +78,96 @@ public class ConfirmAirtimePresenter implements AirtimeContract.PresenterConfirm
             String respcode = obj.optString("responseCode");
             String responsemessage = obj.optString("message");
 
-            if(session.getTransFlag().equals("getFee")){
-                if (!(response == null)) {
-                String resfee = obj.optString("fee");
-                if (respcode.equals("00")) {
+//            if(session.getTransFlag().equals("getFee")){
+                String respfee = obj.optString("fee");
 
-                    if (resfee == null || resfee.equals("")) {
-                        iView.setFee("N/A");
-                       // txtfee.setText("N/A");
-                    } else {
-                        resfee = Utility.returnNumberFormat(resfee);
-                        iView.setFee(Constants.KEY_NAIRA + resfee);
-                       // txtfee.setText(Constants.KEY_NAIRA + resfee);
-                    }
-
-                } else if (respcode.equals("93")) {
-                    Utility.showToast(responsemessage);
-                    iView.onBackNavigate();
-                    //loadFrag(new Airtime_transfirst());
-                    Utility.showToast("Please ensure amount set is below the set limit");
-                } else {
-                    iView.setviewvisibility();
-                   // btnsub.setVisibility(View.GONE);
-                    Utility.showToast(responsemessage);
-                }
-            }else{
-                  iView.setFee("N/A");
-                }
-
-            }else{
-                //session.setString(SecurityLayer.KEY_APP_ID,appid);
-
-                if (!(response == null)) {
-                    JSONObject datas = obj.optJSONObject("data");
-                    String agcmsn = obj.optString("fee");
-                    Log.v("Response Message", responsemessage);
-
-                    if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
-                        if (!(Utility.checkUserLocked(respcode))) {
-                            Log.v("Response Message", responsemessage);
-                            iView.onProcessingError(responsemessage);
+                if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
+                    if (!(Utility.checkUserLocked(respcode))) {
+                        if (!(response == null)) {
                             if (respcode.equals("00")) {
 
-//                                    Log.v("Respnse getResults",datas.toString());
-                                if (!(datas == null)) {
+                                SecurityLayer.Log("Response Message", responsemessage);
 
-                                    String totfee = "0.00";
-
-                                    String ttf = datas.optString("fee");
-                                    if (ttf == null || ttf.equals("")) {
-
-                                    } else {
-                                        totfee = ttf;
-                                    }
-
-                                    String tref = datas.optString("refNumber");
-
-                                    iView.openFinalConfirmAirtime(agcmsn,totfee,tref);
-
+//                                    SecurityLayer.Log("Respnse getResults",datas.toString());
+                                if (respfee == null || respfee.equals("")) {
+                                    iView.setFee("N/A");
+                                    //txtfee.setText();
+                                } else {
+                                    respfee = Utility.returnNumberFormat(respfee);
+                                    iView.setFee(Constants.KEY_NAIRA + respfee);
+                                    //txtfee.setText();
                                 }
+
+                            } else if (respcode.equals("93")) {
+                                iView.onProcessingError(responsemessage);
+                                iView.onBackNavigate();
+                                iView.onProcessingError("Please ensure amount set is below the set limit");
+
                             } else {
-                                Utility.showToast("" + responsemessage);
+                                iView.setviewvisibility();
+                                iView.onProcessingError(responsemessage);
+                                //btnsub.setVisibility(View.GONE);
                             }
                         } else {
-                            iView.openSignIn();
-//                            getActivity().finish();
-//                            startActivity(new Intent(context, SignInActivity.class));
-                            Utility.showToast("You have been locked out of the app.Please call customer care for further details");
-
-
+                            iView.setFee("N/A");
+                            //txtfee.setText();
                         }
                     } else {
-                        Utility.showToast("There was an error on your request");
+                        iView.logout();
+                       // ((FMobActivity) getActivity()).LogOut();
                     }
-                } else {
-                    Utility.showToast("There was an error on your request");
                 }
 
-            }
+//            else{
+//                //session.setString(SecurityLayer.KEY_APP_ID,appid);
+//
+//                if (!(response == null)) {
+//                    JSONObject datas = obj.optJSONObject("data");
+//                    String agcmsn = obj.optString("fee");
+//                    Log.v("Response Message", responsemessage);
+//
+//                    if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
+//                        if (!(Utility.checkUserLocked(respcode))) {
+//                            Log.v("Response Message", responsemessage);
+//                            iView.onProcessingError(responsemessage);
+//                            if (respcode.equals("00")) {
+//
+////                                    Log.v("Respnse getResults",datas.toString());
+//                                if (!(datas == null)) {
+//
+//                                    String totfee = "0.00";
+//
+//                                    String ttf = datas.optString("fee");
+//                                    if (ttf == null || ttf.equals("")) {
+//
+//                                    } else {
+//                                        totfee = ttf;
+//                                    }
+//
+//                                    String tref = datas.optString("refNumber");
+//
+//                                    iView.openFinalConfirmAirtime(agcmsn,totfee,tref);
+//
+//                                }
+//                            } else {
+//                                Utility.showToast("" + responsemessage);
+//                            }
+//                        } else {
+//                            iView.openSignIn();
+////                            getActivity().finish();
+////                            startActivity(new Intent(context, SignInActivity.class));
+//                            Utility.showToast("You have been locked out of the app.Please call customer care for further details");
+//
+//
+//                        }
+//                    } else {
+//                        Utility.showToast("There was an error on your request");
+//                    }
+//                } else {
+//                    Utility.showToast("There was an error on your request");
+//                }
+//
+//            }
 
 
 
