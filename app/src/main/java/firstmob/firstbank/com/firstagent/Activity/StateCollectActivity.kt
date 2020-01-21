@@ -145,7 +145,6 @@ class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillers
                 mobadapt = ArrayAdapter(this@StateCollectActivity, R.layout.my_spinner, BillerList)
                 mobadapt!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sp3!!.setAdapter(mobadapt)
-
                 sp3!!.setSelection(BillerList!!.size - 1)
             } else {
                 Utility.showToast("No states available  ")
@@ -174,7 +173,6 @@ class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     }
     override fun onClick(view: View?) {
         if (view!!.getId() == R.id.button2) {
-
             if (Utility.checkInternetConnection()) {
                 val recanno = edacc!!.getText().toString()
                 val amou = txtamount!!.getText().toString()

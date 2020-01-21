@@ -73,10 +73,6 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
         btnok!!.setOnClickListener(this)
         prgDialog = ProgressDialog(activity)
         prgDialog!!.setMessage("Loading....")
-//        prgDialog2 = ProgressDialog(activity)
-//        prgDialog2!!.setMessage("Loading....")
-//        prgDialog2!!.setCancelable(false)
-        // Set Cancelable as False
         val ofcListener = MyFocusChangeListener()
         edamo!!.setOnFocusChangeListener(ofcListener)
 

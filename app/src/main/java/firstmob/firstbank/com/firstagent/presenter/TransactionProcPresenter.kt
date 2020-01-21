@@ -129,6 +129,53 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
 
                                         iLoginView!!.CashDepoTranResult(refcodee, datetimee, agcmsn, totfee)
 
+                                    }else if(regtype=="AIRT"){
+
+                                        if (datas != null) {
+
+                                            var totfee: String? = "0.00"
+                                            var datetimee = ""
+                                            val ttf = datas.optString("fee")
+                                            datetimee = datas.optString("dateTime")
+                                            if (ttf == null || ttf == "") {
+
+                                            } else {
+                                                totfee = ttf
+                                            }
+
+                                            val tref = datas.optString("refNumber")
+
+                                            iLoginView!!.CashAirtimeResult(refcodee, datetimee, agcmsn, totfee,tref)
+                                        }
+
+
+                                    }else if(regtype=="WDRAW"){
+                                        var totfee = "0.00"
+                                        var datetimee = ""
+                                        if (datas != null) {
+                                            totfee = datas.optString("fee")
+                                            datetimee = datas.optString("dateTime")
+                                        }
+                                        iLoginView!!.CashWithdrawalResult(refcodee, datetimee, agcmsn, totfee)
+                                    }
+                                    else if(regtype=="WDRAW"){
+
+                                        var totfee: String? = "0.00"
+                                        var tref = "N/A"
+                                        if (datas != null) {
+
+                                            var datetimee = ""
+                                            val ttf = datas.optString("fee")
+                                            datetimee = datas.optString("dateTime")
+                                            if (ttf == null || ttf == "") {
+
+                                            } else {
+                                                totfee = ttf
+                                            }
+                                            tref = datas.optString("refNumber")
+                                            iLoginView!!.CashCabletvResult(refcodee, datetimee, agcmsn, totfee,tref)
+                                        }
+
                                     }
                                 } else if (respcode == "002") {
                                     iLoginView!!.onErrorResult(responsemessage)

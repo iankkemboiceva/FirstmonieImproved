@@ -7,19 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import firstmob.firstbank.com.firstagent.Activity.FMobActivity;
 import firstmob.firstbank.com.firstagent.Activity.R;
 
-public class FinalConfAirtime  extends Fragment implements View.OnClickListener {
+public class FinalConfAirtimeActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnsub;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.final_conf_airtime, null);
-        btnsub = (Button) root.findViewById(R.id.button2);
-        return root;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.final_conf_airtime);
+        btnsub = (Button) findViewById(R.id.button2);
     }
+
 
 
 
@@ -27,8 +31,8 @@ public class FinalConfAirtime  extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
 
         if (view.getId() == R.id.button2) {
-            getActivity().finish();
-            startActivity(new Intent(getActivity(), FMobActivity.class));
+            finish();
+            startActivity(new Intent(this, FMobActivity.class));
         }
     }
 }

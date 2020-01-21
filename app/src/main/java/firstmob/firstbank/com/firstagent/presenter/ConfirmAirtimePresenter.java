@@ -118,57 +118,6 @@ public class ConfirmAirtimePresenter implements AirtimeContract.PresenterConfirm
                     }
                 }
 
-//            else{
-//                //session.setString(SecurityLayer.KEY_APP_ID,appid);
-//
-//                if (!(response == null)) {
-//                    JSONObject datas = obj.optJSONObject("data");
-//                    String agcmsn = obj.optString("fee");
-//                    Log.v("Response Message", responsemessage);
-//
-//                    if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
-//                        if (!(Utility.checkUserLocked(respcode))) {
-//                            Log.v("Response Message", responsemessage);
-//                            iView.onProcessingError(responsemessage);
-//                            if (respcode.equals("00")) {
-//
-////                                    Log.v("Respnse getResults",datas.toString());
-//                                if (!(datas == null)) {
-//
-//                                    String totfee = "0.00";
-//
-//                                    String ttf = datas.optString("fee");
-//                                    if (ttf == null || ttf.equals("")) {
-//
-//                                    } else {
-//                                        totfee = ttf;
-//                                    }
-//
-//                                    String tref = datas.optString("refNumber");
-//
-//                                    iView.openFinalConfirmAirtime(agcmsn,totfee,tref);
-//
-//                                }
-//                            } else {
-//                                Utility.showToast("" + responsemessage);
-//                            }
-//                        } else {
-//                            iView.openSignIn();
-////                            getActivity().finish();
-////                            startActivity(new Intent(context, SignInActivity.class));
-//                            Utility.showToast("You have been locked out of the app.Please call customer care for further details");
-//
-//
-//                        }
-//                    } else {
-//                        Utility.showToast("There was an error on your request");
-//                    }
-//                } else {
-//                    Utility.showToast("There was an error on your request");
-//                }
-//
-//            }
-
 
 
         }catch (JSONException e) {

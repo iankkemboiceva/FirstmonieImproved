@@ -29,9 +29,10 @@ public interface AirtimeContract {
         void onProcessingError(String error);
         void onBackNavigate();
         void logout();
-        void openFinalConfirmAirtime(String agcmsn,String totfee,String tref);
         void showProgress();
         void hideProgress();
+
+//        void openFinalConfirmAirtime(String agcmsn,String totfee,String tref);
     }
 
 

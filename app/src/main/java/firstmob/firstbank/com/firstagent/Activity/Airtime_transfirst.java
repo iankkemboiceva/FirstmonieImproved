@@ -167,6 +167,7 @@ public class Airtime_transfirst extends Fragment implements View.OnClickListener
                                     b.putString("amou", amou);
                                     b.putString("telcoop", mnop);
 
+                                    Log.v("mobile number",phoneno);
                                     b.putString("billid", billid);
                                     b.putString("serviceid", serviceid);
                                     Fragment fragment = new ConfirmAirtime();

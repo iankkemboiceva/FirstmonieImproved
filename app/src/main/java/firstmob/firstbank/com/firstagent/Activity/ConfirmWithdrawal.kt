@@ -99,7 +99,7 @@ class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.I
         activity!!.finish()
         val i = Intent(activity, SignInActivity::class.java)
         startActivity(i)
-        Utility.showToast("You have been locked out of the app.Please call customer care for further details")
+        Utility.showToast("You have been locked out of the app. Please call customer care for further details")
     }
     override fun onError(error: String?) {
         Utility.showToast(error)
@@ -153,27 +153,26 @@ class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.I
                             val usid = Utility.gettUtilUserId(activity)
                             val agentid = Utility.gettUtilAgentId(activity)
                             val mobnoo = Utility.gettUtilMobno(activity)
+                          //  val b = Bundle()
                             val params = "1/$usid/$agentid/$mobnoo/$amou/$txref/$recanno/$txtname/Narr/$otp"
-                            val b = Bundle()
-                            b.putString("recanno", recanno)
-                            b.putString("amou", amou)
-                            b.putString("otp", otp)
-                            b.putString("txtname", txtname)
-                            b.putString("txref", txref)
-                            b.putString("params", params)
-                            b.putString("txpin", encrypted)
-                            b.putString("serv", "WDRAW")
-                            val fragment = TransactingProcessing()
-                            fragment.setArguments(b)
-                            val fragmentManager = fragmentManager
-                            val fragmentTransaction = fragmentManager!!.beginTransaction()
-                            //  String tag = Integer.toString(title);
-                            fragmentTransaction.replace(R.id.container_body, fragment, "Final Confirm Withdrawal")
-                            fragmentTransaction.commit()
+
+                            val intent = Intent(activity, TransactionProcessingActivity::class.java)
+
+                            intent.putExtra("recanno", recanno)
+
+                            intent.putExtra("recanno", recanno)
+                            intent.putExtra("amou", amou)
+                            intent.putExtra("otp", otp)
+                            intent.putExtra("txtname", txtname)
+                            intent.putExtra("txref", txref)
+                            intent.putExtra("params", params)
+                            intent.putExtra("txpin", encrypted)
+                            intent.putExtra("serv", "WDRAW")
+
+                            startActivity(intent)
                             ClearPin()
                         } else {
                             Utility.showToast("Please enter a valid value for Agent PIN")
-
                         }
                     } else {
                         Utility.showToast("Please enter a valid value for Amount")

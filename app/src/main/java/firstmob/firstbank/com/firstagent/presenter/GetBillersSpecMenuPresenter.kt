@@ -152,8 +152,6 @@ class GetBillersSpecMenuPresenter : GetBillersContract.Presenterloadbillerspc, M
                                     Collections.sort(planetsList) { d1, d2 -> d1.getBillerName().compareTo(d2.getBillerName()) }
                                    iView!!.onResult(planetsList)
                                 }
-
-
                             } else {
                                 Toast.makeText(
                                         context,

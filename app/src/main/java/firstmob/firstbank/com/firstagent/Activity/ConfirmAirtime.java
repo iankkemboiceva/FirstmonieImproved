@@ -73,7 +73,6 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
         acbal = (TextView) root.findViewById(R.id.txtacbal);
         recamo = (TextView) root.findViewById(R.id.textViewrrs);
         rectelco = (TextView) root.findViewById(R.id.textViewrr);
-        txtfee = (TextView) root.findViewById(R.id.txtfee);
 
         prgDialog2 = new ProgressDialog(getActivity());
         prgDialog2.setMessage("Loading....");
@@ -93,6 +92,10 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
         if (bundle != null) {
 
             txtcustid = bundle.getString("mobno");
+
+
+            Log.v("mobile number",txtcustid);
+
             amou = bundle.getString("amou");
             telcoop = bundle.getString("telcoop");
             String newamo = amou.replace(",", "");
@@ -123,12 +126,7 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
                 if (Utility.isNotNull(txtcustid)) {
                     if (Utility.isNotNull(amou)) {
                         if (Utility.isNotNull(agpin)) {
-                            /*double dbamo = Double.parseDouble(amou);
-                            Double dbagbal = Double.parseDouble(agbalance);
-                            if(dbamo <= dbagbal){*/
                             String encrypted = null;
-
-
                             String usid = Prefs.getString(KEY_USERID, "NA");
                             String agentid = Prefs.getString(AGENTID, "NA");
 
@@ -137,24 +135,17 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
 
                             String params = "1/" + usid + "/" + agentid + "/" + mobnoo + "/" + billid + "/" + serviceid + "/" + amou + "/01/" + txtcustid + "/" + emaill + "/" + txtcustid + "/" + billid + "01";
 
-                            Bundle b = new Bundle();
-                            b.putString("mobno", txtcustid);
-                            b.putString("amou", amou);
-                            b.putString("telcoop", telcoop);
+                            Intent i=new Intent(getActivity(),TransactionProcessingActivity.class);
+                            i.putExtra("mobno", txtcustid);
+                            i.putExtra("amou", amou);
+                            i.putExtra("telcoop", telcoop);
 
-                            b.putString("billid", billid);
-                            b.putString("serviceid", serviceid);
-                            b.putString("txpin", encrypted);
-                            b.putString("serv", "AIRT");
-                            b.putString("params", params);
-                            Fragment fragment = new TransactingProcessing();
-
-                            fragment.setArguments(b);
-                            FragmentManager fragmentManager = getFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frameLayout, fragment, "Final Conf Airtime");
-                            fragmentTransaction.addToBackStack("Final Conf");
-                            fragmentTransaction.commit();
+                            i.putExtra("billid", billid);
+                            i.putExtra("serviceid", serviceid);
+                            i.putExtra("txpin", encrypted);
+                            i.putExtra("serv", "AIRT");
+                            i.putExtra("params", params);
+                            startActivity(i);
                             ClearPin();
                         } else {
                             Utility.showToast("Please enter a valid value for Agent PIN");
@@ -199,27 +190,6 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
     }
 
 
-    @Override
-    public void openFinalConfirmAirtime(String agcmsn, String totfee, String tref) {
-        Bundle b = new Bundle();
-        b.putString("mobno", txtcustid);
-        b.putString("amou", amou);
-        b.putString("telcoop", telcoop);
-
-        b.putString("billid", billid);
-        b.putString("serviceid", serviceid);
-        b.putString("agcmsn", agcmsn);
-        b.putString("fee", totfee);
-        b.putString("tref", tref);
-        Fragment fragment = new FinalConfAirtime();
-
-        fragment.setArguments(b);
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //  String tag = Integer.toString(title);
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit();
-    }
 
     @Override
     public void showProgress() {

@@ -27,6 +27,12 @@ public interface TransactionProcessingContract {
         void CashDepoResult(String refcodee,String datetime,String agcmsn,String totfee);
 
         void CashDepoTranResult(String refcodee,String datetime,String agcmsn,String totfee);
+
+        void CashWithdrawalResult(String refcodee,String datetime,String agcmsn,String totfee);
+
+        void CashAirtimeResult(String refcodee,String datetime,String agcmsn,String totfee,String tref);
+
+        void CashCabletvResult(String refcodee,String datetime,String agcmsn,String totfee,String tref);
     }
 
 

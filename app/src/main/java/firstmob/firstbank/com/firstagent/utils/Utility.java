@@ -403,20 +403,22 @@ public class Utility {
     }
 
     public static boolean checkInternetConnection() {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm.getActiveNetworkInfo() != null
-                && cm.getActiveNetworkInfo().isAvailable()
-                && cm.getActiveNetworkInfo().isConnected()) {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm.getActiveNetworkInfo() != null
+                    && cm.getActiveNetworkInfo().isAvailable()
+                    && cm.getActiveNetworkInfo().isConnected()) {
 
-            return true;
-        } else {
+                return true;
+            } else {
 
-            Toast.makeText(
-                    context,
-                    "No Internet Connection. Please check your internet settings",
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }
+                Toast.makeText(
+                        context,
+                        "No Internet Connection. Please check your internet settings",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+
     }
 
     public static void hideKeyboardFrom(Context context, View view) {

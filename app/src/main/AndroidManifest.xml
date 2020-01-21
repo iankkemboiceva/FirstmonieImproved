@@ -18,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name=".MyPerfActivity"></activity>
+        <activity android:name=".FinalConfirmCableTVActivity"></activity>
+        <activity android:name=".FinalConfWithdrawActivity" />
+        <activity android:name=".MyPerfActivity" />
         <activity android:name=".ChangePinActivity" />
         <activity android:name=".ForceChangePin" />
         <activity android:name=".ForceResetPin" />
@@ -33,6 +35,7 @@
         <activity android:name=".CommReceipt" />
         <activity android:name=".CommisionActivity" />
         <activity android:name=".ChangeAcNameActivity" />
+        <activity android:name=".FinalConfAirtimeActivity" />
         <activity android:name=".ConfirmWithdrawal" />
         <activity android:name=".Withdraw_Firsts" />
         <activity android:name=".MinistatActivity" />
