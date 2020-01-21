@@ -35,28 +35,32 @@
 
 
     <color name="colorPrimary">#162D4B</color>
+
     <color name="fab_material_blue_900">#001C5C</color>
     <color name="divcolor">#939393</color>
     <color name="colorPrimaryDark">#fbc02d</color>
 
-    <drawable name="red">#7f00</drawable>
+    <color name="orangedepos">#162D4B</color>
+
+    <drawable name="red">#F55B6B</drawable>
+    <drawable name="redcolorr">#F55B6B</drawable>
 
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="blue">#0000FF</color>
-    <color name="nbkyellow">#EDB421</color>
+    <color name="nbkyellow">#FCA400</color>
     <color name="nbklightblue">#9CC2CF</color>
     <color name="grey">#D3D3D3</color>
     <color name="greybg">#F5F6FC</color>
     <color name="lightpink">#CA226B</color>
 
-    3C2415
+    <color name="fbnlightblue">#00E6C3</color>
 
     <color name="borderhmground">#F5F5F5</color>
     <color name="textcolorcircle">#001C5C</color>
     <color name="nbklightbrown">#766151</color>
-    <color name="nbkdarkbrown">#3C2415</color>
+    <color name="nbkdarkbrown">#F55B6B</color>
 
 
     <color name="warning_color">#f4511e</color>
@@ -64,6 +68,7 @@
     <color name="success_color">#009688</color>
 
     <color name="blue_btn_bg_color">#001C5C</color>
+    <color name="normalcolor">#1A8DFF</color>
     <color name="blue_btn_bg_pressed_color">#001C5C</color>
 
     <color name="gray_btn_bg_color">#7f00</color>

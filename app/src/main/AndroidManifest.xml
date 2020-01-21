@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
+
         <activity android:name=".FinalConfirmCableTVActivity"></activity>
         <activity android:name=".FinalConfWithdrawActivity" />
         <activity android:name=".MyPerfActivity" />
@@ -43,6 +44,15 @@
         <activity
             android:name=".AirtimeTransf"
             android:theme="@style/MyMaterialTheme.Base" />
+
+        <activity android:name=".UploadTicket"></activity>
+        <activity android:name=".LogComplaint" />
+        <activity android:name=".TransactionProcessingActivity" />
+        <activity android:name=".FinalConfDepoActivity" />
+        <activity android:name=".InboxActivity" />
+        <activity android:name=".ConfirmCashDepoActivity" />
+        <activity android:name=".CashDepoActivity" />
+
         <activity
             android:name=".FMobActivity"
             android:label="@string/title_activity_fmob"
@@ -70,6 +80,11 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".ActivateAgent" />
         <activity android:name=".ActivateAgentBefore" />
+        <activity android:name=".ComplaintsActivity" />
+        <activity android:name=".FTMenuActivity" />
+        <activity android:name=".CashDepoTransActivity" />
+        <activity android:name=".ConfirmCashDepoTransActivity" />
+        <activity android:name=".SendOTBActivity" />
     </application>
 
 </manifest>

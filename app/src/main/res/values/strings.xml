@@ -12,8 +12,8 @@
     <string name="vertical_ellipsis">&#8942;</string>
     <string name="appupd_verstitle">New Version Available</string>
     <string name="appupd_vers">There is a newer version available for download! Please update the app by visiting Google Play Store.</string>
-
-
+    <string name="dismiss">Dismiss</string>
+    <string name="error">Error</string>
     <string name="camera_denied">Camera Denied</string>
     <string name="storage_denied">Storage Denied</string>
     <string-array name="nav_drawer_items">

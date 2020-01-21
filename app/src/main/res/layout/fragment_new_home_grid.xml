@@ -17,20 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-        <RelativeLayout
-            android:id="@+id/container_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layout_height="46dp"
-                android:background="@drawable/firstmoniecolored"></ImageView>
-
-        </RelativeLayout>
         <LinearLayout
             android:id="@+id/buttons"
             android:layout_width="match_parent"
@@ -64,7 +51,7 @@
                 >
 
                 <RelativeLayout
-                    android:id="@+id/rl2"
+                    android:id="@+id/rltransfer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/rl1"
@@ -439,7 +426,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Open Account"
+                            android:text="Inbox"
 
 
                             android:layout_alignParentRight="true"

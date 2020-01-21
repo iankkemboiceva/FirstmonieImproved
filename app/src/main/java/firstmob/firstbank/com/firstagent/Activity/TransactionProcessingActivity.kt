@@ -1,24 +1,44 @@
 package firstmob.firstbank.com.firstagent.Activity
 
+
+
+import android.util.Log
+import android.widget.Toast
+
+import androidx.core.content.ContextCompat
+
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import com.afollestad.materialdialogs.MaterialDialog
+
 
 import firstmob.firstbank.com.firstagent.contract.TransactionProcessingContract
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.TransactionProcPresenter
+
 import firstmob.firstbank.com.firstagent.utils.Utility
+
 import firstmob.firstbank.com.firstagent.utils.Utility.returnNumberFormat
 import kotlinx.android.synthetic.main.activity_transaction_processing.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
 class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessingContract.ILoginView {
+
+
+    override fun setstatus(name: String?) {
+        txstatus.text = name
+    }
+
+
+    override fun setdesc(name: String?) {
+        txdesc.text = name
+    }
 
 
     var viewDialog: ViewDialog? = null
@@ -80,6 +100,7 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
                 val endpoint = "transfer/intrabank.action"
 
                 presenter.CallActivity(newparams,endpoint,serv)
+
 
             }else if(serv == "AIRT"){
 
@@ -152,6 +173,9 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
 
             }
 
+            }
+
+
         }
 
 
@@ -164,6 +188,7 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
 
         }
     }
+
     override fun setstatus(name: String?) {
         txstatus.text = name
     }
@@ -172,6 +197,7 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
     override fun setdesc(name: String?) {
         txdesc.text = name
     }
+
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
@@ -200,7 +226,9 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
 
     override fun CashDepoResult(refcodee: String?, datetime: String?, agcmsn: String?, totfee: String?) {
 
-        val intent = Intent(this, FinalConfAirtimeActivity::class.java)
+
+        val intent = Intent(this, FinalConfDepoActivity::class.java)
+
 
         intent.putExtra("recanno", recanno)
         intent.putExtra("amou", amou)
@@ -216,6 +244,7 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
         intent.putExtra("fee", totfee)
         startActivity(intent)
     }
+
     override fun CashWithdrawalResult(refcodee: String?, datetime: String?, agcmsn: String?, totfee: String?) {
         val intent = Intent(this@TransactionProcessingActivity, FinalConfWithdrawActivity::class.java)
 
@@ -256,9 +285,12 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
 
         startActivity(intent)
     }
+
+
     override fun CashDepoTranResult(refcodee: String?, datetime: String?, agcmsn: String?, totfee: String?) {
 
-        val intent = Intent(this, FinalConfirmCableTV::class.java)
+        val intent = Intent(this, FinalConfDepoActivity::class.java)
+
 
         intent.putExtra("recanno", recanno)
         intent.putExtra("amou", amou)
@@ -274,6 +306,7 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
         intent.putExtra("fee", totfee)
         startActivity(intent)
     }
+
     override fun CashCabletvResult(refcodee: String?, datetime: String?, agcmsn: String?, totfee: String?, tref: String?) {
         val intent = Intent(this@TransactionProcessingActivity, FinalConfirmCableTVActivity::class.java)
         intent.putExtra("custid", txtcustid)
@@ -299,9 +332,34 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
     override fun onErrorResult(errormsg: String?) {
 
 
+
+
+    override fun onErrorResult(errormsg: String?) {
+
+
+        MaterialDialog(this)
+
+
+                .show {
+                    title(text = "Error")
+                    message(text = errormsg)
+
+                    negativeButton(R.string.dismiss) { dialog ->
+                        dialog.dismiss()
+                        finish()
+                        val intent = Intent(applicationContext, FMobActivity::class.java)
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                    }
+                }
+
+
         txstatus.text = "TRANSACTION FAILURE"
         txdesc.text = errormsg
     }
 
 
+
 }
+

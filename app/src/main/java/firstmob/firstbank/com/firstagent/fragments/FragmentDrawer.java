@@ -70,7 +70,8 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
     TextView tv,home,tvmobno,tvlastl,tvusid;
 
-    Button lyhomeid,lysignout;
+    Button lyhomeid;
+    RelativeLayout lysignout,rlcomplains;
     RelativeLayout header;
     //  private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -95,6 +96,8 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     int REQUEST_CAMERA =3293;
     private FragmentDrawerListener drawerListener;
 
+
+
     public FragmentDrawer() {
 
     }
@@ -116,19 +119,24 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.nav_drawer, container, false);
+        lysignout = (RelativeLayout) layout.findViewById(R.id.rllogout);
 
+        lysignout.setOnClickListener(this);
 
+        rlcomplains = (RelativeLayout) layout.findViewById(R.id.rlcomplains);
+
+        rlcomplains.setOnClickListener(this);
 
 
         return layout;
     }
 
 
-    public void setUp(int fragmentId, DrawerLayout drawerLayout) {
+    public void setUp(int fragmentId, DrawerLayout drawerLayout,final  Toolbar toolbar) {
         containerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
 
-        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.drawer_open, R.string.drawer_close) {
+        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout,toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -164,8 +172,19 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-    }
 
+        if (v.getId() == R.id.rllogout) {
+
+            drawerListener.onDrawerItemSelected(v, 5);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+
+        if (v.getId() == R.id.rlcomplains) {
+
+            drawerListener.onDrawerItemSelected(v, 6);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+    }
 
     public interface FragmentDrawerListener {
         public void onDrawerItemSelected(View view, int position);

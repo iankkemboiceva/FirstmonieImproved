@@ -114,6 +114,10 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
 
                      iLoginView!!.showToast("OTP has been successfully resent")
                  }else{
+
+                     val datas = obj.optJSONObject("data")
+                     val agent = datas.optString("agent")
+
                      iLoginView?.onLoginResult()
                  }
 

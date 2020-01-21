@@ -1,6 +1,13 @@
 package firstmob.firstbank.com.firstagent.daggermodules;
 
 import firstmob.firstbank.com.firstagent.presenter.ActivateAgentPresenter;
+import firstmob.firstbank.com.firstagent.presenter.CashDepoPresenter;
+import firstmob.firstbank.com.firstagent.presenter.CashDepoTransPresenter;
+import firstmob.firstbank.com.firstagent.presenter.ComplaintsPresenter;
+import firstmob.firstbank.com.firstagent.presenter.ConfirmCashDepoPresenter;
+import firstmob.firstbank.com.firstagent.presenter.ConfirmCashTransPresenter;
+import firstmob.firstbank.com.firstagent.presenter.InboxPresenter;
+import firstmob.firstbank.com.firstagent.presenter.LogComplaintPresenter;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
 
 import dagger.Component;
@@ -12,5 +19,16 @@ public  interface MyComponent {
     void inject(LoginPresenterCompl presenter);
     void inject(ActivateAgentPresenter presenter);
     void inject(SignInPresenter presenter);
+
     void inject(TransactionProcPresenter presenter);
+
+    void inject(CashDepoPresenter presenter);
+    void inject(ConfirmCashDepoPresenter presenter);
+    void inject(TransactionProcPresenter presenter);
+    void inject(InboxPresenter presenter);
+    void inject(LogComplaintPresenter presenter);
+    void inject(ComplaintsPresenter presenter);
+    void inject(CashDepoTransPresenter presenter);
+    void inject(ConfirmCashTransPresenter presenter);
+
 }

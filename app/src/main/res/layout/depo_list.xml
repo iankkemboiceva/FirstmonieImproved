@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -32,7 +33,8 @@ android:background="@color/white"
 
 
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="16sp"
+
             android:textColor="@color/colorPrimary" />
         <View
             android:id="@+id/div2"
@@ -44,15 +46,16 @@ android:background="@color/white"
 
 
 
-            android:background="@color/divcolor" />
+
+            android:background="@color/normalcolor" />
 
         <ImageView
-            android:layout_width="30dp"
+            android:layout_width="15dp"
             android:layout_height="30dp"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:id="@+id/imageView4"
-            android:src="@drawable/ic_rightto"
+            android:src="@drawable/ic_right"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

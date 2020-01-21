@@ -119,11 +119,12 @@ class SignInPresenter(internal var iLoginView: SignInContract.ILoginView?, priva
                             Prefs.putString(AGENTID,agentid)
                             Prefs.putString(KEY_USERID,userid)
                             Prefs.putString(KEY_EMAIL,email)
-                            Prefs.putString(SharedPrefConstants.AGMOB,mobno)
+                            Prefs.putString(AGMOB,mobno)
                             Prefs.putString(KEY_CUSTNAME,username)
                             Prefs.putString(KEY_ACCO,accno)
                             Prefs.putString(LASTL,lastl)
                             Prefs.putString(CHKLOGIN,"Y")
+                            Prefs.putBoolean(ISLOGIN,true);
 
                             iLoginView?.onLoginResult()
 

@@ -5,7 +5,7 @@
  
     <!-- Background color -->
     <solid
-        android:color="@color/white" >
+        android:color="@color/nbkyellow" >
     </solid>
  
     <!-- Padding -->
@@ -18,7 +18,9 @@
  
     <!-- Corner radius -->
     <corners
-        android:radius="6dp"   >
-    </corners>
+        android:bottomLeftRadius="2dp"
+        android:bottomRightRadius="2dp"
+        android:topLeftRadius="5dp"
+        android:topRightRadius="5dp" />
  
 </shape>

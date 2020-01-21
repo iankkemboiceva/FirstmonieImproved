@@ -14,6 +14,9 @@ import firstmob.firstbank.com.firstagent.constants.Constants
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.ActivateAgentContract
 
+
+import firstmob.firstbank.com.firstagent.contract.ConfirmCashDepoContract
+
 import firstmob.firstbank.com.firstagent.contract.MainContract
 
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
@@ -38,6 +41,7 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
 
 
     init {
+
         ApplicationClass.getMyComponent().inject(this)
         // initUser();
     }
@@ -129,6 +133,7 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
 
                                         iLoginView!!.CashDepoTranResult(refcodee, datetimee, agcmsn, totfee)
 
+
                                     }else if(regtype=="AIRT"){
 
                                         if (datas != null) {
@@ -176,11 +181,12 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
                                             iLoginView!!.CashCabletvResult(refcodee, datetimee, agcmsn, totfee,tref)
                                         }
 
+
                                     }
                                 } else if (respcode == "002") {
                                     iLoginView!!.onErrorResult(responsemessage)
 
-                                    //   setAlertDialog()
+
 
                                 } else {
                                     iLoginView!!.onErrorResult(responsemessage)

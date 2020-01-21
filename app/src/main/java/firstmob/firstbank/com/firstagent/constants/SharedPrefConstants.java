@@ -4,6 +4,7 @@ public class SharedPrefConstants {
     public static final String KEY_USERID = "userid";
     public final static String KEY_LATITUDE = "latitude";
     public final static String KEY_LONGIT = "longitude";
+
     public final static String SESS_REG = "sessreg";
 
     public static final String KEY_SETAIRTIME = "setairtime";
@@ -21,6 +22,7 @@ public class SharedPrefConstants {
     public static final String LASTL = "lastl";
 
     public static final String CHKLOGIN = "chklogin";
+    public static final String ISLOGIN = "islogin";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";

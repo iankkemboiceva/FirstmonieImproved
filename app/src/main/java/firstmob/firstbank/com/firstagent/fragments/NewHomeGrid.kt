@@ -9,7 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+
 import firstmob.firstbank.com.firstagent.Activity.*
+
+import android.widget.Toast
+import firstmob.firstbank.com.firstagent.Activity.*
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
+import firstmob.firstbank.com.firstagent.security.SecurityLayer
+import firstmob.firstbank.com.firstagent.utils.Utility.generateHashString
+import kotlinx.android.synthetic.main.fragment_new_home_grid.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +46,7 @@ class NewHomeGrid : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
         val view = inflater!!.inflate(R.layout.fragment_new_home_grid,container,false)
 
         // Get the text view widget reference from custom layout
@@ -64,6 +73,43 @@ class NewHomeGrid : Fragment() {
             this.startActivity(intent)
         }
         return view
+
+        val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
+
+
+
+
+        val rldepo: RelativeLayout? = view?.findViewById(R.id.rl5)
+        rldepo?.setOnClickListener(){
+
+            val i = Intent(activity, CashDepoActivity::class.java)
+
+            startActivity(i)
+        }
+
+
+        val rlinboxchos: RelativeLayout? = view?.findViewById(R.id.rlinbox)
+        rlinboxchos?.setOnClickListener(){
+
+            val i = Intent(activity, InboxActivity::class.java)
+
+            startActivity(i)
+        }
+
+        val rltransfer: RelativeLayout? = view?.findViewById(R.id.rltransfer)
+        rltransfer?.setOnClickListener(){
+
+            val i = Intent(activity, FTMenuActivity::class.java)
+
+            startActivity(i)
+        }
+
+        val pin = "12346";
+        val hashedpin = generateHashString(pin);
+        SecurityLayer.Log(hashedpin)
+
+        return view;
+
     }
 
 

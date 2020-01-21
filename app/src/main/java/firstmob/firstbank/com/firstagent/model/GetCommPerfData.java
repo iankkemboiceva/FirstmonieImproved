@@ -1,3 +1,4 @@
+
 package firstmob.firstbank.com.firstagent.model;
 
 /**
@@ -25,7 +26,7 @@ public class GetCommPerfData {
     private String refNumber;
     @SerializedName("fromAccountNum")
     private String fromAccountNum;
-    public GetCommPerfData(String txnCode, String txndateTime, double agentCmsn, String status, String amount, String toAcNum, String refNumber, String fromacnum) {
+    public GetCommPerfData(String txnCode, String txndateTime, double agentCmsn, String status,String amount,String toAcNum,String refNumber,String fromacnum) {
         this.txnCode = txnCode;
         this.txndateTime = txndateTime;
         this.agentCmsn = agentCmsn;
@@ -102,4 +103,5 @@ public class GetCommPerfData {
     public void setFromAcnum(String fromAccountNum) {
         this.fromAccountNum = fromAccountNum;
     }
+
 }
