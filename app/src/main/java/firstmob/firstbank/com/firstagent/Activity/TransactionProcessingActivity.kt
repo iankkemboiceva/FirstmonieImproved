@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 
@@ -176,7 +176,7 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
             }
 
 
-        }
+
 
 
         button2.setOnClickListener(){
@@ -189,14 +189,7 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
         }
     }
 
-    override fun setstatus(name: String?) {
-        txstatus.text = name
-    }
 
-
-    override fun setdesc(name: String?) {
-        txdesc.text = name
-    }
 
 
     override fun attachBaseContext(newBase: Context) {
@@ -329,35 +322,15 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
 
         startActivity(intent)
     }
-    override fun onErrorResult(errormsg: String?) {
-
-
 
 
     override fun onErrorResult(errormsg: String?) {
-
-
-        MaterialDialog(this)
-
-
-                .show {
-                    title(text = "Error")
-                    message(text = errormsg)
-
-                    negativeButton(R.string.dismiss) { dialog ->
-                        dialog.dismiss()
-                        finish()
-                        val intent = Intent(applicationContext, FMobActivity::class.java)
-
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        startActivity(intent)
-                    }
-                }
 
 
         txstatus.text = "TRANSACTION FAILURE"
         txdesc.text = errormsg
     }
+
 
 
 

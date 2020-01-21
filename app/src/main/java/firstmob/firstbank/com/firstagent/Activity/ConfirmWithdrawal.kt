@@ -11,6 +11,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.MaterialDialog
+import com.pixplicity.easyprefs.library.Prefs
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.WithdrawalsContract
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ConfirmWithdrwalPresenter
@@ -152,7 +154,7 @@ class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.I
                             val encrypted: String? = null
                             val usid = Utility.gettUtilUserId(activity)
                             val agentid = Utility.gettUtilAgentId(activity)
-                            val mobnoo = Utility.gettUtilMobno(activity)
+                            val mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA")
                           //  val b = Bundle()
                             val params = "1/$usid/$agentid/$mobnoo/$amou/$txref/$recanno/$txtname/Narr/$otp"
 

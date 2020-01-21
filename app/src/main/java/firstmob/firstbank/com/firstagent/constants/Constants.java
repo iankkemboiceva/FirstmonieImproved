@@ -23,7 +23,7 @@ public class Constants {
     static final String TOPIC_KEY = "t";
     static final String URL_KEY = "url";
     static final String MERCH_ENPOINT = "/natmerchantapi/rest/merchant/";
-    public static final String KEY_NAIRA = Html.fromHtml("&#8358;").toString();
+
     static final String AND_ENPOINT = "natmerchantapi/rest/merchant/";
 
 

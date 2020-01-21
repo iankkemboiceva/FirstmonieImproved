@@ -85,10 +85,10 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
         button2.setOnClickListener {
             if (Utility.isNotNull(bankname)) {
                 val recanno = edacc.text.toString()
-                val amou: String = txtamount.getText().toString()
-                val narra: String = txtnarr.getText().toString()
-                val ednamee: String = edname.getText().toString()
-                val ednumbb: String = ednumber.getText().toString()
+                val amou: String = amount.getText().toString()
+                val narra: String = ednarr.getText().toString()
+                val ednamee: String = sendername.getText().toString()
+                val ednumbb: String = sendno.getText().toString()
                 if (Utility.isNotNull(recanno)) {
                     if (Utility.isNotNull(amou)) {
                         val nwamo = amou.replace(",", "")
@@ -99,7 +99,7 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
                                 if (Utility.isNotNull(ednumbb)) {
                                     if (Utility.isNotNull(bankcode)) {
                                         if (Utility.isNotNull(acname)) {
-                                            val intent = Intent(this@SendOTBActivity, ConfirmSendOTBActivity::class.java)
+                                    /*        val intent = Intent(this@SendOTBActivity, ConfirmSendOTBActivity::class.java)
                                             intent.putExtra("recanno", recanno)
                                             intent.putExtra("amou", amou)
                                             intent.putExtra("narra", narra)
@@ -109,7 +109,7 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
                                             intent.putExtra("bankname", bankname)
                                             intent.putExtra("bankcode", bankcode)
                                             startActivity(intent)
-                                        } else {
+                                    */    } else {
                                             Toast.makeText(
                                                     applicationContext,
                                                     "Please enter a valid account number",

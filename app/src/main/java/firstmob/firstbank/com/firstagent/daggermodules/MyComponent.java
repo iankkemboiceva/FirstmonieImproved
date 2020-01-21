@@ -24,7 +24,7 @@ public  interface MyComponent {
 
     void inject(CashDepoPresenter presenter);
     void inject(ConfirmCashDepoPresenter presenter);
-    void inject(TransactionProcPresenter presenter);
+
     void inject(InboxPresenter presenter);
     void inject(LogComplaintPresenter presenter);
     void inject(ComplaintsPresenter presenter);

@@ -51,6 +51,7 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +66,7 @@ import java.util.List;
 import firstmob.firstbank.com.firstagent.adapter.MyPerfServAdapt;
 import firstmob.firstbank.com.firstagent.adapter.TxnAdapter;
 import firstmob.firstbank.com.firstagent.constants.Constants;
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants;
 import firstmob.firstbank.com.firstagent.fragments.DateRangePickerFragment;
 import firstmob.firstbank.com.firstagent.model.GetCommPerfData;
 import firstmob.firstbank.com.firstagent.model.GetMyPerfServData;
@@ -367,7 +369,7 @@ public class NewSelChartTran extends Fragment implements View.OnClickListener, O
                 RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
         String usid = Utility.gettUtilUserId(getActivity());
         String agentid = Utility.gettUtilAgentId(getActivity());
-        String mobnoo = Utility.gettUtilMobno(getActivity());
+        String mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA");
         String params = "1/" + usid + "/" + agentid + "/" + mobnoo + "/CMSNRPT/" + fromdt + "/" + enddt;
         Loadd(params);
     }

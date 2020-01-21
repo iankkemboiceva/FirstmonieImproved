@@ -151,12 +151,10 @@ class WithdrawalfirstPresenter : WithdrawalsContract.PresenterGen, MainContract.
             SecurityLayer.Log("encryptionJSONException", e.toString())
             // TODO Auto-generated catch block
             Toast.makeText(context, context!!.getText(R.string.conn_error), Toast.LENGTH_LONG).show()
-            (context as Withdraw).SetForceOutDialog(context!!.getString(R.string.forceout), context!!.getString(R.string.forceouterr), context)
-            // SecurityLayer.Log(e.toString());
+
 
         } catch (e: Exception) {
             SecurityLayer.Log("encryptionJSONException", e.toString())
-            (context as Withdraw).SetForceOutDialog(context!!.getString(R.string.forceout), context!!.getString(R.string.forceouterr), context)
             // SecurityLayer.Log(e.toString());
         }
 

@@ -46,14 +46,14 @@ class NewHomeGrid : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        val views = inflater.inflate(R.layout.fragment_new_home_grid, null) as ViewGroup
 
-        val view = inflater!!.inflate(R.layout.fragment_new_home_grid,container,false)
 
         // Get the text view widget reference from custom layout
-        val open_airtime = view.findViewById<RelativeLayout>(R.id.rl1)
-        val open_withdrwa = view.findViewById<RelativeLayout>(R.id.rl3)
-        val open_paybills = view.findViewById<RelativeLayout>(R.id.rl6)
-        val open_p = view.findViewById<RelativeLayout>(R.id.rlinbox)
+        val open_airtime = views.findViewById<RelativeLayout>(R.id.rl1)
+        val open_withdrwa = views.findViewById<RelativeLayout>(R.id.rl3)
+        val open_paybills = views.findViewById<RelativeLayout>(R.id.rl6)
+        val open_p = views.findViewById<RelativeLayout>(R.id.rlinbox)
         // Set a click listener for text view object
         open_airtime.setOnClickListener{
             val intent = Intent (getActivity(), AirtimeTransf::class.java)

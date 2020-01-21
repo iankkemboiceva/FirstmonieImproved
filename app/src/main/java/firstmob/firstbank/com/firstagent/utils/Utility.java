@@ -28,7 +28,7 @@ import android.util.Base64;
 
 
 
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -93,7 +93,7 @@ public class Utility {
     public static final String KEY_TOKEN = "token";
     private static final String SPEC_CHARPATTERN = "[a-zA-Z0-9]+";
 
-    public static final String AGMOB = "agmobno";
+
     private static SessionManagement session;
 
     public static Context context;
@@ -278,29 +278,7 @@ public class Utility {
         }
         return arr;
     }
-    public static  String convertTxnCodetoServ(String txncode){
-        if (txncode.equals("FTINTRABANK")){
-            txncode = "FBN Transfer";
-        }else if (txncode.equals("FTINTERBANK")){
-            txncode = "Other Bank";
-        }else if (txncode.equals("CWDBYACT")){
-            txncode = "Cash Withdrawal";
-        }
-        else if (txncode.equals("CASHDEP")){
-            txncode = "Cash Deposit";
-        }
-        else if (txncode.equals("MMO")){
-            txncode = "Airtime";
-        }
-        else if (txncode.equals("BILLPAYMENT")){
-            txncode = "Pay Bills";
-        }
-        else if (txncode.equals("CWDOTRBNK")){
-            txncode = "Other Bank Withdrawal";
-        }
 
-        return txncode;
-    }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -376,11 +354,7 @@ public class Utility {
         return defac;
     }
 
-    public static String gettUtilMobno(Context c){
-        session = new SessionManagement(c);
-        String defac = session.getString(AGMOB);
-        return defac;
-    }
+
 
 
     public static String gettUtilEmail(Context c){

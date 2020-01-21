@@ -34,35 +34,7 @@ var session :SessionManagement? =null
         super.onBackPressed()
         finish()
     }
-    fun SetForceOutDialog(msg: String, title: String, c: Context?) {
-        if (c != null) {
-            MaterialDialog.Builder(c)
-                    .title(title)
-                    .content(msg)
 
-                    .negativeText("CONTINUE")
-                    .callback(object : MaterialDialog.ButtonCallback() {
-                        override fun onPositive(dialog: MaterialDialog?) {
-                            dialog!!.dismiss()
-                        }
-
-                        override fun onNegative(dialog: MaterialDialog?) {
-
-                            dialog!!.dismiss()
-                            finish()
-                            session!!.logoutUser()
-
-                            // After logout redirect user to Loing Activity
-                            val i = Intent(c, SignInActivity::class.java)
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            // Staring Login Activity
-                            startActivity(i)
-
-                        }
-                    })
-                    .show()
-        }
-    }
     fun LogOut() {
         session!!.logoutUser()
 
