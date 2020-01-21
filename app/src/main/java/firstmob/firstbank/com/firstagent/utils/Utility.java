@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+
+import android.content.Intent;
+
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -24,11 +27,20 @@ import android.widget.Toast;
 import android.util.Base64;
 
 
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import firstmob.firstbank.com.firstagent.Activity.SignInActivity;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import firstmob.firstbank.com.firstagent.security.EncryptTransactionPin;
 import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -55,6 +67,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,6 +92,9 @@ public class Utility {
     private static final String LWCASE_PATTERN = "[a-z]+";
     public static final String KEY_TOKEN = "token";
     private static final String SPEC_CHARPATTERN = "[a-zA-Z0-9]+";
+
+    public static final String AGMOB = "agmobno";
+    private static SessionManagement session;
 
     public static Context context;
     @Inject
@@ -105,8 +121,8 @@ public class Utility {
 
     public void checkpermissions() {
 
-
     }
+
 
     public static boolean isValidWord(String str) {
 //  return str.matches(".*[a-zA-Z]+.*"); // match a number with optional
@@ -262,7 +278,29 @@ public class Utility {
         }
         return arr;
     }
+    public static  String convertTxnCodetoServ(String txncode){
+        if (txncode.equals("FTINTRABANK")){
+            txncode = "FBN Transfer";
+        }else if (txncode.equals("FTINTERBANK")){
+            txncode = "Other Bank";
+        }else if (txncode.equals("CWDBYACT")){
+            txncode = "Cash Withdrawal";
+        }
+        else if (txncode.equals("CASHDEP")){
+            txncode = "Cash Deposit";
+        }
+        else if (txncode.equals("MMO")){
+            txncode = "Airtime";
+        }
+        else if (txncode.equals("BILLPAYMENT")){
+            txncode = "Pay Bills";
+        }
+        else if (txncode.equals("CWDOTRBNK")){
+            txncode = "Other Bank Withdrawal";
+        }
 
+        return txncode;
+    }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -276,12 +314,9 @@ public class Utility {
 		try {
 			Double amou = Double.parseDouble(amount);
 			if (amou > 0) {
-
 				DecimalFormat df = new DecimalFormat("#,###.00");
-
 				fmamo = df.format(amou);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -319,22 +354,81 @@ public class Utility {
         }
         return number.toString();
     }
+    public static String gettUtilAgentId(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getAgentID();
+        String	defac  = defa.get(SessionManagement.AGENTID);
+        return defac;
+    }
+    public static String errornexttoken() {
+        String token = session.getString(KEY_TOKEN);
+        SecurityLayer.Log("existing_token", token);
+        String fnltkt = token;
+        fnltkt = Utility.nextToken(fnltkt);
+        String finall = Utility.nextToken(fnltkt);
+        session.setString(KEY_TOKEN,finall);
+        return fnltkt;
+    }
+    public static String gettUtilUserId(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getUserIdd();
+        String	defac  = defa.get(SessionManagement.KEY_USERID);
+        return defac;
+    }
+
+    public static String gettUtilMobno(Context c){
+        session = new SessionManagement(c);
+        String defac = session.getString(AGMOB);
+        return defac;
+    }
+
+
+    public static String gettUtilEmail(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getEmail();
+        String	defac  = defa.get(SessionManagement.KEY_EMAIL);
+        return defac;
+    }
+    public static String gettUtilCustname(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getCustName();
+        String	defac  = defa.get(SessionManagement.KEY_CUSTNAME);
+        return defac;
+    }
+    public static String getLastl(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getLastl();
+        String	defac  = defa.get(SessionManagement.LASTL);
+        return defac;
+    }
+    public static String getAcountno(Context c){
+        session = new SessionManagement(c);
+        HashMap<String, String> defa = session.getAccountNo();
+        String	defac  = defa.get(SessionManagement.KEY_ACCO);
+        return defac;
+    }
+
+    public static void showToast(String message){
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
 
     public static boolean checkInternetConnection() {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm.getActiveNetworkInfo() != null
-                && cm.getActiveNetworkInfo().isAvailable()
-                && cm.getActiveNetworkInfo().isConnected()) {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm.getActiveNetworkInfo() != null
+                    && cm.getActiveNetworkInfo().isAvailable()
+                    && cm.getActiveNetworkInfo().isConnected()) {
 
-            return true;
-        } else {
+                return true;
+            } else {
 
-            Toast.makeText(
-                    context,
-                    "No Internet Connection. Please check your internet settings",
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }
+                Toast.makeText(
+                        context,
+                        "No Internet Connection. Please check your internet settings",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+
     }
 
     public static void hideKeyboardFrom(Context context, View view) {
@@ -819,7 +913,37 @@ public class Utility {
 
         return changeddate;
     }
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean checkPermission(final Context context)
+    {
+        int currentAPIVersion = Build.VERSION.SDK_INT;
+        if(currentAPIVersion>=android.os.Build.VERSION_CODES.M)
+        {
+            if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                    alertBuilder.setCancelable(true);
+                    alertBuilder.setTitle("Permission necessary");
+                    alertBuilder.setMessage("External storage permission is necessary");
+                    alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions((Activity) context, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                        }
+                    });
+                    AlertDialog alert = alertBuilder.create();
+                    alert.show();
+                } else {
+                    ActivityCompat.requestPermissions((Activity) context, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                }
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }
     public static boolean compareversionsupdate(String server, String device) {
         String[] v1 = device.split("\\.");
         String[] v2 = server.split("\\.");
@@ -837,5 +961,30 @@ public class Utility {
         }
         return chk;
     }
+    public static String getToday() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SecurityLayer.Log("Date Today is", sdf.format(date));
+        String datetod = sdf.format(date);
+        return datetod;
+    }
 
+    public static String getWeek() {
+        long DAY_IN_MS = 1000 * 60 * 60 * 24;
+
+        Date date = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SecurityLayer.Log("Date Week is", sdf.format(date));
+        String datetod = sdf.format(date);
+        return datetod;
+    }
+
+    public static String getMonth() {
+        long DAY_IN_MS = 1000 * 60 * 60 * 24;
+        Date date = new Date(System.currentTimeMillis() - (30 * DAY_IN_MS));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SecurityLayer.Log("Date Month is", sdf.format(date));
+        String datetod = sdf.format(date);
+        return datetod;
+    }
 }

@@ -3,6 +3,7 @@
     package="firstmob.firstbank.com.firstagent.Activity">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,6 +18,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
+
+        <activity android:name=".FinalConfirmCableTVActivity"></activity>
+        <activity android:name=".FinalConfWithdrawActivity" />
+        <activity android:name=".MyPerfActivity" />
+        <activity android:name=".ChangePinActivity" />
+        <activity android:name=".ForceChangePin" />
+        <activity android:name=".ForceResetPin" />
+        <activity android:name=".FinalConfirmCableTV" />
+        <activity android:name=".TransactionProcessingActivity" />
+        <activity android:name=".ConfirmCableActivity" />
+        <activity android:name=".CableTVActivity" />
+        <activity android:name=".StateCollectActivity" />
+        <activity android:name=".GetBillPaymentsActivity" />
+        <activity android:name=".SpecBillerMenuActivity" />
+        <activity android:name=".BillMenuActivity" />
+        <activity android:name=".CommReceipt" />
+        <activity android:name=".CommisionActivity" />
+        <activity android:name=".ChangeAcNameActivity" />
+        <activity android:name=".FinalConfAirtimeActivity" />
+        <activity android:name=".ConfirmWithdrawal" />
+        <activity android:name=".Withdraw_Firsts" />
+        <activity android:name=".MinistatActivity" />
+        <activity android:name=".Withdraw" />
+        <activity
+            android:name=".AirtimeTransf"
+            android:theme="@style/MyMaterialTheme.Base" />
+
         <activity android:name=".UploadTicket"></activity>
         <activity android:name=".LogComplaint" />
         <activity android:name=".TransactionProcessingActivity" />
@@ -24,6 +52,7 @@
         <activity android:name=".InboxActivity" />
         <activity android:name=".ConfirmCashDepoActivity" />
         <activity android:name=".CashDepoActivity" />
+
         <activity
             android:name=".FMobActivity"
             android:label="@string/title_activity_fmob"

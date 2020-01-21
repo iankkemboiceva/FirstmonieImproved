@@ -130,7 +130,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
-                    android:background="@drawable/nextbutton"
+
+                    android:background="@drawable/mybutton"
+
                     android:padding="5dp"
                     android:text="Next"
                     android:filterTouchesWhenObscured ="true"
@@ -146,4 +148,6 @@
 
 
 
+
 </LinearLayout>
+

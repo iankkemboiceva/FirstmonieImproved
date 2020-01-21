@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ActivateAgentBefore extends BaseBeforeActivity implements MainContract.ILoginView {
+public class ActivateAgentBefore extends BaseBeforeActivity implements MainContract.IView {
 
     @BindView(R.id.agentid) EditText agentid;
     @BindView(R.id.button2) Button btnLogin;
@@ -46,7 +46,6 @@ public class ActivateAgentBefore extends BaseBeforeActivity implements MainContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activate_agentbefore);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -85,10 +84,9 @@ public class ActivateAgentBefore extends BaseBeforeActivity implements MainContr
 
 
     @Override
-    public void onLoginResult() {
+    public void onfetchResult() {
         finish();
         Intent mIntent = new Intent(getApplicationContext(), ActivateAgent.class);
-
         startActivity(mIntent);
 
     }
@@ -104,14 +102,13 @@ public class ActivateAgentBefore extends BaseBeforeActivity implements MainContr
         pDialog.show();
     }
 
-
     @Override
     public void hideProgress() {
         pDialog.dismiss();
     }
 
     @Override
-    public void onLoginError(String error) {
+    public void onError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 }

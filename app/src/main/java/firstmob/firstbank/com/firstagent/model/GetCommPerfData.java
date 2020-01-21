@@ -1,3 +1,4 @@
+
 package firstmob.firstbank.com.firstagent.model;
 
 /**
@@ -102,4 +103,5 @@ public class GetCommPerfData {
     public void setFromAcnum(String fromAccountNum) {
         this.fromAccountNum = fromAccountNum;
     }
+
 }

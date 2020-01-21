@@ -130,11 +130,7 @@ class ActivateAgentPresenter(internal var iLoginView: ActivateAgentContract.ILog
                 }
 
             } else {
-
-
                 iLoginView!!.showToast("There was an error on your request")
-
-
             }
 
         } catch (e: JSONException) {

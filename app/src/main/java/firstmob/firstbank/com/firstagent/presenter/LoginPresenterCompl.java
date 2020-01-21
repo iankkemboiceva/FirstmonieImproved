@@ -1,6 +1,5 @@
 package firstmob.firstbank.com.firstagent.presenter;
 
-import android.content.Intent;
 import android.os.Handler;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -12,16 +11,13 @@ import javax.inject.Inject;
 
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
-import firstmob.firstbank.com.firstagent.model.IUser;
 import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 import firstmob.firstbank.com.firstagent.utils.Utility;
 
 import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID;
 
 public class LoginPresenterCompl implements MainContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
-    MainContract.ILoginView iLoginView;
-    IUser user;
-    Handler handler;
+    MainContract.IView iLoginView;
     private MainContract.GetDataIntractor getDataIntractor;
     String userid;
 
@@ -31,7 +27,7 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
     @Inject
     Utility ul;
 
-    public LoginPresenterCompl(MainContract.ILoginView iLoginView, MainContract.GetDataIntractor getDataIntractor) {
+    public LoginPresenterCompl(MainContract.IView iLoginView, MainContract.GetDataIntractor getDataIntractor) {
         this.iLoginView = iLoginView;
         this.getDataIntractor = getDataIntractor;
 
@@ -73,12 +69,7 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
         try {
             // JSON Object
             SecurityLayer.Log("response..:", responsebody);
-
-
             JSONObject obj = new JSONObject(responsebody);
-                 /*   JSONObject jsdatarsp = obj.optJSONObject("data");
-                    SecurityLayer.Log("JSdata resp", jsdatarsp.toString());
-                    //obj = Utility.onresp(obj,getActivity()); */
             obj = SecurityLayer.decryptFirstTimeLogin(obj);
             SecurityLayer.Log("decrypted_response", obj.toString());
 
@@ -96,7 +87,7 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
                     Prefs.putString(KEY_USERID, userid);
                     //  iLoginView.showToast(userid);
 
-                    iLoginView.onLoginResult();
+                    iLoginView.onfetchResult();
 
 
                 } else {
@@ -135,7 +126,7 @@ public class LoginPresenterCompl implements MainContract.Presenter, MainContract
     public void onFailure(Throwable t) {
         iLoginView.hideProgress();
         SecurityLayer.Log(t.toString());
-        iLoginView.onLoginError("There was an error processing your request");
+        iLoginView.onError("There was an error processing your request");
 
     }
 

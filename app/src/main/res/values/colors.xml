@@ -113,4 +113,10 @@
     <color name="fab_material_white">#ffffff</color>
     <color name="fab_material_yellow_500">#ffeb3b</color>
     <color name="fab_material_yellow_900">#f57f17</color>
+
+    <color name="pink_btncolor">#F55B6B</color>
+    <color name="dark_btncolor">#162D4B</color>
+    <color name="theme_paybills">#FF6900</color>
+
+    <color name="lightgree_withdrcolor">#94CE00</color>
 </resources>

@@ -161,19 +161,19 @@ public class SecurityLayer {
         String finalresp = "";
 
 
-String dehexcab = AESCBCEncryption.toString(pkey);
-            SecurityLayer.Log("pkey_dehex [" + dehexcab + "]");
+        String dehexcab = AESCBCEncryption.toString(pkey);
+        SecurityLayer.Log("pkey_dehex [" + dehexcab + "]");
         SecurityLayer.Log("pkey_dehex",dehexcab);
-            String pvokecab = AESCBCEncryption.toString(pvoke);
+        String pvokecab = AESCBCEncryption.toString(pvoke);
         SecurityLayer.Log("pvoke_cab",pvokecab);
-            SecurityLayer.Log("pvokecab [" + pvokecab + "]");
-            String pkey_dec = decrypt(key, initVector, AESCBCEncryption.toString(pkey));
-            String pvoke_dec = decrypt(key, initVector, AESCBCEncryption.toString(pvoke));
-            String sessionkey = decrypt(base64Decode(pkey_dec), base64Decode(pvoke_dec), AESCBCEncryption.toString(skey));
-            String sessioniv = decrypt(base64Decode(pkey_dec), base64Decode(pvoke_dec), AESCBCEncryption.toString(svoke));
+        SecurityLayer.Log("pvokecab [" + pvokecab + "]");
+        String pkey_dec = decrypt(key, initVector, AESCBCEncryption.toString(pkey));
+        String pvoke_dec = decrypt(key, initVector, AESCBCEncryption.toString(pvoke));
+        String sessionkey = decrypt(base64Decode(pkey_dec), base64Decode(pvoke_dec), AESCBCEncryption.toString(skey));
+        String sessioniv = decrypt(base64Decode(pkey_dec), base64Decode(pvoke_dec), AESCBCEncryption.toString(svoke));
 
         Prefs.putString(KEY_PKEY, pkey_dec);//set pkey
-            SecurityLayer.Log("setpkey ["+ pkey_dec+"]");
+        SecurityLayer.Log("setpkey ["+ pkey_dec+"]");
         Prefs.putString(KEY_PIV, pvoke_dec);//set piv
         SecurityLayer.Log("setpiv ["+ pvoke_dec+"]");
         Prefs.putString(KEY_SKEY, sessionkey);//set skey
@@ -182,9 +182,9 @@ String dehexcab = AESCBCEncryption.toString(pkey);
         SecurityLayer.Log("setsiv ["+ sessioniv+"]");
         Prefs.putString(KEY_DHASH, dhash);
 
-            finalresp = decrypt(base64Decode(pkey_dec), base64Decode(pvoke_dec), AESCBCEncryption.toString(input));
-JSONObject newjs = new JSONObject(finalresp);
-String tken = newjs.optString("token");
+        finalresp = decrypt(base64Decode(pkey_dec), base64Decode(pvoke_dec), AESCBCEncryption.toString(input));
+        JSONObject newjs = new JSONObject(finalresp);
+        String tken = newjs.optString("token");
         String nwappid = newjs.optString("appid");
         String encappid = toHex(encrypt(key, initVector, nwappid));
 
@@ -194,21 +194,21 @@ String tken = newjs.optString("token");
 
 
         Prefs.putString(KEY_TOKEN, tken);
-            SecurityLayer.Log("pkey_dec [" + pkey_dec + "]");
-            SecurityLayer.Log("pvoke_dec [" + pvoke_dec + "");
-            SecurityLayer.Log("session key [" + sessionkey + "]");
-            SecurityLayer.Log("sessioniv [" + sessioniv + "]");
-            SecurityLayer.Log("finalresp [" + finalresp + "]");
+        SecurityLayer.Log("pkey_dec [" + pkey_dec + "]");
+        SecurityLayer.Log("pvoke_dec [" + pvoke_dec + "");
+        SecurityLayer.Log("session key [" + sessionkey + "]");
+        SecurityLayer.Log("sessioniv [" + sessioniv + "]");
+        SecurityLayer.Log("finalresp [" + finalresp + "]");
 
-            String gen = Utility.generateHashString(finalresp);
-            SecurityLayer.Log("Hashing Status [" + gen.equals(dhash) + "]");
+        String gen = Utility.generateHashString(finalresp);
+        SecurityLayer.Log("Hashing Status [" + gen.equals(dhash) + "]");
 
-            decjsonobj.put("pkey_dec", pkey_dec);
-            decjsonobj.put("pvoke_dec", pvoke_dec);
-            decjsonobj.put("sessionkey", sessionkey);
-            decjsonobj.put("sessioniv", sessioniv);
-            decjsonobj.put("finalresp", finalresp);
-            decjsonobj.put("hashstatus", gen.equals(dhash));
+        decjsonobj.put("pkey_dec", pkey_dec);
+        decjsonobj.put("pvoke_dec", pvoke_dec);
+        decjsonobj.put("sessionkey", sessionkey);
+        decjsonobj.put("sessioniv", sessioniv);
+        decjsonobj.put("finalresp", finalresp);
+        decjsonobj.put("hashstatus", gen.equals(dhash));
 
 
         return newjs;
@@ -263,8 +263,8 @@ String tken = newjs.optString("token");
 
 
             String vers = Utility.getAppVersion();
-SecurityLayer.Log("encappid",encappid);
-String session_id = "121212";
+            SecurityLayer.Log("encappid",encappid);
+            String session_id = "121212";
 
             finpoint = sb.append(Constants.NET_URL + endpoint)
                     .append(toHex(encryptedUrl))
@@ -302,31 +302,31 @@ String session_id = "121212";
 
 
 
-            //String pkey_dec = decrypt(key, initVector, toString(pkey));
-            //String pvoke_dec =  decrypt(key, initVector, toString(pvoke));
-            String sessionkey = decrypt(pkey, pinitVector, AESCBCEncryption.toString(skey));
-            String sessioniv = decrypt(pkey, pinitVector, AESCBCEncryption.toString(svoke));
-            finalresp = decrypt(pkey, pinitVector, AESCBCEncryption.toString(input));
-            JSONObject newjs = new JSONObject(finalresp);
-            String tken = newjs.optString("token");
+        //String pkey_dec = decrypt(key, initVector, toString(pkey));
+        //String pvoke_dec =  decrypt(key, initVector, toString(pvoke));
+        String sessionkey = decrypt(pkey, pinitVector, AESCBCEncryption.toString(skey));
+        String sessioniv = decrypt(pkey, pinitVector, AESCBCEncryption.toString(svoke));
+        finalresp = decrypt(pkey, pinitVector, AESCBCEncryption.toString(input));
+        JSONObject newjs = new JSONObject(finalresp);
+        String tken = newjs.optString("token");
 
         Prefs.putString(KEY_TOKEN, tken);
         Prefs.putString(KEY_SKEY, sessionkey);
         Prefs.putString(KEY_SIV, sessioniv);
 
-            ///System.out.println("pkey_dec ["+pkey_dec+"]");
-            //System.out.println("pvoke_dec ["+pvoke_dec+"");
-            Log("session key [" + sessionkey + "]");
-            Log("sessioniv [" + sessioniv + "]");
-            Log("finalresp [" + finalresp + "]");
+        ///System.out.println("pkey_dec ["+pkey_dec+"]");
+        //System.out.println("pvoke_dec ["+pvoke_dec+"");
+        Log("session key [" + sessionkey + "]");
+        Log("sessioniv [" + sessioniv + "]");
+        Log("finalresp [" + finalresp + "]");
 
-            String gen = Utility.generateHashString(finalresp);
-            Log("Hashing Status [" + gen.equals(dhash) + "]");
+        String gen = Utility.generateHashString(finalresp);
+        Log("Hashing Status [" + gen.equals(dhash) + "]");
 
-            decjsonobj.put("sessionkey", sessionkey);
-            decjsonobj.put("sessioniv", sessioniv);
-            decjsonobj.put("finalresp", finalresp);
-            decjsonobj.put("hashstatus", gen.equals(dhash));
+        decjsonobj.put("sessionkey", sessionkey);
+        decjsonobj.put("sessioniv", sessioniv);
+        decjsonobj.put("finalresp", finalresp);
+        decjsonobj.put("hashstatus", gen.equals(dhash));
 
 
         Log(decjsonobj.toString());
@@ -395,8 +395,8 @@ String session_id = "121212";
             Log("Session ID", fsess);
             Log("Params", params);
             Log("Imei", imei);
-System.out.println(imei);
-SecurityLayer.Log("Imei chosen",imei);
+            System.out.println(imei);
+            SecurityLayer.Log("Imei chosen",imei);
             String year = Utility.getAppVersion();
             Log("vers",year);
             try {
@@ -407,14 +407,14 @@ SecurityLayer.Log("Imei chosen",imei);
                 hash = Utility.generateHashString(params);
                 encryptedimei = toHex(AESCBCEncryption.encrypt(base64Decode(skey), base64Decode(siv), imei));
                 fsess = toHex(AESCBCEncryption.encrypt(base64Decode(skey), base64Decode(siv), fsess));
-               // year = toHex(year);
+                // year = toHex(year);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             String vers = encryptedrandomIV;
 
-           finpoint = endpoint + "/" + encryptedUrl + "/" + hash + "/" + encryptedpkey + Constants.CH_KEY + "/" + encappid + "/" + fnltkt + "/" + encryptedimei + "/" + fsess + "/" + vers + "/" + year;
+            finpoint = endpoint + "/" + encryptedUrl + "/" + hash + "/" + encryptedpkey + Constants.CH_KEY + "/" + encappid + "/" + fnltkt + "/" + encryptedimei + "/" + fsess + "/" + vers + "/" + year;
 
 
         }
@@ -455,7 +455,7 @@ SecurityLayer.Log("Imei chosen",imei);
             SecurityLayer.Log("returned_token",token);
             Prefs.putString(KEY_TOKEN,token);
 
-        //    String appid = data.optString("appid");
+            //    String appid = data.optString("appid");
 
             int count = 0;
 
@@ -477,7 +477,7 @@ SecurityLayer.Log("Imei chosen",imei);
         // System.out.println(decjsonobj);
 
 
-    String respcode = data.optString("responseCode");
+        String respcode = data.optString("responseCode");
 
 
         return data;
@@ -486,7 +486,7 @@ SecurityLayer.Log("Imei chosen",imei);
 
     public static void Log(String tag, String message) {
         if (isDebug) {
-Log.v(tag,message);
+            Log.v(tag,message);
         }
     }
 

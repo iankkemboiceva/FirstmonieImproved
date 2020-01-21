@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+
+import firstmob.firstbank.com.firstagent.Activity.*
+
 import android.widget.Toast
 import firstmob.firstbank.com.firstagent.Activity.*
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
@@ -43,6 +46,34 @@ class NewHomeGrid : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
+        val view = inflater!!.inflate(R.layout.fragment_new_home_grid,container,false)
+
+        // Get the text view widget reference from custom layout
+        val open_airtime = view.findViewById<RelativeLayout>(R.id.rl1)
+        val open_withdrwa = view.findViewById<RelativeLayout>(R.id.rl3)
+        val open_paybills = view.findViewById<RelativeLayout>(R.id.rl6)
+        val open_p = view.findViewById<RelativeLayout>(R.id.rlinbox)
+        // Set a click listener for text view object
+        open_airtime.setOnClickListener{
+            val intent = Intent (getActivity(), AirtimeTransf::class.java)
+            this.startActivity(intent)
+        }
+        open_withdrwa.setOnClickListener{
+            val intent = Intent (getActivity(), Withdraw::class.java)
+            this.startActivity(intent)
+        }
+        open_p.setOnClickListener{
+            val intent = Intent (getActivity(), MyPerfActivity::class.java)
+          //  intent.putExtra("pinna","pinna")
+            this.startActivity(intent)
+        }
+        open_paybills.setOnClickListener{
+            val intent = Intent (getActivity(), BillMenuActivity::class.java)
+            this.startActivity(intent)
+        }
+        return view
+
         val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
 
 
@@ -78,6 +109,7 @@ class NewHomeGrid : Fragment() {
         SecurityLayer.Log(hashedpin)
 
         return view;
+
     }
 
 

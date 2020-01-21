@@ -19,6 +19,9 @@ public  interface MyComponent {
     void inject(LoginPresenterCompl presenter);
     void inject(ActivateAgentPresenter presenter);
     void inject(SignInPresenter presenter);
+
+    void inject(TransactionProcPresenter presenter);
+
     void inject(CashDepoPresenter presenter);
     void inject(ConfirmCashDepoPresenter presenter);
     void inject(TransactionProcPresenter presenter);
@@ -27,4 +30,5 @@ public  interface MyComponent {
     void inject(ComplaintsPresenter presenter);
     void inject(CashDepoTransPresenter presenter);
     void inject(ConfirmCashTransPresenter presenter);
+
 }
