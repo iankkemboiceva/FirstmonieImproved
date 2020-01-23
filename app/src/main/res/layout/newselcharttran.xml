@@ -37,55 +37,56 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
 
-
                     >
 
-                    <RelativeLayout
+                    <LinearLayout
 
 
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:orientation="vertical"
-
+                        android:orientation="horizontal"
+                        android:weightSum="10"
 
                         >
 
-                        <Button
-                            android:id="@+id/button4"
-                            android:layout_width="35dp"
-                            android:layout_height="30dp"
+<!--                        <Button-->
+<!--                            android:id="@+id/button4"-->
+<!--                            android:layout_width="35dp"-->
+<!--                            android:layout_height="30dp"-->
 
-                            android:layout_below="@+id/textView7"
-                            android:background="@drawable/calendaricon"
-                            android:textColor="#ffffff"
+<!--                            android:layout_below="@+id/textView7"-->
+<!--                            android:background="@drawable/calendaricon"-->
+<!--                            android:textColor="#ffffff"-->
 
 
-                            android:visibility="gone" />
-
+<!--                            android:visibility="visible" />-->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="9"
+                            >
                         <TextView
                             android:id="@+id/fromdatetran"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Please select a date range"
-
-
                             android:textColor="@color/colorPrimary"
                             android:textSize="14sp"
 
 
-                            />
+                            /></LinearLayout>
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/bnamebn">
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@+id/bnamebn">-->
 
-                        </RelativeLayout>
+<!--                        </RelativeLayout>-->
 
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/button2"

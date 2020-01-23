@@ -71,7 +71,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     TextView tv,home,tvmobno,tvlastl,tvusid;
 
     Button lyhomeid;
-    RelativeLayout lysignout,rlcomplains;
+    RelativeLayout lysignout,rlcomplains,rlchangepin,rlmyperformance,rlagentaccount,rlcommsion,rlhome;
     RelativeLayout header;
     //  private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -121,7 +121,21 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         View layout = inflater.inflate(R.layout.nav_drawer, container, false);
         lysignout = (RelativeLayout) layout.findViewById(R.id.rllogout);
 
+        rlchangepin = (RelativeLayout) layout.findViewById(R.id.rlchchangepin);
+        rlmyperformance = (RelativeLayout) layout.findViewById(R.id.rlmyperformance);
+        rlagentaccount = (RelativeLayout) layout.findViewById(R.id.rlagentaccount);
+        rlcommsion = (RelativeLayout) layout.findViewById(R.id.rlcommision);
+        rlhome = (RelativeLayout) layout.findViewById(R.id.rlhome);
+
+
         lysignout.setOnClickListener(this);
+        rlhome.setOnClickListener(this);
+        rlchangepin.setOnClickListener(this);
+        rlmyperformance.setOnClickListener(this);
+        rlagentaccount.setOnClickListener(this);
+        rlcommsion.setOnClickListener(this);
+
+
 
         rlcomplains = (RelativeLayout) layout.findViewById(R.id.rlcomplains);
 
@@ -182,6 +196,34 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.rlcomplains) {
 
             drawerListener.onDrawerItemSelected(v, 6);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+
+        if (v.getId() == R.id.rlhome) {
+
+            drawerListener.onDrawerItemSelected(v, 5);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+
+        if (v.getId() == R.id.rlchchangepin) {
+
+            drawerListener.onDrawerItemSelected(v, 1);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+
+        if (v.getId() == R.id.rlmyperformance) {
+
+            drawerListener.onDrawerItemSelected(v, 2);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+        if (v.getId() == R.id.rlagentaccount) {
+
+            drawerListener.onDrawerItemSelected(v, 3);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+        if (v.getId() == R.id.rlcommision) {
+
+            drawerListener.onDrawerItemSelected(v, 4);
             mDrawerLayout.closeDrawer(containerView);
         }
     }

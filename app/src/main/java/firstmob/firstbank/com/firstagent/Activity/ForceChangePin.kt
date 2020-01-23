@@ -29,8 +29,15 @@ import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import javax.inject.Inject
 
 class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesContract.IViewPinChange {
+    @Inject
+    internal lateinit var ul: Utility
+
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
     internal var pDialog: ProgressDialog?=null
     internal var et: EditText? =null
     internal var et2:EditText? =null

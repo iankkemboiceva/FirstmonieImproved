@@ -32,6 +32,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import firstmob.firstbank.com.firstagent.contract.AirtimeContract;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
 import firstmob.firstbank.com.firstagent.model.GetAirtimeBillersData;
@@ -40,8 +42,16 @@ import firstmob.firstbank.com.firstagent.presenter.AirtimeTransFirstPresenter;
 import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 import firstmob.firstbank.com.firstagent.utils.SessionManagement;
 import firstmob.firstbank.com.firstagent.utils.Utility;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Airtime_transfirst extends Fragment implements View.OnClickListener, AirtimeContract.IviewAirtimeFirst {
+
+    @Inject
+    Utility utility;
+    public Airtime_transfirst() {
+        ApplicationClass.getMyComponent().inject(this);
+    }
+
     List<GetAirtimeBillersData> planetsList2 = new ArrayList<GetAirtimeBillersData>();
 
     //  RecyclerView lvbann;
@@ -298,10 +308,8 @@ public class Airtime_transfirst extends Fragment implements View.OnClickListener
         }
     };
 
-    public void StartChartAct(int i) {
 
 
-    }
     private class MyFocusChangeListener implements View.OnFocusChangeListener {
 
         public void onFocusChange(View v, boolean hasFocus) {

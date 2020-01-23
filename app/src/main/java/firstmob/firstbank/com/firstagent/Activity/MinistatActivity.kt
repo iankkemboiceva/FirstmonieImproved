@@ -28,10 +28,15 @@ import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.OnDateSetListener,DateRangePickerFragment.OnDateRangeSelectedListener,CommisionContract.IViewMinistatement {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
     private var mToolbar: Toolbar? = null
-
     internal var planetsList: MutableList<MinistatData> = ArrayList<MinistatData>()
     private var emptyView: TextView? = null
     internal var aAdpt: NewMinListAdapter? = null

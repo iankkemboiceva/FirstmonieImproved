@@ -24,6 +24,8 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.inject.Inject;
+
 import firstmob.firstbank.com.firstagent.constants.Constants;
 import firstmob.firstbank.com.firstagent.contract.AirtimeContract;
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse;
@@ -38,6 +40,11 @@ import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KE
 import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID;
 
 public class ConfirmAirtime extends Fragment implements View.OnClickListener, AirtimeContract.IViewConfirmAirtime {
+    @Inject
+    Utility utility;
+    public ConfirmAirtime() {
+        ApplicationClass.getMyComponent().inject(this);
+    }
     AirtimeContract.PresenterConfirmAirtime presenterairtime;
     TextView reccustid, recamo, rectelco, step2, txtfee,acbal;
     Button btnsub;

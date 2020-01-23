@@ -20,10 +20,16 @@ import firstmob.firstbank.com.firstagent.presenter.WithdrawalfirstPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import firstmob.firstbank.com.firstagent.utils.Utility.*
+import javax.inject.Inject
 
 class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IViewWithdrawalFirst {
-
-
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var session: SessionManagement? = null
     internal var acno: EditText? = null
     internal var amo: EditText? = null

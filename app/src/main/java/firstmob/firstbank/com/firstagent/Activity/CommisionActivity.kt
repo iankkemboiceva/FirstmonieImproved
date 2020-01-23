@@ -27,10 +27,15 @@ import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission, View.OnClickListener, DatePickerDialog.OnDateSetListener, DateRangePickerFragment.OnDateRangeSelectedListener {
-
-
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var signup: Button? = null
     // Spinner sp1;
     internal var acc: List<String> = ArrayList()

@@ -63,6 +63,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import firstmob.firstbank.com.firstagent.Activity.R;
 import firstmob.firstbank.com.firstagent.adapter.MyPerfServAdapt;
 import firstmob.firstbank.com.firstagent.adapter.TxnAdapter;
 import firstmob.firstbank.com.firstagent.constants.Constants;
@@ -139,7 +140,7 @@ public class NewSelChartTran extends Fragment implements View.OnClickListener, O
         lv = (ListView) rootView.findViewById(R.id.lv);
         lvserv = (ListView) rootView.findViewById(R.id.lvserv);
         emptyView = (TextView) rootView.findViewById(R.id.empty_view);
-        fromdate = (TextView) rootView.findViewById(R.id.bnamebn);
+        fromdate = (TextView) rootView.findViewById(R.id.fromdatetran);
         succtrans = (TextView) rootView.findViewById(R.id.succtrans);
         ok = (Button) rootView.findViewById(R.id.button2);
         calendar = (Button) rootView.findViewById(R.id.button4);

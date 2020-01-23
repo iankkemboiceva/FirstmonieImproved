@@ -46,14 +46,22 @@ import firstmob.firstbank.com.firstagent.presenter.MyperfActivityPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePickerFragment.OnDateRangeSelectedListener, OnChartValueSelectedListener, MyPerfActivityContract.IViewPerfAct {
+    @Inject
+    internal lateinit var ul: Utility
+
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
     internal var pager: ViewPager? = null
     internal var Titles: MutableList<String> = ArrayList()
     internal var Numboftabs = 2
@@ -439,7 +447,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
                 frmendyr = frmendyr.substring(2, 4)
                 endd = "$frmenddymonth-$endMonth-$frmendyr"
 
-                if (Utility.checkInternetConnection()) {
+                if (checkInternetConnection()) {
                     if (Utility.isNotNull(fromd) || Utility.isNotNull(endd)) {
                         presenter!!.ServerPullDataCall(fromd+"/"+endd)
                         //loadDataset(fromd, endd)

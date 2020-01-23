@@ -18,8 +18,15 @@ import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ConfirmWithdrwalPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import javax.inject.Inject
 
 class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.IViewConfirmWithdrawal {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var recacno: TextView? =null
     internal var recname:TextView? =null
     internal var recamo:TextView? =null
