@@ -8,6 +8,7 @@ import firstmob.firstbank.com.firstagent.Activity.ConfirmAirtime;
 import firstmob.firstbank.com.firstagent.Activity.ConfirmWithdrawal;
 import firstmob.firstbank.com.firstagent.Activity.FinalConfAirtimeActivity;
 import firstmob.firstbank.com.firstagent.Activity.FinalConfWithdrawActivity;
+import firstmob.firstbank.com.firstagent.Activity.FinalConfirmCableTVActivity;
 import firstmob.firstbank.com.firstagent.Activity.ForceChangePin;
 import firstmob.firstbank.com.firstagent.Activity.ForceResetPin;
 import firstmob.firstbank.com.firstagent.Activity.MinistatActivity;
@@ -55,5 +56,5 @@ public  interface MyComponent {
     void inject(CommisionActivity activity);
     void inject(FinalConfWithdrawActivity activity);
     void inject(FinalConfAirtimeActivity activity);
-
+    void inject(FinalConfirmCableTVActivity activity);
 }

@@ -28,9 +28,15 @@ import firstmob.firstbank.com.firstagent.utils.UtilsPhoto
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.*
 import java.util.*
+import javax.inject.Inject
 
 class FinalConfirmCableTVActivity : AppCompatActivity(),View.OnClickListener {
+    @Inject
+    internal lateinit var ul: Utility
 
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
     internal var recdatetimee: TextView? = null
     internal var btnsub: Button? = null
     internal var prgDialog: ProgressDialog? = null

@@ -444,8 +444,6 @@ public class FinalConfAirtimeActivity extends AppCompatActivity implements View.
     public boolean addJpgSignatureToGallery(Bitmap signature) {
         boolean result = false;
         try {
-
-
             String flname = String.format("ShareRec_%d", System.currentTimeMillis());
             File photo = new File(getAlbumStorageDir("FirstAgent"), String.format("ShareR%d.jpg", System.currentTimeMillis()));
             File filename = photo;
