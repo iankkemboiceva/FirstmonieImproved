@@ -69,6 +69,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -413,9 +414,8 @@ public class Utility {
     }
 
     public static String getDevImei() {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String imei = telephonyManager.getDeviceId();
-        return imei;
+        String uuid = UUID.randomUUID().toString();
+        return uuid;
     }
 
     public void checkpermissions(@Named("ApplicationContext") Context context) {
@@ -548,8 +548,8 @@ public class Utility {
     }
 
     public static String getSerial() {
-        String build = Build.SERIAL;
-        return build;
+        String uuid = UUID.randomUUID().toString();
+        return uuid;
     }
 
     public static boolean checkStateCollect(String servid) {
