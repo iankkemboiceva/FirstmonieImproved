@@ -18,7 +18,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 
-import android.telephony.TelephonyManager;
+
 import android.text.format.Formatter;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -69,6 +69,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -413,29 +414,11 @@ public class Utility {
     }
 
     public static String getDevImei() {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String imei = telephonyManager.getDeviceId();
-        return imei;
+        String uuid = UUID.randomUUID().toString();
+        return uuid;
     }
 
-    public void checkpermissions(@Named("ApplicationContext") Context context) {
-        boolean chks = false;
-        Dexter.withActivity((Activity) context)
-                .withPermission(Manifest.permission.CAMERA)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                    }
 
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {/* ... */}
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {/* ... */}
-                }).check();
-
-
-    }
 
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -548,9 +531,11 @@ public class Utility {
     }
 
     public static String getSerial() {
-        String build = Build.SERIAL;
-        return build;
+        String uuid = UUID.randomUUID().toString();
+        return uuid;
     }
+
+
 
     public static boolean checkStateCollect(String servid) {
         boolean trf = false;

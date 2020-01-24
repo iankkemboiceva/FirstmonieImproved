@@ -388,7 +388,7 @@ android:id="@+id/lystatus"
                 />
 
                 <Button
-                    android:id="@+id/btnlog"
+                    android:id="@+id/btnpaid"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
 

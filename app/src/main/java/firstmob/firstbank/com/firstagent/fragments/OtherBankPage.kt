@@ -2,6 +2,7 @@ package firstmob.firstbank.com.firstagent.fragments
 
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListView
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.Activity.InboxActivity
@@ -33,7 +35,7 @@ import java.util.*
 
 
 
-class OtherBankPage : Fragment(), OtherBankContract.ILoginView {
+class OtherBankPage : DialogFragment(), OtherBankContract.ILoginView {
     var lv: ListView? = null
 
     var prgDialog: ProgressDialog? = null
@@ -45,6 +47,12 @@ class OtherBankPage : Fragment(), OtherBankContract.ILoginView {
     var otblist: MutableList<GetBanksData> = ArrayList()
 
     internal lateinit var presenter: OtherBankContract.Presenter
+
+    internal lateinit var callback: OnFragmentCommunicationListener
+
+    fun setFragCommunication(callback: OnFragmentCommunicationListener) {
+        this.callback = callback
+    }
     /*  private static Fragment newInstance(Context context) {
         LayoutOne f = new LayoutOne();
 
@@ -64,7 +72,7 @@ class OtherBankPage : Fragment(), OtherBankContract.ILoginView {
 
 
         val strservdata = Prefs.getString(SharedPrefConstants.KEY_BANKS, "N")
-        if (strservdata != null) {
+        if (strservdata != null && strservdata != "N") {
             var servdata: JSONArray? = null
             try {
                 servdata = JSONArray(strservdata)
@@ -84,20 +92,9 @@ class OtherBankPage : Fragment(), OtherBankContract.ILoginView {
         lv!!.onItemClickListener = OnItemClickListener { parent, view, position, id ->
             val bankname = otblist[position].bankName;
                 val bankcode = otblist[position].bankCode;
-             //INTENT OBJ
 
-
-            val i = Intent(activity?.baseContext, SendOTBActivity::class.java)
-
-        //PACK DATA
-    i.putExtra("SENDER_KEY", "MyFragment");
-        i.putExtra("bankname", bankname);
-        i.putExtra("bankcode", bankcode);
-
-
-
-        //START ACTIVITY
-        activity?.startActivity(i);
+dismiss()
+            callback.setBankInfo(bankname,bankcode)
 
         }
         return root
@@ -154,9 +151,30 @@ class OtherBankPage : Fragment(), OtherBankContract.ILoginView {
 
 
     }
+
+       interface OnFragmentCommunicationListener {
+       fun setBankInfo(bankname: String,bankcode: String)
+
+
+    }
     override fun showProgress() {
         prgDialog?.show()
     }
+
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is OnFragmentCommunicationListener) {
+            callback = context
+        } else {
+            throw RuntimeException(context!!.toString() + " must implement this")
+        }
+    }
+
+
+
+
+
 
 
 }

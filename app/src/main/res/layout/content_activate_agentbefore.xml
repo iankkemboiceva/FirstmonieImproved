@@ -103,7 +103,7 @@ android:textColor="@color/black"
 android:layout_centerHorizontal="true"
             android:ems="10"
 
-            android:inputType="number"
+
 
 
 

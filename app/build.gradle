@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -35,6 +36,10 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.wdullaer:materialdatetimepicker:3.6.2'
+    implementation 'com.google.firebase:firebase-ml-vision:18.0.1'
+
+    implementation 'com.google.firebase:firebase-ml-vision-face-model:17.0.2'
 
 
     implementation 'com.github.vipulasri.layouttoimage:library:1.0.0'
@@ -88,8 +93,6 @@ dependencies {
 
 
     implementation 'com.borax12.materialdaterangepicker:library:1.9'
-
-
 
 
     implementation 'com.github.vipulasri.layouttoimage:library:1.0.0'

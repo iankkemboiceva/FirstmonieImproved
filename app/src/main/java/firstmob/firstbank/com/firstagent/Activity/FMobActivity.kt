@@ -108,6 +108,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         var fragment: Fragment? = null
         var title = getString(R.string.app_name)
 
+
         when (position) {
             40, 0 -> {
 

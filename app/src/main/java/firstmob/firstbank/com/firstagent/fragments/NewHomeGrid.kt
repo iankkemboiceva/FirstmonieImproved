@@ -54,6 +54,8 @@ class NewHomeGrid : Fragment() {
         val open_withdrwa = views.findViewById<RelativeLayout>(R.id.rl3)
         val open_paybills = views.findViewById<RelativeLayout>(R.id.rl6)
         val open_p = views.findViewById<RelativeLayout>(R.id.rlinbox)
+        val rltransferbox = views.findViewById<RelativeLayout>(R.id.rltransfer)
+        val rlopenacc = views.findViewById<RelativeLayout>(R.id.rlopenaccinside)
         // Set a click listener for text view object
         open_airtime.setOnClickListener{
             val intent = Intent (getActivity(), AirtimeTransf::class.java)
@@ -72,9 +74,21 @@ class NewHomeGrid : Fragment() {
             val intent = Intent (getActivity(), BillMenuActivity::class.java)
             this.startActivity(intent)
         }
-        return view
 
-        val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
+        rltransferbox?.setOnClickListener(){
+
+            val i = Intent(activity, FTMenuActivity::class.java)
+
+            startActivity(i)
+        }
+        rlopenaccinside?.setOnClickListener(){
+
+            val i = Intent(activity, OpenAccActivity::class.java)
+
+            startActivity(i)
+        }
+
+
 
 
 
@@ -96,19 +110,14 @@ class NewHomeGrid : Fragment() {
             startActivity(i)
         }
 
-        val rltransfer: RelativeLayout? = view?.findViewById(R.id.rltransfer)
-        rltransfer?.setOnClickListener(){
 
-            val i = Intent(activity, FTMenuActivity::class.java)
 
-            startActivity(i)
-        }
 
         val pin = "12346";
         val hashedpin = generateHashString(pin);
         SecurityLayer.Log(hashedpin)
 
-        return view;
+        return views;
 
     }
 

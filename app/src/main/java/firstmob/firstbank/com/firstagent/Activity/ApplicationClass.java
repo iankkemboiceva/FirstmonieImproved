@@ -5,6 +5,7 @@ import android.content.ContextWrapper;
 
 import androidx.multidex.MultiDex;
 
+import androidx.multidex.MultiDexApplication;
 import firstmob.firstbank.com.firstagent.daggermodules.ContextModule;
 import firstmob.firstbank.com.firstagent.daggermodules.DaggerMyComponent;
 import firstmob.firstbank.com.firstagent.daggermodules.MyComponent;
@@ -16,7 +17,7 @@ import com.microsoft.appcenter.crashes.Crashes;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
-public class ApplicationClass extends Application {
+public class ApplicationClass extends MultiDexApplication {
     private static MyComponent myComponent;
 
     @Override
