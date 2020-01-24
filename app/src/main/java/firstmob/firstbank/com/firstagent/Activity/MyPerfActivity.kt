@@ -35,6 +35,7 @@ import firstmob.firstbank.com.firstagent.adapter.ViewPagerMyPerfAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants
 import firstmob.firstbank.com.firstagent.contract.CommisionContract
 import firstmob.firstbank.com.firstagent.contract.MyPerfActivityContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.fragments.DateRangePickerFragment
 import firstmob.firstbank.com.firstagent.model.TxnList
 import firstmob.firstbank.com.firstagent.model.GetCommPerfData
@@ -67,6 +68,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     internal var Numboftabs = 2
     private val SPLASH_TIME_OUT = 3000
     internal var adapter: ViewPagerMyPerfAdapter? = null
+    var viewDialg: ViewDialog? =null
     internal var cv: CardView? =null
     internal var sp1: Spinner? = null
     internal var textdate: String? =null
@@ -91,7 +93,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     var finalfx: String? = null
     var finpfrom:String? =null
     var finpto:String? =null
-    internal var prgDialog2: ProgressDialog? = null
+   // internal var prgDialog2: ProgressDialog? = null
     internal var r1: RadioButton? = null
     internal var r2:RadioButton? = null
     internal var r3:RadioButton? = null
@@ -151,12 +153,13 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
 
         calendar!!.setOnClickListener(this)
         session = SessionManagement(this)
-
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading ....")
+        viewDialg= ViewDialog(this)
+//        prgDialog2 = ProgressDialog(this)
+//        prgDialog2!!.setMessage("Loading ....")
+//        prgDialog2!!.setCancelable(false)
         // Set Cancelable as False
         session = SessionManagement(this)
-        prgDialog2!!.setCancelable(false)
+
 
 
         //  overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -341,14 +344,14 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     }
 
     override fun showProgress() {
-        if (prgDialog2 != null && applicationContext != null && !this@MyPerfActivity.isFinishing) {
-            prgDialog2!!.show()
+        if (viewDialg != null && applicationContext != null && !this@MyPerfActivity.isFinishing) {
+            viewDialg!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && applicationContext != null) {
-            prgDialog2!!.dismiss()
+        if (viewDialg != null  && applicationContext != null) {
+            viewDialg!!.hideDialog()
 
         }
     }
@@ -899,8 +902,8 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     override fun onDestroy() {
 
         session!!.setString(SessionManagement.MYPERFTEXT, null)
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && applicationContext != null) {
-            prgDialog2!!.dismiss()
+        if (viewDialg != null && applicationContext != null) {
+            viewDialg!!.hideDialog()
 
         }
         super.onDestroy()

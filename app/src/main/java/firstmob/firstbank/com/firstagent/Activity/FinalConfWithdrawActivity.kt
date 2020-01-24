@@ -57,8 +57,8 @@ class FinalConfWithdrawActivity : AppCompatActivity(),View.OnClickListener {
     internal var strfee:String? =null
     internal var txref:String? =null
     internal var stragcms:String? =null
-    internal var prgDialog: ProgressDialog? = null
-    internal var prgDialog2:ProgressDialog? =null
+//    internal var prgDialog: ProgressDialog? = null
+//    internal var prgDialog2:ProgressDialog? =null
 
     internal var rlsave: RelativeLayout? =null
     internal var rlshare:RelativeLayout? =null
@@ -117,9 +117,9 @@ class FinalConfWithdrawActivity : AppCompatActivity(),View.OnClickListener {
         recfee = findViewById(R.id.txtfee) as TextView
         recsendnam = findViewById(R.id.sendnammm) as TextView
         recsendnum = findViewById(R.id.sendno) as TextView
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading....")
-        prgDialog2!!.setCancelable(false)
+//        prgDialog2 = ProgressDialog(this)
+//        prgDialog2!!.setMessage("Loading....")
+//        prgDialog2!!.setCancelable(false)
 
         btnsub = findViewById(R.id.button2) as Button
         btnsub!!.setOnClickListener(this)

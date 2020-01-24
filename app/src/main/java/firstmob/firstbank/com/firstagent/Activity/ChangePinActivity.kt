@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.PinChangesContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ChangePinActivityPresenter
 import firstmob.firstbank.com.firstagent.presenter.ForceChangePinPresenter
@@ -35,13 +36,14 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
     init {
         ApplicationClass.getMyComponent().inject(this)
     }
-    internal var pDialog: ProgressDialog? =null
+  //  internal var pDialog: ProgressDialog? =null
     internal var et: EditText? =null
     internal var et2:EditText? =null
     internal var oldpin:EditText? =null
     internal var btnok: Button? =null
     internal var session: SessionManagement? =null
-    internal var prgDialog2: ProgressDialog? = null
+    var viewDialog: ViewDialog?=null
+   // internal var prgDialog2: ProgressDialog? = null
     internal var npin: String? = null
     internal var chgpinparams: String? = null
     internal lateinit var presenter: PinChangesContract.PresenterPinChange
@@ -56,9 +58,7 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading....")
-        prgDialog2!!.setCancelable(false)
+        viewDialog= ViewDialog(this)
         session = SessionManagement(this)
         oldpin = findViewById(R.id.oldpin) as EditText
         presenter = ChangePinActivityPresenter(this, this, FetchServerResponse())
@@ -66,9 +66,9 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
         et2 = findViewById(R.id.cpin) as EditText
         btnok = findViewById(R.id.button2) as Button
         btnok!!.setOnClickListener(this)
-        pDialog = ProgressDialog(this)
-        pDialog!!.setTitle("Loading")
-        pDialog!!.setCancelable(false)
+//        pDialog = ProgressDialog(this)
+//        pDialog!!.setTitle("Loading")
+//        pDialog!!.setCancelable(false)
     }
     override fun onClick(v: View?) {
         if (v!!.getId() == R.id.button2) {
@@ -151,11 +151,15 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
     }
 
     override fun showProgress() {
-        pDialog!!.show()
+
+        viewDialog!!.showDialog()
     }
 
     override fun hideProgress() {
-        pDialog!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+        //pDialog!!.dismiss()
     }
 
     override fun ForceLogout() {

@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
@@ -24,7 +25,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
         internal var btnsub: Button? =null
         internal var session: SessionManagement? =null
-        internal var prgDialog2: ProgressDialog? = null
+        //internal var prgDialog2: ProgressDialog? = null
+        var viewDialog: ViewDialog? =null
         internal var amon: EditText? =null
         internal var edacc: EditText? =null
         internal var pno: EditText? = null
@@ -65,9 +67,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
             edacc = findViewById(R.id.acc) as EditText
             billname = findViewById(R.id.textView1) as TextView
             smcno = findViewById(R.id.smcno) as TextView
-            prgDialog2 = ProgressDialog(this)
-            prgDialog2!!.setMessage("Loading Request....")
-            prgDialog2!!.setCancelable(false)
+            viewDialog= ViewDialog(this)
+//            prgDialog2 = ProgressDialog(this)
+//            prgDialog2!!.setMessage("Loading Request....")
+//            prgDialog2!!.setCancelable(false)
 
             btnsub = findViewById(R.id.button2) as Button
             btnsub!!.setOnClickListener(this)
@@ -116,8 +119,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
             }
         }
-
-
         override fun attachBaseContext(newBase: Context) {
             super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
         }
@@ -240,11 +241,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
             }
         }
-
-
         private fun dismissProgressDialog() {
-            if (prgDialog2 != null && prgDialog2!!.isShowing) {
-                prgDialog2!!.dismiss()
+            if (viewDialog != null ) {
+                viewDialog!!.hideDialog()
             }
         }
 

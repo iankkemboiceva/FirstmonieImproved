@@ -22,6 +22,7 @@ import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.AGENTID
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID
 import firstmob.firstbank.com.firstagent.contract.PinChangesContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ForceResetPinPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
@@ -37,7 +38,8 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
     init {
         ApplicationClass.getMyComponent().inject(this)
     }
-    internal var pDialog: ProgressDialog? = null
+    //internal var pDialog: ProgressDialog? = null
+    var viewDialog: ViewDialog? =null
     internal var et: EditText? = null
     internal var et2: EditText? = null
     internal var oldpin: EditText? = null
@@ -69,10 +71,12 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
         btnok!!.setOnClickListener(this)
         session = SessionManagement(applicationContext)
         presenter = ForceResetPinPresenter(this, this, FetchServerResponse())
-        pDialog = ProgressDialog(this)
-       // pDialog!!.setTitle("Loading")
-        pDialog!!.setMessage("Loading Request....")
-        pDialog!!.setCancelable(false)
+
+        viewDialog= ViewDialog(this)
+//        pDialog = ProgressDialog(this)
+//       // pDialog!!.setTitle("Loading")
+//        pDialog!!.setMessage("Loading Request....")
+//        pDialog!!.setCancelable(false)
         updateAndroidSecurityProvider(this)
         if (intent != null) {
             value = intent.extras.getString("pinna")
@@ -181,11 +185,15 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
     }
 
     override fun showProgress() {
-    pDialog!!.show()
+        viewDialog!!.showDialog()
+    //pDialog!!.show()
     }
 
     override fun hideProgress() {
-     pDialog!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+     //pDialog!!.dismiss()
     }
 
     override fun ForceLogout() {

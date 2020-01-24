@@ -28,6 +28,7 @@ import javax.inject.Inject;
 
 import firstmob.firstbank.com.firstagent.constants.Constants;
 import firstmob.firstbank.com.firstagent.contract.AirtimeContract;
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog;
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse;
 import firstmob.firstbank.com.firstagent.presenter.ConfirmAirtimePresenter;
 import firstmob.firstbank.com.firstagent.security.EncryptTransactionPin;
@@ -49,13 +50,13 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
     TextView reccustid, recamo, rectelco, step2, txtfee,acbal;
     Button btnsub;
     String txtcustid, amou, serviceid, billid,agbalance;
-    ProgressDialog prgDialog, prgDialog2;
+   // ProgressDialog prgDialog, prgDialog2;
     String telcoop;
     EditText amon, edacc, pno, txtamount, txtnarr, edname, ednumber;
     EditText etpin;
     public static final String KEY_TOKEN = "token";
     SessionManagement session;
-
+    ViewDialog viewDialog;
 
     // android built in classes for bluetooth operations
     BluetoothAdapter mBluetoothAdapter;
@@ -80,15 +81,16 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
         acbal = (TextView) root.findViewById(R.id.txtacbal);
         recamo = (TextView) root.findViewById(R.id.textViewrrs);
         rectelco = (TextView) root.findViewById(R.id.textViewrr);
+        viewDialog=new ViewDialog(getActivity());
+//        prgDialog2 = new ProgressDialog(getActivity());
+//        prgDialog2.setMessage("Loading....");
+//        prgDialog2.setCancelable(false);
+//
+//
+//        prgDialog = new ProgressDialog(getActivity());
+//        prgDialog.setMessage("Loading....");
+//        prgDialog.setCancelable(false);
 
-        prgDialog2 = new ProgressDialog(getActivity());
-        prgDialog2.setMessage("Loading....");
-        prgDialog2.setCancelable(false);
-
-
-        prgDialog = new ProgressDialog(getActivity());
-        prgDialog.setMessage("Loading....");
-        prgDialog.setCancelable(false);
       //  step2 = (TextView) root.findViewById(R.id.tv);
 //        step2.setOnClickListener(this);
         txtfee = (TextView) root.findViewById(R.id.txtfee);
@@ -200,12 +202,16 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
 
     @Override
     public void showProgress() {
-        prgDialog2.show();
+      //  prgDialog2.show();
+        viewDialog.showDialog();
     }
 
     @Override
     public void hideProgress() {
-     prgDialog2.dismiss();
+        if(viewDialog!=null){
+            viewDialog.hideDialog();
+        }
+    // prgDialog2.dismiss();
     }
 
     @Override

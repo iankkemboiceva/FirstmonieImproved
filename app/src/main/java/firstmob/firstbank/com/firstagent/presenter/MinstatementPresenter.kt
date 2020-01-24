@@ -220,8 +220,9 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
     }
 
     override fun onFailure(t: Throwable?) {
-
-        iView!!.hideProgress()
+      if(iView!=null){
+          iView!!.hideProgress()
+      }
         SecurityLayer.Log("encryptionJSONException", t.toString())
         Toast.makeText(context, context!!.getText(R.string.conn_error), Toast.LENGTH_LONG).show()
     }

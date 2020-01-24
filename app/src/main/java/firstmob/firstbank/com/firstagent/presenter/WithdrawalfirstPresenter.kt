@@ -148,12 +148,14 @@ class WithdrawalfirstPresenter : WithdrawalsContract.PresenterGen, MainContract.
 
 
     }catch (e: JSONException) {
+            iView!!.hideProgress()
             SecurityLayer.Log("encryptionJSONException", e.toString())
             // TODO Auto-generated catch block
             Toast.makeText(context, context!!.getText(R.string.conn_error), Toast.LENGTH_LONG).show()
 
 
         } catch (e: Exception) {
+            iView!!.hideProgress()
             SecurityLayer.Log("encryptionJSONException", e.toString())
             // SecurityLayer.Log(e.toString());
         }

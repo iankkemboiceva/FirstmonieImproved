@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.WithdrawalsContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ConfirmWithdrwalPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
@@ -41,7 +42,8 @@ class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.I
     internal var otp:String? = null
     var session : SessionManagement? =null
     internal var agbalance :String? = null
-    internal var prgDialog2:ProgressDialog? = null
+   // internal var prgDialog2:ProgressDialog? = null
+    var viewDialog: ViewDialog? =null
     internal var etpin: EditText? =null
     internal var presenter: WithdrawalsContract.ConfirmWithdralPresenter? =null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,9 +57,10 @@ class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.I
         recnarr = root.findViewById(R.id.textViewrr)
         txtfee = root.findViewById(R.id.txtfee)
         session= SessionManagement(requireContext())
-        prgDialog2 = ProgressDialog(requireContext())
-        prgDialog2!!.setMessage("Loading....")
-        prgDialog2!!.setCancelable(false)
+        viewDialog= ViewDialog(activity!!);
+//        prgDialog2 = ProgressDialog(requireContext())
+//        prgDialog2!!.setMessage("Loading....")
+//        prgDialog2!!.setCancelable(false)
         presenter = ConfirmWithdrwalPresenter(activity, this, FetchServerResponse())
         btnsub = root.findViewById(R.id.button2)
         btnsub!!.setOnClickListener(this)
@@ -140,11 +143,13 @@ class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.I
         }
     }
     override fun showProgress() {
-        prgDialog2!!.show()
+        viewDialog!!.showDialog()
+        //prgDialog2!!.show()
     }
 
     override fun hideProgress() {
-        prgDialog2!!.dismiss()
+        viewDialog!!.hideDialog()
+       // prgDialog2!!.dismiss()
     }
 
     override fun onClick(v: View?) {
@@ -155,9 +160,7 @@ class ConfirmWithdrawal : Fragment(), View.OnClickListener,WithdrawalsContract.I
                 if (Utility.isNotNull(recanno)) {
                     if (Utility.isNotNull(amou)) {
                         if (Utility.isNotNull(agpin)) {
-                            if (prgDialog2 != null && activity != null) {
-                                // prgDialog2.show();
-                            }
+
                             val encrypted: String? = null
                             val usid = Utility.gettUtilUserId(activity)
                             val agentid = Utility.gettUtilAgentId(activity)

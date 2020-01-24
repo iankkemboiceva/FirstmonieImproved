@@ -22,6 +22,7 @@ import com.google.android.gms.security.ProviderInstaller
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.PinChangesContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ForceChangePinPresenter
 import firstmob.firstbank.com.firstagent.presenter.ForceResetPinPresenter
@@ -38,7 +39,9 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
     init {
         ApplicationClass.getMyComponent().inject(this)
     }
-    internal var pDialog: ProgressDialog?=null
+
+  //  internal var pDialog: ProgressDialog?=null
+    var viewDialog: ViewDialog? =null
     internal var et: EditText? =null
     internal var et2:EditText? =null
     internal var oldpin:EditText? =null
@@ -69,9 +72,10 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
         btnok = findViewById(R.id.button2) as Button
         btnok!!.setOnClickListener(this)
         session = SessionManagement(applicationContext)
-        pDialog = ProgressDialog(this)
-        pDialog!!.setTitle("Loading")
-        pDialog!!.setCancelable(false)
+        viewDialog= ViewDialog(this)
+//        pDialog = ProgressDialog(this)
+//        pDialog!!.setTitle("Loading")
+//        pDialog!!.setCancelable(false)
         presenter = ForceChangePinPresenter(this, this, FetchServerResponse())
         updateAndroidSecurityProvider(this)
         if (intent != null) {
@@ -150,11 +154,15 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
     }
 
     override fun showProgress() {
-        pDialog!!.show()
+        viewDialog!!.showDialog()
+      //  pDialog!!.show()
     }
 
     override fun hideProgress() {
-        pDialog!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+       // pDialog!!.dismiss()
     }
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))

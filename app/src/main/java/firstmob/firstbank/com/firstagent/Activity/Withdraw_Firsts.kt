@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.WithdrawalsContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.WithdrawalfirstPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
@@ -34,8 +35,9 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
     internal var acno: EditText? = null
     internal var amo: EditText? = null
     internal var accnum: String? = null
-    internal var prgDialog: ProgressDialog? = null
-    internal var prgDialog2: ProgressDialog? = null
+   // internal var prgDialog: ProgressDialog? = null
+    var viewDialog: ViewDialog? = null
+    //internal var prgDialog2: ProgressDialog? = null
     internal var sigin: Button? = null
     internal var txtref: TextView? = null
     internal var r1: RadioButton? = null
@@ -58,15 +60,11 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
     internal var edamo: EditText? = null
     internal lateinit var presenter: WithdrawalsContract.PresenterGen
    // internal lateinit var presenter2: MainContract.PresenterGen
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val rootView = inflater!!.inflate(R.layout.activity_withdraw__firsts, container, false)
-
         btnok = rootView.findViewById(R.id.button5)
-
         lywithdr = rootView.findViewById(R.id.lywithdr)
         txtref = rootView.findViewById(R.id.txref)
         lybutt = rootView.findViewById(R.id.lybutt)
@@ -77,14 +75,11 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
         presenter = WithdrawalfirstPresenter(requireContext(), this, FetchServerResponse())
      //   presenter2 = GetOtpPresenter(requireContext(), this, FetchServerResponse())
         btnok!!.setOnClickListener(this)
-        prgDialog = ProgressDialog(activity)
-        prgDialog!!.setMessage("Loading....")
+        viewDialog = ViewDialog(activity!!)
         val ofcListener = MyFocusChangeListener()
         edamo!!.setOnFocusChangeListener(ofcListener)
-
         edacc!!.setOnFocusChangeListener(ofcListener)
-
-        prgDialog!!.setCancelable(false)
+//        prgDialog!!.setCancelable(false)
 
         edtTextListener(edacc!!)
         return rootView
@@ -98,15 +93,13 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
             val recaccno = edacc!!.getText().toString()
             val editamo = edamo!!.getText().toString()
             val ottp = cotp!!.getText().toString()
-            if (Utility.isNotNull(recaccno)) {
-                if (Utility.isNotNull(editamo)) {
+            if (isNotNull(recaccno)) {
+                if (isNotNull(editamo)) {
                     val nwamo = editamo.replace(",", "")
                     SecurityLayer.Log("New Amount", nwamo)
-                    val txamou = java.lang.Double.parseDouble(nwamo)
-                    /*  if (txamou >= 100) {*/
-                    if (Utility.isNotNull(ottp)) {
-                        if (Utility.isNotNull(acname)) {
-                            if (Utility.isNotNull(txref)) {
+                    if (isNotNull(ottp)) {
+                        if (isNotNull(acname)) {
+                            if (isNotNull(txref)) {
                                 val b = Bundle()
                                 b.putString("recanno", recaccno)
                                 b.putString("amou", editamo)
@@ -122,19 +115,19 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
                                 fragmentTransaction.commit()
 
                             } else {
-                                Utility.showToast("Please ensure you have generated a withdrawal transaction for the customer")
+                                showToast("Please ensure you have generated a withdrawal transaction for the customer")
                             }
                         } else {
-                            Utility.showToast("Please ensure you have checked the account's name ")
+                            showToast("Please ensure you have checked the account's name ")
                         }
                     } else {
-                        Utility.showToast("Please enter a valid value for one time pin")
+                        showToast("Please enter a valid value for one time pin")
                     }
                 } else {
-                    Utility.showToast("Please enter a valid value for amount")
+                   showToast("Please enter a valid value for amount")
                 }
             } else {
-                Utility.showToast("Please enter a valid value for account number")
+               showToast("Please enter a valid value for account number")
             }
         }
 
@@ -186,15 +179,17 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
     }
 
     override fun onProcessingError(error: String?) {
-    Utility.showToast(error);
+      showToast(error);
     }
 
     override fun showProgress() {
-        prgDialog!!.show()
+        viewDialog!!.showDialog()
+        //prgDialog!!.show()
     }
 
     override fun hideProgress() {
-        prgDialog!!.hide()
+        viewDialog!!.hideDialog()
+      //  prgDialog!!.hide()
     }
 
 
@@ -203,19 +198,14 @@ class Withdraw_Firsts : Fragment(), View.OnClickListener, WithdrawalsContract.IV
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (edacc!!.getText().toString().length == 10) {
 //                    prgDialog!!.show()
-                    if (Utility.checkInternetConnection()) {
-
-                        Utility.hideKeyboardFrom(activity, edacc)
-                        prgDialog!!.show()
-
+                    if (checkInternetConnection()) {
+                        hideKeyboardFrom(activity, edacc)
+                        viewDialog!!.showDialog()
+                       // prgDialog!!.show()
                         val acno = edacc!!.getText().toString()
                         presenter.requestCallNameInquiry("getnameenq",acno)
-
-
                     }
                     //   accountoname.setText("Test Customer");
-
-
                 }
                 // TODO Auto-generated method stub
             }

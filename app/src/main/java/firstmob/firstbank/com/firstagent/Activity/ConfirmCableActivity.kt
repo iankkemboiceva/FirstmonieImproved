@@ -15,6 +15,7 @@ import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.GetBillersContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ConfimCabletvPresenter
 import firstmob.firstbank.com.firstagent.presenter.StateCollectacivtyPresenter
@@ -54,7 +55,8 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     internal var agbalance:String? = null
     internal var marketnm:String? = null
     internal var finalrespfee: String? = null
-    internal var prgDialog2: ProgressDialog? = null
+   // internal var prgDialog2: ProgressDialog? = null
+    var viewDialog:ViewDialog? =null
     internal var rlreceipt: RelativeLayout? = null
     internal var amon: EditText? = null
     internal var edacc:EditText? = null
@@ -92,9 +94,10 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
         txtlabel = findViewById(R.id.textViewnb) as TextView
         recsendnam = findViewById(R.id.sendnammm) as TextView
         recsendnum = findViewById(R.id.sendno) as TextView
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading....")
-        prgDialog2!!.setCancelable(false)
+        viewDialog= ViewDialog(this)
+//        prgDialog2 = ProgressDialog(this)
+//        prgDialog2!!.setMessage("Loading....")
+//        prgDialog2!!.setCancelable(false)
         txtfee = findViewById(R.id.txtfee) as TextView
         chkfee = false
         step2 = findViewById(R.id.tv2) as TextView
@@ -180,12 +183,12 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     }
 
     override fun showProgress() {
-        prgDialog2!!.show()
+        viewDialog!!.showDialog()
     }
 
     override fun hideProgress() {
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && applicationContext != null) {
-            prgDialog2!!.dismiss()
+        if (viewDialog != null && applicationContext != null) {
+            viewDialog!!.hideDialog()
         }
     }
     override fun onClick(view: View?) {
@@ -218,9 +221,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
                                             //    if(chkdb){
                                             var encrypted: String? = null
                                             encrypted = Utility.b64_sha256(agpin)
-                                            if (prgDialog2 != null) {
-                                                //  prgDialog2.show();
-                                            }
+
                                             val usid = Prefs.getString(SharedPrefConstants.KEY_USERID, "NA")
                                             val agentid = Prefs.getString(SharedPrefConstants.AGENTID, "NA")
                                             val mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA")
