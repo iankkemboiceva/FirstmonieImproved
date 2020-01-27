@@ -57,6 +57,7 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
     internal var layoutManager2:LinearLayoutManager? = null
 
     internal var btn2: Button? = null
+    internal var btn_back: Button? = null
     internal var telcochosen: String? = null
   //  internal var prgDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +72,9 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
         session = SessionManagement(this)
         sp1 = findViewById(R.id.spin1) as Spinner
         btn2 = findViewById(R.id.button2) as Button
+        btn_back = findViewById(R.id.button3) as Button
         btn2!!.setOnClickListener(this)
+        btn_back!!.setOnClickListener(this)
       viewDialog= ViewDialog(this)
         phonenumb = findViewById(R.id.phonenumb) as EditText
        presenter = AirtimeTransFirstPresenter(this, this, FetchServerResponse())
@@ -188,6 +191,9 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
             }
 
 
+        }
+        if(v.id==R.id.button3){
+            finish()
         }
     }
 

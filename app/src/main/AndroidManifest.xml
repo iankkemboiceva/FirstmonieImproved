@@ -40,13 +40,7 @@
         <activity android:name=".CommisionActivity" />
         <activity android:name=".ChangeAcNameActivity" />
         <activity android:name=".FinalConfAirtimeActivity" />
-        <activity android:name=".ConfirmWithdrawal" />
-        <activity android:name=".Withdraw_Firsts" />
         <activity android:name=".MinistatActivity" />
-        <activity android:name=".Withdraw" />
-        <activity
-            android:name=".AirtimeTransf"
-            android:theme="@style/MyMaterialTheme.Base" />
         <activity android:name=".UploadTicket" />
         <activity android:name=".LogComplaint" />
         <activity android:name=".FinalConfDepoActivity" />

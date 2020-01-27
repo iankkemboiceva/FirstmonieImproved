@@ -35,7 +35,7 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
     internal var acno: EditText? = null
     internal var amo:EditText? = null
     internal var accnum: String? = null
-    internal var sigin: Button? = null
+    internal var btn_back: Button? = null
     internal var txtref: TextView? =null
     internal var r1: RadioButton? = null
     internal var r2:RadioButton? = null
@@ -66,6 +66,7 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
     supportActionBar!!.title = null
     session= SessionManagement(this)
         btnok = findViewById(R.id.button5) as Button
+        btn_back = findViewById(R.id.button3) as Button
         session = SessionManagement(this)
         lywithdr = findViewById(R.id.lywithdr) as LinearLayout
         txtref = findViewById(R.id.txref) as TextView
@@ -75,6 +76,7 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
         cotp = findViewById(R.id.cotp) as EditText
         accountoname = findViewById(R.id.cname) as EditText
         btnok!!.setOnClickListener(this)
+        btn_back!!.setOnClickListener(this)
         presenter = WithdrawalfirstPresenter(this, this, FetchServerResponse())
         viewDialog= ViewDialog(this)
         val ofcListener = MyFocusChangeListener()
@@ -156,6 +158,9 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
             } else {
                 Utility.showToast("Please enter a valid value for account number")
             }
+        }
+        if (view!!.id==R.id.button3){
+            finish()
         }
     }
 

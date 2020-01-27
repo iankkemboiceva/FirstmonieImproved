@@ -187,8 +187,9 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
                     .show()
         }
     }
+
     override fun onBackpressd() {
-    onBackPressed()
+        onBackPressed()
     }
     override fun onDestroy() {
         presenter!!.ondestroy()

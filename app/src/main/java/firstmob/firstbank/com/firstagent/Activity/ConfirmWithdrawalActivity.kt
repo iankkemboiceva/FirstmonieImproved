@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.textfield.TextInputEditText
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.WithdrawalsContract
@@ -41,6 +42,7 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
     internal var txtfee:TextView? =null
     internal var acbal:TextView? =null
     internal var btnsub: Button? =null
+    internal var btn_back: Button? =null
     internal var recanno: String? =null
     internal var amou:String? =null
     internal var txtname:String? =null
@@ -50,7 +52,7 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
     internal var agbalance:String? =null
 //    internal var prgDialog: ProgressDialog? = null
 //    internal var prgDialog2:ProgressDialog? = null
-    internal var etpin: EditText? =null
+    internal var etpin: TextInputEditText? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_withdrawal)
@@ -62,7 +64,7 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
         recacno = findViewById(R.id.textViewnb2) as TextView
         recname = findViewById(R.id.textViewcvv) as TextView
         acbal = findViewById(R.id.txtacbal) as TextView
-        etpin = findViewById(R.id.pin) as EditText
+        etpin = findViewById(R.id.pin) as TextInputEditText
         recamo = findViewById(R.id.textViewrrs) as TextView
         recnarr = findViewById(R.id.textViewrr) as TextView
         txtfee = findViewById(R.id.txtfee) as TextView
@@ -70,7 +72,9 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
         recsendnum = findViewById(R.id.sendno) as TextView
         viewDialog= ViewDialog(this)
         btnsub = findViewById(R.id.button2) as Button
+        btn_back = findViewById(R.id.button3) as Button
         btnsub!!.setOnClickListener(this)
+        btn_back!!.setOnClickListener(this)
         presenter = ConfirmWithdrwalPresenter(this, this, FetchServerResponse())
         step2 = findViewById(R.id.tv2) as TextView
         step2!!.setOnClickListener(this)
@@ -132,6 +136,12 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
             }
         }
         if (view.getId() == R.id.tv2) {
+            finish()
+            val intent = Intent(this@ConfirmWithdrawalActivity, WithdrawActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
+        if(view.id==R.id.button3){
             finish()
             val intent = Intent(this@ConfirmWithdrawalActivity, WithdrawActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -205,13 +215,19 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
 
     override fun onDestroy() {
         // TODO Auto-generated method stub
+        presenter!!.ondestroy()
         presenter?.ondestroy()
-        if (viewDialog != null) {
-            viewDialog?.hideDialog()
-        }
+//        if (viewDialog != null) {
+//            viewDialog?.hideDialog()
+//        }
         super.onDestroy()
     }
     fun ClearPin() {
         etpin!!.setText("")
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

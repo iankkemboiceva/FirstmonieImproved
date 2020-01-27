@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.textfield.TextInputEditText
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
@@ -21,9 +22,16 @@ import firstmob.firstbank.com.firstagent.presenter.ConfimCabletvPresenter
 import firstmob.firstbank.com.firstagent.presenter.StateCollectacivtyPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import javax.inject.Inject
 
 class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillersContract.IViewbillConfirmCabletv {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
 
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var reccustid: TextView? = null
     internal var recamo:TextView? = null
     internal var recnarr:TextView? = null
@@ -65,7 +73,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     internal var txtnarr:EditText? = null
     internal var edname:EditText? = null
     internal var ednumber:EditText? = null
-    internal var etpin: EditText? = null
+    internal var etpin: TextInputEditText? = null
     internal var chkfee = false
     internal var session: SessionManagement? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +91,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.theme_paybills)));
         session = SessionManagement(this)
         reccustid = findViewById(R.id.textViewnb2) as TextView
-        etpin = findViewById(R.id.pin) as EditText
+        etpin = findViewById(R.id.pin) as TextInputEditText
         acbal = findViewById(R.id.txtacbal) as TextView
         stt = findViewById(R.id.recip) as TextView
         recamo = findViewById(R.id.textViewrrs) as TextView
@@ -345,5 +353,10 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
 
     fun ClearPin() {
         etpin!!.setText("")
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

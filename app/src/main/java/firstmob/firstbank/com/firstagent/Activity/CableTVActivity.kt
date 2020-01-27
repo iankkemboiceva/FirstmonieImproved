@@ -248,10 +248,14 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
         }
 
         override fun onDestroy() {
-            dismissProgressDialog()
+            //dismissProgressDialog()
             super.onDestroy()
         }
 
+        override fun onBackPressed() {
+            finish()
+            super.onBackPressed()
+        }
 
     }
 

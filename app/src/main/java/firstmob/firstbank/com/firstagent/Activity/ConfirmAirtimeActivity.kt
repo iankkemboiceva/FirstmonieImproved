@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.textfield.TextInputEditText
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.Constants
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
@@ -40,11 +41,12 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
     internal var reccustid: TextView? =null
     internal var recamo:TextView? =null
     internal var rectelco:TextView? =null
-    internal var step2:TextView? =null
+    internal var step2:Button? =null
     internal var txtfee:TextView? =null
     internal var acbal:TextView? =null
     var viewDialog: ViewDialog? =null
     internal var btnsub: Button? =null
+    internal var btn_back: Button? =null
     internal var txtcustid: String? =null
     internal var presenterairtime: AirtimeContract.PresenterConfirmAirtime? =null
     internal var amou:String? =null
@@ -57,9 +59,7 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
     internal var telcoop: String? =null
     internal var amon: EditText? = null
     internal var edacc:EditText? = null
-    internal var etpin: EditText? =null
-    val KEY_TOKEN = "token"
-
+    internal var etpin: TextInputEditText? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.confim_airtime)
@@ -69,19 +69,20 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
         supportActionBar!!.title = null
         session = SessionManagement(this)
         reccustid = findViewById(R.id.textViewnb2) as TextView
-        etpin = findViewById(R.id.pin) as EditText
+        etpin = findViewById(R.id.pin) as TextInputEditText
         acbal = findViewById(R.id.txtacbal) as TextView
         recamo = findViewById(R.id.textViewrrs) as TextView
         rectelco = findViewById(R.id.textViewrr) as TextView
         txtfee = findViewById(R.id.txtfee) as TextView
         viewDialog= ViewDialog(this)
         presenterairtime = ConfirmAirtimePresenter(this, this, FetchServerResponse())
-        step2 = findViewById(R.id.tv) as TextView
+        step2 = findViewById(R.id.tv) as Button
         step2!!.setOnClickListener(this)
         txtfee = findViewById(R.id.txtfee) as TextView
         btnsub = findViewById(R.id.button2) as Button
+        btn_back = findViewById(R.id.button3) as Button
         btnsub!!.setOnClickListener(this)
-
+        btn_back!!.setOnClickListener(this)
         val intent = intent
         if (intent != null) {
             txtcustid = intent.getStringExtra("mobno")
@@ -165,6 +166,16 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
 
             startActivity(intent)
         }
+        if(view.id==R.id.button3){
+            finish()
+
+
+            val intent = Intent(this@ConfirmAirtimeActivity, AirtimeTransfActivity::class.java)
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            startActivity(intent)
+        }
     }
     fun ClearPin() {
         etpin!!.setText("")
@@ -214,5 +225,10 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
     public override fun onDestroy() {
         presenterairtime?.ondestroy()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

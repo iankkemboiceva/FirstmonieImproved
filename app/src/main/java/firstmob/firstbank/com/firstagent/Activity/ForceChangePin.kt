@@ -215,4 +215,9 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
         }
 
     }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }

@@ -234,4 +234,9 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
         presenter!!.ondestroy()
         super.onDestroy()
     }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }

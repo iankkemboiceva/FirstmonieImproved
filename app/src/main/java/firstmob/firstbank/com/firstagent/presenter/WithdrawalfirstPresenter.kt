@@ -1,19 +1,13 @@
 package firstmob.firstbank.com.firstagent.presenter
 
 import android.content.Context
-import android.util.Log
-import android.view.View
 import android.widget.Toast
-import com.afollestad.materialdialogs.MaterialDialog
 import com.pixplicity.easyprefs.library.Prefs
 
 import firstmob.firstbank.com.firstagent.Activity.R
-import firstmob.firstbank.com.firstagent.Activity.Withdraw
-import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.MainContract
 import firstmob.firstbank.com.firstagent.contract.WithdrawalsContract
-import firstmob.firstbank.com.firstagent.model.GetAirtimeBillersData
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
