@@ -34,6 +34,9 @@ class ViewDialog(internal var activity: Activity) {
     }
 
     fun hideDialog() {
-        dialog.dismiss()
+        if(dialog!=null){
+            dialog.dismiss()
+        }
+
     }
 }

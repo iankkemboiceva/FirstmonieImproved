@@ -57,11 +57,11 @@ class NewHomeGrid : Fragment() {
         val open_p = view.findViewById<RelativeLayout>(R.id.rlinbox)
         // Set a click listener for text view object
         open_airtime.setOnClickListener{
-            val intent = Intent (getActivity(), AirtimeTransf::class.java)
+            val intent = Intent (getActivity(), AirtimeTransfActivity::class.java)
             this.startActivity(intent)
         }
         open_withdrwa.setOnClickListener{
-            val intent = Intent (getActivity(), Withdraw::class.java)
+            val intent = Intent (getActivity(), WithdrawActivity::class.java)
             this.startActivity(intent)
         }
         open_p.setOnClickListener{

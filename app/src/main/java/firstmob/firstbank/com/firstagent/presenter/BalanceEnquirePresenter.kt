@@ -5,13 +5,24 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
+import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 
 import firstmob.firstbank.com.firstagent.Activity.R
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.CommisionContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
+import firstmob.firstbank.com.firstagent.utils.Utility
+import javax.inject.Inject
+
 class BalanceEnquirePresenter : CommisionContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var iView: CommisionContract.IViewCommission? = null
     private var getDataIntractor: MainContract.GetDataIntractor? = null
     internal var context: Context? = null

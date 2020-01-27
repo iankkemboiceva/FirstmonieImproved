@@ -30,8 +30,10 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
+import javax.inject.Inject
 
 class FinalConfirmCableTV : AppCompatActivity(),View.OnClickListener {
+
     internal var reccustid: TextView? =null
     internal var recamo:TextView? =null
     internal var recnarr:TextView? =null

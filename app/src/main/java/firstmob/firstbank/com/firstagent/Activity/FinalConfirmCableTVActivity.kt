@@ -33,9 +33,10 @@ import javax.inject.Inject
 class FinalConfirmCableTVActivity : AppCompatActivity(),View.OnClickListener {
     @Inject
     internal lateinit var ul: Utility
-
     init {
+
         ApplicationClass.getMyComponent().inject(this)
+        // initUser();
     }
     internal var recdatetimee: TextView? = null
     internal var btnsub: Button? = null

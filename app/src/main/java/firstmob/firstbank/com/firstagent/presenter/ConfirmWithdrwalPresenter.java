@@ -10,6 +10,9 @@ import com.pixplicity.easyprefs.library.Prefs;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.inject.Inject;
+
+import firstmob.firstbank.com.firstagent.Activity.ApplicationClass;
 import firstmob.firstbank.com.firstagent.Activity.R;
 import firstmob.firstbank.com.firstagent.constants.Constants;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
@@ -21,6 +24,11 @@ import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.AG
 import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID;
 
     public class ConfirmWithdrwalPresenter implements WithdrawalsContract.ConfirmWithdralPresenter, MainContract.GetDataIntractor.OnFinishedListener {
+        @Inject
+        Utility utility;
+        public ConfirmWithdrwalPresenter() {
+            ApplicationClass.getMyComponent().inject(this);
+        }
         WithdrawalsContract.IViewConfirmWithdrawal iView;
         private MainContract.GetDataIntractor getDataIntractor;
         Context context;
@@ -39,7 +47,6 @@ import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KE
 
             String userid = Prefs.getString(KEY_USERID, "NA");
             String agentid = Prefs.getString(AGENTID, "NA");
-
             String params = "1/" + userid + "/" + agentid + extraparam;
             String urlparams = "";
             try {

@@ -190,6 +190,11 @@ public class ConfirmAirtime extends Fragment implements View.OnClickListener, Ai
     }
 
     @Override
+    public void setBalance(String blance) {
+
+    }
+
+    @Override
     public void logout() {
         session.logoutUser();
         getActivity().finish();

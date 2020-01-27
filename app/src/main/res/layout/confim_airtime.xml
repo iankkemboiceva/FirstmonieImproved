@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AirtimeTransf">
-
+     <include layout="@layout/toolbarnewui"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +65,36 @@
 
 
                 >
+                <RelativeLayout
 
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+
+                    >
+                    <TextView
+                        android:id="@+id/acbalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:text="Agent Balance"
+                        android:textSize="@dimen/textsize"
+                        android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/txtacbal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+
+                        android:layout_alignParentRight = "true"
+                        android:text=""
+                        android:textSize="@dimen/textsize"
+                        android:textColor="#3C2415" />
+
+                </RelativeLayout>
                 <RelativeLayout
 
 

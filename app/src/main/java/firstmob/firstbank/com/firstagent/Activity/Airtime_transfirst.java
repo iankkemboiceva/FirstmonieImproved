@@ -154,7 +154,6 @@ public class Airtime_transfirst extends Fragment implements View.OnClickListener
 
             amou = Utility.returnNumberFormat(amou);
             String mnop = sp1.getSelectedItem().toString();
-
             int spinpos = sp1.getSelectedItemPosition();
             String billid = planetsList2.get(spinpos).getBillerId();
             String serviceid = planetsList2.get(spinpos).getSId();

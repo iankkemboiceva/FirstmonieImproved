@@ -11,7 +11,7 @@
     local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <ImageView
-        android:layout_width="130dp"
+        android:layout_width="216dp"
         android:contentDescription="Logo"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

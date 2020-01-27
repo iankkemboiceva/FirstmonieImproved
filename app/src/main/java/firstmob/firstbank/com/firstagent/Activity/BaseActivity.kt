@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 
 /**
@@ -13,7 +14,7 @@ import firstmob.firstbank.com.firstagent.utils.SessionManagement
 
  open class BaseActivity : AppCompatActivity() {
     internal var session: SessionManagement? =null
-
+   // lateinit var viewDialog: ViewDialog
     val sharedPreference: SharedPreferences
         get() = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
 

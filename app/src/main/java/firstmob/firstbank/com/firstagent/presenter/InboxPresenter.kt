@@ -21,18 +21,17 @@ class InboxPresenter(internal var iLoginView: InboxContract.ILoginView?, private
 
     @Inject
     internal lateinit var ul: Utility
+    init {
+
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     private var reqtype = ""
 
     var inboxlist = ArrayList<GetCommPerfData>()
     // private TextView emptyView;
     var aAdpt: InboxListAdapter? = null
 
-
-    init {
-
-        ApplicationClass.getMyComponent().inject(this)
-        // initUser();
-    }
 
 
     override fun Inbox(stdate: String,enddate: String) {
