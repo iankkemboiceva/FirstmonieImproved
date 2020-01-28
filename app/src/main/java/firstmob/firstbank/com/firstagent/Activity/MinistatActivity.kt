@@ -2,6 +2,7 @@ package firstmob.firstbank.com.firstagent.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
@@ -15,6 +16,7 @@ import com.borax12.materialdaterangepicker.date.DatePickerDialog
 import firstmob.firstbank.com.firstagent.adapter.NewMinListAdapter
 import firstmob.firstbank.com.firstagent.contract.CommisionContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.fragments.DateRangePickerFragment
 import firstmob.firstbank.com.firstagent.model.MinistatData
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
@@ -28,18 +30,24 @@ import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.OnDateSetListener,DateRangePickerFragment.OnDateRangeSelectedListener,CommisionContract.IViewMinistatement {
+class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDialog.OnDateSetListener,DateRangePickerFragment.OnDateRangeSelectedListener,CommisionContract.IViewMinistatement {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
     private var mToolbar: Toolbar? = null
-
     internal var planetsList: MutableList<MinistatData> = ArrayList<MinistatData>()
     private var emptyView: TextView? = null
     internal var aAdpt: NewMinListAdapter? = null
     internal var lv: ListView? =null
     internal var ok: Button? = null
-//    var session :SessionManagement
+    var session :SessionManagement? =null
     internal var selacc: String? = null
-    internal var prgDialog2: ProgressDialog? = null
+    //internal var prgDialog2: ProgressDialog? = null
+    var viewDialg: ViewDialog? =null
     internal var acno: TextView? = null
     internal var txaco:TextView? =null
     internal var txaccbal:TextView? =null
@@ -58,12 +66,12 @@ class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.On
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
-        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab!!.setDisplayShowHomeEnabled(true)
         ab.setDisplayHomeAsUpEnabled(true)
-        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
-        ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
-
+        ab.setDisplayShowCustomEnabled(true)
+        ab.setDisplayShowTitleEnabled(false)
         txtitle = findViewById(R.id.enddate) as TextView
         txfrom = findViewById(R.id.from) as TextView
         lv = findViewById(R.id.lv) as ListView
@@ -72,17 +80,12 @@ class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.On
         lstmt = findViewById(R.id.stmtrlyy) as LinearLayout
         lstmt!!.setOnClickListener(this)
         //   sp1 = (Spinner) rootView.findViewById(R.id.accno);
-        prgDialog2 = ProgressDialog(this)
-
-        prgDialog2!!.setMessage("Loading ....")
-        prgDialog2!!.setCancelable(false)
-        // Set Cancelable as False
+        viewDialg= ViewDialog(this)
         session = SessionManagement(this)
         calendar = findViewById(R.id.button4) as Button
         calendar!!.setOnClickListener(this)
         presenter = MinstatementPresenter(applicationContext, this, FetchServerResponse())
         emptyView = findViewById(R.id.empty_view) as TextView
-
         val accnoo = Utility.getAcountno(this)
         txaco!!.setText("Statement for Account Number -$accnoo")
         presenter!!.requestCallGetBalnce("getblance",null)
@@ -120,16 +123,16 @@ class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.On
     }
 
     override fun showProgress() {
-        if (prgDialog2 != null && applicationContext != null && !this@MinistatActivity.isFinishing()) {
-            prgDialog2!!.show()
+        if (viewDialg != null && applicationContext != null && !this@MinistatActivity.isFinishing()) {
+            viewDialg!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && getApplicationContext() != null && !this@MinistatActivity.isFinishing()) {
-            prgDialog2!!.dismiss()
+        if (viewDialg != null && getApplicationContext() != null && !this@MinistatActivity.isFinishing()) {
+            viewDialg!!.hideDialog()
+           // prgDialog2!!.dismiss()
         }
-
     }
 
     override fun setMinistatementStartim() {
@@ -307,7 +310,6 @@ class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.On
                         }
 
                         override fun onNegative(dialog: MaterialDialog?) {
-
                             dialog!!.dismiss()
                             finish()
                             session!!.logoutUser()
@@ -328,7 +330,6 @@ class MinistatActivity : BaseActivity(),View.OnClickListener,DatePickerDialog.On
             onBackPressed()    //Call the back button's method
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 

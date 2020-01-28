@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:filterTouchesWhenObscured ="true"
     android:background="@color/colorPrimary"
+    android:filterTouchesWhenObscured="true"
 
 
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/nav_header_container"
@@ -23,81 +23,88 @@
 
 
             >
+
             <ImageView
+                android:id="@+id/profimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:id="@+id/profimg"
-                android:background="@drawable/profilepic"/>
-
+                android:background="@drawable/profilepic" />
 
 
             <TextView
+                android:id="@+id/txuserid"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
+
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profimg"
 
                 android:layout_marginLeft="20dp"
+
+
                 android:layout_marginTop="10dp"
-
+                android:text="User ID:"
                 android:textColor="@color/white"
-
-
                 android:textSize="17sp"
-                android:id="@+id/txuserid"
-                android:layout_below="@+id/profimg"
                 android:textStyle="bold"
-                android:text=""
+
 
 
                 />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/txloglast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-                android:orientation="horizontal"
                 android:layout_below="@+id/txuserid"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/sdf2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
 
 
 
-                   android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="20dp"
+
 
                     android:textColor="@color/white"
-
-
                     android:textSize="14sp"
+
+
+
+                    android:textStyle="bold"
+
                     android:id="@+id/lastlog"
 
 
                     android:text=""
 
 
-                    /></LinearLayout>
+
+                    />
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/home"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/home"
 
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
                 android:layout_alignParentRight="true"
-                android:id="@+id/home"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/home"
+                android:text=""
+                android:textColor="@color/white"
                 android:textSize="14sp"
-                android:visibility="gone"
 
                 android:textStyle="bold"
-                android:text=""
+                android:visibility="gone"
 
 
                 />
@@ -110,70 +117,42 @@
             android:layout_height="wrap_content"
 
 
-            android:layout_weight="60"
             android:layout_below="@+id/nav_header_container"
-
+            android:layout_weight="60"
 
 
             >
+
             <LinearLayout
                 android:id="@+id/lyvert"
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent"
-
                 android:orientation="vertical"
 
                 >
 
 
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rlhome"
                         android:layout_width="match_parent"
-android:layout_marginTop="40dp"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp"
+
+                        >
+
                         <RelativeLayout
-                            android:id="@+id/rl4"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
 
-android:layout_marginTop="20dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:padding="5dp"
-
-                            >
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-
-
-
-                                android:layout_height="wrap_content">
-                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:id="@+id/item5"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-
-                                    android:background="@drawable/homeicon"
-
-                                    />
-
-                                <TextView
-                                    android:id="@+id/txt_item5"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                 android:layout_marginLeft="40dp"
-
-                                    android:textStyle="bold"
-                                    android:text="Home"
-                                    android:textSize="13sp"
-
-                                    android:textColor="@color/white" />
-                            </RelativeLayout>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:id="@+id/rl3"
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
 
 
@@ -189,210 +168,238 @@ android:layout_marginTop="20dp"
 
 
 
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    android:id="@+id/item6"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
 
 
-
-                                    android:background="@drawable/changepin" />
-
-                                <TextView
-                                    android:id="@+id/txt_item6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-
-
-                                    android:layout_marginLeft="40dp"
-
-                                    android:textStyle="bold"
-                                    android:text="Change PIN"
-                                    android:textSize="13sp"
-
-                                    android:textColor="@color/white" />
-                            </RelativeLayout>
-                        </RelativeLayout>
-
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-
-                                android:layout_centerInParent="true"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginTop="15dp"
-                                android:padding="5dp"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    android:id="@+id/item7"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-
-
-
-                                    android:background="@drawable/performance" />
-
-                                <TextView
-                                    android:id="@+id/txt_item7"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-
-                                    android:layout_marginLeft="40dp"
-                                    android:textSize="13sp"
-
-                                    android:text="Performance"
-                                    android:textColor="@color/white"
-
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-
-                            android:layout_centerInParent="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:padding="5dp"
-                            android:layout_marginTop="15dp"
                             android:layout_height="wrap_content">
-                            <ImageView
-                                android:id="@+id/item8"
+
+                            <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                android:id="@+id/item5"
                                 android:layout_width="20dp"
-                                android:layout_height="22dp"
+                                android:layout_height="20dp"
 
+                                android:background="@drawable/homeicon"
 
-
-                                android:background="@drawable/agentaccount" />
+                                />
 
                             <TextView
-                                android:id="@+id/txt_item8"
+                                android:id="@+id/txt_item5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
-
-
                                 android:layout_marginLeft="40dp"
+
+                                android:text="Home"
+                                android:textColor="@color/white"
                                 android:textSize="13sp"
 
-                                android:textStyle="bold"
-                                android:text="Agent Account"
-
-                                android:textColor="@color/white" />
+                                android:textStyle="bold" />
                         </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlchchangepin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
 
+                        android:layout_below="@+id/rl4"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-
+                            android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:padding="5dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_height="wrap_content">
+
+                            android:layout_marginTop="10dp">
+
                             <ImageView
-                                android:id="@+id/item9"
-                                android:layout_width="25dp"
+                                android:id="@+id/item6"
+                                android:layout_width="20dp"
                                 android:layout_height="20dp"
 
 
-
-                                android:background="@drawable/commissaccount" />
+                                android:background="@drawable/changepin" />
 
                             <TextView
-                                android:id="@+id/txt_item9"
+                                android:id="@+id/txt_item6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
 
-
                                 android:layout_marginLeft="40dp"
+
+                                android:text="Change PIN"
+                                android:textColor="@color/white"
                                 android:textSize="13sp"
 
-                                android:textStyle="bold"
-                                android:text="Commission Account"
-
-                                android:textColor="@color/white" />
+                                android:textStyle="bold" />
                         </RelativeLayout>
-                    </LinearLayout>
+                    </RelativeLayout>
 
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/rlmyperformance"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp">
 
+                        <ImageView
+                            android:id="@+id/item7"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+
+
+                            android:background="@drawable/performance" />
+
+                        <TextView
+                            android:id="@+id/txt_item7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:text="Performance"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/rlagentaccount"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/item8"
+                            android:layout_width="20dp"
+                            android:layout_height="22dp"
+
+
+                            android:background="@drawable/agentaccount" />
+
+                        <TextView
+                            android:id="@+id/txt_item8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+
+                            android:layout_marginLeft="40dp"
+                            android:text="Agent Account"
+
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/rlcommision"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/item9"
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+
+
+                            android:background="@drawable/commissaccount" />
+
+                        <TextView
+                            android:id="@+id/txt_item9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+
+                            android:layout_marginLeft="40dp"
+                            android:text="Commission Account"
+
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </LinearLayout>
 
 
             </LinearLayout>
 
 
-
         </LinearLayout>
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginBottom="60dp">
+
         <RelativeLayout
+            android:id="@+id/rlcomplains"
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"
+
 
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:id="@+id/rlcomplains"
+
+            <TextView
+                android:id="@+id/txt_item10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
 
-                android:layout_height="wrap_content">
-
-
-                <TextView
-                    android:id="@+id/txt_item10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-
-
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    android:text="Complaints Management"
-
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-android:id="@+id/rllogout"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/rlcomplains"
+                android:text="Complaints Management"
+                android:textColor="@color/white"
+                android:textSize="13sp"
 
-                android:layout_height="wrap_content">
-
-
-                <TextView
-                    android:id="@+id/txt_item12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-
-
-
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:textStyle="bold"
-                    android:text="Log Out"
-
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
+                android:textStyle="bold" />
         </RelativeLayout>
 
 
+        <RelativeLayout
+            android:id="@+id/rllogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlcomplains"
+
+            android:layout_marginTop="10dp">
+
+
+            <TextView
+                android:id="@+id/txt_item12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+
+
+                android:layout_marginTop="10dp"
+                android:text="Log Out"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

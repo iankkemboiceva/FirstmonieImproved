@@ -11,18 +11,27 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.textfield.TextInputEditText
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.GetBillersContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ConfimCabletvPresenter
 import firstmob.firstbank.com.firstagent.presenter.StateCollectacivtyPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import javax.inject.Inject
 
 class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillersContract.IViewbillConfirmCabletv {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
 
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var reccustid: TextView? = null
     internal var recamo:TextView? = null
     internal var recnarr:TextView? = null
@@ -54,7 +63,8 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     internal var agbalance:String? = null
     internal var marketnm:String? = null
     internal var finalrespfee: String? = null
-    internal var prgDialog2: ProgressDialog? = null
+   // internal var prgDialog2: ProgressDialog? = null
+    var viewDialog:ViewDialog? =null
     internal var rlreceipt: RelativeLayout? = null
     internal var amon: EditText? = null
     internal var edacc:EditText? = null
@@ -63,7 +73,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     internal var txtnarr:EditText? = null
     internal var edname:EditText? = null
     internal var ednumber:EditText? = null
-    internal var etpin: EditText? = null
+    internal var etpin: TextInputEditText? = null
     internal var chkfee = false
     internal var session: SessionManagement? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +91,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.theme_paybills)));
         session = SessionManagement(this)
         reccustid = findViewById(R.id.textViewnb2) as TextView
-        etpin = findViewById(R.id.pin) as EditText
+        etpin = findViewById(R.id.pin) as TextInputEditText
         acbal = findViewById(R.id.txtacbal) as TextView
         stt = findViewById(R.id.recip) as TextView
         recamo = findViewById(R.id.textViewrrs) as TextView
@@ -92,9 +102,10 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
         txtlabel = findViewById(R.id.textViewnb) as TextView
         recsendnam = findViewById(R.id.sendnammm) as TextView
         recsendnum = findViewById(R.id.sendno) as TextView
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading....")
-        prgDialog2!!.setCancelable(false)
+        viewDialog= ViewDialog(this)
+//        prgDialog2 = ProgressDialog(this)
+//        prgDialog2!!.setMessage("Loading....")
+//        prgDialog2!!.setCancelable(false)
         txtfee = findViewById(R.id.txtfee) as TextView
         chkfee = false
         step2 = findViewById(R.id.tv2) as TextView
@@ -180,12 +191,12 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     }
 
     override fun showProgress() {
-        prgDialog2!!.show()
+        viewDialog!!.showDialog()
     }
 
     override fun hideProgress() {
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && applicationContext != null) {
-            prgDialog2!!.dismiss()
+        if (viewDialog != null && applicationContext != null) {
+            viewDialog!!.hideDialog()
         }
     }
     override fun onClick(view: View?) {
@@ -218,9 +229,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
                                             //    if(chkdb){
                                             var encrypted: String? = null
                                             encrypted = Utility.b64_sha256(agpin)
-                                            if (prgDialog2 != null) {
-                                                //  prgDialog2.show();
-                                            }
+
                                             val usid = Prefs.getString(SharedPrefConstants.KEY_USERID, "NA")
                                             val agentid = Prefs.getString(SharedPrefConstants.AGENTID, "NA")
                                             val mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA")
@@ -336,6 +345,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.getItemId() == android.R.id.home) {
+            finish()
             onBackPressed()    //Call the back button's method
             return true
         }
@@ -344,5 +354,10 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
 
     fun ClearPin() {
         etpin!!.setText("")
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

@@ -9,6 +9,8 @@ import java.util.List;
 import firstmob.firstbank.com.firstagent.Activity.NewSelChart;
 import firstmob.firstbank.com.firstagent.Activity.NewSelChartTran;
 
+
+
 public class ViewPagerMyPerfAdapter extends FragmentStatePagerAdapter {
 
         int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created

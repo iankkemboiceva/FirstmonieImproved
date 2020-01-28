@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.adapter.BillerMenuAdapt
 import firstmob.firstbank.com.firstagent.contract.GetBillersContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.model.GetBillersData
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.GetBillersPresenter
@@ -40,7 +41,8 @@ class SpecBillerMenuActivity : AppCompatActivity(),GetBillersContract.IViewbille
     internal var servicename: String? = null
     internal var servlabel: String? = null
     internal var aAdpt: BillerMenuAdapt? = null
-    internal var prgDialog: ProgressDialog? = null
+    var viewDialog: ViewDialog? =null
+   // internal var prgDialog: ProgressDialog? = null
     internal var session: SessionManagement? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +57,10 @@ class SpecBillerMenuActivity : AppCompatActivity(),GetBillersContract.IViewbille
         ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
         ab.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.theme_paybills)));
         session = SessionManagement(this)
-        prgDialog = ProgressDialog(this)
-        prgDialog!!.setMessage("Please wait...")
+        viewDialog= ViewDialog(this)
+//        prgDialog = ProgressDialog(this)
+//        prgDialog!!.setMessage("Please wait...")
+//        prgDialog!!.setCancelable(false)
         txtservice = findViewById(R.id.titlte) as TextView
         presenter = GetBillersSpecMenuPresenter(this, this, FetchServerResponse())
         val intent = intent
@@ -66,8 +70,6 @@ class SpecBillerMenuActivity : AppCompatActivity(),GetBillersContract.IViewbille
             servicename = bcp.getservicename()
             txtservice!!.setText(servicename)
         }
-
-        prgDialog!!.setCancelable(false)
 
         lv = findViewById(R.id.lv) as ListView
         val bsid = session!!.getString("bllservid$serviceid")
@@ -120,14 +122,14 @@ class SpecBillerMenuActivity : AppCompatActivity(),GetBillersContract.IViewbille
     }
 
     override fun showProgress() {
-        if (prgDialog != null && prgDialog!!.isShowing()) {
-            prgDialog!!.show()
+        if (viewDialog != null) {
+            viewDialog!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (prgDialog != null && prgDialog!!.isShowing()) {
-            prgDialog!!.dismiss()
+        if (viewDialog != null) {
+            viewDialog!!.hideDialog()
         }
     }
 

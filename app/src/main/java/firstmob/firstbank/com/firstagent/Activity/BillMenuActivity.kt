@@ -16,6 +16,7 @@ import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.adapter.ServicesMenuAdapt
 import firstmob.firstbank.com.firstagent.contract.GetBillersContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.model.GetServicesData
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.GetBillersPresenter
@@ -33,7 +34,8 @@ class BillMenuActivity : AppCompatActivity(), GetBillersContract.IViewbillers {
     internal var lv: ListView? =null
    // var planetsList = arrayListOf<GetServicesData>()
     internal var aAdpt: ServicesMenuAdapt? =null
-    internal var prgDialog: ProgressDialog? = null
+   // internal var prgDialog: ProgressDialog? = null
+    var viewDialog: ViewDialog? =null
     internal var session: SessionManagement? =null
     internal var presenter: GetBillersContract.Presenterloadbillers? =null
 
@@ -54,12 +56,10 @@ class BillMenuActivity : AppCompatActivity(), GetBillersContract.IViewbillers {
         presenter = GetBillersPresenter(this, this, FetchServerResponse())
         session = SessionManagement(this)
 
-        prgDialog = ProgressDialog(this)
-
-        prgDialog!!.setMessage("Please wait...")
-
-
-        prgDialog!!.setCancelable(false)
+//        prgDialog = ProgressDialog(this)
+//        prgDialog!!.setMessage("Please wait...")
+//        prgDialog!!.setCancelable(false)
+        viewDialog= ViewDialog(this);
         lv = findViewById(R.id.lv) as ListView
         val strservdata = session!!.getString(SessionManagement.KEY_BILLERS)
         if (strservdata != null) {
@@ -113,14 +113,14 @@ class BillMenuActivity : AppCompatActivity(), GetBillersContract.IViewbillers {
     }
 
     override fun showProgress() {
-        if (prgDialog != null && prgDialog!!.isShowing()) {
-            prgDialog!!.show()
+        if (viewDialog != null ) {
+            viewDialog!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (prgDialog != null && prgDialog!!.isShowing()) {
-            prgDialog!!.dismiss()
+        if (viewDialog != null) {
+            viewDialog!!.hideDialog()
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

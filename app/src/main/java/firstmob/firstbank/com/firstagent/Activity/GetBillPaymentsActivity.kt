@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.adapter.BillerPayMenuAdapt
 import firstmob.firstbank.com.firstagent.contract.GetBillersContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.model.GetBillPayData
 import firstmob.firstbank.com.firstagent.model.GetServicesData
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
@@ -44,7 +45,8 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
     internal var idd:String? =null
     internal var acnumber:String? =null
     internal var aAdpt: BillerPayMenuAdapt? =null
-    internal var prgDialog: ProgressDialog? = null
+    //internal var prgDialog: ProgressDialog? = null
+    var viewDialog:ViewDialog? =null
     internal var session: SessionManagement? =null
     internal var presenter: GetBillersContract.Presenterloadbillerspc? =null
     internal var sbpam = "0"
@@ -64,8 +66,10 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
         ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.theme_paybills)));
         session = SessionManagement(this)
-        prgDialog = ProgressDialog(this)
-        prgDialog!!.setMessage("Please wait...")
+        viewDialog= ViewDialog(this);
+//        prgDialog = ProgressDialog(this)
+//        prgDialog!!.setMessage("Please wait...")
+//        prgDialog!!.setCancelable(false)
        // txtservice = findViewById(R.id.textView1) as TextView
         presenter = GetBillPaymentsActPresenter(this, this, FetchServerResponse())
         val intent = intent
@@ -80,7 +84,6 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
             idd = bcp.getidd()
          //   txtservice!!.setText(billname)
         }
-        prgDialog!!.setCancelable(false)
         lv = findViewById(R.id.lv) as ListView
         val bsid = session!!.getString("getbillpay$idd")
         if (bsid == null) {
@@ -144,11 +147,15 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
     }
 
     override fun showProgress() {
-    prgDialog!!.show()
+        viewDialog!!.showDialog()
+        //prgDialog!!.show()
     }
 
     override fun hideProgress() {
-     prgDialog!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+    // prgDialog!!.dismiss()
     }
     override fun onDestroy() {
         finish()

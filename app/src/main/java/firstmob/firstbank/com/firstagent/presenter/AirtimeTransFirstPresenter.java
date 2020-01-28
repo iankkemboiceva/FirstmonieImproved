@@ -30,6 +30,7 @@ import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.AG
 import static firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID;
 
 public class AirtimeTransFirstPresenter implements AirtimeContract.PresenterAirtimeFirst, MainContract.GetDataIntractor.OnFinishedListener {
+
     AirtimeContract.IviewAirtimeFirst ibillerView;
     private MainContract.GetDataIntractor getDataIntractor;
     List<GetAirtimeBillersData> planetsList = new ArrayList<GetAirtimeBillersData>();
@@ -97,7 +98,7 @@ public class AirtimeTransFirstPresenter implements AirtimeContract.PresenterAirt
                         Utility.showToast("No airtime billers available  ");
                     }
                 }
-                ibillerView.hideProgress();
+               // ibillerView.hideProgress();
 
             } else {
                 Utility.showToast("No services available  ");

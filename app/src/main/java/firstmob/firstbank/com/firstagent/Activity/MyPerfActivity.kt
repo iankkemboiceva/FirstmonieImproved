@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
@@ -35,6 +37,7 @@ import firstmob.firstbank.com.firstagent.adapter.ViewPagerMyPerfAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants
 import firstmob.firstbank.com.firstagent.contract.CommisionContract
 import firstmob.firstbank.com.firstagent.contract.MyPerfActivityContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.fragments.DateRangePickerFragment
 import firstmob.firstbank.com.firstagent.model.TxnList
 import firstmob.firstbank.com.firstagent.model.GetCommPerfData
@@ -46,19 +49,28 @@ import firstmob.firstbank.com.firstagent.presenter.MyperfActivityPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePickerFragment.OnDateRangeSelectedListener, OnChartValueSelectedListener, MyPerfActivityContract.IViewPerfAct {
+    @Inject
+    internal lateinit var ul: Utility
+
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
     internal var pager: ViewPager? = null
     internal var Titles: MutableList<String> = ArrayList()
     internal var Numboftabs = 2
     private val SPLASH_TIME_OUT = 3000
     internal var adapter: ViewPagerMyPerfAdapter? = null
+    var viewDialg: ViewDialog? =null
     internal var cv: CardView? =null
     internal var sp1: Spinner? = null
     internal var textdate: String? =null
@@ -83,7 +95,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     var finalfx: String? = null
     var finpfrom:String? =null
     var finpto:String? =null
-    internal var prgDialog2: ProgressDialog? = null
+   // internal var prgDialog2: ProgressDialog? = null
     internal var r1: RadioButton? = null
     internal var r2:RadioButton? = null
     internal var r3:RadioButton? = null
@@ -111,7 +123,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     internal var l: Legend? = null
     internal var l2: Legend? =null
     internal var pieChart: PieChart? =null
-    internal var pro: ProgressDialog? =null
+   // internal var pro: ProgressDialog? =null
     internal var calnd: Button? = null
     internal var mToolbar: Toolbar? = null
     internal var v1: View? =null
@@ -123,6 +135,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true)
@@ -134,22 +147,13 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         fromdate = findViewById(R.id.fromdate) as TextView
         fromdatetran = findViewById(R.id.fromdatetran) as TextView
         presenter = MyperfActivityPresenter(applicationContext, this, FetchServerResponse())
-        pro = ProgressDialog(this)
-        pro!!.setMessage("Loading...")
-        pro!!.setTitle("")
-        pro!!.setCancelable(false)
 
         calendar = findViewById(R.id.button4) as Button
 
         calendar!!.setOnClickListener(this)
         session = SessionManagement(this)
-
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading ....")
-        // Set Cancelable as False
+        viewDialg= ViewDialog(this)
         session = SessionManagement(this)
-        prgDialog2!!.setCancelable(false)
-
 
         //  overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         InitCharts()
@@ -174,12 +178,9 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         lymapsview!!.setOnClickListener(View.OnClickListener {
             lyselchart!!.setVisibility(View.VISIBLE)
             lyselcharttran!!.setVisibility(View.GONE)
-
-
             v2!!.setVisibility(View.VISIBLE)
             v1!!.setVisibility(View.GONE)
         })
-
 
         cv = findViewById(R.id.card_view10) as CardView
         lvserv = findViewById(R.id.lvserv) as ListView
@@ -333,14 +334,14 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     }
 
     override fun showProgress() {
-        if (prgDialog2 != null && applicationContext != null && !this@MyPerfActivity.isFinishing) {
-            prgDialog2!!.show()
+        if (viewDialg != null && applicationContext != null && !this@MyPerfActivity.isFinishing) {
+            viewDialg!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && applicationContext != null) {
-            prgDialog2!!.dismiss()
+        if (viewDialg != null  && applicationContext != null) {
+            viewDialg!!.hideDialog()
 
         }
     }
@@ -439,7 +440,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
                 frmendyr = frmendyr.substring(2, 4)
                 endd = "$frmenddymonth-$endMonth-$frmendyr"
 
-                if (Utility.checkInternetConnection()) {
+                if (checkInternetConnection()) {
                     if (Utility.isNotNull(fromd) || Utility.isNotNull(endd)) {
                         presenter!!.ServerPullDataCall(fromd+"/"+endd)
                         //loadDataset(fromd, endd)
@@ -891,10 +892,18 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     override fun onDestroy() {
 
         session!!.setString(SessionManagement.MYPERFTEXT, null)
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && applicationContext != null) {
-            prgDialog2!!.dismiss()
+        if (viewDialg != null && applicationContext != null) {
+            viewDialg!!.hideDialog()
 
         }
         super.onDestroy()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

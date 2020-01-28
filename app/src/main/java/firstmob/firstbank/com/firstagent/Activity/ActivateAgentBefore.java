@@ -66,9 +66,6 @@ public class ActivateAgentBefore extends BaseBeforeActivity implements MainContr
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-
-
-
     @OnClick(R.id.button2)
     public void submit(View view) {
         Dexter.withActivity(this)

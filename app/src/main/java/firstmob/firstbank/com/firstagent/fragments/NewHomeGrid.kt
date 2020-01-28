@@ -49,10 +49,11 @@ class NewHomeGrid : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val views = inflater.inflate(R.layout.fragment_new_home_grid, null) as ViewGroup
 
 
-        // Get the text view widget reference from custom layout
+        val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
+
+
         val open_airtime = views.findViewById<RelativeLayout>(R.id.rl1)
         val open_withdrwa = views.findViewById<RelativeLayout>(R.id.rl3)
         val open_paybills = views.findViewById<RelativeLayout>(R.id.rl6)
@@ -60,13 +61,14 @@ class NewHomeGrid : Fragment() {
         val rltransferbox = views.findViewById<RelativeLayout>(R.id.rltransfer)
         val rlopenacc = views.findViewById<RelativeLayout>(R.id.rlopenaccinside)
         val txtusid = views.findViewById<TextView>(R.id.usid)
+
         // Set a click listener for text view object
         open_airtime.setOnClickListener{
-            val intent = Intent (getActivity(), AirtimeTransf::class.java)
+            val intent = Intent (getActivity(), AirtimeTransfActivity::class.java)
             this.startActivity(intent)
         }
         open_withdrwa.setOnClickListener{
-            val intent = Intent (getActivity(), Withdraw::class.java)
+            val intent = Intent (getActivity(), WithdrawActivity::class.java)
             this.startActivity(intent)
         }
         open_p.setOnClickListener{
@@ -78,6 +80,7 @@ class NewHomeGrid : Fragment() {
             val intent = Intent (getActivity(), BillMenuActivity::class.java)
             this.startActivity(intent)
         }
+
 
         rltransferbox?.setOnClickListener(){
 
@@ -91,6 +94,7 @@ class NewHomeGrid : Fragment() {
 
             startActivity(i)
         }
+
 
 
 

@@ -17,24 +17,33 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.PinChangesContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ChangePinActivityPresenter
 import firstmob.firstbank.com.firstagent.presenter.ForceChangePinPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection
 import okhttp3.OkHttpClient
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import javax.inject.Inject
 
 class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesContract.IViewPinChangeActivity {
+    @Inject
+    internal lateinit var ul: Utility
 
-    internal var pDialog: ProgressDialog? =null
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
+  //  internal var pDialog: ProgressDialog? =null
     internal var et: EditText? =null
     internal var et2:EditText? =null
     internal var oldpin:EditText? =null
     internal var btnok: Button? =null
     internal var session: SessionManagement? =null
-    internal var prgDialog2: ProgressDialog? = null
+    var viewDialog: ViewDialog?=null
+   // internal var prgDialog2: ProgressDialog? = null
     internal var npin: String? = null
     internal var chgpinparams: String? = null
     internal lateinit var presenter: PinChangesContract.PresenterPinChange
@@ -48,10 +57,8 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading....")
-        prgDialog2!!.setCancelable(false)
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+        viewDialog= ViewDialog(this)
         session = SessionManagement(this)
         oldpin = findViewById(R.id.oldpin) as EditText
         presenter = ChangePinActivityPresenter(this, this, FetchServerResponse())
@@ -59,13 +66,13 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
         et2 = findViewById(R.id.cpin) as EditText
         btnok = findViewById(R.id.button2) as Button
         btnok!!.setOnClickListener(this)
-        pDialog = ProgressDialog(this)
-        pDialog!!.setTitle("Loading")
-        pDialog!!.setCancelable(false)
+//        pDialog = ProgressDialog(this)
+//        pDialog!!.setTitle("Loading")
+//        pDialog!!.setCancelable(false)
     }
     override fun onClick(v: View?) {
         if (v!!.getId() == R.id.button2) {
-            if (Utility.checkInternetConnection()) {
+            if (checkInternetConnection()) {
                  npin = et!!.getText().toString()
                 val confnpin = et2!!.getText().toString()
                 val oldpinn = oldpin!!.getText().toString()
@@ -144,11 +151,15 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
     }
 
     override fun showProgress() {
-        pDialog!!.show()
+
+        viewDialog!!.showDialog()
     }
 
     override fun hideProgress() {
-        pDialog!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+        //pDialog!!.dismiss()
     }
 
     override fun ForceLogout() {
@@ -176,8 +187,9 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
                     .show()
         }
     }
+
     override fun onBackpressd() {
-    onBackPressed()
+        onBackPressed()
     }
     override fun onDestroy() {
         presenter!!.ondestroy()

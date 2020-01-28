@@ -22,6 +22,7 @@ import com.google.android.gms.security.ProviderInstaller
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.PinChangesContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ForceChangePinPresenter
 import firstmob.firstbank.com.firstagent.presenter.ForceResetPinPresenter
@@ -29,9 +30,18 @@ import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import javax.inject.Inject
 
 class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesContract.IViewPinChange {
-    internal var pDialog: ProgressDialog?=null
+    @Inject
+    internal lateinit var ul: Utility
+
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
+
+  //  internal var pDialog: ProgressDialog?=null
+    var viewDialog: ViewDialog? =null
     internal var et: EditText? =null
     internal var et2:EditText? =null
     internal var oldpin:EditText? =null
@@ -54,7 +64,7 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
 
         oldpin = findViewById(R.id.oldpin) as EditText
         et = findViewById(R.id.pin) as EditText
@@ -62,9 +72,10 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
         btnok = findViewById(R.id.button2) as Button
         btnok!!.setOnClickListener(this)
         session = SessionManagement(applicationContext)
-        pDialog = ProgressDialog(this)
-        pDialog!!.setTitle("Loading")
-        pDialog!!.setCancelable(false)
+        viewDialog= ViewDialog(this)
+//        pDialog = ProgressDialog(this)
+//        pDialog!!.setTitle("Loading")
+//        pDialog!!.setCancelable(false)
         presenter = ForceChangePinPresenter(this, this, FetchServerResponse())
         updateAndroidSecurityProvider(this)
         if (intent != null) {
@@ -143,11 +154,15 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
     }
 
     override fun showProgress() {
-        pDialog!!.show()
+        viewDialog!!.showDialog()
+      //  pDialog!!.show()
     }
 
     override fun hideProgress() {
-        pDialog!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+       // pDialog!!.dismiss()
     }
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
@@ -199,5 +214,10 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
             SecurityLayer.Log("SecurityException", "Google Play Services not available.")
         }
 
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

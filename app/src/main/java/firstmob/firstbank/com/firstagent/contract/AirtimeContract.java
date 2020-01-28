@@ -28,6 +28,7 @@ public interface AirtimeContract {
         void setviewvisibility();
         void onProcessingError(String error);
         void onBackNavigate();
+        void setBalance(String blance);
         void logout();
         void showProgress();
         void hideProgress();

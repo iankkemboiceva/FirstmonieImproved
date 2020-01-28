@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
+import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 
 import firstmob.firstbank.com.firstagent.Activity.R
 import firstmob.firstbank.com.firstagent.constants.Constants
@@ -19,9 +20,17 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
+import javax.inject.Inject
 
 
 class ConfimCabletvPresenter : GetBillersContract.PresenterConfirmCabletv, MainContract.GetDataIntractor.OnFinishedListener {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var iView: GetBillersContract.IViewbillConfirmCabletv? = null
     private var getDataIntractor: MainContract.GetDataIntractor? = null
     internal var context: Context? = null

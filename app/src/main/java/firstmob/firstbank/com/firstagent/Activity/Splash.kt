@@ -23,6 +23,7 @@ class Splash : AppCompatActivity() {
                 val chklog = Prefs.getBoolean(ISLOGIN, false)
 
                 if (chklog) {
+                    finish()
                     val i = Intent(this, FMobActivity::class.java)
                     startActivity(i)
 

@@ -22,15 +22,24 @@ import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.AGENTID
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.KEY_USERID
 import firstmob.firstbank.com.firstagent.contract.PinChangesContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ForceResetPinPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import javax.inject.Inject
 
 class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContract.IViewPinChange {
-    internal var pDialog: ProgressDialog? = null
+    @Inject
+    internal lateinit var ul: Utility
+
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+    }
+    //internal var pDialog: ProgressDialog? = null
+    var viewDialog: ViewDialog? =null
     internal var et: EditText? = null
     internal var et2: EditText? = null
     internal var oldpin: EditText? = null
@@ -54,7 +63,7 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         oldpin = findViewById(R.id.oldpin) as EditText
         et = findViewById(R.id.pin) as EditText
         et2 = findViewById(R.id.cpin) as EditText
@@ -62,10 +71,12 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
         btnok!!.setOnClickListener(this)
         session = SessionManagement(applicationContext)
         presenter = ForceResetPinPresenter(this, this, FetchServerResponse())
-        pDialog = ProgressDialog(this)
-       // pDialog!!.setTitle("Loading")
-        pDialog!!.setMessage("Loading Request....")
-        pDialog!!.setCancelable(false)
+
+        viewDialog= ViewDialog(this)
+//        pDialog = ProgressDialog(this)
+//       // pDialog!!.setTitle("Loading")
+//        pDialog!!.setMessage("Loading Request....")
+//        pDialog!!.setCancelable(false)
         updateAndroidSecurityProvider(this)
         if (intent != null) {
             value = intent.extras.getString("pinna")
@@ -174,11 +185,15 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
     }
 
     override fun showProgress() {
-    pDialog!!.show()
+        viewDialog!!.showDialog()
+    //pDialog!!.show()
     }
 
     override fun hideProgress() {
-     pDialog!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+     //pDialog!!.dismiss()
     }
 
     override fun ForceLogout() {
@@ -218,5 +233,10 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
     override fun onDestroy() {
         presenter!!.ondestroy()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

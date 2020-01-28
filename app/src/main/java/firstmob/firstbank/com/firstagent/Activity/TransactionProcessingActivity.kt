@@ -286,9 +286,6 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
         intent.putExtra("fee", totfee)
         intent.putExtra("tref", tref)
 
-
-
-
         startActivity(intent)
     }
 

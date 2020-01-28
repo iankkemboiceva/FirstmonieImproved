@@ -4,6 +4,7 @@ package firstmob.firstbank.com.firstagent.presenter
 import android.content.Context
 import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
+import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 
 import firstmob.firstbank.com.firstagent.Activity.R
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
@@ -19,10 +20,17 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
+import javax.inject.Inject
 
 
 class GetBillPaymentsActPresenter : GetBillersContract.Presenterloadbillerspc, MainContract.GetDataIntractor.OnFinishedListener {
+    @Inject
+    internal lateinit var ul: Utility
+    init {
 
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var iView: GetBillersContract.IViewbillPaymentsAct? = null
     private var getDataIntractor: MainContract.GetDataIntractor? = null
     val KEY_TOKEN = "token"

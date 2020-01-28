@@ -118,14 +118,30 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
             }
 
             1 -> {
+                val intent = Intent(this, ChangePinActivity::class.java)
+                startActivity(intent);
             }
 
 
             2 -> {
+              //  finish()
+                val intent = Intent(this, MyPerfActivity::class.java)
+
+
+                // Staring Login Activity
+                startActivity(intent);
             }
             3 -> {
+                val intent = Intent(this, MinistatActivity::class.java)
+                startActivity(intent);
             }
             4 -> {
+                //finish()
+                val intent = Intent(this, CommisionActivity::class.java)
+
+
+                // Staring Login Activity
+                startActivity(intent);
             }
             5 -> {
                 finish()
@@ -169,11 +185,6 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         }
     }
 
-    fun setActionBarTitle(title: String) {
-
-        //   getSupportActionBar().setTitle(title);
-    }
-
 
     private fun replaceFragment(fragment: Fragment) {
         val backStateName = fragment.javaClass.name
@@ -190,7 +201,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     }
 
     override fun onBackPressed() {
-
+       finish()
         val fm = supportFragmentManager
         val fm2 = fragmentManager
         val bentry = fm.backStackEntryCount
@@ -209,29 +220,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         super.onBackPressed()
     }
 
-    fun addFragment(frag: Fragment, title: String) {
 
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        //  String tag = Integer.toString(title);
-        fragmentTransaction.replace(R.id.container_body, frag, title)
-        fragmentTransaction.addToBackStack(title)
-        fragmentTransaction.commit()
-        setActionBarTitle(title)
-    }
-
-    fun addAppFragment(frag: android.app.Fragment, title: String) {
-
-
-        val fragmentManager = fragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        //  String tag = Integer.toString(title);
-        fragmentTransaction.replace(R.id.container_body, frag, title)
-
-        fragmentTransaction.addToBackStack(title)
-
-        fragmentTransaction.commit()
-    }
 
     override fun onClick(v: View) {
 

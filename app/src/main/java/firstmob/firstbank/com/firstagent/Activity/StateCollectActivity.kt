@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.MaterialDialog
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.contract.GetBillersContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.model.BenList
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.GetBillersSpecMenuPresenter
@@ -32,7 +33,7 @@ class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     internal var presenter: GetBillersContract.PresenterLoadMarket? =null
     internal var btnsub: Button? =null
     internal var session: SessionManagement? =null
-    internal var prgDialog2: ProgressDialog? = null
+   // internal var prgDialog2: ProgressDialog? = null
     internal var amon: EditText? =null
     internal var edacc:EditText? =null
     internal var pno:EditText? = null
@@ -51,7 +52,7 @@ class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     internal var smcno:TextView? =null
     internal var step2:TextView? =null
     internal var step1:TextView? =null
-
+    var viewDialog : ViewDialog? =null
     internal var mobadapt: ArrayAdapter<BenList>? =null
 
     internal var sp3: Spinner? =null
@@ -74,9 +75,10 @@ class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillers
         edacc = findViewById(R.id.acc) as EditText
         billname = findViewById(R.id.textView1) as TextView
         smcno = findViewById(R.id.smcno) as TextView
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading Request....")
-        prgDialog2!!.setCancelable(false)
+        viewDialog= ViewDialog(this)
+//        prgDialog2 = ProgressDialog(this)
+//        prgDialog2!!.setMessage("Loading Request....")
+//        prgDialog2!!.setCancelable(false)
 
 
         sp3 = findViewById(R.id.spin3) as Spinner
@@ -163,12 +165,14 @@ class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     }
 
     override fun showProgress() {
-        prgDialog2!!.show()
+        viewDialog!!.showDialog()
     }
 
     override fun hideProgress() {
-
-            prgDialog2!!.dismiss()
+        if(viewDialog!=null){
+            viewDialog!!.hideDialog()
+        }
+          //  prgDialog2!!.dismiss()
 
     }
     override fun onClick(view: View?) {

@@ -8,6 +8,7 @@ import android.os.Environment
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 
@@ -25,7 +26,7 @@ import firstmob.firstbank.com.firstagent.utils.Utility
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
-class ChangeAcNameActivity : BaseActivity(), View.OnClickListener {
+class ChangeAcNameActivity : AppCompatActivity(), View.OnClickListener {
     private val mToolbar: Toolbar? = null
     internal var agentname: TextView? =null
     internal var agemail: TextView? =null
@@ -37,6 +38,7 @@ class ChangeAcNameActivity : BaseActivity(), View.OnClickListener {
     internal var chktpin: CheckBox? = null
     internal var chkbal: CheckBox? = null
 
+    internal var session: SessionManagement? =null
     internal var numb: String? = null
     internal var initdisp = false
     internal var upLoadServerUri: String? = null
@@ -144,7 +146,8 @@ class ChangeAcNameActivity : BaseActivity(), View.OnClickListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            onBackPressed()    //Call the back button's method
+            finish()
+           // onBackPressed()    //Call the back button's method
             return true
         }
 

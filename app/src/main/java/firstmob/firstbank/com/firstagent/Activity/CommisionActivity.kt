@@ -14,6 +14,7 @@ import com.borax12.materialdaterangepicker.date.DatePickerDialog
 import firstmob.firstbank.com.firstagent.adapter.NewCommListAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants
 import firstmob.firstbank.com.firstagent.contract.CommisionContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.fragments.DateRangePickerFragment
 import firstmob.firstbank.com.firstagent.model.GetCommPerfData
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
@@ -27,10 +28,15 @@ import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission, View.OnClickListener, DatePickerDialog.OnDateSetListener, DateRangePickerFragment.OnDateRangeSelectedListener {
-
-
+    @Inject
+    internal lateinit var ul: Utility
+    init {
+        ApplicationClass.getMyComponent().inject(this)
+        // initUser();
+    }
     internal var signup: Button? = null
     // Spinner sp1;
     internal var acc: List<String> = ArrayList()
@@ -48,7 +54,8 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
     internal  var presenterbalnce: CommisionContract.Presenter? =null
     internal  var presenter: CommisionContract.Presenter? =null
     internal var selacc: String? = null
-    internal var prgDialog2: ProgressDialog? = null
+   // internal var prgDialog2: ProgressDialog? = null
+    var viewDialog: ViewDialog? =null
     internal var acno: TextView? = null
     internal var txtitle: TextView? = null
     internal var txcomrepo: TextView? = null
@@ -86,8 +93,11 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
         txtitle = findViewById(R.id.bname) as TextView
         txfrom = findViewById(R.id.from) as TextView
         //   sp1 = (Spinner) rootView.findViewById(R.id.accno);
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading ....")
+
+//        prgDialog2 = ProgressDialog(this)
+//        prgDialog2!!.setMessage("Loading ....")
+        //prgDialog2!!.setCancelable(false)
+        viewDialog=ViewDialog(this)
         lstmt = findViewById(R.id.stmtly) as LinearLayout
         lstmt!!.setOnClickListener(this)
         presenterbalnce= BalanceEnquirePresenter(this, this, FetchServerResponse())
@@ -96,7 +106,6 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
         session = SessionManagement(this)
         calendar = findViewById(R.id.button4) as Button
         calendar!!.setOnClickListener(this)
-        prgDialog2!!.setCancelable(false)
         emptyView = findViewById(R.id.empty_view) as TextView
         val usid = Utility.gettUtilUserId(this)
         txtcomrepo!!.setText("Commission By User $usid")
@@ -170,14 +179,14 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
     }
 
     override fun showProgress() {
-        if (prgDialog2 != null && applicationContext != null && !this@CommisionActivity.isFinishing()) {
-            prgDialog2!!.show()
+        if (viewDialog != null && applicationContext != null && !this@CommisionActivity.isFinishing()) {
+            viewDialog!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (prgDialog2 != null && applicationContext != null && !this@CommisionActivity.isFinishing()) {
-            prgDialog2!!.hide()
+        if (viewDialog != null && applicationContext != null && !this@CommisionActivity.isFinishing()) {
+            viewDialog!!.hideDialog()
         }
     }
 
@@ -302,8 +311,8 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
     }
 
     fun dismissProgressDialog() {
-        if (prgDialog2 != null && prgDialog2!!.isShowing() && !this@CommisionActivity.isFinishing()) {
-            prgDialog2!!.dismiss()
+        if (viewDialog != null && !this@CommisionActivity.isFinishing()) {
+            viewDialog!!.hideDialog()
         }
     }
 

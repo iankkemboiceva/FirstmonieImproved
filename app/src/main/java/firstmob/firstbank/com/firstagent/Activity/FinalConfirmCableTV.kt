@@ -30,8 +30,10 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
+import javax.inject.Inject
 
 class FinalConfirmCableTV : AppCompatActivity(),View.OnClickListener {
+
     internal var reccustid: TextView? =null
     internal var recamo:TextView? =null
     internal var recnarr:TextView? =null
@@ -59,8 +61,8 @@ class FinalConfirmCableTV : AppCompatActivity(),View.OnClickListener {
     internal var strlabel:String? = null
     internal var strbillnm:String? = null
     internal var fullname:String? = null
-    internal var prgDialog: ProgressDialog? = null
-    internal var prgDialog2:ProgressDialog? =null
+//    internal var prgDialog: ProgressDialog? = null
+//    internal var prgDialog2:ProgressDialog? =null
     internal var amon: EditText? = null
     internal var edacc:EditText? = null
     internal var pno:EditText? = null
@@ -118,9 +120,9 @@ class FinalConfirmCableTV : AppCompatActivity(),View.OnClickListener {
         recsendnam = findViewById(R.id.sendnammm)
         recsendnum = findViewById(R.id.sendno)
 
-        prgDialog2 = ProgressDialog(this)
-        prgDialog2!!.setMessage("Loading....")
-        prgDialog2!!.setCancelable(false)
+//        prgDialog2 = ProgressDialog(this)
+//        prgDialog2!!.setMessage("Loading....")
+//        prgDialog2!!.setCancelable(false)
 
 
         recagcmn = findViewById(R.id.txtaccom)

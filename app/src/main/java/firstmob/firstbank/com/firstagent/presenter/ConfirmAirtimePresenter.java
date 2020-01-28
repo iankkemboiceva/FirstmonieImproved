@@ -77,46 +77,52 @@ public class ConfirmAirtimePresenter implements AirtimeContract.PresenterConfirm
 
             String respcode = obj.optString("responseCode");
             String responsemessage = obj.optString("message");
+            String respfee = obj.optString("fee");
+           String agbalance = obj.optString("data");
+            if (Utility.isNotNull(agbalance)) {
+                iView.setBalance(agbalance + Constants.KEY_NAIRA);
+              //  acbal.setText();
+            }
 
-//            if(session.getTransFlag().equals("getFee")){
-                String respfee = obj.optString("fee");
 
-                if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
-                    if (!(Utility.checkUserLocked(respcode))) {
-                        if (!(response == null)) {
-                            if (respcode.equals("00")) {
+            //session.setString(SecurityLayer.KEY_APP_ID,appid);
 
-                                SecurityLayer.Log("Response Message", responsemessage);
+            if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
+                if (!(Utility.checkUserLocked(respcode))) {
+                    if (!(response == null)) {
+                        if (respcode.equals("00")) {
+
+                            SecurityLayer.Log("Response Message", responsemessage);
 
 //                                    SecurityLayer.Log("Respnse getResults",datas.toString());
-                                if (respfee == null || respfee.equals("")) {
-                                    iView.setFee("N/A");
-                                    //txtfee.setText();
-                                } else {
-                                    respfee = Utility.returnNumberFormat(respfee);
-                                    iView.setFee(Constants.KEY_NAIRA + respfee);
-                                    //txtfee.setText();
-                                }
-
-                            } else if (respcode.equals("93")) {
-                                iView.onProcessingError(responsemessage);
-                                iView.onBackNavigate();
-                                iView.onProcessingError("Please ensure amount set is below the set limit");
-
+                            if (respfee == null || respfee.equals("")) {
+                                iView.setFee("N/A");
+                                //txtfee.setText("N/A");
                             } else {
-                                iView.setviewvisibility();
-                                iView.onProcessingError(responsemessage);
-                                //btnsub.setVisibility(View.GONE);
+                                respfee = Utility.returnNumberFormat(respfee);
+                                iView.setFee(Constants.KEY_NAIRA + respfee);
+                             //   txtfee.setText(ApplicationConstants.KEY_NAIRA + respfee);
                             }
+
+                        } else if (respcode.equals("93")) {
+                          iView.onProcessingError(responsemessage);
+                          iView.onBackNavigate();
+                           // onBackPressed();
+
                         } else {
-                            iView.setFee("N/A");
-                            //txtfee.setText();
+                            iView.setviewvisibility();
+                            iView.onProcessingError(responsemessage);
+
                         }
                     } else {
-                        iView.logout();
-                       // ((FMobActivity) getActivity()).LogOut();
+                        iView.setFee("N/A");
+                       // txtfee.setText("N/A");
                     }
+                } else {
+                    iView.logout();
+                    //LogOut();
                 }
+            }
 
 
 
