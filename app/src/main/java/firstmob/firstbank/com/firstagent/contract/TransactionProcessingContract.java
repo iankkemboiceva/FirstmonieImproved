@@ -34,6 +34,7 @@ public interface TransactionProcessingContract {
         void CashAirtimeResult(String refcodee,String datetime,String agcmsn,String totfee,String tref);
 
         void CashCabletvResult(String refcodee,String datetime,String agcmsn,String totfee,String tref);
+        void SendOTBResult(String refcodee,String datetime,String agcmsn,String totfee);
 
     }
 

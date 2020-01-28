@@ -182,6 +182,25 @@ class TransactionProcPresenter(internal var iLoginView: TransactionProcessingCon
                                         }
 
 
+                                    }else if(regtype=="SENDOTB"){
+
+                                        var totfee: String? = "0.00"
+                                        var tref = "N/A"
+                                        if (datas != null) {
+
+                                            var datetimee = ""
+                                            val ttf = datas.optString("fee")
+                                            datetimee = datas.optString("dateTime")
+                                            if (ttf == null || ttf == "") {
+
+                                            } else {
+                                                totfee = ttf
+                                            }
+                                            tref = datas.optString("refNumber")
+                                            iLoginView!!.SendOTBResult(refcodee, datetimee, agcmsn, totfee)
+                                        }
+
+
                                     }
                                 } else if (respcode == "002") {
                                     iLoginView!!.onErrorResult(responsemessage)

@@ -33,8 +33,13 @@ import firstmob.firstbank.com.firstagent.presenter.LogComplaintPresenter;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
 
 import dagger.Component;
+
 import firstmob.firstbank.com.firstagent.presenter.MinstatementPresenter;
 import firstmob.firstbank.com.firstagent.presenter.MyperfActivityPresenter;
+
+import firstmob.firstbank.com.firstagent.presenter.OpenAccCustPicPresenter;
+import firstmob.firstbank.com.firstagent.presenter.SendOTBPresenter;
+
 import firstmob.firstbank.com.firstagent.presenter.SignInPresenter;
 import firstmob.firstbank.com.firstagent.presenter.StateCollectacivtyPresenter;
 import firstmob.firstbank.com.firstagent.presenter.TransactionProcPresenter;
@@ -55,6 +60,7 @@ public  interface MyComponent {
     void inject(ComplaintsPresenter presenter);
     void inject(CashDepoTransPresenter presenter);
     void inject(ConfirmCashTransPresenter presenter);
+
     void inject(MyPerfActivity activity);
     void inject(ForceChangePin activity);
     void inject(ForceResetPin activity);
@@ -67,6 +73,10 @@ public  interface MyComponent {
     void inject(WithdrawActivity activity);
     void inject(ConfirmWithdrawalActivity activity);
     void inject(ConfirmWithdrwalPresenter presenter);
+
+    void inject(SendOTBPresenter presenter);
+    void inject(OpenAccCustPicPresenter presenter);
+
 
     void inject(ConfirmAirtimeActivity activity);
     void inject(AirtimeTransfActivity activity);

@@ -49,7 +49,7 @@ class OtherBankPresenter(internal var iLoginView: OtherBankContract.ILoginView?,
 
 
 
-                val params = Constants.CH_ID + "/" + userid + "/" + agentid + "/3939393"
+                val params = "$userid/$agentid/3939393"
 
                 val urlparams = genURLCBC(params, endpoint)
 

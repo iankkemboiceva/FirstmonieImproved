@@ -8,11 +8,15 @@ import firstmob.firstbank.com.firstagent.constants.Constants;
 import firstmob.firstbank.com.firstagent.utils.Utility;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 import javax.crypto.KeyGenerator;
@@ -27,6 +31,7 @@ import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.decryp
 import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.encrypt;
 import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.initVector;
 import static firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection;
+import static firstmob.firstbank.com.firstagent.utils.Utility.generateHashString;
 import static firstmob.firstbank.com.firstagent.utils.Utility.getDevImei;
 import static firstmob.firstbank.com.firstagent.utils.Utility.toHex;
 import static firstmob.firstbank.com.firstagent.security.AESCBCEncryption.key;
@@ -77,7 +82,7 @@ public class SecurityLayer {
             Log("Session ID is " + session_id);
             finpoint = sb.append(Constants.NET_URL + endpoint)
                     .append(toHex(encrypt(key, initVector, params)))
-                    .append("/" + Utility.generateHashString(params))
+                    .append("/" + generateHashString(params))
                     .append("/" + toHex(hexkey))
                     .append(Constants.CH_KEY)
                     .append("/" +Constants.APP_ID)
@@ -130,7 +135,7 @@ public class SecurityLayer {
 
             finpoint = sb.append(Constants.NET_URL + endpoint)
                     .append(toHex(encrypt(key, initVector, params)))
-                    .append("/" + Utility.generateHashString(params))
+                    .append("/" + generateHashString(params))
                     .append("/" + hexkey)
                     .append(Constants.CH_KEY)
                     .append("/" + Constants.APP_OUTSIDEID)
@@ -200,7 +205,7 @@ public class SecurityLayer {
         SecurityLayer.Log("sessioniv [" + sessioniv + "]");
         SecurityLayer.Log("finalresp [" + finalresp + "]");
 
-        String gen = Utility.generateHashString(finalresp);
+        String gen = generateHashString(finalresp);
         SecurityLayer.Log("Hashing Status [" + gen.equals(dhash) + "]");
 
         decjsonobj.put("pkey_dec", pkey_dec);
@@ -268,7 +273,7 @@ public class SecurityLayer {
 
             finpoint = sb.append(Constants.NET_URL + endpoint)
                     .append(toHex(encryptedUrl))
-                    .append("/" + Utility.generateHashString(params))
+                    .append("/" + generateHashString(params))
                     .append("/" + encryptedpkey)
                     .append(Constants.CH_KEY)
                     .append("/" + encappid)
@@ -320,7 +325,7 @@ public class SecurityLayer {
         Log("sessioniv [" + sessioniv + "]");
         Log("finalresp [" + finalresp + "]");
 
-        String gen = Utility.generateHashString(finalresp);
+        String gen = generateHashString(finalresp);
         Log("Hashing Status [" + gen.equals(dhash) + "]");
 
         decjsonobj.put("sessionkey", sessionkey);
@@ -404,7 +409,7 @@ public class SecurityLayer {
                 encryptedrandomIV = toHex(AESCBCEncryption.encrypt(base64Decode(pkey), base64Decode(piv), base64Encode(AESCBCEncryption.generateIV())));
                 encryptedUrl = toHex(AESCBCEncryption.encrypt(base64Decode(skey), base64Decode(siv), params));
 
-                hash = Utility.generateHashString(params);
+                hash = generateHashString(params);
                 encryptedimei = toHex(AESCBCEncryption.encrypt(base64Decode(skey), base64Decode(siv), imei));
                 fsess = toHex(AESCBCEncryption.encrypt(base64Decode(skey), base64Decode(siv), fsess));
                 // year = toHex(year);
@@ -463,7 +468,7 @@ public class SecurityLayer {
 
 
             System.out.println("finalresp [" + finalresp + "]");
-            String gen = Utility.generateHashString(finalresp);
+            String gen = generateHashString(finalresp);
             System.out.println("Hashing Status [" + gen.equals(dhash) + "]");
 
             decjsonobj.put("pkey_dec", "");
@@ -483,6 +488,56 @@ public class SecurityLayer {
         return data;
 
     }
+
+    public static String encryptdata(String value,Context ct){
+
+
+
+        String skey = Prefs.getString(SecurityLayer.KEY_SKEY,"NA");
+        SecurityLayer.Log("skey", skey);
+        String siv = Prefs.getString(SecurityLayer.KEY_SIV,"NA");
+        SecurityLayer.Log("siv", siv);
+
+
+        return AESCBCEncryption.encrypt(base64Decode(skey), base64Decode(siv), value);
+
+    }
+
+    public static String getSortedStringToHash(Map<String, Object> map){
+        StringBuilder strToHash = new StringBuilder();
+        Iterator<String> keyIterator = map.keySet().iterator();
+        while(keyIterator.hasNext()){
+            String key=keyIterator.next();
+            strToHash.append(map.get(key));
+        }
+        return strToHash.toString();
+    }
+    public static Map<String, Object> getSortedMap(JSONObject data){
+        Map<String, Object> map = new TreeMap<>();
+        Iterator<String> keyIterator = data.keys();
+        while(keyIterator.hasNext()){
+            String key=keyIterator.next();
+            try {
+                map.put(key, data.get(key));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return map;
+    }
+
+    public static String gethasheddata(JSONObject data){
+        Map<String, Object> map = getSortedMap(data);
+        String strToHash = getSortedStringToHash(map);
+        String hashedBody = "";
+        try {
+            hashedBody = generateHashString(strToHash);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return  hashedBody;
+    }
+
 
     public static void Log(String tag, String message) {
         if (isDebug) {

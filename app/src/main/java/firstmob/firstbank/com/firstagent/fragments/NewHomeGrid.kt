@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import android.widget.TextView
 
 import firstmob.firstbank.com.firstagent.Activity.*
 
 import android.widget.Toast
+import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.Activity.*
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility.generateHashString
@@ -50,11 +53,15 @@ class NewHomeGrid : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
 
-        // Get the text view widget reference from custom layout
-        val open_airtime = view.findViewById<RelativeLayout>(R.id.rl1)
-        val open_withdrwa = view.findViewById<RelativeLayout>(R.id.rl3)
-        val open_paybills = view.findViewById<RelativeLayout>(R.id.rl6)
-        val open_p = view.findViewById<RelativeLayout>(R.id.rlinbox)
+
+        val open_airtime = views.findViewById<RelativeLayout>(R.id.rl1)
+        val open_withdrwa = views.findViewById<RelativeLayout>(R.id.rl3)
+        val open_paybills = views.findViewById<RelativeLayout>(R.id.rl6)
+        val open_p = views.findViewById<RelativeLayout>(R.id.rlinbox)
+        val rltransferbox = views.findViewById<RelativeLayout>(R.id.rltransfer)
+        val rlopenacc = views.findViewById<RelativeLayout>(R.id.rlopenaccinside)
+        val txtusid = views.findViewById<TextView>(R.id.usid)
+
         // Set a click listener for text view object
         open_airtime.setOnClickListener{
             val intent = Intent (getActivity(), AirtimeTransfActivity::class.java)
@@ -75,6 +82,24 @@ class NewHomeGrid : Fragment() {
         }
 
 
+        rltransferbox?.setOnClickListener(){
+
+            val i = Intent(activity, FTMenuActivity::class.java)
+
+            startActivity(i)
+        }
+        rlopenacc?.setOnClickListener(){
+
+            val i = Intent(activity, OpenAccActivity::class.java)
+
+            startActivity(i)
+        }
+
+
+
+
+
+
 
         val rldepo: RelativeLayout? = view?.findViewById(R.id.rl5)
         rldepo?.setOnClickListener(){
@@ -93,19 +118,16 @@ class NewHomeGrid : Fragment() {
             startActivity(i)
         }
 
-        val rltransfer: RelativeLayout? = view?.findViewById(R.id.rltransfer)
-        rltransfer?.setOnClickListener(){
 
-            val i = Intent(activity, FTMenuActivity::class.java)
 
-            startActivity(i)
-        }
 
         val pin = "12346";
         val hashedpin = generateHashString(pin);
         SecurityLayer.Log(hashedpin)
+        val strusid = Prefs.getString(SharedPrefConstants.KEY_USERID,"")
+        txtusid.text = "User ID:$strusid"
 
-        return view;
+        return views
 
     }
 

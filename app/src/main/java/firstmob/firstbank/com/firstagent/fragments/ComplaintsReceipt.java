@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import androidx.fragment.app.DialogFragment;
 import firstmob.firstbank.com.firstagent.Activity.LogComplaint;
 import firstmob.firstbank.com.firstagent.Activity.R;
+import firstmob.firstbank.com.firstagent.Activity.UploadTicket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -98,7 +99,7 @@ public class ComplaintsReceipt extends DialogFragment implements View.OnClickLis
         statuss = (TextView) view.findViewById(R.id.status);
         txservtype = (TextView) view.findViewById(R.id.txt9);
 
-        logcompl = (Button) view.findViewById(R.id.btnlog);
+        logcompl = (Button) view.findViewById(R.id.btnpaid);
         logcompl.setOnClickListener(this);
         Bundle bundle = getArguments();
        recamo = bundle.getString("amo","");
@@ -129,15 +130,15 @@ public class ComplaintsReceipt extends DialogFragment implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btnlog) {
-            Intent intent  = new Intent(getActivity(),LogComplaint.class);
+        if (v.getId() == R.id.btnpaid) {
+            Intent intent  = new Intent(getActivity(), UploadTicket.class);
 
 
 
-            intent.putExtra("txaco", recnarrtor);
+          /*  intent.putExtra("txaco", recnarrtor);
             intent.putExtra("txamo", recamo);
             intent.putExtra("txref", recrefno);
-            intent.putExtra("txdate", recdatetime);
+            intent.putExtra("txdate", recdatetime);*/
 
 
 

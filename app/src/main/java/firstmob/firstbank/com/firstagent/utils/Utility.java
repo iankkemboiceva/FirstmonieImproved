@@ -18,7 +18,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 
-import android.telephony.TelephonyManager;
+
 import android.text.format.Formatter;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -47,6 +47,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.pixplicity.easyprefs.library.Prefs;
 
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -155,6 +156,45 @@ public class Utility {
         matcher = pattern.matcher(num);
         return matcher.matches();
 
+    }
+
+    public static String getNewAppID(Context c) {
+        SessionManagement sess = new SessionManagement(c);
+        final String appid = Prefs.getString("NWAPPID","NA");
+        return appid;
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean checkWritePermission(final Context context)
+    {
+        int currentAPIVersion = Build.VERSION.SDK_INT;
+        if(currentAPIVersion>=android.os.Build.VERSION_CODES.M)
+        {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                    alertBuilder.setCancelable(true);
+                    alertBuilder.setTitle("Permission necessary");
+                    alertBuilder.setMessage("Permission to store camera images is necessary");
+                    alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                        }
+                    });
+                    AlertDialog alert = alertBuilder.create();
+                    alert.show();
+                } else {
+                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                }
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
 
     public static boolean checklwcase(String tstcase) {
@@ -418,24 +458,7 @@ public class Utility {
         return uuid;
     }
 
-    public void checkpermissions(@Named("ApplicationContext") Context context) {
-        boolean chks = false;
-        Dexter.withActivity((Activity) context)
-                .withPermission(Manifest.permission.CAMERA)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                    }
 
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {/* ... */}
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {/* ... */}
-                }).check();
-
-
-    }
 
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -552,6 +575,8 @@ public class Utility {
         return uuid;
     }
 
+
+
     public static boolean checkStateCollect(String servid) {
         boolean trf = false;
         trf = servid.equals("3");
@@ -611,11 +636,12 @@ public class Utility {
 
     public static String convertDate(String date) {
         String fdate = date;
-        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        SimpleDateFormat dt = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
         Date datee = null;
         try {
             datee = dt.parse(date);
-            SimpleDateFormat dt1 = new SimpleDateFormat("dd MMMM yyyy hh:mm");
+            SimpleDateFormat dt1 = new SimpleDateFormat("dd MM yyyy hh:mm");
 
             fdate = dt1.format(datee);
         } catch (ParseException e) {

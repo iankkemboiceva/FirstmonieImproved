@@ -9,13 +9,18 @@ import android.text.TextWatcher
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
-import firstmob.firstbank.com.firstagent.contract.CashDepoTransContract
+
+import androidx.fragment.app.FragmentManager
+
+import firstmob.firstbank.com.firstagent.contract.SendOTBContract
+
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.fragments.OtherBankPage
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
-import firstmob.firstbank.com.firstagent.presenter.CashDepoTransPresenter
+import firstmob.firstbank.com.firstagent.presenter.SendOTBPresenter
+
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.hideKeyboardFrom
@@ -26,13 +31,13 @@ import kotlinx.android.synthetic.main.activity_send_otb.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
-class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
+class SendOTBActivity : AppCompatActivity(), SendOTBContract.ILoginView,OtherBankPage.OnFragmentCommunicationListener  {
     override fun onLoginResult() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     var viewDialog: ViewDialog? = null
-    internal lateinit var presenter: CashDepoTransContract.Presenter
+    internal lateinit var presenter: SendOTBContract.Presenter
     lateinit var acno: String
     lateinit var acname: String
     var bankname: String? = null;var bankcode:kotlin.String? = null
@@ -52,17 +57,11 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.normalcolor)));
         viewDialog = ViewDialog(this)
 
-        selbank.setOnClickListener {
-            val titlefrag = "Sasa"
-            val fragment: Fragment = OtherBankPage()
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            //  String tag = Integer.toString(title);
-            fragmentTransaction.replace(R.id.container_body, fragment, titlefrag)
+        bankselect.setOnClickListener {
+            val fm: FragmentManager = supportFragmentManager
+            val othbank = OtherBankPage()
 
-
-
-            fragmentTransaction.commit()
+            othbank.show(fm, "fragment_edit_name")
         }
 
 
@@ -70,14 +69,18 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
         edacc.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (edacc.text.toString().length === 10) {
+                    if(Utility.isNotNull(bankcode)) {
 
 
-                    hideKeyboardFrom(applicationContext, edacc)
+                        hideKeyboardFrom(applicationContext, edacc)
 
 
-                    acno = edacc.text.toString()
-                    presenter.NameEnquiry(acno)
+                        acno = edacc.text.toString()
+                        presenter.NameEnquiry(acno, bankcode)
 
+                    }else{
+                        Utility.showToast("Please select a valid bank")
+                    }
 
                 }
                 // TODO Auto-generated method stub
@@ -111,7 +114,7 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
                                 if (Utility.isNotNull(ednumbb)) {
                                     if (Utility.isNotNull(bankcode)) {
                                         if (Utility.isNotNull(acname)) {
-                                    /*        val intent = Intent(this@SendOTBActivity, ConfirmSendOTBActivity::class.java)
+                                            val intent = Intent(this@SendOTBActivity, ConfirmSendOTBActivity::class.java)
                                             intent.putExtra("recanno", recanno)
                                             intent.putExtra("amou", amou)
                                             intent.putExtra("narra", narra)
@@ -121,7 +124,7 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
                                             intent.putExtra("bankname", bankname)
                                             intent.putExtra("bankcode", bankcode)
                                             startActivity(intent)
-                                    */    } else {
+                                        } else {
                                             Toast.makeText(
                                                     applicationContext,
                                                     "Please enter a valid account number",
@@ -175,7 +178,7 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
 
         }
 
-        presenter = CashDepoTransPresenter(this, FetchServerResponse())
+        presenter = SendOTBPresenter(this, FetchServerResponse())
     }
 
     override fun hideProgress() {
@@ -206,19 +209,20 @@ class SendOTBActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
 
     }
 
-    override fun onResume() {
-        super.onResume()//DETERMINE WHO STARTED THIS ACTIVITY
-        val sender=this.intent.extras.getString("SENDER_KEY")
 
-        //IF ITS THE FRAGMENT THEN RECEIVE DATA
-        if(sender != null)
-        {
-            val i = intent
-            val bankname = i.getStringExtra("bankname")
-            val bankcode = i.getStringExtra("bankcode")
-            Toast.makeText(this, "Received", Toast.LENGTH_SHORT).show()
 
+    override fun setBankInfo(strbankname: String, strbankcode: String) {
+        bankname = strbankname
+        bankcode = strbankcode
+
+        if (Utility.isNotNull(strbankname) && Utility.isNotNull(strbankcode)) {
+            SecurityLayer.Log("Inside If", "Inside If");
+            //   edacc.setText(recanno);
+            bankselect.text = "Change Bank";
+
+            bankchosen.text = bankname;
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

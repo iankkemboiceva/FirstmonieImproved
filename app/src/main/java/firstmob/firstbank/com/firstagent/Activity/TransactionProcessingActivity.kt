@@ -2,27 +2,17 @@ package firstmob.firstbank.com.firstagent.Activity
 
 
 
-import android.util.Log
-import android.widget.Toast
-
-import androidx.core.content.ContextCompat
-
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.afollestad.materialdialogs.MaterialDialog
-
-
 import firstmob.firstbank.com.firstagent.contract.TransactionProcessingContract
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.TransactionProcPresenter
-
 import firstmob.firstbank.com.firstagent.utils.Utility
-
 import firstmob.firstbank.com.firstagent.utils.Utility.returnNumberFormat
 import kotlinx.android.synthetic.main.activity_transaction_processing.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -98,6 +88,29 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
                 txpin = intent.getStringExtra("txpin")
                 newparams = "$params/$txpin"
                 val endpoint = "transfer/intrabank.action"
+
+                presenter.CallActivity(newparams,endpoint,serv)
+
+
+            }
+           else  if (serv == "SENDOTB") {
+
+
+
+                recanno = intent.getStringExtra("recanno")
+                amou = intent.getStringExtra("amou")
+                narra = intent.getStringExtra("narra")
+                ednamee = intent.getStringExtra("ednamee")
+                ednumbb = intent.getStringExtra("ednumbb")
+                txtname = intent.getStringExtra("txtname")
+                bankname = intent.getStringExtra("bankname")
+                bankcode = intent.getStringExtra("bankcode")
+                strfee = intent.getStringExtra("fee")
+                txtrfc = intent.getStringExtra("refcode")
+                val params = intent.getStringExtra("params")
+                txpin = intent.getStringExtra("txpin")
+                newparams = "$params/$txpin"
+                val endpoint = "transfer/interbank.action"
 
                 presenter.CallActivity(newparams,endpoint,serv)
 
@@ -297,6 +310,27 @@ class TransactionProcessingActivity : AppCompatActivity(), TransactionProcessing
         startActivity(intent)
     }
 
+
+    override fun SendOTBResult(refcodee: String?, datetime: String?, agcmsn: String?, totfee: String?) {
+
+        val intent = Intent(this, FinalConfDepoActivity::class.java)
+
+
+        intent.putExtra("recanno", recanno)
+        intent.putExtra("amou", amou)
+        intent.putExtra("narra", narra)
+        intent.putExtra("ednamee", ednamee)
+        intent.putExtra("ednumbb", ednumbb)
+        intent.putExtra("txtname", txtname)
+        intent.putExtra("datetime", datetime)
+        intent.putExtra("bankname", bankname)
+        intent.putExtra("bankcode", bankcode)
+        //     String refcodee = datas.optString("referenceCode");
+        intent.putExtra("refcode",refcodee)
+        intent.putExtra("agcmsn",agcmsn)
+        intent.putExtra("fee",totfee)
+        startActivity(intent)
+    }
     override fun CashCabletvResult(refcodee: String?, datetime: String?, agcmsn: String?, totfee: String?, tref: String?) {
         val intent = Intent(this@TransactionProcessingActivity, FinalConfirmCableTVActivity::class.java)
         intent.putExtra("custid", txtcustid)

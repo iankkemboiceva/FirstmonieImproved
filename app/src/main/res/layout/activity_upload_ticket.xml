@@ -109,7 +109,7 @@
                             android:textSize="16sp"
                             android:textColor="@color/black"
                             android:layout_centerHorizontal="true"
-                            android:text="Upload Files"/>
+                            android:text="Upload customer signed ticket"/>
 
                         <LinearLayout
                             android:id="@+id/linear_layout"
@@ -118,7 +118,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp"
-                            android:layout_height="150dp"
+                            android:layout_height="350dp"
 
                             android:layout_centerHorizontal="true"
                             android:orientation="vertical"
@@ -132,29 +132,30 @@
                                 android:layout_gravity="center"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
+                                android:id="@+id/imgimg"
 
                                 ></ImageView>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="Scan ticket"
+                                android:text="Preview"
                                 android:textColor="@color/colorPrimary"
                                 android:layout_height="wrap_content"></TextView>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="or"
-                                android:textColor="@color/colorPrimary"
-                                android:layout_height="wrap_content"></TextView>
+                            <ImageView
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                               android:layout_marginTop="20dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_below="@+id/txtcust"
                                 android:layout_gravity="center"
-                                android:text="browse"
-                                android:textColor="@color/nbkyellow"
-                                android:layout_height="wrap_content"></TextView>
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:id="@+id/imgpreview"
+
+                                ></ImageView>
+
+
                         </LinearLayout>
                     </RelativeLayout>
                     <LinearLayout

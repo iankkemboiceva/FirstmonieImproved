@@ -51,6 +51,7 @@
                 android:textStyle="bold"
 
 
+
                 />
 
             <LinearLayout
@@ -68,16 +69,22 @@
                     android:layout_height="wrap_content"
 
 
-                    android:layout_marginLeft="20dp"
 
-                    android:text="Last Login: 12 July 2012 "
+                    android:layout_marginLeft="20dp"
 
 
                     android:textColor="@color/white"
                     android:textSize="14sp"
 
 
+
                     android:textStyle="bold"
+
+                    android:id="@+id/lastlog"
+
+
+                    android:text=""
+
 
 
                     />
@@ -145,6 +152,22 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content"
+
+
+
+                            android:layout_below="@+id/rl4"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="15dp"
+                            android:padding="5dp"
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+
+
+
 
 
                             android:layout_height="wrap_content">
