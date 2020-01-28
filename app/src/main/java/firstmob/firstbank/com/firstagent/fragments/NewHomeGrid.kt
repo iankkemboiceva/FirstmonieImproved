@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import android.widget.TextView
 
 import firstmob.firstbank.com.firstagent.Activity.*
 
 import android.widget.Toast
+import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.Activity.*
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility.generateHashString
@@ -56,6 +59,7 @@ class NewHomeGrid : Fragment() {
         val open_p = views.findViewById<RelativeLayout>(R.id.rlinbox)
         val rltransferbox = views.findViewById<RelativeLayout>(R.id.rltransfer)
         val rlopenacc = views.findViewById<RelativeLayout>(R.id.rlopenaccinside)
+        val txtusid = views.findViewById<TextView>(R.id.usid)
         // Set a click listener for text view object
         open_airtime.setOnClickListener{
             val intent = Intent (getActivity(), AirtimeTransf::class.java)
@@ -81,7 +85,7 @@ class NewHomeGrid : Fragment() {
 
             startActivity(i)
         }
-        rlopenaccinside?.setOnClickListener(){
+        rlopenacc?.setOnClickListener(){
 
             val i = Intent(activity, OpenAccActivity::class.java)
 
@@ -116,8 +120,10 @@ class NewHomeGrid : Fragment() {
         val pin = "12346";
         val hashedpin = generateHashString(pin);
         SecurityLayer.Log(hashedpin)
+        val strusid = Prefs.getString(SharedPrefConstants.KEY_USERID,"")
+        txtusid.text = "User ID:$strusid"
 
-        return views;
+        return views
 
     }
 

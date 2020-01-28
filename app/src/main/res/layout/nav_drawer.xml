@@ -48,7 +48,7 @@
                 android:id="@+id/txuserid"
                 android:layout_below="@+id/profimg"
                 android:textStyle="bold"
-                android:text="User ID:"
+                android:text=""
 
 
                 />
@@ -68,16 +68,17 @@
                     android:textStyle="bold"
 
 
+
                    android:layout_marginLeft="20dp"
 
                     android:textColor="@color/white"
 
 
                     android:textSize="14sp"
-                    android:id="@+id/sdf2"
+                    android:id="@+id/lastlog"
 
 
-                    android:text="Last Login: 12 July 2012 "
+                    android:text=""
 
 
                     /></LinearLayout>
@@ -185,8 +186,8 @@ android:layout_marginTop="20dp"
                             >
                             <RelativeLayout
                                 android:layout_width="match_parent"
-android:layout_marginTop="10dp"
-                                android:layout_centerInParent="true"
+
+
 
                                 android:layout_height="wrap_content">
                                 <ImageView

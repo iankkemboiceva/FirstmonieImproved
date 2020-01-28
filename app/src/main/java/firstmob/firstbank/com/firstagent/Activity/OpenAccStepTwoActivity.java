@@ -121,9 +121,6 @@ public class OpenAccStepTwoActivity extends BaseActivity implements View.OnClick
         sp2.setAdapter(adapter2);
 
 
-        step2 = (TextView) findViewById(R.id.tv2);
-        step2.setOnClickListener(this);
-
 
 
         prgDialog = new ProgressDialog(this);
@@ -331,7 +328,7 @@ public class OpenAccStepTwoActivity extends BaseActivity implements View.OnClick
             }else{
                 boolemail = true;
             }
-            if (Utility.checkInternetConnection()) {
+
                 if (Utility.isNotNull(strmobn)) {
                     if (Utility.isNotNull(straddr)) {
 
@@ -349,7 +346,7 @@ public class OpenAccStepTwoActivity extends BaseActivity implements View.OnClick
 
 strmobn = "234"+strmobn.substring(strmobn.length() - 10);
 
-                                       /* Intent intent  = new Intent(OpenAccStepTwoActivity.this,OpenAccUpPicActivity.class);
+                                        Intent intent  = new Intent(OpenAccStepTwoActivity.this,OpenAccUpPicActivity.class);
 
 
 
@@ -370,7 +367,7 @@ strmobn = "234"+strmobn.substring(strmobn.length() - 10);
 
 
 
-                                        startActivity(intent);*/
+                                        startActivity(intent);
 
                                       /*
                                         Fragment fragment = new OpenAccUpPic();
@@ -424,12 +421,7 @@ strmobn = "234"+strmobn.substring(strmobn.length() - 10);
                             Toast.LENGTH_LONG).show();
                 }
 
-            }else{
-                Toast.makeText(
-                        getApplicationContext(),
-                        "Please enable internet connection",
-                        Toast.LENGTH_LONG).show();
-            }
+
 
         }
         if (view.getId() == R.id.tv2) {

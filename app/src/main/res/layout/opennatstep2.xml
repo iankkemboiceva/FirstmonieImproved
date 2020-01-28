@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/greybg"
     android:filterTouchesWhenObscured ="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
@@ -34,227 +34,138 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-
+android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:paddingBottom="10dip"
 
                     >
 
                     <RelativeLayout
-
-
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-
-
-                        >
-
-                        <TextView
-                            android:id="@+id/bname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Select Account Type"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="#3C2415"
-
-
-                            />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-
-
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-
-
-                        >
-
-                        <TextView
-                            android:id="@+id/tdispedit"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dip"
-                            android:layout_marginTop="5dip"
-
-                            android:text="What are the Account Types?"
-                            android:textColor="@color/blue"
-
-                            android:textStyle="bold" />
-
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:id="@+id/lylcal"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
 
-                        android:layout_height="match_parent"
+                            android:background="@drawable/bg_notselected"
 
-                        android:orientation="vertical">
+                           android:id="@+id/txt"
+                            android:layout_height="30dp"
+                            android:layout_width="55dp"
 
-                        <RelativeLayout
-                            android:id="@+id/lycal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/borderhmground"
-
-                            android:orientation="vertical" >
-                            <TextView
-                                android:id="@+id/tv"
-                                android:layout_height="40dp"
-
-                                android:layout_width="40dp"
-
-                                android:layout_marginTop="5dp"
-                                android:text="2"
-                                android:textColor="@color/white"
-                                android:textSize="20sp"
-                                android:background="@drawable/bg_red"
-
-                                android:layout_alignRight="@+id/div1"
-
-                                android:layout_marginRight="25dp"
-                                android:gravity="center_vertical|center_horizontal"
-                                />
-                            <View
-                                android:id="@+id/div1"
-                                android:layout_width="20dp"
-
-                                android:layout_height="1dp"
-                                android:layout_marginTop="25dp"
-
-                                android:layout_alignRight="@+id/tv3"
-
-                                android:layout_marginRight="45dp"
-
-                                android:background="@color/textcolorcircle" />
-                            <View
-                                android:id="@+id/div2"
-                                android:layout_width="20dp"
-
-                                android:layout_height="1dp"
-                                android:layout_marginTop="25dp"
-
-                                android:layout_alignRight="@+id/tv"
-
-                                android:layout_marginRight="45dp"
-
-                                android:background="@color/textcolorcircle" />
-
-                            <TextView
-                                android:id="@+id/tv2"
-                                android:layout_height="40dp"
-                                android:layout_width="40dp"
-
-                                android:layout_alignRight="@+id/div2"
-                                android:layout_marginRight="25dp"
-                                android:layout_marginTop="5dp"
-                                android:text="1"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="20sp"
-                                android:background="@drawable/bg_transparent"
-
-                                android:gravity="center_vertical|center_horizontal"
-                                />
-                            <TextView
-                                android:id="@+id/tv3"
-                                android:layout_height="40dp"
-
-                                android:layout_width="40dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="5dp"
-                                android:text="3"
-                                android:textColor="@color/textcolorcircle"
-                                android:textSize="20sp"
-                                android:background="@drawable/bg_transparent"
-                                android:gravity="center_vertical|center_horizontal"
+                            android:layout_alignParentBottom="true"
 
 
 
-                                />
-                            <View
-                                android:id="@+id/div3"
-                                android:layout_width="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="15dp"
+                            android:gravity="center_vertical|center_horizontal"
 
-                                android:layout_height="1dp"
-                                android:layout_marginTop="25dp"
+                            android:textColor="#fff"
+                            android:text="1"></TextView>
 
-                                android:layout_alignLeft="@+id/tv3"
 
-                                android:layout_marginLeft="45dp"
+                        <TextView
 
-                                android:background="@color/textcolorcircle" />
 
-                            <TextView
-                                android:id="@+id/tv4"
-                                android:layout_height="40dp"
 
-                                android:layout_width="40dp"
+                            android:background="@drawable/bg_form_roundednormalblue"
 
-                                android:layout_marginTop="5dp"
-                                android:text="4"
-                                android:textColor="@color/textcolorcircle"
-                                android:textSize="20sp"
-                                android:background="@drawable/bg_transparent"
+                            android:id="@+id/txt2"
+                            android:layout_height="35dp"
+                            android:layout_width="55dp"
+                            android:layout_toRightOf="@+id/txt"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="15dp"
 
-                                android:layout_alignLeft="@+id/div3"
 
-                                android:layout_marginLeft="25dp"
-                                android:gravity="center_vertical|center_horizontal"
-                                />
-                            <TextView
-                                android:id="@+id/tv5"
-                                android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_vertical|center_horizontal"
 
-                                android:layout_width="40dp"
+                            android:text="2"
+                            android:textColor="#fff"></TextView>
 
-                                android:layout_marginTop="5dp"
-                                android:text="5"
-                                android:textColor="@color/textcolorcircle"
-                                android:textSize="20sp"
-                                android:background="@drawable/bg_transparent"
+                        <TextView
 
-                                android:layout_alignLeft="@+id/div5"
-                                android:layout_marginBottom="20dp"
-                                android:layout_marginLeft="25dp"
-                                android:gravity="center_vertical|center_horizontal"
-                                />
-                            <View
-                                android:id="@+id/div5"
-                                android:layout_width="20dp"
+                            android:layout_alignParentBottom="true"
+                            android:id="@+id/txt3"
+                            android:layout_toRightOf="@+id/txt2"
 
-                                android:layout_height="1dp"
-                                android:layout_marginTop="25dp"
 
-                                android:layout_alignLeft="@+id/tv4"
 
-                                android:layout_marginLeft="45dp"
 
-                                android:background="@color/textcolorcircle" />
-                            <TextView
-                                android:id="@+id/textV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:layout_marginBottom="20dp"
-                                android:visibility="gone"
-                                android:layout_below="@+id/tv"
-                                android:textSize="12sp"
-                                android:layout_centerInParent="true"
-                                android:gravity="center"
-                                android:text="Proceed to fill all fields"
-                                android:textColor="#ffffff" />
+                            android:layout_height="30dp"
 
-                        </RelativeLayout>
+                            android:layout_width="55dp"
+                            android:gravity="center_vertical|center_horizontal"
 
-                    </LinearLayout>
+                            android:background="@drawable/bg_notselected"
 
+                            android:layout_marginTop="5dp"
+
+
+                            android:layout_marginLeft="15dp"
+
+                            android:textColor="#fff"
+                            android:text="3"></TextView>
+
+                        <TextView
+
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@+id/txt3"
+                            android:id="@+id/txt4"
+
+
+
+
+                            android:layout_height="30dp"
+
+                            android:layout_width="55dp"
+                            android:gravity="center_vertical|center_horizontal"
+
+                            android:background="@drawable/bg_notselected"
+
+                            android:layout_marginTop="5dp"
+
+
+                            android:layout_marginLeft="15dp"
+
+                            android:textColor="#fff"
+                            android:text="4"></TextView>
+
+                        <TextView
+
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@+id/txt4"
+
+
+
+
+                            android:layout_height="30dp"
+
+                            android:layout_width="55dp"
+                            android:gravity="center_vertical|center_horizontal"
+
+                            android:background="@drawable/bg_notselected"
+
+                            android:layout_marginTop="5dp"
+
+
+                            android:layout_marginLeft="15dp"
+
+                            android:textColor="#fff"
+                            android:text="5"></TextView>
+                    </RelativeLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        card_view:cardBackgroundColor="@color/white"
+                        card_view:cardCornerRadius="5dp"
+                        card_view:cardElevation="3dp"
+                        >
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:orientation="vertical"
@@ -299,10 +210,15 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left|center"
-                                android:layout_weight="1.5"
+
 
                                 android:text="Email"
-                                android:textColor="@color/black" />
+
+
+
+                                android:layout_weight="1"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"/>
 
                             <EditText
                                 android:id="@+id/email"
@@ -343,8 +259,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Title"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
+
+
+                                android:layout_weight="1"
                                 android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"
 
 
                                 />
@@ -370,10 +289,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left|center"
-                                android:layout_weight="1.5"
+
 
                                 android:text="Mobile Number"
-                                android:textColor="@color/black" />
+
+
+                                android:layout_weight="1"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -415,10 +338,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left|center"
-                                android:layout_weight="1.5"
+
 
                                 android:text="House Number"
-                                android:textColor="@color/black" />
+
+
+                                android:layout_weight="1"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"/>
 
                             <EditText
                                 android:id="@+id/houseno"
@@ -451,10 +378,15 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left|center"
-                                android:layout_weight="1.5"
+
 
                                 android:text="Street Name"
-                                android:textColor="@color/black" />
+
+
+
+                                android:layout_weight="1"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"/>
 
                             <EditText
                                 android:id="@+id/streetadrr"
@@ -545,6 +477,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
 android:layout_marginTop="10dp"
                         android:orientation="vertical"
 
@@ -556,8 +489,10 @@ android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Marital Status"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
+
+                            android:layout_weight="1"
                             android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
 
 
                             />
@@ -571,6 +506,8 @@ android:layout_marginTop="10dp"
 
                         </Spinner>
                     </RelativeLayout>
+                    </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
 
 
@@ -586,7 +523,7 @@ android:layout_marginTop="10dp"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
-                </LinearLayout>
+
 
             </LinearLayout>
         </ScrollView>

@@ -11,6 +11,8 @@ import firstmob.firstbank.com.firstagent.daggermodules.DaggerMyComponent;
 import firstmob.firstbank.com.firstagent.daggermodules.MyComponent;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -19,6 +21,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 public class ApplicationClass extends MultiDexApplication {
     private static MyComponent myComponent;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public void onCreate() {
@@ -27,6 +30,11 @@ public class ApplicationClass extends MultiDexApplication {
         myComponent = DaggerMyComponent.builder()
                 .contextModule(new ContextModule(getApplicationContext()))
                 .build();
+
+        FirebaseApp.initializeApp(this);
+
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
 

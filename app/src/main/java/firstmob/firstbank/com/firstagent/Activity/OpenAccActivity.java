@@ -86,16 +86,6 @@ public class OpenAccActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_open_acc);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        // Get the ActionBar here to configure the way it behaves.
-        final ActionBar ab = getSupportActionBar();
-        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
-        ab.setDisplayShowHomeEnabled(true); // show or hide the default home button
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
-        ab.setDisplayShowTitleEnabled(false); // disable the default title element here (for centered title)
 
         sigin = (Button)findViewById(R.id.button1);
         sigin.setOnClickListener(this);
@@ -261,7 +251,7 @@ public class OpenAccActivity extends BaseActivity implements View.OnClickListene
             String strcity = "01";
             if (planetsList.size() > 0){
 
-                if (Utility.checkInternetConnection()) {
+
                     if (Utility.isNotNull(fname)) {
                         if (Utility.isNotNull(lname)) {
 
@@ -354,7 +344,7 @@ Log.v("Midnamee",midnamee);
                                 "Please enter a valid value for First Name",
                                 Toast.LENGTH_LONG).show();
                     }
-                }
+
             }else{
                 Toast.makeText(
                         getApplicationContext(),

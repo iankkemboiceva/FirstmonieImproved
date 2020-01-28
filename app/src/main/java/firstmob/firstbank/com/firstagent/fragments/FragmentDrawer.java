@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -55,6 +56,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import firstmob.firstbank.com.firstagent.Activity.R;
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants;
 import firstmob.firstbank.com.firstagent.utils.Utility;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -76,6 +78,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     //  private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    TextView txlstlog;
 
     ProgressDialog prgDialog,prgDialog2;
     public static TypedArray navMenuIcons,navIcpad;
@@ -126,6 +129,12 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         rlcomplains = (RelativeLayout) layout.findViewById(R.id.rlcomplains);
 
         rlcomplains.setOnClickListener(this);
+
+        txlstlog = (TextView) layout.findViewById(R.id.lastlog);
+        String lastlog = Prefs.getString(SharedPrefConstants.LASTL,"");
+        lastlog = Utility.convertDate(lastlog);
+        txlstlog.setText("Last Login: "+lastlog);
+
 
 
         return layout;

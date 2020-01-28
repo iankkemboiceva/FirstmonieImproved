@@ -11,6 +11,7 @@ import firstmob.firstbank.com.firstagent.presenter.LogComplaintPresenter;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
 
 import dagger.Component;
+import firstmob.firstbank.com.firstagent.presenter.OpenAccCustPicPresenter;
 import firstmob.firstbank.com.firstagent.presenter.SendOTBPresenter;
 import firstmob.firstbank.com.firstagent.presenter.SignInPresenter;
 import firstmob.firstbank.com.firstagent.presenter.TransactionProcPresenter;
@@ -32,5 +33,6 @@ public  interface MyComponent {
     void inject(CashDepoTransPresenter presenter);
     void inject(ConfirmCashTransPresenter presenter);
     void inject(SendOTBPresenter presenter);
+    void inject(OpenAccCustPicPresenter presenter);
 
 }
