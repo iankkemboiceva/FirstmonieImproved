@@ -4,16 +4,16 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/actionbarheight"
-    android:minHeight="?attr/actionBarSize"
+    android:minHeight="@dimen/actionbarheight"
     android:filterTouchesWhenObscured ="true"
-    android:elevation="5dp"
+    android:elevation="0dp"
     android:background="@color/pink_btncolor"
     local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <ImageView
-        android:layout_width="216dp"
+        android:layout_width="140dp"
         android:contentDescription="Logo"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/actionbarheight"
         android:layout_gravity="center"
         android:src="@drawable/logo2"
         />

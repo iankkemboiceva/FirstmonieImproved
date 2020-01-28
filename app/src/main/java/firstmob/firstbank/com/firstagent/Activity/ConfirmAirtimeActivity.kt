@@ -9,6 +9,7 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -30,13 +31,11 @@ import java.io.InputStream
 import java.io.OutputStream
 import javax.inject.Inject
 
-class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContract.IViewConfirmAirtime{
+class ConfirmAirtimeActivity : AppCompatActivity(), View.OnClickListener,AirtimeContract.IViewConfirmAirtime{
     @Inject
     internal lateinit var ul: Utility
     init {
-
         ApplicationClass.getMyComponent().inject(this)
-        // initUser();
     }
     internal var reccustid: TextView? =null
     internal var recamo:TextView? =null
@@ -45,6 +44,7 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
     internal var txtfee:TextView? =null
     internal var acbal:TextView? =null
     var viewDialog: ViewDialog? =null
+    internal var session: SessionManagement? =null
     internal var btnsub: Button? =null
     internal var btn_back: Button? =null
     internal var txtcustid: String? =null
@@ -65,8 +65,13 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
         setContentView(R.layout.confim_airtime)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.pink_btncolor)));
-        supportActionBar!!.title = null
+        val ab = supportActionBar
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.pink_btncolor)));
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false)
         session = SessionManagement(this)
         reccustid = findViewById(R.id.textViewnb2) as TextView
         etpin = findViewById(R.id.pin) as TextInputEditText
@@ -120,7 +125,6 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
                         if (Utility.isNotNull(agpin)) {
                             var encrypted: String? = null
                             encrypted = Utility.b64_sha256(agpin)
-
                             val usid = Prefs.getString(SharedPrefConstants.KEY_USERID, "NA")
                             val agentid = Prefs.getString(SharedPrefConstants.AGENTID, "NA")
                             val mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA")
@@ -169,11 +173,8 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
         if(view.id==R.id.button3){
             finish()
 
-
             val intent = Intent(this@ConfirmAirtimeActivity, AirtimeTransfActivity::class.java)
-
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
             startActivity(intent)
         }
     }
@@ -221,7 +222,13 @@ class ConfirmAirtimeActivity : BaseActivity(), View.OnClickListener,AirtimeContr
         }
         // prgDialog2.dismiss();
     }
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
     public override fun onDestroy() {
         presenterairtime?.ondestroy()
         super.onDestroy()

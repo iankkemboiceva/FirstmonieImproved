@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -25,7 +26,7 @@ import firstmob.firstbank.com.firstagent.utils.Utility
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import javax.inject.Inject
 
-class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,WithdrawalsContract.IViewConfirmWithdrawal {
+class ConfirmWithdrawalActivity : AppCompatActivity(), View.OnClickListener,WithdrawalsContract.IViewConfirmWithdrawal {
     @Inject
     internal lateinit var ul: Utility
     init {
@@ -49,17 +50,21 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
     internal var txref:String? =null
     internal var presenter: WithdrawalsContract.ConfirmWithdralPresenter? =null
     internal var otp:String? =null
+    internal var session: SessionManagement? =null
     internal var agbalance:String? =null
-//    internal var prgDialog: ProgressDialog? = null
-//    internal var prgDialog2:ProgressDialog? = null
     internal var etpin: TextInputEditText? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_withdrawal)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.lightgree_withdrcolor)));
-        supportActionBar!!.title = null
+        val ab = supportActionBar
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.lightgree_withdrcolor)));
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false)
         session = SessionManagement(this)
         recacno = findViewById(R.id.textViewnb2) as TextView
         recname = findViewById(R.id.textViewcvv) as TextView
@@ -147,6 +152,13 @@ class ConfirmWithdrawalActivity : BaseActivity(), View.OnClickListener,Withdrawa
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
     override fun setFee(fee: String?) {
         txtfee!!.setText(fee);

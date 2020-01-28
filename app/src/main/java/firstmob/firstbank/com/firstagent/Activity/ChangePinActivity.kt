@@ -57,7 +57,7 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         viewDialog= ViewDialog(this)
         session = SessionManagement(this)
         oldpin = findViewById(R.id.oldpin) as EditText

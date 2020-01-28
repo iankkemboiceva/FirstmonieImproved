@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import firstmob.firstbank.com.firstagent.utils.Utility.convertProperNumber
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
@@ -29,6 +30,8 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 
@@ -49,19 +52,26 @@ class ConfirmCashDepoActivity : AppCompatActivity(), ConfirmCashDepoContract.ILo
     private var finalfee: String? = null
     private var boolchkfee: Boolean? = false
     var agbalance: String? = null
-
     internal lateinit var presenter: ConfirmCashDepoContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_cash_depo)
-
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
+        // Get the ActionBar here to configure the way it behaves.
+        val ab = supportActionBar
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false)
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
         viewDialog = ViewDialog(this)
 
         presenter = ConfirmCashDepoPresenter(this, FetchServerResponse())
         val intent = intent
         if (intent != null) {
-
             recanno = intent.getStringExtra("recanno")
             amou = intent.getStringExtra("amou")
             narra = intent.getStringExtra("narra")
@@ -205,5 +215,12 @@ class ConfirmCashDepoActivity : AppCompatActivity(), ConfirmCashDepoContract.ILo
     override fun hidebutton() {
         button2.visibility = View.GONE
     }
-
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.getItemId() == android.R.id.home) {
+            finish()
+            onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

@@ -345,6 +345,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.getItemId() == android.R.id.home) {
+            finish()
             onBackPressed()    //Call the back button's method
             return true
         }

@@ -63,7 +63,7 @@ class ForceResetPin : AppCompatActivity(), View.OnClickListener, PinChangesContr
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         oldpin = findViewById(R.id.oldpin) as EditText
         et = findViewById(R.id.pin) as EditText
         et2 = findViewById(R.id.cpin) as EditText

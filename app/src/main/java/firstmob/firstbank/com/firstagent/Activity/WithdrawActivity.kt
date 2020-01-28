@@ -3,15 +3,18 @@ package firstmob.firstbank.com.firstagent.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import butterknife.OnClick
 import com.afollestad.materialdialogs.MaterialDialog
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
@@ -25,7 +28,7 @@ import firstmob.firstbank.com.firstagent.utils.Utility
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import javax.inject.Inject
 
-class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContract.IViewWithdrawalFirst{
+class WithdrawActivity : AppCompatActivity(), View.OnClickListener,WithdrawalsContract.IViewWithdrawalFirst{
     @Inject
     internal lateinit var ul: Utility
     init {
@@ -55,6 +58,7 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
     private val SPLASH_TIME_OUT = 2500
     internal var amon: EditText? = null
     internal var edacc:EditText? =null
+    internal var session: SessionManagement? =null
     internal var edamo:EditText? =null
     internal lateinit var presenter: WithdrawalsContract.PresenterGen
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,9 +66,14 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
     setContentView(R.layout.activity_withdraw2)
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     setSupportActionBar(toolbar)
-    supportActionBar!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.lightgree_withdrcolor)));
-    supportActionBar!!.title = null
-    session= SessionManagement(this)
+        val ab = supportActionBar
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.lightgree_withdrcolor)));
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false)
+        session= SessionManagement(this)
         btnok = findViewById(R.id.button5) as Button
         btn_back = findViewById(R.id.button3) as Button
         session = SessionManagement(this)
@@ -188,7 +197,6 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
 
     override fun requestOtp() {
         val recaccno = edacc!!.getText().toString()
-
         MaterialDialog.Builder(this)
                 .title("Account Details")
                 .content("The following are the recipient account details  \n \n" +
@@ -247,14 +255,16 @@ class WithdrawActivity : BaseActivity(), View.OnClickListener,WithdrawalsContrac
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
     override fun onDestroy() {
         // TODO Auto-generated method stub
         presenter!!.ondestroy()
-//        if (viewDialog != null) {
-//            viewDialog?.hideDialog()
-//        }
-
         super.onDestroy()
     }
 }

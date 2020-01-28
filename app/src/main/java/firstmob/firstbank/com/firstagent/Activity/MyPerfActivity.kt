@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
@@ -121,7 +123,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
     internal var l: Legend? = null
     internal var l2: Legend? =null
     internal var pieChart: PieChart? =null
-    internal var pro: ProgressDialog? =null
+   // internal var pro: ProgressDialog? =null
     internal var calnd: Button? = null
     internal var mToolbar: Toolbar? = null
     internal var v1: View? =null
@@ -133,6 +135,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true)
@@ -144,23 +147,13 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         fromdate = findViewById(R.id.fromdate) as TextView
         fromdatetran = findViewById(R.id.fromdatetran) as TextView
         presenter = MyperfActivityPresenter(applicationContext, this, FetchServerResponse())
-        pro = ProgressDialog(this)
-        pro!!.setMessage("Loading...")
-        pro!!.setTitle("")
-        pro!!.setCancelable(false)
 
         calendar = findViewById(R.id.button4) as Button
 
         calendar!!.setOnClickListener(this)
         session = SessionManagement(this)
         viewDialg= ViewDialog(this)
-//        prgDialog2 = ProgressDialog(this)
-//        prgDialog2!!.setMessage("Loading ....")
-//        prgDialog2!!.setCancelable(false)
-        // Set Cancelable as False
         session = SessionManagement(this)
-
-
 
         //  overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         InitCharts()
@@ -185,12 +178,9 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         lymapsview!!.setOnClickListener(View.OnClickListener {
             lyselchart!!.setVisibility(View.VISIBLE)
             lyselcharttran!!.setVisibility(View.GONE)
-
-
             v2!!.setVisibility(View.VISIBLE)
             v1!!.setVisibility(View.GONE)
         })
-
 
         cv = findViewById(R.id.card_view10) as CardView
         lvserv = findViewById(R.id.lvserv) as ListView
@@ -907,5 +897,13 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
 
         }
         super.onDestroy()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

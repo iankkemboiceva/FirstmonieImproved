@@ -4,6 +4,7 @@ package firstmob.firstbank.com.firstagent.Activity
 
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
@@ -11,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.borax12.materialdaterangepicker.date.DatePickerDialog
 import firstmob.firstbank.com.firstagent.adapter.InboxListAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants.KEY_NAIRA
@@ -65,7 +67,16 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inboxact)
 
-
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
+        // Get the ActionBar here to configure the way it behaves.
+        val ab = supportActionBar
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.fbnlightblue)));
         // Set Cancelable as False
 
         viewDialog = ViewDialog(this)
@@ -390,7 +401,13 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed() //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
 
 

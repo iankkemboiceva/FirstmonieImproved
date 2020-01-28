@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/greybg"
     tools:context=".ConfirmWithdrawalActivity">
  <include layout="@layout/toolbarnewui"/>
     <LinearLayout
@@ -287,6 +288,7 @@
             android:padding="5dp"
             android:text="Go Back"
             android:textAllCaps="false"
+            android:visibility="gone"
             android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

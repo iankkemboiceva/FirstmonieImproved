@@ -16,6 +16,9 @@ import firstmob.firstbank.com.firstagent.utils.Utility
 import kotlinx.android.synthetic.main.activity_cash_depo.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 
 import firstmob.firstbank.com.firstagent.contract.CashDepoTransContract
@@ -41,7 +44,16 @@ class CashDepoTransActivity : AppCompatActivity(), CashDepoTransContract.ILoginV
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cash_depo_trans)
-
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
+        // Get the ActionBar here to configure the way it behaves.
+        val ab = supportActionBar
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false)
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.normalcolor)));
         viewDialog = ViewDialog(this)
 
 
@@ -164,6 +176,13 @@ class CashDepoTransActivity : AppCompatActivity(), CashDepoTransContract.ILoginV
         cname.setText(name)
 
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()    //Call the back button's method
+            return true
+        }
 
+        return super.onOptionsItemSelected(item)
+    }
 
 }

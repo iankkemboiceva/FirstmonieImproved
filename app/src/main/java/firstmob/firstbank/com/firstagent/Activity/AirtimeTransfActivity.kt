@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -56,6 +57,7 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
     internal var layoutManager: LinearLayoutManager? = null
     internal var layoutManager2:LinearLayoutManager? = null
 
+
     internal var btn2: Button? = null
     internal var btn_back: Button? = null
     internal var telcochosen: String? = null
@@ -65,8 +67,13 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
         setContentView(R.layout.airtime_firstpage)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.pink_btncolor)));
-        supportActionBar!!.title = null
+      val ab = supportActionBar
+      ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.pink_btncolor)));
+      //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+      ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+      ab.setDisplayHomeAsUpEnabled(true)
+      ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+      ab.setDisplayShowTitleEnabled(false)
         layoutManager2 = LinearLayoutManager(this)
         layoutManager2!!.setOrientation(LinearLayoutManager.HORIZONTAL)
         session = SessionManagement(this)
@@ -75,7 +82,7 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
         btn_back = findViewById(R.id.button3) as Button
         btn2!!.setOnClickListener(this)
         btn_back!!.setOnClickListener(this)
-      viewDialog= ViewDialog(this)
+        viewDialog= ViewDialog(this)
         phonenumb = findViewById(R.id.phonenumb) as EditText
        presenter = AirtimeTransFirstPresenter(this, this, FetchServerResponse())
         txtamount = findViewById(R.id.amount) as EditText
@@ -209,8 +216,6 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
             } else {
                 SecurityLayer.Log("Good Adapter", "Good Adapter")
             }
-
-
         }
         false
     }
@@ -226,8 +231,6 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
             } else {
                 SecurityLayer.Log("Good Adapter", "Good Adapter")
             }
-
-
             true
         } else {
             false
@@ -300,6 +303,13 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
     override fun onBackPressed() {
         finish()
         super.onBackPressed()
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
     override fun onDestroy() {
         presenter?.ondestroy()
