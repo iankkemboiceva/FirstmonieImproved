@@ -14,6 +14,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import firstmob.firstbank.com.firstagent.contract.AirtimeContract
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
@@ -68,7 +69,7 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
       val ab = supportActionBar
-      ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.pink_btncolor)));
+      ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.pink_btncolor)));
       //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
       ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
       ab.setDisplayHomeAsUpEnabled(true)

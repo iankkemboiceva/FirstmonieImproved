@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.ListView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.adapter.ServicesMenuAdapt
@@ -52,7 +53,7 @@ class BillMenuActivity : AppCompatActivity(), GetBillersContract.IViewbillers {
         ab!!.setDisplayHomeAsUpEnabled(true)
         ab!!.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab!!.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.theme_paybills)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.theme_paybills)));
         presenter = GetBillersPresenter(this, this, FetchServerResponse())
         session = SessionManagement(this)
 

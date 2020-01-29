@@ -21,22 +21,23 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="55dp"
+                android:layout_width="80dp"
+                android:layout_height="43dp"
                 android:text="1"
-                android:layout_marginTop="3dp"
+                app:cornerRadius="8dp"
+                android:layout_marginTop="12dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:backgroundTint="@color/pink_btncolor"
-                android:background="@drawable/mybutton" />
+                android:background="@drawable/btn_theme_airtime"
+
+                />
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="55dp"
-                android:background="@drawable/mybutton"
-                android:backgroundTint="@color/dark_btncolor"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="14dp"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:background="@drawable/btn_theme_dark"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text="2"
@@ -49,10 +50,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             card_view:cardBackgroundColor="@color/white"
-            card_view:cardCornerRadius="10dp"
+            card_view:cardCornerRadius="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            card_view:cardElevation="0dp">
+            card_view:cardElevation="3dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -225,10 +226,9 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dip"
             android:layout_marginRight="30dp"
-            android:background="@drawable/mybutton"
+            android:background="@drawable/btn_theme_dark"
             android:padding="5dp"
             android:text="Next"
-            android:backgroundTint="@color/dark_btncolor"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
@@ -240,7 +240,6 @@
             android:visibility="gone"
             android:layout_marginTop="10dip"
             android:layout_marginRight="30dp"
-            android:backgroundTint="@color/pink_btncolor"
             android:background="@drawable/mybutton"
             android:padding="5dp"
             android:text="Go Back"

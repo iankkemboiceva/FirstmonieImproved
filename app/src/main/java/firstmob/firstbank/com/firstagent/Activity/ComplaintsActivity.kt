@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.borax12.materialdaterangepicker.date.DatePickerDialog
 import firstmob.firstbank.com.firstagent.adapter.ComplaintsAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants.KEY_NAIRA
@@ -72,7 +73,7 @@ class ComplaintsActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)));
 
         // Set Cancelable as False
 

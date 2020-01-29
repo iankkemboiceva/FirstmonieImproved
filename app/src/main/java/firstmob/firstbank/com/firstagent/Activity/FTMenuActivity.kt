@@ -12,6 +12,7 @@ import android.widget.GridView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.adapter.DepoMenuAdapt
 import firstmob.firstbank.com.firstagent.adapter.OTBList
@@ -35,7 +36,7 @@ class FTMenuActivity : AppCompatActivity() {
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.normalcolor)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.normalcolor)));
         //checkInternetConnection2();
         lv = findViewById<View>(R.id.lv) as ListView
         SetPop()

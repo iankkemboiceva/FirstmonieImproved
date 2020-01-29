@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.github.mikephil.charting.animation.Easing
@@ -135,7 +136,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)));
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true)
