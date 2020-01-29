@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.pixplicity.easyprefs.library.Prefs
@@ -59,7 +60,7 @@ class ConfirmWithdrawalActivity : AppCompatActivity(), View.OnClickListener,With
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         val ab = supportActionBar
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.lightgree_withdrcolor)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.lightgree_withdrcolor)));
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true)

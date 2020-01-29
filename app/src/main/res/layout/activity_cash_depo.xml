@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
-android:layout_marginRight="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/layl"
 
@@ -98,16 +98,11 @@ android:layout_marginRight="20dp"
 
                             android:background="@drawable/bg_notselected"
                             android:layout_alignParentBottom="true"
-
-
                             android:layout_height="30dp"
-
                             android:layout_width="80dp"
-
                             android:layout_marginTop="5dp"
                             android:layout_marginLeft="180dp"
                             android:gravity="center_vertical|center_horizontal"
-
                             android:textColor="#fff"
                             android:text="2"></TextView>
                     </RelativeLayout>

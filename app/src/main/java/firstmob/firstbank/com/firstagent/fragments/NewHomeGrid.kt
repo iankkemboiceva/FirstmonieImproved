@@ -51,7 +51,7 @@ class NewHomeGrid : Fragment() {
         // Inflate the layout for this fragment
 
 
-        val view: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
+        val views: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
 
 
         val open_airtime = views.findViewById<RelativeLayout>(R.id.rl1)
@@ -101,7 +101,7 @@ class NewHomeGrid : Fragment() {
 
 
 
-        val rldepo: RelativeLayout? = view?.findViewById(R.id.rl5)
+        val rldepo: RelativeLayout? = views?.findViewById(R.id.rl5)
         rldepo?.setOnClickListener(){
 
             val i = Intent(activity, CashDepoActivity::class.java)
@@ -110,7 +110,7 @@ class NewHomeGrid : Fragment() {
         }
 
 
-        val rlinboxchos: RelativeLayout? = view?.findViewById(R.id.rlinbox)
+        val rlinboxchos: RelativeLayout? = views?.findViewById(R.id.rlinbox)
         rlinboxchos?.setOnClickListener(){
 
             val i = Intent(activity, InboxActivity::class.java)

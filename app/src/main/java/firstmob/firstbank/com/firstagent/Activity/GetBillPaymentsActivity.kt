@@ -67,10 +67,6 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.theme_paybills)));
         session = SessionManagement(this)
         viewDialog= ViewDialog(this);
-//        prgDialog = ProgressDialog(this)
-//        prgDialog!!.setMessage("Please wait...")
-//        prgDialog!!.setCancelable(false)
-       // txtservice = findViewById(R.id.textView1) as TextView
         presenter = GetBillPaymentsActPresenter(this, this, FetchServerResponse())
         val intent = intent
         if (intent != null) {
@@ -87,10 +83,10 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
         lv = findViewById(R.id.lv) as ListView
         val bsid = session!!.getString("getbillpay$idd")
         if (bsid == null) {
-            presenter!!.loadbiller(serviceid)
+            presenter!!.loadbiller(idd)
            // SetPop()
         } else {
-            presenter!!.loadcachedbiilersData(serviceid)
+            presenter!!.loadcachedbiilersData(idd)
            // SetBillersStored()
         }
 

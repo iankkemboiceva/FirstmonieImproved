@@ -597,7 +597,7 @@ public class Utility {
 
     public static String convertMobNumber(String mobno) {
 
-        String newno = "243" + mobno.substring(mobno.length() - 12);
+        String newno = "243" + mobno.substring(mobno.length() - 10);
         return newno;
     }
 
