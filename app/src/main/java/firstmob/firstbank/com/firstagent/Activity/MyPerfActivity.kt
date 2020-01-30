@@ -136,7 +136,9 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
+
         ab!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimary)));
+
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true)

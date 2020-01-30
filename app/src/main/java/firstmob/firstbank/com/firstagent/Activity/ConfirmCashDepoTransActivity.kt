@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.ConfirmCashTransContract
@@ -78,7 +79,7 @@ class ConfirmCashDepoTransActivity : AppCompatActivity(), ConfirmCashTransContra
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.normalcolor)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.normalcolor)));
         viewDialog = ViewDialog(this)
         presenter = ConfirmCashTransPresenter(this, FetchServerResponse())
         val intent = intent
@@ -229,7 +230,7 @@ class ConfirmCashDepoTransActivity : AppCompatActivity(), ConfirmCashTransContra
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.getItemId() == android.R.id.home) {
             finish()
-            onBackPressed()    //Call the back button's method
+            //onBackPressed()    //Call the back button's method
             return true
         }
         return super.onOptionsItemSelected(item)

@@ -12,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import firstmob.firstbank.com.firstagent.adapter.BillMenuParcelable
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
@@ -60,7 +61,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
             ab.setDisplayHomeAsUpEnabled(true)
             ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
             ab.setDisplayShowTitleEnabled(false)
-            ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.theme_paybills)));
+            ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.theme_paybills)));
 
             session = SessionManagement(this)
             amon = findViewById(R.id.amount) as EditText

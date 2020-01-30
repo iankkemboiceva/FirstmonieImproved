@@ -2,10 +2,14 @@ package firstmob.firstbank.com.firstagent.Activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.Constants
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
@@ -49,7 +53,15 @@ class ConfirmSendOTBActivity : AppCompatActivity(), ConfirmSendOTBContract.ILogi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_send_otb)
-
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
+        val ab = supportActionBar
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.normalcolor)));
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false)
         viewDialog = ViewDialog(this)
 
         presenter = ConfirmSendOTBPresenter(this, FetchServerResponse())
@@ -212,5 +224,12 @@ class ConfirmSendOTBActivity : AppCompatActivity(), ConfirmSendOTBContract.ILogi
     override fun hidebutton() {
         button2.visibility = View.GONE
     }
-
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.getItemId() == android.R.id.home) {
+            finish()
+            //onBackPressed()    //Call the back button's method
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

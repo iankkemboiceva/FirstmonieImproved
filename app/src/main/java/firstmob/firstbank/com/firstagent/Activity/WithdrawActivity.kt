@@ -105,10 +105,10 @@ class WithdrawActivity : AppCompatActivity(), View.OnClickListener,WithdrawalsCo
 
                         val acno = edacc!!.getText().toString()
                         presenter.requestCallNameInquiry("getnameenq",acno)
-                       // NameInquirySec(acno)
+
 
                     }
-                    //   accountoname.setText("Test Customer");
+
 
 
                 }
