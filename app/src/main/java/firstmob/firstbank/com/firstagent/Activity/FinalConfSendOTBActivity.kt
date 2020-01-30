@@ -9,26 +9,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import com.pixplicity.easyprefs.library.Prefs
 import com.vipul.hp_hp.library.Layout_to_Image
 import firstmob.firstbank.com.firstagent.constants.Constants
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.utils.Utility
-import kotlinx.android.synthetic.main.activity_confirm_cash_depo.*
-import kotlinx.android.synthetic.main.activity_final_conf_depo.*
-import kotlinx.android.synthetic.main.activity_final_conf_depo.receipt
-import kotlinx.android.synthetic.main.activity_final_conf_depo.rlaccom
-import kotlinx.android.synthetic.main.activity_final_conf_depo.rlagfee
-import kotlinx.android.synthetic.main.activity_final_conf_depo.rlsave
-import kotlinx.android.synthetic.main.activity_final_conf_depo.rlsendnam
-import kotlinx.android.synthetic.main.activity_final_conf_depo.rlsendnum
-import kotlinx.android.synthetic.main.activity_final_conf_depo.rlshare
-import kotlinx.android.synthetic.main.activity_final_conf_depo.sendnammm
-import kotlinx.android.synthetic.main.activity_final_conf_depo.sendno
-import kotlinx.android.synthetic.main.activity_final_conf_depo.textfinaldatet
-import kotlinx.android.synthetic.main.activity_final_conf_depo.txtaccom
-import kotlinx.android.synthetic.main.activity_final_conf_depo.txtrfcd
-import kotlinx.android.synthetic.main.activity_final_conf_depo.txtshowfee
-import kotlinx.android.synthetic.main.activity_final_conf_depo.txtype
+
 import kotlinx.android.synthetic.main.activity_final_conf_send_otb.*
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -63,15 +51,23 @@ class FinalConfSendOTBActivity : AppCompatActivity() {
                 rlsendnum.visibility = View.GONE
                 txtype.text = "CASH DEPOSIT SUCCESSFUL"
             }
-            recacno.text = recanno
-            recname.text = txtname
-            recamo.text = Constants.KEY_NAIRA + amou
-            recnarr.text = narra
+            txtrecacno.text = recanno
+            txtbenname.text = txtname
+            txtrecamo.text = Constants.KEY_NAIRA + amou
+            txtrecnarr.text = narra
             txtshowfee.text = Constants.KEY_NAIRA + strfee
             sendnammm.text = ednamee
             sendno.text = ednumbb
             txtaccom.text = Constants.KEY_NAIRA + stragcms
             txtbank.text = bankname
+
+            val agname = Prefs.getString(SharedPrefConstants.KEY_CUSTNAME,"NA")
+            val usid = Prefs.getString(SharedPrefConstants.KEY_USERID,"NA")
+            val agentid = Prefs.getString(SharedPrefConstants.AGENTID,"NA")
+
+            txtgname.text = agname
+            txtagid.text = agentid
+            txtattid.text = usid
 
 
 
@@ -120,6 +116,16 @@ class FinalConfSendOTBActivity : AppCompatActivity() {
 
             rlaccom.visibility = View.VISIBLE
             rlagfee.visibility = View.VISIBLE
+        }
+
+        button2.setOnClickListener(){
+            finish()
+
+
+            val i = Intent(applicationContext, FMobActivity::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            // Staring Login Activity
+            startActivity(i)
         }
     }
 
@@ -185,4 +191,9 @@ class FinalConfSendOTBActivity : AppCompatActivity() {
         rlaccom.setVisibility(View.VISIBLE);
         rlagfee.setVisibility(View.VISIBLE);
     }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+    }
+
 }

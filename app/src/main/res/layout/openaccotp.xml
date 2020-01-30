@@ -121,13 +121,13 @@
 
 
 
-            android:layout_height="35dp"
+            android:layout_height="30dp"
 
             android:layout_width="55dp"
             android:gravity="center_vertical|center_horizontal"
 
 
-            android:background="@drawable/bg_form_roundednormalblue"
+            android:background="@drawable/bg_notselected"
 
 
             android:layout_marginTop="5dp"
@@ -146,12 +146,13 @@
 
 
 
-            android:layout_height="30dp"
+            android:layout_height="35dp"
 
             android:layout_width="55dp"
             android:gravity="center_vertical|center_horizontal"
 
-            android:background="@drawable/bg_notselected"
+
+            android:background="@drawable/bg_form_rounded"
 
             android:layout_marginTop="5dp"
 

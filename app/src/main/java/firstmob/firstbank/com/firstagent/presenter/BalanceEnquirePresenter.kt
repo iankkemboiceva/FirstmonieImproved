@@ -60,8 +60,9 @@ class BalanceEnquirePresenter : CommisionContract.Presenter, MainContract.GetDat
     }
 
     override fun onFinished(response: String?) {
-        iView!!.onResult("balance",response)
         iView!!.hideProgress()
+        iView!!.onResult("balance",response)
+
     }
 
     override fun onFailure(t: Throwable?) {

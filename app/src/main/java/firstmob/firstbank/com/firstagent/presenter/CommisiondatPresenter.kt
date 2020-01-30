@@ -48,8 +48,9 @@ class CommisiondatPresenter : CommisionContract.Presenter, MainContract.GetDataI
     }
 
     override fun onFinished(response: String?) {
-        iView!!.onResult("comission",response)
         iView!!.hideProgress()
+        iView!!.onResult("comission",response)
+
     }
 
     override fun onFailure(t: Throwable?) {

@@ -19,63 +19,52 @@
             android:theme="@style/MyMaterialTheme.AppBarOverlay">
 
 
+            <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:local="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/actionbarheight"
+                android:minHeight="@dimen/actionbarheight"
+                android:filterTouchesWhenObscured ="true"
+                android:elevation="0dp"
+                android:background="@color/colorPrimary"
+                local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-                        <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:local="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:minHeight="?attr/actionBarSize"
+                <ImageView
+                    android:layout_width="140dp"
+                    android:contentDescription="Logo"
+                    android:layout_height="@dimen/actionbarheight"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logo2"
+                    />
 
-                            android:background="@color/white"
-                            app:theme="@style/ToolbarStyle">
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_height="wrap_content">
-                                    <ImageView
-                                        android:layout_marginTop="30dp"
-                                        android:layout_width="130dp"
-                                        android:contentDescription="Logo"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="29dp"
+                        android:layout_height="25dp"
+                        android:filterTouchesWhenObscured ="true"
+                        android:layout_marginRight="20dp"
 
-                                        android:layout_height="30dp"
-
-                                        android:layout_marginRight="60dp"
-                                        android:src="@drawable/newfmonielogo"/>
-
-
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_height="wrap_content">
-                                    <Button
-                                        android:id="@+id/button4"
-                                        android:layout_width="29dp"
-                                        android:layout_height="25dp"
-                                        android:filterTouchesWhenObscured ="true"
-                                        android:layout_marginRight="20dp"
-
-                                        android:background="@drawable/calendaricon"
+                        android:background="@drawable/calendaricon"
 
 
 
 
-                                        android:textColor="#ffffff" />
-                                </RelativeLayout>
-                            </RelativeLayout>
-                        </androidx.appcompat.widget.Toolbar>
+                        android:textColor="#ffffff" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -84,31 +73,30 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@drawable/bg_myperf"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="TRANSACTION"
+                android:id="@+id/txntxt"
 
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp" />
 
-            <View
-                android:id="@+id/v1"
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:background="@color/colorPrimary" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lymapsvw"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -116,17 +104,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:text="COMMISSION"
-                android:textColor="@color/colorPrimary" />
+                android:id="@+id/commissiontxt"
+                android:textColor="@color/white" />
 
 
-            <View
-                android:id="@+id/v2"
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:background="@color/colorPrimary"
-                android:visibility="gone" />
+
         </LinearLayout>
     </LinearLayout>
 
