@@ -96,7 +96,7 @@ class WithdrawActivity : AppCompatActivity(), View.OnClickListener,WithdrawalsCo
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (edacc!!.getText().toString().length == 10) {
                    // prgDialog!!.show()
-                  //  viewDialog!!.showDialog()
+
                     if (Utility.checkInternetConnection()) {
 
                         Utility.hideKeyboardFrom(applicationContext, edacc)
