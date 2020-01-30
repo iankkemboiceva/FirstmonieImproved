@@ -101,7 +101,7 @@ class WithdrawActivity : AppCompatActivity(), View.OnClickListener,WithdrawalsCo
 
                         Utility.hideKeyboardFrom(applicationContext, edacc)
                        // viewDialog!!.showDialog()
-                       // prgDialog!!.show()
+
 
                         val acno = edacc!!.getText().toString()
                         presenter.requestCallNameInquiry("getnameenq",acno)
