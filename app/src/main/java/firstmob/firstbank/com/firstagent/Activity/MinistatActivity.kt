@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.MaterialDialog
 import com.borax12.materialdaterangepicker.date.DatePickerDialog
+import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.adapter.NewMinListAdapter
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.CommisionContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
@@ -86,7 +88,7 @@ class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDial
         calendar!!.setOnClickListener(this)
         presenter = MinstatementPresenter(applicationContext, this, FetchServerResponse())
         emptyView = findViewById(R.id.empty_view) as TextView
-        val accnoo = Utility.getAcountno(this)
+        val accnoo = Prefs.getString(SharedPrefConstants.KEY_ACCO,"NA")
         txaco!!.setText("Statement for Account Number -$accnoo")
         presenter!!.requestCallGetBalnce("getblance",null)
        // presenterbalance!!.requestCall("getblance",null)

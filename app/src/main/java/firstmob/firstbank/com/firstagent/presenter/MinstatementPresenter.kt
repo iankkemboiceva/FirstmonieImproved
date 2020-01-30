@@ -30,17 +30,17 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
     private var getDataIntractor: MainContract.GetDataIntractor? = null
     internal var planetsList: MutableList<MinistatData> = ArrayList<MinistatData>()
     internal var context: Context? = null
-    internal var session : SessionManagement?=null
+
     constructor(context: Context, iView: CommisionContract.IViewMinistatement, getDataIntractor: MainContract.GetDataIntractor) {
         this.iView = iView
         this.getDataIntractor = getDataIntractor
         this.context = context
-        session= SessionManagement(context)
+
     }
 
     override fun requestCallMinistat(flag: String?, extraparam: String?) {
         iView!!.showProgress()
-        session!!.setTranstype(flag)
+        Prefs.putString(SharedPrefConstants.MINIST_TRANS_FLAG,flag)
         var endpoint = ""
         val usid = Prefs.getString(SharedPrefConstants.KEY_USERID, "NA")
         val agentid = Prefs.getString(SharedPrefConstants.AGENTID, "NA")
@@ -62,7 +62,7 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
     }
     override fun requestCallGetBalnce(flag : String?,extraparam: String?) {
         iView!!.showProgress()
-        session!!.setTranstype(flag)
+        Prefs.putString(SharedPrefConstants.MINIST_TRANS_FLAG,flag)
         val endpoint = "core/balenquirey.action"
         val usid = Prefs.getString(SharedPrefConstants.KEY_USERID, "NA")
         val agentid = Prefs.getString(SharedPrefConstants.AGENTID, "NA")
@@ -101,7 +101,7 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
 
             val respcode = obj.optString("responseCode")
             val responsemessage = obj.optString("message")
-            if(session!!.getTransFlag().equals("mistate")){
+            if(Prefs.getString(SharedPrefConstants.MINIST_TRANS_FLAG,"NA").equals("mistate")){
 
 
                 val comperf = obj.optJSONArray("data")
@@ -189,6 +189,8 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
                                 val bll = Utility.returnNumberFormat(balamo)
                                 val fbal = Utility.returnNumberFormat(balamo)
                                 iView!!.setBalance("Account Balance: " + Html.fromHtml("&#8358") + " " + fbal)
+                                iView!!.setMinistatementStartim()
+
                                 //txaccbal.setText()
                             } else {
                                 if (context != null) {
@@ -223,9 +225,9 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
             // (context as Withdraw).SetForceOutDialog(context!!.getString(R.string.forceout), context!!.getString(R.string.forceouterr), context)
             // SecurityLayer.Log(e.toString());
         }
-        if(session!!.getTransFlag().equals("getBalnce")){
-            iView!!.setMinistatementStartim()
-        }
+     //   if(Prefs.getString(SharedPrefConstants.MINIST_TRANS_FLAG,"NA").equals("getBalnce")){
+     //       iView!!.setMinistatementStartim()
+       // }
     }
 
     override fun onFailure(t: Throwable?) {

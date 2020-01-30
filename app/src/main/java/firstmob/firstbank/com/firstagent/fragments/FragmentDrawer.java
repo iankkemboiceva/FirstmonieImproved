@@ -147,7 +147,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         txlstlog = (TextView) layout.findViewById(R.id.lastlog);
         String lastlog = Prefs.getString(SharedPrefConstants.LASTL,"");
         lastlog = Utility.convertDate(lastlog);
-        txlstlog.setText("Last Login: "+lastlog);
+        txlstlog.setText("Last Login: \n"+lastlog);
 
 
 

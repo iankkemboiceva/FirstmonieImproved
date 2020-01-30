@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -53,6 +54,9 @@ import java.util.List;
 import java.util.UUID;
 
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
 import firstmob.firstbank.com.firstagent.contract.OpenAccCustContract;
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog;
@@ -110,6 +114,16 @@ public class OpenAccCustPicActivity extends BaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_acc_cust_pic);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)));
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab.setDisplayShowHomeEnabled(true);
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowCustomEnabled(true);
+        ab.setDisplayShowTitleEnabled(false);
 
 
 
@@ -778,6 +792,25 @@ String title = "Bank Info";
 
     @Override
     public void onfetchResult() {
+        Intent intent = new Intent(OpenAccCustPicActivity.this, OpenAccOTPActivity.class);
+
+
+        intent.putExtra("fname", strfname);
+        intent.putExtra("lname", strlname);
+        intent.putExtra("midname", strmidnm);
+        intent.putExtra("yob", stryob);
+        intent.putExtra("email", stremail);
+        intent.putExtra("hmadd", strhmdd);
+        intent.putExtra("mobn", strmobn);
+        intent.putExtra("salut", strsalut);
+        intent.putExtra("marstatus", strmarst);
+        intent.putExtra("straddr", straddr);
+        intent.putExtra("gender", strgender);
+        intent.putExtra("city", strcity);
+        intent.putExtra("state", strstate);
+
+
+        startActivity(intent);
 
     }
 

@@ -535,6 +535,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:background="@drawable/mybutton"
                                 android:padding="5dp"
+                                android:visibility="gone"
                                 android:text="GO BACK"
                                 android:filterTouchesWhenObscured ="true"
                                 android:layout_marginTop="10dip"

@@ -13,7 +13,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.View
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.changeDate
-import kotlinx.android.synthetic.main.activity_confirm_cash_depo.*
+
 import kotlinx.android.synthetic.main.activity_final_conf_depo.*
 import android.R.attr.bitmap
 import android.content.Context
@@ -42,6 +42,33 @@ import android.provider.MediaStore
 
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.pixplicity.easyprefs.library.Prefs
+import firstmob.firstbank.com.firstagent.constants.Constants
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
+import kotlinx.android.synthetic.main.activity_final_conf_depo.receipt
+import kotlinx.android.synthetic.main.activity_final_conf_depo.rlaccom
+import kotlinx.android.synthetic.main.activity_final_conf_depo.rlagfee
+import kotlinx.android.synthetic.main.activity_final_conf_depo.rlsave
+import kotlinx.android.synthetic.main.activity_final_conf_depo.rlsendnam
+import kotlinx.android.synthetic.main.activity_final_conf_depo.rlsendnum
+import kotlinx.android.synthetic.main.activity_final_conf_depo.rlshare
+import kotlinx.android.synthetic.main.activity_final_conf_depo.sendnammm
+import kotlinx.android.synthetic.main.activity_final_conf_depo.sendno
+import kotlinx.android.synthetic.main.activity_final_conf_depo.textfinaldatet
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtaccom
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtagid
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtattid
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtbenname
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtgname
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtrecacno
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtrecamo
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtrecnarr
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtrfcd
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtshowfee
+import kotlinx.android.synthetic.main.activity_final_conf_depo.txtype
+
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.*
 
 
@@ -76,17 +103,35 @@ class FinalConfDepoActivity : AppCompatActivity() {
                 rlsendnum.visibility = View.GONE
                 txtype.text = "CASH DEPOSIT SUCCESSFUL"
             }
-            recacno.text = recanno
-            recname.text = txtname
-            recamo.text = KEY_NAIRA + amou
-            recnarr.text = narra
-            txtshowfee.text = KEY_NAIRA + strfee
+            txtrecacno.text = recanno
+            txtbenname.text = txtname
+            txtrecamo.text = Constants.KEY_NAIRA + amou
+            txtrecnarr.text = narra
+            txtshowfee.text = Constants.KEY_NAIRA + strfee
             sendnammm.text = ednamee
             sendno.text = ednumbb
-            txtaccom.text = KEY_NAIRA + stragcms
+            txtaccom.text = Constants.KEY_NAIRA + stragcms
+
+            val agname = Prefs.getString(SharedPrefConstants.KEY_CUSTNAME,"NA")
+            val usid = Prefs.getString(SharedPrefConstants.KEY_USERID,"NA")
+            val agentid = Prefs.getString(SharedPrefConstants.AGENTID,"NA")
+
+            txtgname.text = agname
+            txtagid.text = agentid
+            txtattid.text = usid
 
 
 
+        }
+
+        button2.setOnClickListener(){
+            finish()
+
+
+            val i = Intent(applicationContext, FMobActivity::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            // Staring Login Activity
+            startActivity(i)
         }
 
 
@@ -194,6 +239,11 @@ class FinalConfDepoActivity : AppCompatActivity() {
 
         rlaccom.setVisibility(View.VISIBLE);
         rlagfee.setVisibility(View.VISIBLE);
+    }
+
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
 

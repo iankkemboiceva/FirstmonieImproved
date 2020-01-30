@@ -106,7 +106,7 @@ android:visibility="gone"
                             <TextView
 
 
-                                android:background="@drawable/bg_form_roundednormalblue"
+                                android:background="@drawable/bg_form_rounded"
 android:id="@+id/txt"
                                 android:layout_height="35dp"
                                 android:layout_width="55dp"
