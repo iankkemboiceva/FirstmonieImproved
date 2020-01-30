@@ -25,6 +25,7 @@ import firstmob.firstbank.com.firstagent.presenter.GetBillPaymentsActPresenter
 import firstmob.firstbank.com.firstagent.presenter.GetBillersSpecMenuPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.util.ArrayList
 
 class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbillPaymentsAct {
@@ -90,6 +91,9 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
            // SetBillersStored()
         }
 
+    }
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun onResult(BillerList: MutableList<GetBillPayData>?) {
