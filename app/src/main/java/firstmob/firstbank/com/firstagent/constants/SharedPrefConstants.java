@@ -6,6 +6,7 @@ public class SharedPrefConstants {
     public final static String KEY_LONGIT = "longitude";
 
     public final static String SESS_REG = "sessreg";
+    public final static String MINIST_TRANS_FLAG = "ministflag";
 
     public static final String KEY_SETAIRTIME = "setairtime";
     public static final String KEY_AIRTIME = "keysairtime";

@@ -641,7 +641,7 @@ public class Utility {
         Date datee = null;
         try {
             datee = dt.parse(date);
-            SimpleDateFormat dt1 = new SimpleDateFormat("dd MM yyyy hh:mm");
+            SimpleDateFormat dt1 = new SimpleDateFormat("dd MMM yyyy hh:mm");
 
             fdate = dt1.format(datee);
         } catch (ParseException e) {

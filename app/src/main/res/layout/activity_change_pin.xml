@@ -37,7 +37,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+android:layout_marginTop="10dp"
 
                 android:orientation="vertical">
 
@@ -46,8 +46,41 @@
                     android:layout_width="match_parent"
 
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
 
                     android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/rlag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="20dp"
+                            android:text="Please proceed to change your first time pin"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        card_view:cardBackgroundColor="@color/white"
+                        card_view:cardCornerRadius="5dp"
+                        card_view:cardElevation="3dp"
+                        >
 
                     <LinearLayout
                         android:id="@+id/lylcal"
@@ -57,27 +90,8 @@
 
                         android:orientation="vertical">
 
-                        <RelativeLayout
-                            android:id="@+id/rlag"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
 
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/textView1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="20dp"
-                                android:text="Please proceed to change your first time pin"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="14sp" />
-
-                        </RelativeLayout>
 
                         <LinearLayout
 
@@ -234,29 +248,32 @@
                         </LinearLayout>
 
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/rl5">
 
-                            <Button
-                                android:id="@+id/button2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="30dp"
-                                android:layout_marginTop="20dip"
-                                android:layout_marginRight="30dp"
-                                android:layout_marginBottom="10dip"
-                                android:background="@drawable/mybutton"
-                                android:filterTouchesWhenObscured="true"
-                                android:padding="5dp"
-                                android:text="Proceed"
-                                android:textColor="@color/colorPrimary" />
-                        </RelativeLayout>
 
 
                     </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl5">
+
+                        <Button
+                            android:id="@+id/button2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="20dip"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/mybutton"
+                            android:filterTouchesWhenObscured="true"
+                            android:padding="5dp"
+                            android:text="Proceed"
+                            android:textColor="@color/colorPrimary" />
+                    </RelativeLayout>
                 </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

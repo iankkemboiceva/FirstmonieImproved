@@ -73,7 +73,7 @@ public class OpenAccCustPicPresenter implements OpenAccCustContract.Presenter, M
             // JSON Object
             SecurityLayer.Log("response..:", responsebody);
             JSONObject obj = new JSONObject(responsebody);
-            obj = SecurityLayer.decryptFirstTimeLogin(obj);
+            obj = SecurityLayer.decryptTransaction(obj);
             SecurityLayer.Log("decrypted_response", obj.toString());
 
             String respcode = obj.optString("responseCode");

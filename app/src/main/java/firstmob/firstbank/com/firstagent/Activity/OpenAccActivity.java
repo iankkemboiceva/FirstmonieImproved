@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -38,6 +39,7 @@ import java.util.Locale;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import firstmob.firstbank.com.firstagent.model.GetCitiesData;
 import firstmob.firstbank.com.firstagent.model.GetStatesData;
 import firstmob.firstbank.com.firstagent.network.ApiInterface;
@@ -84,6 +86,16 @@ public class OpenAccActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_acc);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+                setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)));
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab.setDisplayShowHomeEnabled(true);
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowCustomEnabled(true);
+        ab.setDisplayShowTitleEnabled(false);
 
 
 

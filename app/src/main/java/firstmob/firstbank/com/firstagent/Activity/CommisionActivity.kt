@@ -165,7 +165,7 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
     }
 
     override fun onResult(flag : String?,response: String?) {
-        if(flag.equals("getbalnce")){
+        if(flag.equals("balance")){
             reponseBalanceEnqury(response)
         }else
         {

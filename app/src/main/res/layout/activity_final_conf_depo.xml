@@ -79,7 +79,7 @@
                         card_view:cardBackgroundColor="@color/white"
 
                         card_view:cardCornerRadius="5dp"
-                        card_view:cardElevation="5dp">
+                        card_view:cardElevation="3dp">
 
                         <LinearLayout
 
@@ -91,9 +91,7 @@
                             android:paddingRight="10dip"
                             android:paddingBottom="10dip"
                             android:paddingTop="10dip"
-
-
-                            >
+  >
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_below="@+id/rl5"
@@ -134,7 +132,7 @@
 
                                     />
                                 <TextView
-                                    android:id="@+id/textViewcvv"
+                                    android:id="@+id/txtbenname"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/textViewcv"
@@ -168,7 +166,7 @@
                                     android:textColor="@color/colorPrimary"
                                     android:textStyle="bold" />
                                 <TextView
-                                    android:id="@+id/textViewnb2"
+                                    android:id="@+id/txtrecacno"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dip"
@@ -206,7 +204,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textViewrrs"
+                                    android:id="@+id/txtrecamo"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dip"
@@ -342,7 +340,7 @@
                                     android:textColor="@color/colorPrimary"
                                     android:textStyle="bold" />
                                 <TextView
-                                    android:id="@+id/textViewrr"
+                                    android:id="@+id/txtrecnarr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dip"

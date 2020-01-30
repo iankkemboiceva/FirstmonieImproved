@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -61,6 +62,9 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.BitmapCompat;
 import firstmob.firstbank.com.firstagent.constants.Constants;
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants;
@@ -123,6 +127,16 @@ public class OpenAccOTPActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_acc_otp);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)));
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
+        ab.setDisplayShowHomeEnabled(true);
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowCustomEnabled(true);
+        ab.setDisplayShowTitleEnabled(false);
 
 
         sigin = (Button) findViewById(R.id.button1);
@@ -219,100 +233,42 @@ public class OpenAccOTPActivity extends BaseActivity implements View.OnClickList
 
     public void uploadImage(File file){
 
-        //  OkHttpClient client = new OkHttpClient();
-
-
-     /*   OkHttpClient okHttpClient = null;
-
-        try {
-            // Create a trust manager that does not validate certificate chains
-            final TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
-                        }
-
-                        @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
-                        }
-
-                        @Override
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return new java.security.cert.X509Certificate[]{};
-                        }
-                    }
-            };
-
-            // Install the all-trusting trust manager
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-            // Create an ssl socket factory with our all-trusting manager
-
-            SSLSocketFactory sslSocketFactory = null;
-            try {
-                sslSocketFactory = new TLSSocketFactory();
-
-            } catch (KeyManagementException ignored) {
-
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-            //  final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.addInterceptor(new Interceptor() {
-                @Override
-                public okhttp3.Response intercept(Chain chain) throws IOException {
-                    Request original = chain.request();
-                    String encpin = session.getString("ENC_PIN");
-                    Request request = original.newBuilder()
-
-                            .header("secret", encpin)
-
-                            .method(original.method(), original.body())
-                            .build();
-
-                    return chain.proceed(request);
-                }
-            });
-
-            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-            okHttpClient = builder
-                    .connectTimeout(70, TimeUnit.SECONDS)
-                    .writeTimeout(70, TimeUnit.SECONDS)
-                    .readTimeout(70, TimeUnit.SECONDS)
-                    .build();
-            SecurityLayer.Log("Up Image File Name",file.getName());
-            RequestBody formBody = new MultipartBody.Builder()
-                    .setType(MultipartBody.FORM)
-                    .addFormDataPart("file", "tmp_photo_" + System.currentTimeMillis(),
-                            RequestBody.create(MediaType.parse("image/jpg"), file))
-
-                    .build();
-            SecurityLayer.Log("Upload Url",upurl);*/
      try{
         OkHttpClient okHttpClient = null;
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+         // Create a trust manager that does not validate certificate chains
+         final TrustManager[] trustAllCerts = new TrustManager[]{
+                 new X509TrustManager() {
+                     @Override
+                     public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                     }
 
-// Can be Level.BASIC, Level.HEADERS, or Level.BODY
-// See http://square.github.io/okhttp/3.x/logging-interceptor/ to see the options.
-        CertificatePinner certificatePinner = new CertificatePinner.Builder()
-                .add(Constants.HOSTNAME, "sha256/rqU8h4fgcUQ/pRFO98oK5FD8k9zcSWDoRMDke2hjaQc=")
-                .add(Constants.HOSTNAME, "sha256/5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=")
-                .add(Constants.HOSTNAME, "sha256/r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=")
+                     @Override
+                     public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                     }
 
-                .build();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        builder.networkInterceptors().add(httpLoggingInterceptor);
-        builder.certificatePinner(certificatePinner);
+                     @Override
+                     public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                         return new java.security.cert.X509Certificate[]{};
+                     }
+                 }
+         };
+
+         // Install the all-trusting trust manager
+         final SSLContext sslContext = SSLContext.getInstance("SSL");
+         sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+         // Create an ssl socket factory with our all-trusting manager
+
+         SSLSocketFactory sslSocketFactory = null;
+         try {
+             sslSocketFactory = new TLSSocketFactory();
+
+         } catch (KeyManagementException ignored) {
+             ignored.printStackTrace();
+         } catch (NoSuchAlgorithmException e) {
+             e.printStackTrace();
+         }
         SSLContext sslcontext = null;
 
         try {
@@ -324,15 +280,13 @@ public class OpenAccOTPActivity extends BaseActivity implements View.OnClickList
         } catch (KeyManagementException e) {
             e.printStackTrace();
         }
-        SSLSocketFactory sslSocketFactory = null;
-        try {
-            sslSocketFactory = new TLSSocketFactory();
-
-        } catch (KeyManagementException ignored) {
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+         builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
+         builder.hostnameVerifier(new HostnameVerifier() {
+             @Override
+             public boolean verify(String hostname, SSLSession session) {
+                 return true;
+             }
+         });
 
          String edpin = pin.getText().toString();
 
@@ -340,7 +294,9 @@ public class OpenAccOTPActivity extends BaseActivity implements View.OnClickList
          String  encrypted = Utility.b64_sha256(edpin);
          SecurityLayer.Log("secret",encrypted);
 
-        okHttpClient = builder.build();
+        okHttpClient = builder.connectTimeout(240, TimeUnit.SECONDS)
+                .writeTimeout(240, TimeUnit.SECONDS)
+                .readTimeout(240, TimeUnit.SECONDS).build();
         RequestBody formBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file", "tmp_photo_" + System.currentTimeMillis(),
@@ -363,6 +319,8 @@ public class OpenAccOTPActivity extends BaseActivity implements View.OnClickList
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
                 else{
                     refnumber = response.body().string();
+                    SecurityLayer.Log("response body..:",response.body().toString());
+
                     SecurityLayer.Log("response..:",refnumber);
 
                     SecurityLayer.Log("Success upload","Success Upload");
@@ -741,6 +699,7 @@ String title = "Bank Info";
             //    1/112128164/Chief/Ranae/Benjamin/L/UNMARR/19931003/Michaellhenderson@armyspy.com/M/05/NA/2922 Rocky Road/08013952719/424655476196982/08013952719/12344/6a697a7579387463656a426e6b714d515335736b6e78626a625844614874417365366c4961516f4947624d
 
 
+            Toast.makeText(getApplicationContext(),refnumber,Toast.LENGTH_LONG).show();
 
             if (!((refnumber == null))) {
                 if (!(refnumber.equals(""))) {

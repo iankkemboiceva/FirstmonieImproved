@@ -51,6 +51,7 @@ import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection
+import kotlinx.android.synthetic.main.activity_my_perf.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -127,16 +128,17 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
    // internal var pro: ProgressDialog? =null
     internal var calnd: Button? = null
     internal var mToolbar: Toolbar? = null
-    internal var v1: View? =null
-    internal var v2:View? =null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_perf)
-        mToolbar = findViewById(R.id.toolbar) as Toolbar
+        mToolbar = findViewById<Toolbar>(R.id.toolbar)
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
-        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)));
+
+        ab!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimary)));
+
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true)
@@ -145,8 +147,8 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         Titles.add("Transaction")
         Titles.add("Commission")
 
-        fromdate = findViewById(R.id.fromdate) as TextView
-        fromdatetran = findViewById(R.id.fromdatetran) as TextView
+        fromdate = findViewById<TextView>(R.id.fromdate)
+        fromdatetran = findViewById<TextView>(R.id.fromdatetran)
         presenter = MyperfActivityPresenter(applicationContext, this, FetchServerResponse())
 
         calendar = findViewById(R.id.button4) as Button
@@ -166,21 +168,26 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         lyselcharttran = findViewById(R.id.lyselcharttran) as LinearLayout
         lyselchart = findViewById(R.id.lyselchart) as LinearLayout
 
-        v1 = findViewById(R.id.v1) as View
-        v2 = findViewById(R.id.v2) as View
+
 
         lyorderview!!.setOnClickListener(View.OnClickListener {
             lyselchart!!.setVisibility(View.GONE)
             lyselcharttran!!.setVisibility(View.VISIBLE)
-            v1!!.setVisibility(View.VISIBLE)
-            v2!!.setVisibility(View.GONE)
+            lyorderview!!.setBackgroundResource(R.drawable.bg_myperf)
+            lymapsview!!.setBackgroundResource((R.color.colorPrimary))
+            txntxt.setTextColor(ContextCompat.getColor(applicationContext,R.color.colorPrimary))
+            commissiontxt.setTextColor(Color.WHITE)
+
         })
 
         lymapsview!!.setOnClickListener(View.OnClickListener {
             lyselchart!!.setVisibility(View.VISIBLE)
             lyselcharttran!!.setVisibility(View.GONE)
-            v2!!.setVisibility(View.VISIBLE)
-            v1!!.setVisibility(View.GONE)
+            lyorderview!!.setBackgroundResource((R.color.colorPrimary))
+            lymapsview!!.setBackgroundResource(R.drawable.bg_myperf)
+            commissiontxt.setTextColor(ContextCompat.getColor(applicationContext,R.color.colorPrimary))
+            txntxt.setTextColor(Color.WHITE)
+
         })
 
         cv = findViewById(R.id.card_view10) as CardView
