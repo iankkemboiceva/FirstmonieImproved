@@ -343,7 +343,6 @@
             android:background="@drawable/btn_theme_dark"
             android:padding="5dp"
             android:text="Next"
-
             android:textAllCaps="false"
             android:textColor="@color/white" />
         </LinearLayout>

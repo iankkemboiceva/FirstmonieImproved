@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.borax12.materialdaterangepicker.date.DatePickerDialog
 import firstmob.firstbank.com.firstagent.adapter.InboxListAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants.KEY_NAIRA
@@ -76,7 +77,7 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
-        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.fbnlightblue)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.fbnlightblue)));
         // Set Cancelable as False
 
         viewDialog = ViewDialog(this)
