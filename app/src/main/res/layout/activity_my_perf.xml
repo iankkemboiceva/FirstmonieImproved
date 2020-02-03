@@ -29,12 +29,16 @@
                 android:elevation="0dp"
                 android:background="@color/colorPrimary"
                 local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_width="140dp"
                     android:contentDescription="Logo"
                     android:layout_height="@dimen/actionbarheight"
                     android:layout_gravity="center"
+                    android:layout_centerInParent="true"
                     android:src="@drawable/logo2"
                     />
 
@@ -51,12 +55,13 @@
                         android:filterTouchesWhenObscured ="true"
                         android:layout_marginRight="20dp"
 
-                        android:background="@drawable/calendaricon"
+                        android:background="@drawable/whitecalendaricon"
 
 
 
 
                         android:textColor="#ffffff" />
+                </RelativeLayout>
                 </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
