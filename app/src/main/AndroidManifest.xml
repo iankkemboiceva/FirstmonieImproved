@@ -89,7 +89,7 @@
         <activity
             android:name=".FMobActivity"
             android:label="@string/title_activity_fmob"
-            android:theme="@style/MyMaterialTheme.NoActionBar" />
+            />
 
         <service
             android:name="backgroundlocation.LocationUpdatesIntentService"
