@@ -46,6 +46,13 @@
     <drawable name="redcolorr">#F55B6B</drawable>
 
 
+    <color name="transfercolor">#1A8DFF</color>
+    <color name="withdcolor">#94CE00</color>
+    <color name="depocolor">#FCA400</color>
+    <color name="airtimecolor">#F55B6B</color>
+    <color name="paybillcolor">#FF6900</color>
+    <color name="openacccolor">#871B97</color>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="blue">#0000FF</color>

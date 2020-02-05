@@ -30,7 +30,7 @@
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/colorPrimary</item>
+        <item name="color">@color/white</item>
     </style>
 
     <style name="RedTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">

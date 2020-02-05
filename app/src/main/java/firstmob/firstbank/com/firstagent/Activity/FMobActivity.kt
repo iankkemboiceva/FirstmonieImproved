@@ -35,6 +35,7 @@ import androidx.fragment.app.FragmentTransaction
 import firstmob.firstbank.com.firstagent.fragments.FragmentDrawer
 
 import firstmob.firstbank.com.firstagent.fragments.NewHomeGrid
+import firstmob.firstbank.com.firstagent.fragments.NewHomeGridviewLatest
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import kotlinx.android.synthetic.main.activity_fmob.*
 
@@ -103,6 +104,23 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         }
 
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+           /* R.id.inbox -> {
+                val intent = Intent(this, InboxActivity::class.java)
+                startActivity(intent)
+                true
+            }*/
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     private fun displayView(position: Int) {
         var fragment: Fragment? = null
@@ -112,7 +130,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         when (position) {
             40, 0 -> {
 
-                fragment = NewHomeGrid()
+                fragment = NewHomeGridviewLatest()
 
                 title = "Welcome"
             }
