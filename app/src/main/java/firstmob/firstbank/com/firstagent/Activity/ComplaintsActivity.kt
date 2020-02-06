@@ -30,6 +30,7 @@ import firstmob.firstbank.com.firstagent.presenter.ComplaintsPresenter
 import firstmob.firstbank.com.firstagent.utils.Utility.convertTxnCodetoServ
 import firstmob.firstbank.com.firstagent.utils.Utility.returnNumberFormat
 import kotlinx.android.synthetic.main.inbox.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
@@ -78,7 +79,7 @@ class ComplaintsActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
         // Set Cancelable as False
 
         viewDialog = ViewDialog(this)
-
+        titlepg.text="Complains"
         presenter = ComplaintsPresenter(this, FetchServerResponse())
 
 

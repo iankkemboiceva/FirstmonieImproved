@@ -113,7 +113,7 @@ class NewHomeGrid : Fragment() {
         val rlinboxchos: RelativeLayout? = views?.findViewById(R.id.rlinbox)
         rlinboxchos?.setOnClickListener(){
 
-            val i = Intent(activity, InboxActivity::class.java)
+            val i = Intent(activity, Reportspg::class.java)
 
             startActivity(i)
         }

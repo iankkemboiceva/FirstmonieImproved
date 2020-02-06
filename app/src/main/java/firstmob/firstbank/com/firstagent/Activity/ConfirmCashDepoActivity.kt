@@ -35,6 +35,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 
 
 class ConfirmCashDepoActivity : AppCompatActivity(), ConfirmCashDepoContract.ILoginView {
@@ -68,6 +69,7 @@ class ConfirmCashDepoActivity : AppCompatActivity(), ConfirmCashDepoContract.ILo
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)));
+        titlepg.text="Cash In"
         viewDialog = ViewDialog(this)
 
         presenter = ConfirmCashDepoPresenter(this, FetchServerResponse())

@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import kotlinx.android.synthetic.main.toolbarnewui.*
 
 
 class CashDepoActivity : AppCompatActivity(), CashDepoContract.ILoginView {
@@ -52,7 +53,7 @@ class CashDepoActivity : AppCompatActivity(), CashDepoContract.ILoginView {
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
         viewDialog = ViewDialog(this)
-
+        titlepg.text="Cash In"
 
 
         edacc.addTextChangedListener(object : TextWatcher {

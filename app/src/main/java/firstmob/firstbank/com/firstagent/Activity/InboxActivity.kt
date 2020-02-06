@@ -27,6 +27,7 @@ import firstmob.firstbank.com.firstagent.presenter.InboxPresenter
 import firstmob.firstbank.com.firstagent.utils.Utility.convertTxnCodetoServ
 import firstmob.firstbank.com.firstagent.utils.Utility.returnNumberFormat
 import kotlinx.android.synthetic.main.inbox.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,17 +49,8 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
     internal var accno: EditText? = null
     internal var mobno: EditText? = null
     internal var fnam: EditText? = null
-
-
     internal lateinit var txtitle: TextView
     internal lateinit var txfrom: TextView
-
-
-
-    internal var tdate: String? = null
-    internal var firdate: String? = null
-    internal var editsearch: EditText? = null
-
     internal var format1 = SimpleDateFormat("" + "MMMM dd yyyy")
 
     var viewDialog: ViewDialog? = null
@@ -79,7 +71,7 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
         ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.fbnlightblue)));
         // Set Cancelable as False
-
+        titlepg.text="Inbox"
         viewDialog = ViewDialog(this)
 
         presenter = InboxPresenter(this, FetchServerResponse())

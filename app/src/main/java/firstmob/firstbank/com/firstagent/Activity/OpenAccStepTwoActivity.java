@@ -62,7 +62,7 @@ public class OpenAccStepTwoActivity extends BaseActivity implements View.OnClick
     File finalFile;
     int REQUEST_CAMERA =3293;
     Button sigin;
-    TextView gendisp;
+    TextView accopeningttle;
 
     EditText idno,mobno,fnam,lnam,yob;
     List<String> planetsList = new ArrayList<String>();
@@ -98,7 +98,8 @@ public class OpenAccStepTwoActivity extends BaseActivity implements View.OnClick
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowCustomEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
-
+        accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
 
         sigin = (Button) findViewById(R.id.button1);
         sigin.setOnClickListener(this);

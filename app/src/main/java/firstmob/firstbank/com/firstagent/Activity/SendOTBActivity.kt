@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.activity_cash_depo.button2
 import kotlinx.android.synthetic.main.activity_cash_depo.cname
 import kotlinx.android.synthetic.main.activity_cash_depo.edacc
 import kotlinx.android.synthetic.main.activity_send_otb.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
@@ -57,7 +58,7 @@ class SendOTBActivity : AppCompatActivity(), SendOTBContract.ILoginView,OtherBan
         ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.normalcolor)));
         viewDialog = ViewDialog(this)
-
+        titlepg.text="Transfer"
         bankselect.setOnClickListener {
             val fm: FragmentManager = supportFragmentManager
             val othbank = OtherBankPage()

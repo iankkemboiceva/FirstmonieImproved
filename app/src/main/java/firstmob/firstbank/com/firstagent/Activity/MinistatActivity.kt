@@ -28,6 +28,7 @@ import firstmob.firstbank.com.firstagent.presenter.MinstatementPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import org.json.JSONException
 import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -75,6 +76,7 @@ class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDial
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true)
         ab.setDisplayShowTitleEnabled(false)
+        titlepg.text="Ministatement"
         txtitle = findViewById(R.id.enddate) as TextView
         txfrom = findViewById(R.id.from) as TextView
         lv = findViewById(R.id.lv) as ListView

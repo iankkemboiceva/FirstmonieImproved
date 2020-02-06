@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.activity_cash_depo.cname
 import kotlinx.android.synthetic.main.activity_cash_depo.edacc
 import kotlinx.android.synthetic.main.activity_cash_depo.ednarr
 import kotlinx.android.synthetic.main.activity_cash_depo_trans.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 
 
 class CashDepoTransActivity : AppCompatActivity(), CashDepoTransContract.ILoginView {
@@ -56,7 +57,7 @@ class CashDepoTransActivity : AppCompatActivity(), CashDepoTransContract.ILoginV
         ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.normalcolor)));
         viewDialog = ViewDialog(this)
 
-
+        titlepg.text="Transfer"
 
         edacc.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {

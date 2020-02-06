@@ -30,6 +30,7 @@ import firstmob.firstbank.com.firstagent.presenter.ForceResetPinPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import javax.inject.Inject
 
@@ -66,7 +67,7 @@ class ForceChangePin : AppCompatActivity(), View.OnClickListener, PinChangesCont
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)));
-
+        titlepg.text="Change Pin"
         oldpin = findViewById(R.id.oldpin) as EditText
         et = findViewById(R.id.pin) as EditText
         et2 = findViewById(R.id.cpin) as EditText

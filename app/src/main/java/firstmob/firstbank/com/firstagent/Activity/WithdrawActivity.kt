@@ -26,6 +26,7 @@ import firstmob.firstbank.com.firstagent.presenter.WithdrawalfirstPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import javax.inject.Inject
 
@@ -75,6 +76,7 @@ class WithdrawActivity : AppCompatActivity(), View.OnClickListener,WithdrawalsCo
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         session= SessionManagement(this)
+        titlepg.text="Cash Out"
         btnok = findViewById(R.id.button5) as Button
         btn_back = findViewById(R.id.button3) as Button
         session = SessionManagement(this)
@@ -96,12 +98,12 @@ class WithdrawActivity : AppCompatActivity(), View.OnClickListener,WithdrawalsCo
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (edacc!!.getText().toString().length == 10) {
                    // prgDialog!!.show()
-                  //  viewDialog!!.showDialog()
+
                     if (Utility.checkInternetConnection()) {
 
                         Utility.hideKeyboardFrom(applicationContext, edacc)
                        // viewDialog!!.showDialog()
-                       // prgDialog!!.show()
+
 
                         val acno = edacc!!.getText().toString()
                         presenter.requestCallNameInquiry("getnameenq",acno)

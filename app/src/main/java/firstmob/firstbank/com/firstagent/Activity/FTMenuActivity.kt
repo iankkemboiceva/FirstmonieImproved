@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.adapter.DepoMenuAdapt
 import firstmob.firstbank.com.firstagent.adapter.OTBList
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.util.*
 
@@ -37,6 +38,7 @@ class FTMenuActivity : AppCompatActivity() {
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.normalcolor)));
+        titlepg.text="Transfer"
         //checkInternetConnection2();
         lv = findViewById<View>(R.id.lv) as ListView
         SetPop()

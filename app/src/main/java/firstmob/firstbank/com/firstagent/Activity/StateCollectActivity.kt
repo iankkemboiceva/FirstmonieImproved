@@ -24,6 +24,7 @@ import firstmob.firstbank.com.firstagent.presenter.StateCollectacivtyPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import java.util.*
 
 class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillersContract.IViewbillStateCollect {
@@ -70,7 +71,7 @@ class StateCollectActivity : AppCompatActivity(),View.OnClickListener,GetBillers
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.theme_paybills)));
-
+        titlepg.text="Pay Bills"
         session = SessionManagement(this)
         amon = findViewById(R.id.amount) as EditText
         edacc = findViewById(R.id.acc) as EditText

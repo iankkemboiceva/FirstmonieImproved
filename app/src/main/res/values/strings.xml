@@ -298,4 +298,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+
+    <string name="Selectoptiontext">Select any of below options to view detailed reports</string>
 </resources>

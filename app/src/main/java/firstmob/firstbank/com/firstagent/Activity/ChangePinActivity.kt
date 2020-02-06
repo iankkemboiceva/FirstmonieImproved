@@ -26,6 +26,7 @@ import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import okhttp3.OkHttpClient
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import javax.inject.Inject
@@ -67,6 +68,7 @@ class ChangePinActivity : AppCompatActivity(), View.OnClickListener, PinChangesC
         et2 = findViewById(R.id.cpin) as EditText
         btnok = findViewById(R.id.button2) as Button
         btnok!!.setOnClickListener(this)
+        titlepg.text="Change Pin"
 //        pDialog = ProgressDialog(this)
 //        pDialog!!.setTitle("Loading")
 //        pDialog!!.setCancelable(false)

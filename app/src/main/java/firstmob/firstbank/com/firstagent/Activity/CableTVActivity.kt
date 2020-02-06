@@ -18,6 +18,7 @@ import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
@@ -68,6 +69,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
             edacc = findViewById(R.id.acc) as EditText
             billname = findViewById(R.id.textView1) as TextView
             smcno = findViewById(R.id.smcno) as TextView
+            titlepg.text="Pay Bills"
             viewDialog= ViewDialog(this)
 //            prgDialog2 = ProgressDialog(this)
 //            prgDialog2!!.setMessage("Loading Request....")

@@ -23,6 +23,7 @@ import firstmob.firstbank.com.firstagent.presenter.CommisiondatPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import org.json.JSONException
 import org.json.JSONObject
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -97,6 +98,7 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
 //        prgDialog2 = ProgressDialog(this)
 //        prgDialog2!!.setMessage("Loading ....")
         //prgDialog2!!.setCancelable(false)
+        titlepg.text="Commission"
         viewDialog=ViewDialog(this)
         lstmt = findViewById(R.id.stmtly) as LinearLayout
         lstmt!!.setOnClickListener(this)

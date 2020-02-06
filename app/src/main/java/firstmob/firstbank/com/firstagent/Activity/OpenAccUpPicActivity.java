@@ -104,7 +104,7 @@ public class OpenAccUpPicActivity extends BaseActivity implements View.OnClickLi
     List<String> mobopname = new ArrayList<String>();
     List<String> mobopid = new ArrayList<String>();
 
-    TextView tvdate;
+    TextView accopeningttle;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     String mCurrentPhotoPath;
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -140,7 +140,8 @@ public class OpenAccUpPicActivity extends BaseActivity implements View.OnClickLi
         ab.setDisplayShowTitleEnabled(false);
 
 
-
+        accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
         prgDialog2 = new ProgressDialog(this);
         prgDialog2.setMessage("Loading....");
         prgDialog2.setCancelable(false);

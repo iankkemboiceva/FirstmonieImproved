@@ -9,14 +9,24 @@
     android:elevation="0dp"
     android:background="@color/pink_btncolor"
     local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-    <ImageView
-        android:layout_width="140dp"
-        android:contentDescription="Logo"
-        android:layout_height="@dimen/actionbarheight"
-        android:layout_gravity="center"
-        android:src="@drawable/logo2"
-        />
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Cash Out"
+       android:id="@+id/titlepg"
+       android:layout_gravity="center"
+       android:textSize="18sp"
+       android:layout_marginLeft="0dp"
+       android:textColor="@color/white"
+       android:gravity="center"
+       />
+<!--    <ImageView-->
+<!--        android:layout_width="140dp"-->
+<!--        android:contentDescription="Logo"-->
+<!--        android:layout_height="@dimen/actionbarheight"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:src="@drawable/logo2"-->
+<!--        />-->
 </androidx.appcompat.widget.Toolbar>
 
 

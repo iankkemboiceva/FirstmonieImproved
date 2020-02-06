@@ -26,7 +26,11 @@ import firstmob.firstbank.com.firstagent.presenter.GetBillPaymentsActPresenter
 import firstmob.firstbank.com.firstagent.presenter.GetBillersSpecMenuPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+
+import kotlinx.android.synthetic.main.toolbarnewui.*
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+
 import java.util.ArrayList
 
 class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbillPaymentsAct {
@@ -67,6 +71,7 @@ class GetBillPaymentsActivity : AppCompatActivity(), GetBillersContract.IViewbil
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.theme_paybills)));
+        titlepg.text="Pay Bills"
         session = SessionManagement(this)
         viewDialog= ViewDialog(this);
         presenter = GetBillPaymentsActPresenter(this, this, FetchServerResponse())
