@@ -26,6 +26,7 @@ import firstmob.firstbank.com.firstagent.presenter.GetBillersSpecMenuPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.util.ArrayList
 
@@ -59,6 +60,7 @@ class SpecBillerMenuActivity : AppCompatActivity(),GetBillersContract.IViewbille
         ab.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.theme_paybills)));
         session = SessionManagement(this)
         viewDialog= ViewDialog(this)
+        titlepg.text="Pay Bills"
 //        prgDialog = ProgressDialog(this)
 //        prgDialog!!.setMessage("Please wait...")
 //        prgDialog!!.setCancelable(false)

@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.activity_confirm_cash_depo_trans.*
 import kotlinx.android.synthetic.main.activity_confirm_cash_depo_trans.recsendname
 import kotlinx.android.synthetic.main.activity_confirm_cash_depo_trans.recsendnumber
 import kotlinx.android.synthetic.main.activity_confirm_send_otb.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
@@ -63,7 +64,7 @@ class ConfirmSendOTBActivity : AppCompatActivity(), ConfirmSendOTBContract.ILogi
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         viewDialog = ViewDialog(this)
-
+        titlepg.text="Transfer"
         presenter = ConfirmSendOTBPresenter(this, FetchServerResponse())
         val intent = intent
         if (intent != null) {

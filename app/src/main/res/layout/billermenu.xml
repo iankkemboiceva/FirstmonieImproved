@@ -82,6 +82,7 @@
                 android:id="@+id/titlte"
                 android:paddingTop="20dp"
                 android:textSize="17dp"
+                android:visibility="gone"
                 android:text="Pay Bills"
                 android:textAlignment="center"
                 />

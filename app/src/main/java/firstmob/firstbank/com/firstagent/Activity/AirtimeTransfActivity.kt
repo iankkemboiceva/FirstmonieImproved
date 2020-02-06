@@ -24,6 +24,7 @@ import firstmob.firstbank.com.firstagent.presenter.AirtimeTransFirstPresenter
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import org.json.JSONArray
 import org.json.JSONException
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -80,6 +81,7 @@ class AirtimeTransfActivity : AppCompatActivity(), View.OnClickListener, Airtime
         session = SessionManagement(this)
         sp1 = findViewById(R.id.spin1) as Spinner
         btn2 = findViewById(R.id.button2) as Button
+      titlepg.text="Airtime"
         btn_back = findViewById(R.id.button3) as Button
         btn2!!.setOnClickListener(this)
         btn_back!!.setOnClickListener(this)

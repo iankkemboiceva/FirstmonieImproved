@@ -46,6 +46,7 @@ import kotlinx.android.synthetic.main.activity_confirm_cash_depo.recname
 import kotlinx.android.synthetic.main.activity_confirm_cash_depo.recnarr
 import kotlinx.android.synthetic.main.activity_confirm_cash_depo.txtfee
 import kotlinx.android.synthetic.main.activity_confirm_cash_depo_trans.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 
 
 class ConfirmCashDepoTransActivity : AppCompatActivity(), ConfirmCashTransContract.ILoginView {
@@ -81,6 +82,7 @@ class ConfirmCashDepoTransActivity : AppCompatActivity(), ConfirmCashTransContra
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.normalcolor)));
         viewDialog = ViewDialog(this)
+        titlepg.text="Transfer"
         presenter = ConfirmCashTransPresenter(this, FetchServerResponse())
         val intent = intent
         if (intent != null) {

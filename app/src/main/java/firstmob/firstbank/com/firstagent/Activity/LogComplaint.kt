@@ -17,6 +17,7 @@ import firstmob.firstbank.com.firstagent.presenter.CashDepoPresenter
 import firstmob.firstbank.com.firstagent.presenter.LogComplaintPresenter
 import kotlinx.android.synthetic.main.activity_cash_depo.*
 import kotlinx.android.synthetic.main.logcomplaint.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
@@ -39,6 +40,7 @@ class LogComplaint : AppCompatActivity(),LogComplContract.ILoginView{
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.fbnlightblue)));
+        titlepg.text="Complaint"
         viewDialog = ViewDialog(this)
 
 

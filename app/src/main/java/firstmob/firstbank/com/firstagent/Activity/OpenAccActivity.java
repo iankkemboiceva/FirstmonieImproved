@@ -79,6 +79,7 @@ public class OpenAccActivity extends BaseActivity implements View.OnClickListene
     List<String> mobopname  = new ArrayList<String>();
     List<String> mobopid  = new ArrayList<String>();
     DatePickerDialog datePickerDialog;
+    TextView accopeningttle;
     TextView tvdate;
     public static final String DATEPICKER_TAG = "datepicker";
 
@@ -96,9 +97,8 @@ public class OpenAccActivity extends BaseActivity implements View.OnClickListene
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowCustomEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
-
-
-
+        accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
         sigin = (Button)findViewById(R.id.button1);
         sigin.setOnClickListener(this);
         btn4 = (Button)findViewById(R.id.button4);

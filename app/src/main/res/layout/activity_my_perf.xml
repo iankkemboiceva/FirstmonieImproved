@@ -30,12 +30,15 @@
                 android:background="@color/colorPrimary"
                 local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-                <ImageView
+                <TextView
                     android:layout_width="140dp"
                     android:contentDescription="Logo"
                     android:layout_height="@dimen/actionbarheight"
+                    android:id="@+id/titlep"
                     android:layout_gravity="center"
-                    android:src="@drawable/logo2"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white"
                     />
 
                 <RelativeLayout

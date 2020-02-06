@@ -58,6 +58,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
 
                 >
@@ -77,7 +78,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="0dp"
+                        android:visibility="gone"
                         android:orientation="vertical">
 
                         <TextView
@@ -90,7 +92,7 @@
                             android:text="Cash Withdrawal"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/colorPrimary"
-
+                            android:visibility="gone"
 
                             />
 
@@ -104,7 +106,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="0dp"
                     android:paddingLeft="5dip"
                     android:paddingRight="5dip"
                     android:paddingBottom="5dip"

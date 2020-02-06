@@ -52,6 +52,7 @@ import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection
 import kotlinx.android.synthetic.main.activity_my_perf.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -144,6 +145,7 @@ class MyPerfActivity : AppCompatActivity(),View.OnClickListener, DateRangePicker
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
+        titlep.text="My Performance"
         Titles.add("Transaction")
         Titles.add("Commission")
 

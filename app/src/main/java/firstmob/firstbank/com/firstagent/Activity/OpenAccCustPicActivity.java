@@ -90,7 +90,7 @@ public class OpenAccCustPicActivity extends BaseActivity implements View.OnClick
     static Hashtable<String, String> data1;
     String paramdata = "";
     ViewDialog prgDialog;
-    TextView tnc;
+    TextView accopeningttle;
     List<String> mobopname = new ArrayList<String>();
     List<String> mobopid = new ArrayList<String>();
 
@@ -108,6 +108,7 @@ public class OpenAccCustPicActivity extends BaseActivity implements View.OnClick
     private Button mSaveButton;
     FileCompressor mCompressor;
     boolean hasSigned = false;
+
     OpenAccCustContract.Presenter presenter;
 
     @Override
@@ -125,7 +126,8 @@ public class OpenAccCustPicActivity extends BaseActivity implements View.OnClick
         ab.setDisplayShowCustomEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
 
-
+        accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
 
         img = (ImageView) findViewById(R.id.imgview);
 

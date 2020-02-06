@@ -27,6 +27,7 @@ import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ConfirmAirtimePresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.InputStream
 import java.io.OutputStream
@@ -75,6 +76,7 @@ class ConfirmAirtimeActivity : AppCompatActivity(), View.OnClickListener,Airtime
         ab.setDisplayShowTitleEnabled(false)
         session = SessionManagement(this)
         reccustid = findViewById(R.id.textViewnb2) as TextView
+        titlepg.text="Airtime"
         etpin = findViewById(R.id.pin) as TextInputEditText
         acbal = findViewById(R.id.txtacbal) as TextView
         recamo = findViewById(R.id.textViewrrs) as TextView

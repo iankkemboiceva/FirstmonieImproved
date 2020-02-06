@@ -96,7 +96,7 @@ public class OpenAccOTPActivity extends BaseActivity implements View.OnClickList
 
     Button sigin;
     String refnumber;
-    TextView gendisp;
+    TextView accopeningttle;
 
     EditText otp,pin;
     List<String> planetsList = new ArrayList<String>();
@@ -137,7 +137,8 @@ public class OpenAccOTPActivity extends BaseActivity implements View.OnClickList
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowCustomEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
-
+        accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
 
         sigin = (Button) findViewById(R.id.button1);
         sigin.setOnClickListener(this);

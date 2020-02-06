@@ -24,6 +24,7 @@ import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ConfirmWithdrwalPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import javax.inject.Inject
 
@@ -37,12 +38,10 @@ class ConfirmWithdrawalActivity : AppCompatActivity(), View.OnClickListener,With
     internal var recname:TextView? =null
     internal var recamo:TextView? =null
     var viewDialog: ViewDialog? =null
-    internal var recnarr:TextView? =null
-    internal var recsendnum:TextView? =null
-    internal var recsendnam:TextView? =null
-    internal var step2:TextView? =null
+
+    internal var step2:Button? =null
     internal var txtfee:TextView? =null
-    internal var acbal:TextView? =null
+   // internal var acbal:TextView? =null
     internal var btnsub: Button? =null
     internal var btn_back: Button? =null
     internal var recanno: String? =null
@@ -66,23 +65,22 @@ class ConfirmWithdrawalActivity : AppCompatActivity(), View.OnClickListener,With
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
+        titlepg.text="Cash Out"
         session = SessionManagement(this)
         recacno = findViewById(R.id.textViewnb2) as TextView
         recname = findViewById(R.id.textViewcvv) as TextView
-        acbal = findViewById(R.id.txtacbal) as TextView
+        //acbal = findViewById(R.id.txtacbal) as TextView
         etpin = findViewById(R.id.pin) as TextInputEditText
         recamo = findViewById(R.id.textViewrrs) as TextView
-        recnarr = findViewById(R.id.textViewrr) as TextView
+      //  recnarr = findViewById(R.id.textViewrr) as TextView
         txtfee = findViewById(R.id.txtfee) as TextView
-        recsendnam = findViewById(R.id.sendnammm) as TextView
-        recsendnum = findViewById(R.id.sendno) as TextView
         viewDialog= ViewDialog(this)
         btnsub = findViewById(R.id.button2) as Button
         btn_back = findViewById(R.id.button3) as Button
         btnsub!!.setOnClickListener(this)
         btn_back!!.setOnClickListener(this)
         presenter = ConfirmWithdrwalPresenter(this, this, FetchServerResponse())
-        step2 = findViewById(R.id.tv2) as TextView
+        step2 = findViewById(R.id.tv2) as Button
         step2!!.setOnClickListener(this)
 
         val intent = intent
@@ -166,7 +164,8 @@ class ConfirmWithdrawalActivity : AppCompatActivity(), View.OnClickListener,With
     }
 
     override fun setBalance(Balance: String?) {
-        acbal!!.setText(Utility.returnNumberFormat(Balance));
+
+     //   acbal!!.setText(Utility.returnNumberFormat(Balance));
     }
 
     override fun launchWithdrawFrag() {

@@ -23,6 +23,7 @@ import firstmob.firstbank.com.firstagent.presenter.ConfimCabletvPresenter
 import firstmob.firstbank.com.firstagent.presenter.StateCollectacivtyPresenter
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import javax.inject.Inject
 
 class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillersContract.IViewbillConfirmCabletv {
@@ -90,6 +91,7 @@ class ConfirmCableActivity : AppCompatActivity(),View.OnClickListener,GetBillers
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false)
         ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.theme_paybills)));
+        titlepg.text="Pay Bills"
         session = SessionManagement(this)
         reccustid = findViewById(R.id.textViewnb2) as TextView
         etpin = findViewById(R.id.pin) as TextInputEditText

@@ -23,6 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.utils.SessionManagement
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
@@ -84,7 +85,7 @@ class ChangeAcNameActivity : AppCompatActivity(), View.OnClickListener {
         cvlast!!.setOnClickListener(this)
 
        // lv2 = findViewById(R.id.listView2) as RecyclerView
-
+       titlepg.text="Profile"
         rlbutton = findViewById(R.id.rlbutton) as RelativeLayout
         rlbutton!!.setOnClickListener(this)
         lv3 = findViewById(R.id.listView3) as RecyclerView
