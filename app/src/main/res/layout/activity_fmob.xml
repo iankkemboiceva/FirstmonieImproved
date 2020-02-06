@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:background="@color/white"
+                android:background="@color/colorPrimary"
                 app:theme="@style/ToolbarStyle">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                             android:layout_height="40dp"
 
 
-                            android:src="@drawable/firstmoniecolored"/>
+                            android:src="@drawable/firstmoniewhite"/>
 
 
                     </RelativeLayout>
@@ -66,7 +66,7 @@
         android:id="@+id/fragment_navigation_drawer"
         android:name="firstmob.firstbank.com.firstagent.fragments.FragmentDrawer"
 
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:layout="@layout/nav_drawer"

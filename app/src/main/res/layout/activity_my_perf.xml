@@ -29,6 +29,9 @@
                 android:elevation="0dp"
                 android:background="@color/colorPrimary"
                 local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="140dp"
@@ -36,9 +39,11 @@
                     android:layout_height="@dimen/actionbarheight"
                     android:id="@+id/titlep"
                     android:layout_gravity="center"
+
                     android:gravity="center"
                     android:text=""
                     android:textColor="@color/white"
+
                     />
 
                 <RelativeLayout
@@ -54,12 +59,13 @@
                         android:filterTouchesWhenObscured ="true"
                         android:layout_marginRight="20dp"
 
-                        android:background="@drawable/calendaricon"
+                        android:background="@drawable/whitecalendaricon"
 
 
 
 
                         android:textColor="#ffffff" />
+                </RelativeLayout>
                 </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>

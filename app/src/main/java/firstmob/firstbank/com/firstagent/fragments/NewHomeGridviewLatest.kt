@@ -8,19 +8,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 
 import firstmob.firstbank.com.firstagent.Activity.*
 
-import android.widget.Toast
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.Activity.*
+import firstmob.firstbank.com.firstagent.adapter.ImageAdapter
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility.generateHashString
 import kotlinx.android.synthetic.main.fragment_new_home_grid.*
+import kotlinx.android.synthetic.main.fragnewhomegrid.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,7 +36,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [NewHomeGrid.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NewHomeGrid : Fragment() {
+class NewHomeGridviewLatest : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,76 +51,66 @@ class NewHomeGrid : Fragment() {
         // Inflate the layout for this fragment
 
 
-        val views: View = inflater.inflate(R.layout.fragment_new_home_grid, container, false)
-
-
-        val open_airtime = views.findViewById<RelativeLayout>(R.id.rl1)
-        val open_withdrwa = views.findViewById<RelativeLayout>(R.id.rl3)
-        val open_paybills = views.findViewById<RelativeLayout>(R.id.rl6)
-        val open_p = views.findViewById<RelativeLayout>(R.id.rlinbox)
-      //  val rltransferbox = views.findViewById<RelativeLayout>(R.id.rltransfer)
-        val rlopenacc = views.findViewById<RelativeLayout>(R.id.rlopenaccinside)
+        val views: View = inflater.inflate(R.layout.fragnewhomegrid, container, false)
+        val gridvieww = views.findViewById<GridView>(R.id.gridview)
+        val rlcomm = views.findViewById<RelativeLayout>(R.id.rlcomm)
+        val rlrepo = views.findViewById<RelativeLayout>(R.id.rlrepo)
         val txtusid = views.findViewById<TextView>(R.id.usid)
+        gridvieww.adapter = ImageAdapter(activity)
 
-        // Set a click listener for text view object
-        open_airtime.setOnClickListener{
-            val intent = Intent (getActivity(), AirtimeTransfActivity::class.java)
-            this.startActivity(intent)
+        // Set an item click listener for grid view items
+        gridvieww.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            // Get the GridView selected/clicked item text
+
+
+           if(position == 0){
+               val i = Intent(activity, FTMenuActivity::class.java)
+
+               startActivity(i)
+           }
+            if(position == 1){
+                val i = Intent(activity, WithdrawActivity::class.java)
+
+                startActivity(i)
+            }
+            if(position == 2){
+                val i = Intent(activity, CashDepoActivity::class.java)
+
+                startActivity(i)
+            }
+            if(position == 3){
+                val i = Intent(activity, AirtimeTransfActivity::class.java)
+
+                startActivity(i)
+            }
+            if(position == 4){
+                val i = Intent(activity, BillMenuActivity::class.java)
+
+                startActivity(i)
+            }
+            if(position == 5){
+                val i = Intent(activity, OpenAccActivity::class.java)
+
+                startActivity(i)
+            }
         }
-        open_withdrwa.setOnClickListener{
-            val intent = Intent (getActivity(), WithdrawActivity::class.java)
-            this.startActivity(intent)
-        }
-        open_p.setOnClickListener{
-            val intent = Intent (getActivity(), MyPerfActivity::class.java)
-          //  intent.putExtra("pinna","pinna")
-            this.startActivity(intent)
-        }
-        open_paybills.setOnClickListener{
-            val intent = Intent (getActivity(), BillMenuActivity::class.java)
-            this.startActivity(intent)
-        }
+        rlcomm?.setOnClickListener(){
 
-
-   /*     rltransferbox?.setOnClickListener(){
-
-            val i = Intent(activity, FTMenuActivity::class.java)
-
-            startActivity(i)
-        }*/
-        rlopenacc?.setOnClickListener(){
-
-            val i = Intent(activity, OpenAccActivity::class.java)
-
-            startActivity(i)
-        }
-
-
-
-
-
-
-
-        val rldepo: RelativeLayout? = views?.findViewById(R.id.rl5)
-        rldepo?.setOnClickListener(){
-
-            val i = Intent(activity, CashDepoActivity::class.java)
+            val i = Intent(activity, CommisionActivity::class.java)
 
             startActivity(i)
         }
 
+        rlrepo?.setOnClickListener(){
 
-        val rlinboxchos: RelativeLayout? = views?.findViewById(R.id.rlinbox)
-        rlinboxchos?.setOnClickListener(){
-
-            val i = Intent(activity, Reportspg::class.java)
+            val i = Intent(activity, MyPerfActivity::class.java)
 
             startActivity(i)
         }
+        rlsupport?.setOnClickListener(){
 
 
-
-
+        }
         val pin = "12346";
         val hashedpin = generateHashString(pin);
         SecurityLayer.Log(hashedpin)

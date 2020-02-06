@@ -41,7 +41,7 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
     override fun requestCallMinistat(flag: String?, extraparam: String?) {
         iView!!.showProgress()
         Prefs.putString(SharedPrefConstants.MINIST_TRANS_FLAG,flag)
-        var endpoint = ""
+        var endpoint: String
         val usid = Prefs.getString(SharedPrefConstants.KEY_USERID, "NA")
         val agentid = Prefs.getString(SharedPrefConstants.AGENTID, "NA")
         val mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA")
@@ -101,7 +101,7 @@ class MinstatementPresenter : CommisionContract.PresenterMinista, MainContract.G
 
             val respcode = obj.optString("responseCode")
             val responsemessage = obj.optString("message")
-            if(Prefs.getString(SharedPrefConstants.MINIST_TRANS_FLAG,"NA").equals("mistate")){
+            if(Prefs.getString(SharedPrefConstants.MINIST_TRANS_FLAG,"NA") == "mistate"){
 
 
                 val comperf = obj.optJSONArray("data")
