@@ -56,6 +56,7 @@ class NewHomeGridviewLatest : Fragment() {
         val rlcomm = views.findViewById<RelativeLayout>(R.id.rlcomm)
         val rlrepo = views.findViewById<RelativeLayout>(R.id.rlrepo)
         val txtusid = views.findViewById<TextView>(R.id.usid)
+        val txtagid = views.findViewById<TextView>(R.id.agentid)
         gridvieww.adapter = ImageAdapter(activity)
 
         // Set an item click listener for grid view items
@@ -116,6 +117,9 @@ class NewHomeGridviewLatest : Fragment() {
         SecurityLayer.Log(hashedpin)
         val strusid = Prefs.getString(SharedPrefConstants.KEY_USERID,"")
         txtusid.text = "User ID:$strusid"
+
+        val stragid = Prefs.getString(SharedPrefConstants.AGENTID,"")
+        txtagid.text = "Agent ID:$stragid"
 
         return views
 

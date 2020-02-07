@@ -22,7 +22,9 @@
     <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <!-- Customize color of navigation drawer icon and back arrow -->
         <item name="colorControlNormal">@color/colorPrimary</item>
+
     </style>
+
 
     <style name="RedTheme" parent="RedTheme.Base">
 

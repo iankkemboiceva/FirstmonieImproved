@@ -107,5 +107,5 @@ public class ImageAdapter extends BaseAdapter {
 			R.color.paybillcolor, R.color.openacccolor
 	};
 
-	public String[] services = {"Transfer","Withdraw","Deposit","Buy Airtime","Pay Bill","Open Account"};
+	public String[] services = {"Transfer","Withdraw","Deposit","Buy Airtime","Pay Bill","Open Account/\n Wallet"};
 }

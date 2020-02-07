@@ -45,12 +45,24 @@ android:background="@color/colorPrimary"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="60dp"
+
                 android:textColor="@color/white"
 
                 android:id="@+id/usid"
                 android:textSize="17sp"
                 android:text="jsjdjdjdjd"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:textColor="@color/white"
+
+                    android:id="@+id/agentid"
+                    android:textSize="17sp"
+                    android:text=""/>
             </LinearLayout>
         </LinearLayout>
 

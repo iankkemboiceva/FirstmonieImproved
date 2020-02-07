@@ -33,6 +33,15 @@
                 android:id="@+id/profimg"
                 android:background="@drawable/profilepic"/>
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/closeicon"
+                android:background="@drawable/xicon"/>
+
 
 
             <TextView
@@ -212,6 +221,52 @@ android:layout_below="@+id/txuserid"
                                 android:layout_centerVertical="true"
 
                                 android:text="Change PIN"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18sp"
+
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlmyaccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+
+
+                        android:layout_below="@+id/rl4"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+
+                            android:layout_marginTop="10dp">
+
+                            <ImageView
+                                android:id="@+id/myaccount"
+                                android:layout_width="32dp"
+                                android:layout_height="40dp"
+
+                                android:layout_marginLeft="10dp"
+                                android:background="@drawable/myaccounticon" />
+
+                            <TextView
+                                android:id="@+id/myaccounttxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+
+                                android:layout_marginLeft="50dp"
+                                android:layout_toRightOf="@+id/myaccount"
+                                android:layout_centerVertical="true"
+
+                                android:text="My Account"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18sp"
 

@@ -80,6 +80,8 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         drawerFragment!!.setUp(R.id.fragment_navigation_drawer, drawerLayout, toolbar)
         drawerFragment!!.setDrawerListener(this)
 
+
+
         updateAndroidSecurityProvider(this)
 
         displayView(40)
@@ -183,6 +185,11 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
             }
 
 
+            7 -> {
+
+               drawerLayout.closeDrawers()
+
+            }
 
             else -> {
             }

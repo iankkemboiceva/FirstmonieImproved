@@ -71,9 +71,10 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
 
     TextView tv,home,tvmobno,tvlastl,tvusid;
+    ImageView imgclose;
 
     Button lyhomeid;
-    RelativeLayout lysignout,rlchangepin,rlhome;
+    RelativeLayout lysignout,rlchangepin,rlhome,rlminist;
     RelativeLayout header;
     //  private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -123,16 +124,19 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.nav_drawer, container, false);
         lysignout = (RelativeLayout) layout.findViewById(R.id.rllogout);
+        imgclose = (ImageView) layout.findViewById(R.id.closeicon);
 
         rlchangepin = (RelativeLayout) layout.findViewById(R.id.rlchchangepin);
 
         rlhome = (RelativeLayout) layout.findViewById(R.id.rlhome);
+        rlminist = (RelativeLayout) layout.findViewById(R.id.rlmyaccount);
 
 
         lysignout.setOnClickListener(this);
         rlhome.setOnClickListener(this);
         rlchangepin.setOnClickListener(this);
-
+        rlminist.setOnClickListener(this);
+        imgclose.setOnClickListener(this);
 
 
 
@@ -209,6 +213,16 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
             mDrawerLayout.closeDrawer(containerView);
         }
 
+
+        if (v.getId() == R.id.rlmyaccount) {
+
+            drawerListener.onDrawerItemSelected(v, 3);
+            mDrawerLayout.closeDrawer(containerView);
+        }
+        if (v.getId() == R.id.closeicon) {
+
+            mDrawerLayout.closeDrawer(containerView);
+        }
 
     }
 
