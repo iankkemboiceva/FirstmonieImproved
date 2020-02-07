@@ -66,7 +66,7 @@
         android:id="@+id/fragment_navigation_drawer"
         android:name="firstmob.firstbank.com.firstagent.fragments.FragmentDrawer"
 
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:layout="@layout/nav_drawer"
