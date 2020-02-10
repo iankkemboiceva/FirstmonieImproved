@@ -90,10 +90,7 @@ public class ImageAdapter extends BaseAdapter {
 		public TextView txtname;
 		public ImageView img;
 		public CardView cv;
-
-
-
-	}
+}
 	// Add all our images to arraylist
 	public Integer[] thumbImages = {
 			R.drawable.transfericon, R.drawable.withdrawicon,
