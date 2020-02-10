@@ -49,8 +49,6 @@ class NewHomeGridviewLatest : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-
-
         val views: View = inflater.inflate(R.layout.fragnewhomegrid, container, false)
         val gridvieww = views.findViewById<GridView>(R.id.gridview)
         val rlcomm = views.findViewById<RelativeLayout>(R.id.rlcomm)
