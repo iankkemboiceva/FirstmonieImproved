@@ -16,16 +16,19 @@
             android:id="@+id/container_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:weightSum="10"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:local="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="9.9"
                 android:layout_height="wrap_content"
 
 
-                android:background="@color/colorPrimary"
+
                 app:theme="@style/ToolbarStyle">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -50,7 +53,16 @@
                     </RelativeLayout>
 
                 </RelativeLayout>
+
             </androidx.appcompat.widget.Toolbar>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="5dp"
+                android:onClick="launchmenu"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/menuicon"
+                />
         </LinearLayout>
 
         <FrameLayout

@@ -50,7 +50,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [NewHomeGrid.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NewHomeGridviewLatest : Fragment() {
+class NewHomeGridview2 : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,11 +63,11 @@ class NewHomeGridviewLatest : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val views: View = inflater.inflate(R.layout.fragnewhomegrid, container, false)
+        val views: View = inflater.inflate(R.layout.fragmnewhome2, container, false)
         val gridvieww = views.findViewById<GridView>(R.id.gridview)
         val rlcomm = views.findViewById<RelativeLayout>(R.id.rlcomm)
         val rlrepo = views.findViewById<RelativeLayout>(R.id.rlrepo)
-      //  val cardvie=views.findViewById<LinearLayout>(R.id.lyid)
+        //  val cardvie=views.findViewById<LinearLayout>(R.id.lyid)
         val txtusid = views.findViewById<TextView>(R.id.usid)
         val txtagid = views.findViewById<TextView>(R.id.agentid)
         gridvieww.adapter = ImageAdapter(activity)
@@ -77,11 +77,11 @@ class NewHomeGridviewLatest : Fragment() {
             // Get the GridView selected/clicked item text
 
 
-           if(position == 0){
-               val i = Intent(activity, FTMenuActivity::class.java)
+            if(position == 0){
+                val i = Intent(activity, FTMenuActivity::class.java)
 
-               startActivity(i)
-           }
+                startActivity(i)
+            }
             if(position == 1){
                 val i = Intent(activity, WithdrawActivity::class.java)
 
