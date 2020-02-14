@@ -24,6 +24,20 @@ import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility.generateHashString
 import kotlinx.android.synthetic.main.fragment_new_home_grid.*
 import kotlinx.android.synthetic.main.fragnewhomegrid.*
+import android.util.DisplayMetrics
+import androidx.cardview.widget.CardView
+import android.opengl.ETC1.getHeight
+import com.github.gcacace.signaturepad.view.ViewTreeObserverCompat.removeOnGlobalLayoutListener
+import android.view.ViewTreeObserver
+import android.R.layout
+import com.github.gcacace.signaturepad.view.ViewTreeObserverCompat.removeOnGlobalLayoutListener
+import android.os.Build
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
+
+
+
+
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -56,6 +70,7 @@ class NewHomeGridviewLatest : Fragment() {
         val gridvieww = views.findViewById<GridView>(R.id.gridview)
         val rlcomm = views.findViewById<RelativeLayout>(R.id.rlcomm)
         val rlrepo = views.findViewById<RelativeLayout>(R.id.rlrepo)
+      //  val cardvie=views.findViewById<LinearLayout>(R.id.lyid)
         val txtusid = views.findViewById<TextView>(R.id.usid)
         val txtagid = views.findViewById<TextView>(R.id.agentid)
         val cardvie=views.findViewById<CardView>(R.id.cardv)
@@ -187,5 +202,7 @@ class NewHomeGridviewLatest : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+
+
     }
 }

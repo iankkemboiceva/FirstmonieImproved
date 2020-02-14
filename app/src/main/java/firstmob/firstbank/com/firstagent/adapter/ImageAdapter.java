@@ -20,26 +20,27 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import firstmob.firstbank.com.firstagent.Activity.R;
+import firstmob.firstbank.com.firstagent.fragments.NewHomeGridviewLatest;
 import firstmob.firstbank.com.firstagent.model.GetBillersData;
-import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 
 /**
  * Created by tutlane on 24-08-2017.
  */
 public class ImageAdapter extends BaseAdapter {
 	private Context mContext;
-	int cardViewheight;
-	public ImageAdapter(Context c,int cardViewheight) {
+	 View v;
+	public ImageAdapter(Context c) {
 		mContext = c;
 	}
-
 	public int getCount() {
 		return thumbImages.length;
 	}
@@ -51,7 +52,7 @@ public class ImageAdapter extends BaseAdapter {
 	}
 	// create a new ImageView for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View v = convertView;
+		 v = convertView;
 
 		ImageGrid holder = new ImageGrid();
 
@@ -59,10 +60,8 @@ public class ImageAdapter extends BaseAdapter {
 		if (convertView == null) {
 			// This a new view we inflate the new layout
 			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.gridview_list, null);
+			v = inflater.inflate(R.layout.gridlist2, null);
 			// Now we can fill the layout with the right values
-
-
 			TextView accid = (TextView) v.findViewById(R.id.txt);
 			ImageView imgv = (ImageView) v.findViewById(R.id.imgt);
 			CardView cardv = (CardView) v.findViewById(R.id.card_view2);
@@ -86,11 +85,7 @@ public class ImageAdapter extends BaseAdapter {
 		holder.img.setImageResource(thumbImages[position]);
 
 			holder.cv.setCardBackgroundColor(mContext.getResources().getColor(colors[position]));
-		DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
-		int width = metrics.widthPixels;
-		int height = metrics.heightPixels;
-		SecurityLayer.Log("cardv",Integer.toString(cardViewheight));
-		v.setMinimumHeight(cardViewheight/3);
+
 
 
 		return v;
@@ -100,7 +95,10 @@ public class ImageAdapter extends BaseAdapter {
 		public TextView txtname;
 		public ImageView img;
 		public CardView cv;
-}
+
+
+
+	}
 	// Add all our images to arraylist
 	public Integer[] thumbImages = {
 			R.drawable.transfericon, R.drawable.withdrawicon,

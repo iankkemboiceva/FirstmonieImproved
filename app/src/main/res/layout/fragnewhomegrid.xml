@@ -43,7 +43,7 @@
                 android:layout_marginTop="0dp"
                 android:textColor="@color/white"
                 android:id="@+id/usid"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:text="jsjdjdjdjd"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
             android:layout_marginTop="5dp"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:text="MY COMMISSIONS"/>
     </RelativeLayout>
         <RelativeLayout
@@ -154,7 +154,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/lyreports"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:text="REPORTS"/>
         </RelativeLayout>
         <RelativeLayout
@@ -181,7 +181,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:text="SUPPORT"/>
         </RelativeLayout>
     </LinearLayout>
