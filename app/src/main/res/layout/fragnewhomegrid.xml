@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/greybg"
     >
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lingen"
-
+        android:weightSum="100"
 
         android:orientation="vertical"
         android:layout_alignParentTop="true"
@@ -22,47 +20,43 @@
         <LinearLayout
             android:id="@+id/buttons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="0dp"
+            android:layout_weight="12"
+            android:background="@color/colorPrimary"
             android:layout_gravity="center"
-
-
+            android:gravity="center"
             android:orientation="vertical"
             >
             <LinearLayout
                 android:id="@+id/layhome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-android:background="@color/colorPrimary"
                 android:layout_gravity="center"
-
+                android:layout_marginBottom="18dp"
                 android:orientation="vertical"
                 >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
-
+                android:layout_marginTop="0dp"
                 android:textColor="@color/white"
-
                 android:id="@+id/usid"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:text="jsjdjdjdjd"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="0dp"
                     android:textColor="@color/white"
-
                     android:id="@+id/agentid"
                     android:textSize="17sp"
-                    android:text=""/>
+                    android:text="fffff"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -70,7 +64,8 @@ android:background="@color/colorPrimary"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="75"
                 card_view:cardBackgroundColor="@color/white"
                 card_view:cardCornerRadius="5dp"
                 android:layout_marginLeft="20dp"
@@ -80,28 +75,23 @@ android:background="@color/colorPrimary"
             <LinearLayout
                 android:id="@+id/lyid"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
-
-
                 >
                 <GridView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/gridview"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:columnWidth="100dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="0dp"
                     android:numColumns="2"
-                    android:verticalSpacing="10dp"
-                    android:horizontalSpacing="10dp"
+                    android:verticalSpacing="0dp"
+                    android:horizontalSpacing="0dp"
                     android:stretchMode="columnWidth"
                     android:gravity="center"
                     />
             </LinearLayout>
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -124,21 +114,17 @@ android:background="@color/colorPrimary"
             android:id="@+id/item7"
             android:layout_width="25dp"
             android:layout_height="20dp"
-
             android:layout_centerHorizontal="true"
-
             android:background="@drawable/walletcomm" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:layout_below="@+id/lycomm"
+            android:layout_below="@+id/lycomm"
             android:layout_marginTop="5dp"
-
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
-            android:textSize="13sp"
-
+            android:textSize="12sp"
             android:text="MY COMMISSIONS"/>
     </RelativeLayout>
         <RelativeLayout
@@ -156,21 +142,17 @@ android:background="@color/colorPrimary"
                 android:id="@+id/item8"
                 android:layout_width="16dp"
                 android:layout_height="20dp"
-
                 android:layout_centerHorizontal="true"
-
                 android:background="@drawable/document" />
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/lyreports"
-                android:textSize="13sp"
-
+                android:textSize="12sp"
                 android:text="REPORTS"/>
         </RelativeLayout>
         <RelativeLayout
@@ -188,11 +170,6 @@ android:background="@color/colorPrimary"
                 android:id="@+id/item9"
                 android:layout_width="18dp"
                 android:layout_height="20dp"
-
-
-
-
-
                 android:background="@drawable/support" />
             </LinearLayout>
             <TextView
@@ -202,7 +179,7 @@ android:background="@color/colorPrimary"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:text="SUPPORT"/>
         </RelativeLayout>
     </LinearLayout>

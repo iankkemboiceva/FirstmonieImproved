@@ -30,11 +30,9 @@ import android.R.layout
 import com.github.gcacace.signaturepad.view.ViewTreeObserverCompat.removeOnGlobalLayoutListener
 import android.os.Build
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
-
-
-
-
-
+import kotlinx.android.synthetic.main.fragmnewhome2.*
+import kotlinx.android.synthetic.main.fragnewhomegrid.rlcomm
+import kotlinx.android.synthetic.main.fragnewhomegrid.rlsupport
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -50,7 +48,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [NewHomeGrid.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NewHomeGridviewLatest : Fragment() {
+class NewHomeGridview2 : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,51 +61,63 @@ class NewHomeGridviewLatest : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val views: View = inflater.inflate(R.layout.fragnewhomegrid, container, false)
+        val views: View = inflater.inflate(R.layout.fragmnewhome2, container, false)
         val gridvieww = views.findViewById<GridView>(R.id.gridview)
         val rlcomm = views.findViewById<RelativeLayout>(R.id.rlcomm)
         val rlrepo = views.findViewById<RelativeLayout>(R.id.rlrepo)
-      //  val cardvie=views.findViewById<LinearLayout>(R.id.lyid)
+        //  val cardvie=views.findViewById<LinearLayout>(R.id.lyid)
         val txtusid = views.findViewById<TextView>(R.id.usid)
         val txtagid = views.findViewById<TextView>(R.id.agentid)
-        gridvieww.adapter = ImageAdapter(activity)
 
-        // Set an item click listener for grid view items
-        gridvieww.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-            // Get the GridView selected/clicked item text
+        val cardrltrnsfer = views.findViewById<CardView>(R.id.cardrltrnsfer)
+        val cardrlwithdraw = views.findViewById<CardView>(R.id.cardrlwithdraw)
+        val cardrldepo = views.findViewById<CardView>(R.id.cardrldepo)
+        val cardrlairtimer = views.findViewById<CardView>(R.id.cardrlairtimer)
+        val cardrlpsybill = views.findViewById<CardView>(R.id.cardrlpsybill)
+        val openaccount = views.findViewById<CardView>(R.id.openaccount)
+        cardrltrnsfer?.setOnClickListener(){
 
+            val i = Intent(activity, FTMenuActivity::class.java)
 
-           if(position == 0){
-               val i = Intent(activity, FTMenuActivity::class.java)
-
-               startActivity(i)
-           }
-            if(position == 1){
-                val i = Intent(activity, WithdrawActivity::class.java)
-
-                startActivity(i)
-            }
-            if(position == 2){
-                val i = Intent(activity, CashDepoActivity::class.java)
-
-                startActivity(i)
-            }
-            if(position == 3){
-                val i = Intent(activity, AirtimeTransfActivity::class.java)
-
-                startActivity(i)
-            }
-            if(position == 4){
-                val i = Intent(activity, BillMenuActivity::class.java)
-
-                startActivity(i)
-            }
-            if(position == 5){
-                val i = Intent(activity, OpenAccActivity::class.java)
-
-                startActivity(i)
-            }
+            startActivity(i)
         }
+
+        cardrlwithdraw?.setOnClickListener(){
+
+            val i = Intent(activity, WithdrawActivity::class.java)
+
+            startActivity(i)
+        }
+
+        cardrldepo?.setOnClickListener(){
+
+            val i = Intent(activity, CashDepoActivity::class.java)
+
+            startActivity(i)
+        }
+
+        cardrlairtimer?.setOnClickListener(){
+
+            val i = Intent(activity, AirtimeTransfActivity::class.java)
+
+            startActivity(i)
+        }
+
+        cardrlpsybill?.setOnClickListener(){
+
+            val i = Intent(activity, BillMenuActivity::class.java)
+
+            startActivity(i)
+        }
+
+        openaccount?.setOnClickListener(){
+
+            val i = Intent(activity, OpenAccActivity::class.java)
+
+            startActivity(i)
+        }
+
+
         rlcomm?.setOnClickListener(){
 
             val i = Intent(activity, CommisionActivity::class.java)
@@ -137,8 +147,6 @@ class NewHomeGridviewLatest : Fragment() {
         return views
 
     }
-
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

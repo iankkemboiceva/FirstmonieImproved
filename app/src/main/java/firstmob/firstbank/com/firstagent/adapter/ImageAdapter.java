@@ -16,16 +16,20 @@
 package firstmob.firstbank.com.firstagent.adapter;
 import android.content.Context;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import firstmob.firstbank.com.firstagent.Activity.R;
+import firstmob.firstbank.com.firstagent.fragments.NewHomeGridviewLatest;
 import firstmob.firstbank.com.firstagent.model.GetBillersData;
 
 /**
@@ -33,6 +37,7 @@ import firstmob.firstbank.com.firstagent.model.GetBillersData;
  */
 public class ImageAdapter extends BaseAdapter {
 	private Context mContext;
+	 View v;
 	public ImageAdapter(Context c) {
 		mContext = c;
 	}
@@ -47,7 +52,7 @@ public class ImageAdapter extends BaseAdapter {
 	}
 	// create a new ImageView for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View v = convertView;
+		 v = convertView;
 
 		ImageGrid holder = new ImageGrid();
 
@@ -55,7 +60,7 @@ public class ImageAdapter extends BaseAdapter {
 		if (convertView == null) {
 			// This a new view we inflate the new layout
 			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.gridview_list, null);
+			v = inflater.inflate(R.layout.gridlist2, null);
 			// Now we can fill the layout with the right values
 			TextView accid = (TextView) v.findViewById(R.id.txt);
 			ImageView imgv = (ImageView) v.findViewById(R.id.imgt);
