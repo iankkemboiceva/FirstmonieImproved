@@ -140,16 +140,26 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
             val itema = layout.findViewById(R.id.ItemA) as TextView
 
             itema.setOnClickListener {
-                finish()
-              //  startActivity(Intent(this@MainActivtyfbn, Changepinfbn::class.java))
-                //overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
+
+                //finish()
+                startActivity(Intent(this@FMobActivity, ChangePinActivity::class.java))
+
+
             }
 
             itemb = layout.findViewById(R.id.ItemB) as TextView
 
             itemb!!.setOnClickListener(View.OnClickListener {
                 finish()
-              //  startActivity(Intent(this@MainActivtyfbn, LoginActivity::class.java))
+                val intent = Intent(this, SignInActivity::class.java)
+
+
+                // Staring Login Activity
+                startActivity(intent);
+                //  this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                Toast.makeText(this, "You have successfully signed out", Toast.LENGTH_LONG).show();
+                //  startActivity(Intent(this@MainActivtyfbn, Changepinfbn::class.java))
+                //overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
             })
 
             layout.measure(View.MeasureSpec.UNSPECIFIED,

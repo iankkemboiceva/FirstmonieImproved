@@ -223,6 +223,7 @@
                   android:layout_height="80dp"
                   card_view:cardBackgroundColor="@color/transfercolor"
                   android:layout_weight="1"
+                  android:clickable="true"
                   card_view:cardCornerRadius="5dp"
                   android:layout_marginTop="3dp"
                   android:id="@+id/cardrltrnsfer"
@@ -410,6 +411,7 @@
                         android:layout_height="80dp"
                         card_view:cardBackgroundColor="@color/openacccolor"
                         android:layout_weight="1"
+                        android:clickable="true"
                         card_view:cardCornerRadius="5dp"
                         android:layout_marginTop="3dp"
                         android:id="@+id/openaccount"
@@ -443,7 +445,7 @@
         android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:layout_height="70dp">
+        android:layout_height="60dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -453,29 +455,37 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/lycomm"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_height="25dp">
                 <ImageView
                     android:id="@+id/item7"
                     android:layout_width="25dp"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/walletcomm" />
+                    android:background="@drawable/bell" />
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lycomm"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
                 android:textSize="12sp"
-                android:text="MY COMMISSIONS"/>
+                android:text="Notifications"/>
         </RelativeLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:id="@+id/rlrepo"
+            android:visibility="gone"
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -509,11 +519,11 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/lysupp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_height="25dp">
                 <ImageView
                     android:id="@+id/item9"
-                    android:layout_width="18dp"
+                    android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:background="@drawable/support" />
             </LinearLayout>
@@ -522,10 +532,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lysupp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                android:text="SUPPORT"/>
+                android:text="Support"/>
         </RelativeLayout>
     </LinearLayout>
 

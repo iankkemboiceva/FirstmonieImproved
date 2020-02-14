@@ -24,7 +24,7 @@
                 xmlns:local="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/toolbar"
                 android:layout_width="0dp"
-                android:layout_weight="9.9"
+                android:layout_weight="9.85"
                 android:layout_height="wrap_content"
 
 
@@ -56,10 +56,11 @@
 
             </androidx.appcompat.widget.Toolbar>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="5dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="0dp"
                 android:onClick="launchmenu"
+                android:padding="4sp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/menuicon"
                 />
