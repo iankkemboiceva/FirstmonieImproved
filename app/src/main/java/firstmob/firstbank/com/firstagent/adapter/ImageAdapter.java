@@ -16,6 +16,7 @@
 package firstmob.firstbank.com.firstagent.adapter;
 import android.content.Context;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +28,18 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import firstmob.firstbank.com.firstagent.Activity.R;
 import firstmob.firstbank.com.firstagent.model.GetBillersData;
+import firstmob.firstbank.com.firstagent.security.SecurityLayer;
 
 /**
  * Created by tutlane on 24-08-2017.
  */
 public class ImageAdapter extends BaseAdapter {
 	private Context mContext;
-	public ImageAdapter(Context c) {
+	int cardViewheight;
+	public ImageAdapter(Context c,int cardViewheight) {
 		mContext = c;
 	}
+
 	public int getCount() {
 		return thumbImages.length;
 	}
@@ -57,6 +61,8 @@ public class ImageAdapter extends BaseAdapter {
 			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = inflater.inflate(R.layout.gridview_list, null);
 			// Now we can fill the layout with the right values
+
+
 			TextView accid = (TextView) v.findViewById(R.id.txt);
 			ImageView imgv = (ImageView) v.findViewById(R.id.imgt);
 			CardView cardv = (CardView) v.findViewById(R.id.card_view2);
@@ -80,7 +86,11 @@ public class ImageAdapter extends BaseAdapter {
 		holder.img.setImageResource(thumbImages[position]);
 
 			holder.cv.setCardBackgroundColor(mContext.getResources().getColor(colors[position]));
-
+		DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
+		int width = metrics.widthPixels;
+		int height = metrics.heightPixels;
+		SecurityLayer.Log("cardv",Integer.toString(cardViewheight));
+		v.setMinimumHeight(cardViewheight/3);
 
 
 		return v;

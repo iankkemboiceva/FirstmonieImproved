@@ -3,12 +3,15 @@ package firstmob.firstbank.com.firstagent.fragments
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.*
+import androidx.cardview.widget.CardView
 
 import firstmob.firstbank.com.firstagent.Activity.*
 
@@ -55,8 +58,23 @@ class NewHomeGridviewLatest : Fragment() {
         val rlrepo = views.findViewById<RelativeLayout>(R.id.rlrepo)
         val txtusid = views.findViewById<TextView>(R.id.usid)
         val txtagid = views.findViewById<TextView>(R.id.agentid)
-        gridvieww.adapter = ImageAdapter(activity)
+        val cardvie=views.findViewById<CardView>(R.id.cardv)
 
+
+        val vto = cardvie.viewTreeObserver
+        vto.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                   cardvie.viewTreeObserver.removeGlobalOnLayoutListener(this)
+                } else {
+                    cardvie.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                }
+                val width = cardvie.measuredWidth
+                val height = cardvie.measuredHeight
+                SecurityLayer.Log("cardv height",height.toString())
+                gridvieww.adapter = ImageAdapter(activity,height)
+            }
+        })
         // Set an item click listener for grid view items
         gridvieww.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             // Get the GridView selected/clicked item text
