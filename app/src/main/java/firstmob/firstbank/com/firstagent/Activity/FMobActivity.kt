@@ -73,14 +73,14 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
 
-        drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+       /* drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
 
 
         drawerFragment = supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as FragmentDrawer?
         //   drawerFragment.setArguments(bundle);
 
         drawerFragment!!.setUp(R.id.fragment_navigation_drawer, drawerLayout, toolbar)
-        drawerFragment!!.setDrawerListener(this)
+        drawerFragment!!.setDrawerListener(this)*/
 
 
 
@@ -243,6 +243,14 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
                drawerLayout.closeDrawers()
 
+            }
+            8 -> {
+                //finish()
+                val intent = Intent(this, Reportspg::class.java)
+
+
+                // Staring Login Activity
+                startActivity(intent);
             }
 
             else -> {

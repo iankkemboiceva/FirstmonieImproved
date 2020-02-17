@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/nav_header_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:background="@color/colorPrimary"
             android:layout_alignParentTop="true"
 
@@ -31,6 +31,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:id="@+id/profimg"
+                android:visibility="gone"
                 android:background="@drawable/profilepic"/>
 
             <ImageView
@@ -49,17 +50,17 @@
                 android:layout_height="wrap_content"
 
 
-                android:layout_marginLeft="20dp"
+
                 android:layout_marginTop="10dp"
 
                 android:textColor="@color/white"
-android:layout_centerHorizontal="true"
+android:layout_centerInParent="true"
 
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:id="@+id/txuserid"
                 android:layout_below="@+id/profimg"
                 android:textStyle="bold"
-                android:text=""
+                android:text="Supervisor Menu"
 
 
                 />
@@ -71,7 +72,7 @@ android:layout_centerHorizontal="true"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
-
+android:visibility="gone"
 android:layout_below="@+id/txuserid"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
@@ -140,7 +141,7 @@ android:layout_below="@+id/txuserid"
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:id="@+id/rlhome"
+                        android:id="@+id/rlagentcredit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
@@ -171,11 +172,11 @@ android:layout_below="@+id/txuserid"
                                 android:id="@+id/txt_item5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="50dp"
+                                android:layout_marginLeft="40dp"
                                 android:layout_toRightOf="@+id/item5"
                                 android:layout_centerVertical="true"
 
-                                android:text="Home"
+                                android:text="Agent Credit"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18sp"
 
@@ -184,7 +185,7 @@ android:layout_below="@+id/txuserid"
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/rlchchangepin"
+                        android:id="@+id/rlreports"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
@@ -216,11 +217,11 @@ android:layout_below="@+id/txuserid"
                                 android:layout_height="wrap_content"
 
 
-                                android:layout_marginLeft="50dp"
+                                android:layout_marginLeft="40dp"
                                 android:layout_toRightOf="@+id/item6"
                                 android:layout_centerVertical="true"
 
-                                android:text="Change PIN"
+                                android:text="Reports"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18sp"
 
@@ -262,11 +263,11 @@ android:layout_below="@+id/txuserid"
                                 android:layout_height="wrap_content"
 
 
-                                android:layout_marginLeft="50dp"
+                                android:layout_marginLeft="40dp"
                                 android:layout_toRightOf="@+id/myaccount"
                                 android:layout_centerVertical="true"
 
-                                android:text="My Account"
+                                android:text="Account Statement"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="18sp"
 
@@ -288,7 +289,7 @@ android:layout_below="@+id/txuserid"
                         android:layout_width="match_parent"
                         android:id="@+id/rllogout"
                         android:layout_marginTop="10dp"
-
+android:visibility="gone"
 
 
                         android:layout_height="wrap_content">

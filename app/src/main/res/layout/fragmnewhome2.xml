@@ -180,7 +180,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:layout_marginBottom="10dp"
-        android:gravity="bottom"
+        android:gravity="center"
         >
         <GridView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/gridview"
@@ -322,7 +322,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="5.2"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
 

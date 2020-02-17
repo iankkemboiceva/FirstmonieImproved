@@ -74,7 +74,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     ImageView imgclose;
 
     Button lyhomeid;
-    RelativeLayout lysignout,rlchangepin,rlhome,rlminist;
+    RelativeLayout lysignout,rlreports,rlhome,rlminist;
     RelativeLayout header;
     //  private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -126,15 +126,15 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         lysignout = (RelativeLayout) layout.findViewById(R.id.rllogout);
         imgclose = (ImageView) layout.findViewById(R.id.closeicon);
 
-        rlchangepin = (RelativeLayout) layout.findViewById(R.id.rlchchangepin);
+        rlreports = (RelativeLayout) layout.findViewById(R.id.rlreports);
 
-        rlhome = (RelativeLayout) layout.findViewById(R.id.rlhome);
+        rlhome = (RelativeLayout) layout.findViewById(R.id.rlagentcredit);
         rlminist = (RelativeLayout) layout.findViewById(R.id.rlmyaccount);
 
 
         lysignout.setOnClickListener(this);
         rlhome.setOnClickListener(this);
-        rlchangepin.setOnClickListener(this);
+        rlreports.setOnClickListener(this);
         rlminist.setOnClickListener(this);
         imgclose.setOnClickListener(this);
 
@@ -201,15 +201,15 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
 
 
-        if (v.getId() == R.id.rlhome) {
+        if (v.getId() == R.id.rlagentcredit) {
 
-            drawerListener.onDrawerItemSelected(v, 5);
+          //  drawerListener.onDrawerItemSelected(v, 5);
             mDrawerLayout.closeDrawer(containerView);
         }
 
-        if (v.getId() == R.id.rlchchangepin) {
+        if (v.getId() == R.id.rlreports) {
 
-            drawerListener.onDrawerItemSelected(v, 1);
+            drawerListener.onDrawerItemSelected(v, 8);
             mDrawerLayout.closeDrawer(containerView);
         }
 
