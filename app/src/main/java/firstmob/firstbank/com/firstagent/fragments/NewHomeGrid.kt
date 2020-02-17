@@ -88,9 +88,9 @@ class NewHomeGrid : Fragment() {
 
             startActivity(i)
         }*/
-        rlopenacc?.setOnClickListener(){
+        rlopenacc?.setOnClickListener {
 
-            val i = Intent(activity, OpenAccActivity::class.java)
+            val i = Intent(activity, ChooseBVNorNoBVN::class.java)
 
             startActivity(i)
         }
@@ -102,7 +102,7 @@ class NewHomeGrid : Fragment() {
 
 
         val rldepo: RelativeLayout? = views?.findViewById(R.id.rl5)
-        rldepo?.setOnClickListener(){
+        rldepo?.setOnClickListener {
 
             val i = Intent(activity, CashDepoActivity::class.java)
 
@@ -111,7 +111,7 @@ class NewHomeGrid : Fragment() {
 
 
         val rlinboxchos: RelativeLayout? = views?.findViewById(R.id.rlinbox)
-        rlinboxchos?.setOnClickListener(){
+        rlinboxchos?.setOnClickListener {
 
             val i = Intent(activity, Reportspg::class.java)
 

@@ -3,12 +3,15 @@ package firstmob.firstbank.com.firstagent.fragments
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.*
+
 
 import firstmob.firstbank.com.firstagent.Activity.*
 
@@ -70,7 +73,8 @@ class NewHomeGridviewLatest : Fragment() {
       //  val cardvie=views.findViewById<LinearLayout>(R.id.lyid)
         val txtusid = views.findViewById<TextView>(R.id.usid)
         val txtagid = views.findViewById<TextView>(R.id.agentid)
-        gridvieww.adapter = ImageAdapter(activity)
+        val cardvie=views.findViewById<CardView>(R.id.cardv)
+
 
         // Set an item click listener for grid view items
         gridvieww.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
