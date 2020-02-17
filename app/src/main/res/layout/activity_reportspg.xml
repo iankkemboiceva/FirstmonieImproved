@@ -48,6 +48,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:visibility="gone"
         card_view:cardBackgroundColor="@color/white"
         card_view:cardCornerRadius="5dp"
         android:clickable="true"
@@ -69,7 +70,7 @@
             android:clickable="true"
             card_view:cardBackgroundColor="@color/white"
             card_view:cardCornerRadius="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:id="@+id/inboxbtn"
             android:layout_marginBottom="5dp"
             card_view:cardElevation="1dp">
