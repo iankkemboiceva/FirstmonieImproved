@@ -18,4 +18,8 @@ public interface ApiInterface {
     @POST("accountopen/app/core/openaccount.action")
     Call<String> nonbvnaccopen(@Body String params);
 
+    @Headers("Content-Type: application/json")
+    @POST("accountopen/app/bvn/validatebvn.action")
+    Call<String> validatebvn(@Body String params);
+
 }

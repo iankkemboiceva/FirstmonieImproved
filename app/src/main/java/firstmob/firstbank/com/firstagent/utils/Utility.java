@@ -158,6 +158,33 @@ public class Utility {
 
     }
 
+
+
+    static  public  String convertBVNdate(String olddate){
+        String changeddate = "NA";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yy");
+        if (Utility.isNotNull(olddate)) {
+            String dateInString = olddate;
+
+
+            try {
+                Date datefrom = sdf.parse(dateInString);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                changeddate = dateFormat.format(datefrom);
+                System.out.println(changeddate);
+
+                //   txtdtdiff = Integer.toString(dtdiff);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+        return changeddate;
+    }
+
     public static String getNewAppID(Context c) {
         SessionManagement sess = new SessionManagement(c);
         final String appid = Prefs.getString("NWAPPID","NA");
@@ -680,7 +707,19 @@ public class Utility {
         }
         return bvers;
     }
-
+    public static String getPlainAppid(Context c) {
+        SessionManagement sess = new SessionManagement(c);
+        String appid = sess.getString("PLAINAPPID");
+        if(appid == null || appid.equals("")){
+            appid = "NA";
+        }
+        return appid;
+    }
+    public static String getFinAppid(Context c) {
+        SessionManagement sess = new SessionManagement(c);
+        final String appid = sess.getString("NWAPPID");
+        return appid;
+    }
 
     public static String getLocaleStringResource(Locale requestedLocale, int resourceId, Context context) {
         String result;
