@@ -111,6 +111,9 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     fun launchmenu(v: View){
         initiatePopupWindow(v)
     }
+    fun launchmenu2(v: View){
+        initiatePopupWindow2(v)
+    }
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        // Inflate the menu; this adds items to the action bar if it is present.
 //        menuInflater.inflate(R.menu.main, menu)
@@ -128,6 +131,33 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 //            else -> super.onOptionsItemSelected(item)
 //        }
 //    }
+private fun initiatePopupWindow2(v: View): PopupWindow {
+
+    try {
+
+        mInflater = applicationContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layout = mInflater!!.inflate(R.layout.nav_drawer, null)
+
+        layout.measure(View.MeasureSpec.UNSPECIFIED,
+                View.MeasureSpec.UNSPECIFIED)
+        mDropdown = PopupWindow(layout, FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT, true)
+
+        val background = resources.getDrawable(R.drawable.union1)
+        //mDropdown!!.setBackgroundDrawable(ContextCompat.getColor(this,R.drawable.union1))
+        mDropdown!!.showAtLocation(v,30,-30,-30)
+
+       // mDropdown!!.showAsDropDown(v, 0, 5)
+
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return mDropdown!!
+
+}
+
     private fun initiatePopupWindow(v: View): PopupWindow {
 
         try {
