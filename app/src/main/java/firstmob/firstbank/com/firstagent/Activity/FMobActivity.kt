@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Point
 import android.os.Bundle
 
 import android.util.Log
@@ -28,6 +29,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -48,7 +50,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener, View.OnClickListener {
     private var mDropdown: PopupWindow? = null
-    internal var mInflater: LayoutInflater? =null
+    internal var mInflater: LayoutInflater? = null
     internal var count = 1
     private var drawerFragment: FragmentDrawer? = null
     internal var greet: TextView? = null
@@ -56,7 +58,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     internal var prgDialog: ProgressDialog? = null
     internal var pro: ProgressDialog? = null
     internal lateinit var drawerLayout: DrawerLayout
-    internal var itemb: TextView? =null
+    internal var itemb: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -72,15 +74,15 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-
-       /* drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+        drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
 
 
         drawerFragment = supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as FragmentDrawer?
         //   drawerFragment.setArguments(bundle);
 
+
         drawerFragment!!.setUp(R.id.fragment_navigation_drawer, drawerLayout, toolbar)
-        drawerFragment!!.setDrawerListener(this)*/
+        drawerFragment!!.setDrawerListener(this)
 
 
 
@@ -108,8 +110,13 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         }
 
     }
-    fun launchmenu(v: View){
+
+    fun launchmenu(v: View) {
         initiatePopupWindow(v)
+    }
+
+    fun launchmenu2(v: View) {
+        initiatePopupWindow2(v)
     }
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        // Inflate the menu; this adds items to the action bar if it is present.
@@ -117,7 +124,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 //        return true
 //    }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        return when (item.itemId) {
 //
 //            R.id.inbox -> {
@@ -128,6 +135,33 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 //            else -> super.onOptionsItemSelected(item)
 //        }
 //    }
+    private fun initiatePopupWindow2(v: View): PopupWindow {
+
+        try {
+
+            mInflater = applicationContext
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val layout = mInflater!!.inflate(R.layout.nav_drawer, null)
+
+            layout.measure(View.MeasureSpec.UNSPECIFIED,
+                    View.MeasureSpec.UNSPECIFIED)
+            mDropdown = PopupWindow(layout, FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT, true)
+
+            val background = resources.getDrawable(R.drawable.union1)
+            //mDropdown!!.setBackgroundDrawable(ContextCompat.getColor(this,R.drawable.union1))
+            mDropdown!!.showAtLocation(v, 30, -30, -30)
+
+            // mDropdown!!.showAsDropDown(v, 0, 5)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return mDropdown!!
+
+    }
+
     private fun initiatePopupWindow(v: View): PopupWindow {
 
         try {
@@ -138,7 +172,6 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
             //If you want to add any listeners to your textviews, these are two //textviews.
             val itema = layout.findViewById(R.id.ItemA) as TextView
-
             itema.setOnClickListener {
 
                 //finish()
@@ -161,7 +194,14 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
                 //  startActivity(Intent(this@MainActivtyfbn, Changepinfbn::class.java))
                 //overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
             })
+            val itemc = layout.findViewById(R.id.ItemC) as TextView
+            itemc.setOnClickListener {
 
+                //finish()
+                startActivity(Intent(this@FMobActivity, ChangeAcNameActivity::class.java))
+
+
+            }
             layout.measure(View.MeasureSpec.UNSPECIFIED,
                     View.MeasureSpec.UNSPECIFIED)
             mDropdown = PopupWindow(layout, FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -169,7 +209,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
             val background = resources.getDrawable(R.drawable.union1)
             //mDropdown!!.setBackgroundDrawable(ContextCompat.getColor(this,R.drawable.union1))
-            mDropdown!!.showAsDropDown(v, 5, 5)
+              mDropdown!!.showAsDropDown(v, 5, 5)
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -178,6 +218,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         return mDropdown!!
 
     }
+
     private fun displayView(position: Int) {
         var fragment: Fragment? = null
         var title = getString(R.string.app_name)
@@ -198,7 +239,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
 
             2 -> {
-              //  finish()
+                //  finish()
                 val intent = Intent(this, MyPerfActivity::class.java)
 
 
@@ -241,7 +282,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
             7 -> {
 
-               drawerLayout.closeDrawers()
+                drawerLayout.closeDrawers()
 
             }
             8 -> {
@@ -288,7 +329,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     }
 
     override fun onBackPressed() {
-       finish()
+        finish()
         val fm = supportFragmentManager
         val fm2 = fragmentManager
         val bentry = fm.backStackEntryCount
@@ -306,7 +347,6 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
         super.onBackPressed()
     }
-
 
 
     override fun onClick(v: View) {

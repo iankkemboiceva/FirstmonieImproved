@@ -65,9 +65,11 @@ class NewHomeGridview2 : Fragment() {
         val gridvieww = views.findViewById<GridView>(R.id.gridview)
         val rlcomm = views.findViewById<RelativeLayout>(R.id.rlcomm)
         val rlrepo = views.findViewById<RelativeLayout>(R.id.rlrepo)
-        //  val cardvie=views.findViewById<LinearLayout>(R.id.lyid)
-        val txtusid = views.findViewById<TextView>(R.id.usid)
+         val supprt=views.findViewById<RelativeLayout>(R.id.rlsupport)
+
+        val rlcommissions = views.findViewById<LinearLayout>(R.id.commisions)
         val txtagid = views.findViewById<TextView>(R.id.agentid)
+        val txtusid = views.findViewById<TextView>(R.id.usid)
 
         val cardrltrnsfer = views.findViewById<CardView>(R.id.cardrltrnsfer)
         val cardrlwithdraw = views.findViewById<CardView>(R.id.cardrlwithdraw)
@@ -81,7 +83,12 @@ class NewHomeGridview2 : Fragment() {
 
             startActivity(i)
         }
+        rlcommissions?.setOnClickListener(){
 
+            val i = Intent(activity, CommisionActivity::class.java)
+
+            startActivity(i)
+        }
         cardrlwithdraw?.setOnClickListener(){
 
             val i = Intent(activity, WithdrawActivity::class.java)
@@ -117,7 +124,12 @@ class NewHomeGridview2 : Fragment() {
             startActivity(i)
         }
 
+        supprt?.setOnClickListener(){
 
+            val i = Intent(activity, LogComplaint::class.java)
+
+            startActivity(i)
+        }
         rlcomm?.setOnClickListener(){
 
             val i = Intent(activity, CommisionActivity::class.java)
