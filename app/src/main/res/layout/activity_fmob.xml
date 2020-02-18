@@ -23,6 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:visibility="gone"
 
                 >
             <ImageView
@@ -32,6 +33,7 @@
                 android:layout_marginLeft="10dp"
                 android:onClick="launchmenu2"
                 android:padding="4sp"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ico"
                 /></LinearLayout>
@@ -39,7 +41,7 @@
                 xmlns:local="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/toolbar"
                 android:layout_width="0dp"
-                android:layout_weight="8"
+                android:layout_weight="9"
                 android:gravity="center"
                 android:layout_height="wrap_content"
 
@@ -74,14 +76,15 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
 
                 >
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginRight="0dp"
+                android:padding="6sp"
                 android:onClick="launchmenu"
-                android:padding="4sp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/menuicon"
                 /></LinearLayout>

@@ -3,12 +3,14 @@ package firstmob.firstbank.com.firstagent.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.borax12.materialdaterangepicker.date.DatePickerDialog
 import firstmob.firstbank.com.firstagent.adapter.NewCommListAdapter
@@ -84,7 +86,7 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
         ab!!.setDisplayHomeAsUpEnabled(true)
         ab!!.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
         ab!!.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
-
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)));
 
         lv = findViewById(R.id.lv) as ListView
         txtitle = findViewById(R.id.bname) as TextView

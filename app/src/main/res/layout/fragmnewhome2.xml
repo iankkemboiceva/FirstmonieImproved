@@ -25,7 +25,7 @@
             android:id="@+id/buttons"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="31"
+            android:layout_weight="30"
             android:layout_marginTop="-25dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -78,7 +78,7 @@
                                     android:paddingLeft="10sp"
                                     android:layout_marginTop="0dp"
                                     android:textColor="@color/colorPrimary"
-                                    android:id="@+id/usid"
+                                    android:id="@+id/agentid"
                                     android:textSize="15sp"
                                     android:text="jsjdjdjdjd"/>
                             </LinearLayout>
@@ -110,7 +110,7 @@
                                     android:layout_marginTop="0dp"
                                     android:layout_marginBottom="0dp"
                                     android:textColor="@color/colorPrimary"
-                                    android:id="@+id/agentid"
+                                    android:id="@+id/usid"
                                     android:textSize="15sp"
                                     android:text="fffff"/>
                             </LinearLayout>
@@ -124,6 +124,7 @@
                             android:gravity="center"
                             android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
+                            android:id="@+id/commisions"
                             android:background="@drawable/btn_theme_dark"
                             android:orientation="horizontal"
                             >
@@ -175,7 +176,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="55"
+        android:layout_weight="56"
         android:orientation="vertical"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -202,6 +203,7 @@
             android:orientation="vertical"
             android:layout_marginBottom="0dp"
             android:paddingBottom="10sp"
+
             android:layout_alignParentBottom="true"
 
             >
@@ -325,7 +327,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="5.2"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
 
                 >
                 <RelativeLayout

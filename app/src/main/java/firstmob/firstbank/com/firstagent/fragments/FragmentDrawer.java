@@ -13,6 +13,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -53,6 +54,8 @@ import java.util.List;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import firstmob.firstbank.com.firstagent.Activity.R;
@@ -179,6 +182,10 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
             }
         };
 
+
+//        mDrawerToggle.setDrawerIndicatorEnabled(false);
+//        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ico, getActivity().getTheme());
+//        mDrawerToggle.setHomeAsUpIndicator(drawable);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerLayout.post(new Runnable() {
             @Override
