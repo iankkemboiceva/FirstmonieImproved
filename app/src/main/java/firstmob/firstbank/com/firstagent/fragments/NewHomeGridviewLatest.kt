@@ -74,7 +74,7 @@ class NewHomeGridviewLatest : Fragment() {
         val txtusid = views.findViewById<TextView>(R.id.usid)
         val txtagid = views.findViewById<TextView>(R.id.agentid)
         val cardvie=views.findViewById<CardView>(R.id.cardv)
-
+        gridvieww.adapter=ImageAdapter(activity)
 
         // Set an item click listener for grid view items
         gridvieww.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->

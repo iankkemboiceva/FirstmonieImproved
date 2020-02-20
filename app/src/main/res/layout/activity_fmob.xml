@@ -102,9 +102,11 @@
     <fragment
         android:id="@+id/fragment_navigation_drawer"
         android:name="firstmob.firstbank.com.firstagent.fragments.FragmentDrawer"
-
-        android:layout_width="300dp"
+        android:layout_marginRight="-65dp"
+        android:layout_marginEnd="-65dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:layout_gravity="start"
         app:layout="@layout/nav_drawer"
         tools:layout="@layout/nav_drawer" />

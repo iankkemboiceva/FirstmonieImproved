@@ -66,10 +66,6 @@
         <activity android:name=".ChangeAcNameActivity" />
         <activity android:name=".FinalConfAirtimeActivity" />
         <activity android:name=".MinistatActivity" />
-        <activity android:name=".Withdraw" />
-        <activity
-            android:name=".AirtimeTransf"
-            android:theme="@style/MyMaterialTheme.Base" />
         <activity android:name=".UploadTicket" />
         <activity android:name=".LogComplaint" />
         <activity android:name=".FinalConfDepoActivity" />
@@ -84,6 +80,7 @@
         <activity
             android:name=".FMobActivity"
             android:label="@string/title_activity_fmob"
+            android:screenOrientation="portrait"
             />
 
         <service
