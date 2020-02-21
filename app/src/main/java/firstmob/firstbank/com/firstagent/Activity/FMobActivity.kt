@@ -34,6 +34,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.navigation.NavigationView
 import firstmob.firstbank.com.firstagent.fragments.FragmentDrawer
 
 import firstmob.firstbank.com.firstagent.fragments.NewHomeGrid
