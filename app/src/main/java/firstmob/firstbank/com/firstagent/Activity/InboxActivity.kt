@@ -5,6 +5,7 @@ package firstmob.firstbank.com.firstagent.Activity
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
@@ -84,11 +85,7 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
         }
 
 
-        val cal = Calendar.getInstance()
-        val now = Calendar.getInstance()
-        val year = now.get(Calendar.YEAR)
-        var month = now.get(Calendar.MONTH) // Note: zero based!
-        val day = now.get(Calendar.DAY_OF_MONTH)
+
 
 
         sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -109,39 +106,34 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
         sv.isIconified = false
 
 
-        now.set(year, month, 1)
 
 
-        println(cal.time)
+
         // Output "Wed Sep 26 14:23:28 EST 2012"
+        val intent = intent
+        if (intent != null) {
+            var serv=intent.getStringExtra("serv")
+            if(serv=="Spec"){
+                initcalendar()
+            }else {
 
-        val formattednow = format1.format(cal.time)
-        val formattedstartdate = format1.format(now.time)
-        // Output "2012-09-26"
-        txtenddat.text = formattednow
-        txfromdate.text = formattedstartdate
-        //  checkInternetConnection2();
+                val fromdt = intent.getStringExtra("fromdate")
+                val enddt = intent.getStringExtra("enddate")
 
+                val txtfromdt = intent.getStringExtra("txtfrmdate")
+                val txtenddt = intent.getStringExtra("txtenddate")
 
-        month += 1
+                txtenddat.text = txtenddt
+                txfromdate.text = txtfromdt
+                calendar.visibility = View.GONE
 
-        var frmdymonth = day.toString()
-        if (day < 10) {
-            frmdymonth = "0$frmdymonth"
+                SetMinist(fromdt, enddt)
+            }
+        }else {
+
+         initcalendar()
+
         }
-        var frmyear = Integer.toString(year)
-        frmyear = frmyear.substring(2, 4)
-        val tdate = "$frmdymonth-$month-$frmyear"
-        val firdate = "01-$month-$frmyear"
-
-        val calfrom = Calendar.getInstance()
-        calfrom.set(year, month, 1)
-
-
-
-        SetMinist(firdate, tdate)
-
-
 
 
 
@@ -257,7 +249,39 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
 
     }
 
+fun initcalendar(){
+    val cal = Calendar.getInstance()
+    val now = Calendar.getInstance()
+    val year = now.get(Calendar.YEAR)
+    var month = now.get(Calendar.MONTH) // Note: zero based!
+    val day = now.get(Calendar.DAY_OF_MONTH)
+    now.set(year, month, 1)
+    val formattednow = format1.format(cal.time)
+    val formattedstartdate = format1.format(now.time)
+    // Output "2012-09-26"
+    txtenddat.text = formattednow
+    txfromdate.text = formattedstartdate
+    //  checkInternetConnection2();
 
+
+    month += 1
+
+    var frmdymonth = day.toString()
+    if (day < 10) {
+        frmdymonth = "0$frmdymonth"
+    }
+    var frmyear = Integer.toString(year)
+    frmyear = frmyear.substring(2, 4)
+    val tdate = "$frmdymonth-$month-$frmyear"
+    val firdate = "01-$month-$frmyear"
+
+    val calfrom = Calendar.getInstance()
+    calfrom.set(year, month, 1)
+
+
+
+    SetMinist(firdate, tdate)
+}
     override fun onDateSet(view: DatePickerDialog, year: Int, monthOfYear: Int, dayOfMonth: Int, yearEnd: Int, monthOfYearEnd: Int, dayOfMonthEnd: Int) {
         var monthOfYear = monthOfYear
         var monthOfYearEnd = monthOfYearEnd
@@ -282,7 +306,7 @@ class InboxActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, A
 
         if (calfrom.before(calto)) {
             //   fromdate.setText(date);
-            var frmdymonth = Integer.toString(dayOfMonth)
+            var frmdymonth = dayOfMonth.toString()
             if (dayOfMonth < 10) {
                 frmdymonth = "0$frmdymonth"
             }

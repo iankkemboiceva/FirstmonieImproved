@@ -66,39 +66,39 @@ class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDial
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ministat)
-        mToolbar = findViewById(R.id.toolbar) as Toolbar
+        mToolbar = findViewById<Toolbar>(R.id.toolbar)
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
-        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)));
+        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)))
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
-        ab!!.setDisplayShowHomeEnabled(true)
+        ab.setDisplayShowHomeEnabled(true)
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true)
         ab.setDisplayShowTitleEnabled(false)
         titlepg.text="Ministatement"
-        txtitle = findViewById(R.id.enddate) as TextView
-        txfrom = findViewById(R.id.from) as TextView
-        lv = findViewById(R.id.lv) as ListView
-        txaco = findViewById(R.id.bname) as TextView
-        txaccbal = findViewById(R.id.accountbalance) as TextView
-        lstmt = findViewById(R.id.stmtrlyy) as LinearLayout
+        txtitle = findViewById<TextView>(R.id.enddate)
+        txfrom = findViewById<TextView>(R.id.from)
+        lv = findViewById<ListView>(R.id.lv)
+        txaco = findViewById<TextView>(R.id.bname)
+        txaccbal = findViewById<TextView>(R.id.accountbalance)
+        lstmt = findViewById<LinearLayout>(R.id.stmtrlyy)
         lstmt!!.setOnClickListener(this)
         //   sp1 = (Spinner) rootView.findViewById(R.id.accno);
         viewDialg= ViewDialog(this)
         session = SessionManagement(this)
-        calendar = findViewById(R.id.button4) as Button
+        calendar = findViewById<Button>(R.id.button4)
         calendar!!.setOnClickListener(this)
         presenter = MinstatementPresenter(applicationContext, this, FetchServerResponse())
-        emptyView = findViewById(R.id.empty_view) as TextView
+        emptyView = findViewById<TextView>(R.id.empty_view)
         val accnoo = Prefs.getString(SharedPrefConstants.KEY_ACCO,"NA")
-        txaco!!.setText("Statement for Account Number -$accnoo")
+        txaco!!.text = "Statement for Account Number -$accnoo"
         presenter!!.requestCallGetBalnce("getblance",null)
        // presenterbalance!!.requestCall("getblance",null)
         //   setBalInquSec()
     }
     override fun onClick(v: View?) {
-        if (v!!.getId() == R.id.button4) {
+        if (v!!.id == R.id.button4) {
             val dateRangePickerFragment = DateRangePickerFragment.newInstance(this, false)
             dateRangePickerFragment.show(supportFragmentManager, "datePicker")
         }
@@ -106,13 +106,13 @@ class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDial
 
     override fun NavigateToSognIn() {
         finish()
-        startActivity(Intent(getApplicationContext(), SignInActivity::class.java))
+        startActivity(Intent(applicationContext, SignInActivity::class.java))
     }
 
     override fun PopulateRecyclerView(planetsList: MutableList<MinistatData>?) {
-        if (getApplicationContext() != null) {
+        if (applicationContext != null) {
             aAdpt = NewMinListAdapter(planetsList, this@MinistatActivity)
-            lv!!.setAdapter(aAdpt)
+            lv!!.adapter = aAdpt
         }
     }
 
@@ -121,20 +121,20 @@ class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDial
     }
 
     override fun setBalance(balance: String?) {
-        txaccbal!!.setText(balance)
+        txaccbal!!.text = balance
     }
     override fun onProcessingError(error: String?) {
         Utility.showToast(error)
     }
 
     override fun showProgress() {
-        if (viewDialg != null && applicationContext != null && !this@MinistatActivity.isFinishing()) {
+        if (viewDialg != null && applicationContext != null && !this@MinistatActivity.isFinishing) {
             viewDialg!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (viewDialg != null && getApplicationContext() != null && !this@MinistatActivity.isFinishing()) {
+        if (viewDialg != null && applicationContext != null && !this@MinistatActivity.isFinishing) {
             viewDialg!!.hideDialog()
            // prgDialog2!!.dismiss()
         }
@@ -201,8 +201,8 @@ class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDial
         val format2 = SimpleDateFormat("" + "MMMM dd yyyy")
         val formattedfrom = format2.format(clfrom.time)
         val formattedto = format2.format(clto.time)
-        txtitle!!.setText(formattedto)
-        txfrom!!.setText(formattedfrom)
+       txtitle!!.text = formattedto
+       txfrom!!.text = formattedfrom
         ++monthOfYear
         ++monthOfYearEnd
         val calfrom = Calendar.getInstance()
@@ -276,8 +276,8 @@ class MinistatActivity : AppCompatActivity(),View.OnClickListener,DatePickerDial
 
                     val formatteduserend = format2.format(cal.time)
                     val formatteduserstart = format2.format(now.time)
-                    txtitle!!.setText(formatteduserend)
-                    txfrom!!.setText(formatteduserstart)
+                    txtitle!!.text = formatteduserend
+                    txfrom!!.text = formatteduserstart
                     //  checkInternetConnection2();
 
 
