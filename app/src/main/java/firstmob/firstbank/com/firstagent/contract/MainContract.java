@@ -33,6 +33,7 @@ public interface MainContract {
             void onFailure(Throwable t);
         }
         void getResults(OnFinishedListener onFinishedListener,String urlparams);
+            void getJsonBodyResults(OnFinishedListener onFinishedListener,String urlparams,String endpoint);
     }
 
 

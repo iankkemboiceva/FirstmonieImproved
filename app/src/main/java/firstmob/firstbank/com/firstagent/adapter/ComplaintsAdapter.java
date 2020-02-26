@@ -16,7 +16,6 @@
 package firstmob.firstbank.com.firstagent.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,22 +33,19 @@ import java.util.Date;
 import java.util.Locale;
 
 import firstmob.firstbank.com.firstagent.Activity.R;
-import firstmob.firstbank.com.firstagent.model.CommisionsJSON;
-import firstmob.firstbank.com.firstagent.model.GetCommPerfData;
+import firstmob.firstbank.com.firstagent.constants.Constants;
+import firstmob.firstbank.com.firstagent.model.ChargebackList;
 import firstmob.firstbank.com.firstagent.utils.Utility;
 
-import static firstmob.firstbank.com.firstagent.constants.Constants.KEY_NAIRA;
-import static firstmob.firstbank.com.firstagent.utils.Utility.convertTxnCodetoServ;
 
+public class ComplaintsAdapter extends ArrayAdapter<ChargebackList> implements Filterable {
 
-public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements Filterable {
-
-	private ArrayList<CommisionsJSON> commissionslist;
+	private ArrayList<ChargebackList> commissionslist;
 	private Context context;
 	CustomFilter filter;
-	private ArrayList<CommisionsJSON> origcommissionslist;
+	private ArrayList<ChargebackList> origcommissionslist;
 
-	public ComplaintsAdapter(ArrayList<CommisionsJSON> planetLista, Context ctx) {
+	public ComplaintsAdapter(ArrayList<ChargebackList> planetLista, Context ctx) {
 		super(ctx, R.layout.complain_list, planetLista);
 		this.commissionslist = planetLista;
 		this.context = ctx;
@@ -64,7 +60,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 		return cnt;
 	}
 
-	public CommisionsJSON getItem(int position) {
+	public ChargebackList getItem(int position) {
 		return commissionslist.get(position);
 	}
 
@@ -85,7 +81,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
             TextView curr = (TextView) v.findViewById(R.id.txt2);
 			TextView taxref = (TextView) v.findViewById(R.id.txtref);
 			TextView txtstt = (TextView) v.findViewById(R.id.txtstatus);
-			TextView txtchgk = (TextView) v.findViewById(R.id.txtchgbk);
+			TextView txtchgk = (TextView) v.findViewById(R.id.txtamount);
 			Button btnrec = (Button) v.findViewById(R.id.btnrec);
 			Button olbtnshare = (Button) v.findViewById(R.id.btnshr);
 			Button olbmnshare = (Button) v.findViewById(R.id.btncontext);
@@ -105,34 +101,36 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 		else 
 			holder = (PlanetHolder) v.getTag();
 
-		CommisionsJSON p = commissionslist.get(position);
-        final String tdate = p.getTxndateTime();
+		ChargebackList p = commissionslist.get(position);
+        final String tdate = p.getTxnDate();
 		final String amo = Utility.returnNumberFormat(p.getAmount());
-		final String toAcnum = p.gettoAcNum();
-		final String toref = p.getrefNumber();
+		final String pan = p.getPan();
+		final String code = p.getCode();
+		final String status = p.getStatus();
 
-		boolean chkbg = p.getchg();
-		String statss = p.getStatus();
-		String fromacnum = p.getFromAcnum();
 
-       // String convd = getDateTimeStamp(tdate);
-		if(chkbg){
-			holder.txtchrgbck.setVisibility(View.VISIBLE);
-		}else{
-			holder.txtchrgbck.setVisibility(View.GONE);
-		}
-		holder.txtname.setText(convertTxnCodetoServ(p.getTxnCode())+" transaction of "+ KEY_NAIRA+amo);
-       holder.txtto.setText(" \nTo  "+toAcnum+" \nFrom  "+fromacnum);
+		String refnum = p.getRefNum();
+
+
+		holder.txtname.setText("Code: "+code);
+       holder.txtto.setText("PAN: "+pan);
         holder.txtmobno.setText(tdate);
-		holder.txttref.setText("Ref Number:"+toref);
-
-		holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_red_900));
-		holder.txtstatus.setText("PENDING");
+		holder.txttref.setText("Ref Number:"+refnum);
+		holder.txtchrgbck.setText(amo+ Constants.KEY_NAIRA);
 
 
+if(status.equals("0")) {
+	holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_red_900));
+	holder.txtstatus.setText("NOT PAID");
+}else if (status.equals("1")) {
+	holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_red_900));
+	holder.txtstatus.setText("PAID");
+}
 
 
-		holder.btnreceipt.setOnClickListener(new View.OnClickListener() {
+
+
+		/*holder.btnreceipt.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -145,7 +143,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 				b.putString("txref",toref);
 				b.putString("txdate",tdate);
 				String title = "Txn Status";
-				/*Fragment fragment = new LogComplaint();
+				*//*Fragment fragment = new LogComplaint();
 
 				fragment.setArguments(b);
 				android.app.FragmentManager fragmentManager = ((FMobActivity)context).getFragmentManager();
@@ -154,10 +152,10 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 				fragmentTransaction.replace(R.id.container_body, fragment,title);
 				fragmentTransaction.addToBackStack(title);
 
-				fragmentTransaction.commit();*/
+				fragmentTransaction.commit();*//*
 
 			}
-		});
+		});*/
 		holder.btnshare.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -225,8 +223,8 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 			commissionslist.addAll(origcommissionslist);
 
 		} else {
-			for (CommisionsJSON wp : origcommissionslist) {
-				if (wp.getrefNumber().toLowerCase(Locale.getDefault())
+			for (ChargebackList wp : origcommissionslist) {
+				if (wp.getRefNum().toLowerCase(Locale.getDefault())
 						.contains(charText)) {
 					commissionslist.add(wp);
 				}
@@ -262,7 +260,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 				//CONSTARINT TO UPPER
 				constraint=constraint.toString().toUpperCase();
 				Log.v("String constraint", String.valueOf(constraint));
-				ArrayList<CommisionsJSON> filters=new ArrayList<CommisionsJSON>();
+				ArrayList<ChargebackList> filters=new ArrayList<ChargebackList>();
 
 			/*	//get specific items
 				for (GetCommPerfData wp : origPlanetList) {
@@ -274,7 +272,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 				}*/
 				for(int i=0;i<origcommissionslist.size();i++)
 				{
-					if(origcommissionslist.get(i).getrefNumber().toUpperCase().contains(constraint) || origcommissionslist.get(i).getFromAcnum().toUpperCase().contains(constraint) || origcommissionslist.get(i).gettoAcNum().toUpperCase().contains(constraint))
+					if(origcommissionslist.get(i).getRefNum().toUpperCase().contains(constraint) )
 					{
 
 						filters.add(origcommissionslist.get(i));
@@ -298,7 +296,7 @@ public class ComplaintsAdapter extends ArrayAdapter<CommisionsJSON> implements F
 		protected void publishResults(CharSequence constraint, FilterResults results) {
 			// TODO Auto-generated method stub
 
-		commissionslist=(ArrayList<CommisionsJSON>) results.values;
+		commissionslist=(ArrayList<ChargebackList>) results.values;
 			notifyDataSetChanged();
 		}
 

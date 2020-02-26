@@ -934,8 +934,6 @@ if(Prefs.getString("ISBVN","NA").equals("Y")) {
 
         try {
             JSONObject paramObject = new JSONObject();
-          //  String bvnparams = "1/" + usid + "/" + strsalut + "/" + strfname + "/" + strlname + "/" + strmidnm + "/" + strmarst + "/" + stryob + "/" + stremail + "/" + strgender + "/" + strstate + "/" + strcity + "/" + straddr + "/" + strmobn + "/" + refnumber + "/" + strhmdd + "/" + edotp + "/" + encrypted;
-
 
             paramObject.put("channel", "1");
             paramObject.put("salutation", strsalut);

@@ -2,13 +2,14 @@ package firstmob.firstbank.com.firstagent.contract;
 
 import java.util.ArrayList;
 
+import firstmob.firstbank.com.firstagent.model.ChargebackList;
 import firstmob.firstbank.com.firstagent.model.CommisionsJSON;
 import firstmob.firstbank.com.firstagent.model.GetCommPerfData;
 
 public interface ComplaintsContract {
 
     interface Presenter {
-        void Complaints(String startdate, String enddate);
+        void Complaints();
 
 
 
@@ -21,7 +22,7 @@ public interface ComplaintsContract {
 
         void setaccname(String name);
 
-        void setList(ArrayList<CommisionsJSON> inboxlist);
+        void setList(ArrayList<ChargebackList> inboxlist);
 
         void showProgress();
 

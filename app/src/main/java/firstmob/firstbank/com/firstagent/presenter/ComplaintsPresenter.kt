@@ -1,16 +1,13 @@
 package firstmob.firstbank.com.firstagent.presenter
 
-import com.pixplicity.easyprefs.library.Prefs
+import android.util.Log
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 import firstmob.firstbank.com.firstagent.adapter.ComplaintsAdapter
-import firstmob.firstbank.com.firstagent.adapter.InboxListAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants
-import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.*
 import firstmob.firstbank.com.firstagent.contract.ComplaintsContract
-
 import firstmob.firstbank.com.firstagent.contract.MainContract
+import firstmob.firstbank.com.firstagent.model.ChargebackList
 import firstmob.firstbank.com.firstagent.model.CommisionsJSON
-import firstmob.firstbank.com.firstagent.model.GetCommPerfData
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility
 import firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection
@@ -26,7 +23,7 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
     internal lateinit var ul: Utility
     private var reqtype = ""
 
-    var complist = ArrayList<CommisionsJSON>()
+    var chglist = ArrayList<ChargebackList>()
     // private TextView emptyView;
     var aAdpt: ComplaintsAdapter? = null
 
@@ -38,32 +35,30 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
     }
 
 
-    override fun Complaints(stdate: String,enddate: String) {
+    override fun Complaints() {
 
 
         iLoginView!!.showProgress()
 
-        val endpoint = "report/genrpt.action"
+        val endpoint = "chargeback/getall.action"
 
 
 
             if (checkInternetConnection()) {
 
 
-                //   final   String agid = agentid.getText().toString();
-                val userid = Prefs.getString(KEY_USERID, "NA")
-                val agentid = Prefs.getString(AGENTID, "NA")
-
-                val mobnoo = Prefs.getString(AGMOB, "NA")
 
 
+                val paramObject = JSONObject()
+
+                paramObject.put("channel", "1")
+                paramObject.put("userId", "CEVA")
+                paramObject.put("merchantId", "1119040102")
+                paramObject.put("status", "0")
 
 
-                val params = Constants.CH_ID + "/" + userid + "/" + agentid + "/" + mobnoo + "/TXNRPT/" + stdate+"/"+enddate
 
-                val urlparams = ul?.genURLCBC(params, endpoint)
-
-                getDataIntractor.getResults(this, urlparams)
+                getDataIntractor.getJsonBodyResults(this, paramObject.toString(),endpoint)
 
             }
 
@@ -79,17 +74,14 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
 
 
             var obj = JSONObject(responsebody)
-            /*   JSONObject jsdatarsp = obj.optJSONObject("data");
-                    SecurityLayer.Log("JSdata resp", jsdatarsp.toString());
-                    //obj = Utility.onresp(obj,getActivity()); */
-            obj = SecurityLayer.decryptTransaction(obj)
+
             SecurityLayer.Log("decrypted_response", obj.toString())
 
             val respcode = obj.optString("responseCode")
             val responsemessage = obj.optString("message")
 
-            val comdatas = obj.optJSONObject("data")
-            val comperf = comdatas.optJSONArray("transaction")
+            val comdatas = obj.optJSONArray("data")
+
 
 
             //session.setString(SecurityLayer.KEY_APP_ID,appid);
@@ -99,52 +91,34 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
                 SecurityLayer.Log("Response Message", responsemessage)
 
                 if (respcode == "00") {
-                    SecurityLayer.Log("JSON Aray", comperf.toString())
-                    if (comperf.length() > 0) {
+                    SecurityLayer.Log("JSON Aray", comdatas.toString())
+                    if (comdatas.length() > 0) {
                         var json_data: JSONObject? = null
-                        for (i in 0 until comperf.length()) {
-                            json_data = comperf.getJSONObject(i)
-                            //String accid = json_data.getString("benacid");
-                            var fintoacnum: String? = ""
-                            var finfromacnum: String? = ""
-                            val txnCode = json_data.optString("txnCode")
-                            val agentCmsn = json_data.optDouble("agentCmsn")
-                            val txndateTime = json_data.optString("txndateTime")
+                        for (i in 0 until comdatas.length()) {
+                            json_data = comdatas.getJSONObject(i)
+
+
+
+                            val txnCode = json_data.optString("code")
+                            Log.v("txncode",txnCode)
+                            val refNum = json_data.optString("refNum")
+                            val txndateTime = json_data.optString("txnDate")
                             val amount = json_data.optString("amount")
                             val status = json_data.optString("status")
-                            var toAcNum = json_data.optString("toAcNum")
-                            val refNumber = json_data.optString("refNumber")
-                            var fromaccnum = json_data.optString("fromAccountNum")
+                            var id = json_data.optString("id")
+                            val catdType = json_data.optString("catdType")
+                            var pan = json_data.optString("pan")
 
-                            var dbam = 0.0
-                            if (amount != null && amount != "null") {
 
-                                dbam = amount.toDouble()
-                            } else {
-                                dbam = 0.0
-
-                            }
-                            if (txnCode == "CASHDEP" || txnCode == "FTINTRABANK" || txnCode == "CWDBYACT" || txnCode == "BILLPAYMENT" || txnCode == "MMO" || txnCode == "FTINTERBANK") {
-                                fintoacnum = fromaccnum
-                                finfromacnum = toAcNum
-                                toAcNum = fintoacnum
-                                fromaccnum = finfromacnum
-                            }
-                            if (dbam > 0) {
-                                var blchk = false
-                                if(i == 0){
-                                    blchk = true
-                                }
-
-                                complist.add(CommisionsJSON(txnCode, txndateTime, agentCmsn, status, amount, toAcNum, refNumber, fromaccnum,blchk))
+                                chglist.add(ChargebackList(amount, txnCode, refNum, catdType, id, pan,txndateTime,status))
                             }
                         }
                         if (this != null) { //   planetsList.add(new GetCommPerfData("1334", "13 Sep 2012 9:12", 45.00, "N", "450.00", "3123442", "242244432","1239032"));
 
-                            iLoginView!!.setList(complist)
+                            iLoginView!!.setList(chglist)
 
                         }
-                    }
+
 
                 } else {
 

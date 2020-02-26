@@ -1,15 +1,17 @@
 package firstmob.firstbank.com.firstagent.Activity
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.borax12.materialdaterangepicker.date.DatePickerDialog
+
 import firstmob.firstbank.com.firstagent.fragments.DateRangePickerFragment
 import kotlinx.android.synthetic.main.activity_reportspg.*
 import kotlinx.android.synthetic.main.activity_reportspg.txfromdate
@@ -27,6 +29,7 @@ class Reportspg : BaseActivity() , View.OnClickListener,DateRangePickerFragment.
     var txtendt = "NA"
     var frmdate = "NA"
     var enddt = "NA"
+    var cal = Calendar.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reportspg)
@@ -52,10 +55,67 @@ class Reportspg : BaseActivity() , View.OnClickListener,DateRangePickerFragment.
             startActivity(i)
         }
 
+
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val clfrom = Calendar.getInstance()
+
+            clfrom.set(year, monthOfYear, dayOfMonth)
+
+
+            val formattedto = format1.format(clfrom.time)
+
+
+            txtenddat.text = formattedto
+
+            var frmdymonth = dayOfMonth.toString()
+            if (dayOfMonth < 10) {
+                frmdymonth = "0$frmdymonth"
+            }
+            var frmyear = year.toString()
+            frmyear = frmyear.substring(2, 4)
+            val endtstr = "$frmdymonth-$monthOfYear-$frmyear"
+            enddt = endtstr
+            txtendt = formattedto
+        }
+
+        val dateSetListenerfrom = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val clfrom = Calendar.getInstance()
+
+            clfrom.set(year, monthOfYear, dayOfMonth)
+
+
+            val formattedfrom = format1.format(clfrom.time)
+
+
+            txfromdate.text = formattedfrom
+
+            var frmdymonth = dayOfMonth.toString()
+            if (dayOfMonth < 10) {
+                frmdymonth = "0$frmdymonth"
+            }
+            var frmyear = year.toString()
+            frmyear = frmyear.substring(2, 4)
+            val fromstr = "$frmdymonth-$monthOfYear-$frmyear"
+            frmdate = fromstr
+            txtstrtdt = formattedfrom
+
+        }
+        calendarbto!!.setOnClickListener {
+            DatePickerDialog(this@Reportspg,
+                    dateSetListener,
+                    // set DatePickerDialog to point to today's date when it loads up
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
         calendarbtn.setOnClickListener {
 
-            val dateRangePickerFragment = DateRangePickerFragment.newInstance(this, false)
-            dateRangePickerFragment.show(supportFragmentManager, "datePicker")
+            DatePickerDialog(this@Reportspg,
+                    dateSetListenerfrom,
+                    // set DatePickerDialog to point to today's date when it loads up
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)).show()
         }
         lastweeksumm.setOnClickListener{
 
@@ -249,56 +309,6 @@ class Reportspg : BaseActivity() , View.OnClickListener,DateRangePickerFragment.
     }
 
 
-    override fun onDateSet(view: DatePickerDialog, year: Int, monthOfYear: Int, dayOfMonth: Int, yearEnd: Int, monthOfYearEnd: Int, dayOfMonthEnd: Int) {
-        var monthOfYear = monthOfYear
-        var monthOfYearEnd = monthOfYearEnd
-        //   String date = "Inbox : From- " + dayOfMonth + "/" + (monthOfYear) + "/" + year + " To " + dayOfMonthEnd + "/" + (monthOfYearEnd) + "/" + yearEnd;
-
-        val clfrom = Calendar.getInstance()
-        val clto = Calendar.getInstance()
-        clfrom.set(year, monthOfYear, dayOfMonth)
-        clto.set(yearEnd, monthOfYearEnd, dayOfMonthEnd)
-
-        val formattedfrom = format1.format(clfrom.time)
-        val formattedto = format1.format(clto.time)
-
-
-        txtenddat.text = formattedto
-        txfromdate.text = formattedfrom
-        ++monthOfYear
-        ++monthOfYearEnd
-
-        val calfrom = Calendar.getInstance()
-        val calto = Calendar.getInstance()
-        calto.set(yearEnd, monthOfYearEnd, dayOfMonthEnd)
-        calfrom.set(year, monthOfYear, dayOfMonth)
-
-        if (calfrom.before(calto)) {
-            //   fromdate.setText(date);
-            var frmdymonth = dayOfMonth.toString()
-            if (dayOfMonth < 10) {
-                frmdymonth = "0$frmdymonth"
-            }
-            var frmyear = Integer.toString(year)
-            frmyear = frmyear.substring(2, 4)
-            val fromd = "$frmdymonth-$monthOfYear-$frmyear"
-            var frmenddymonth = Integer.toString(dayOfMonthEnd)
-            if (dayOfMonthEnd < 10) {
-                frmenddymonth = "0$frmenddymonth"
-            }
-
-            var frmendyr = Integer.toString(yearEnd)
-            frmendyr = frmendyr.substring(2, 4)
-            val endd = "$frmenddymonth-$monthOfYearEnd-$frmendyr"
-
-        } else {
-            Toast.makeText(
-                    applicationContext,
-                    "Please ensure the from date is before the after date",
-                    Toast.LENGTH_LONG).show()
-        }
-    }
-
 
     override fun onDateRangeSelected(dayOfMonth: Int, monthOfYear: Int, year: Int, dayOfMonthEnd: Int, monthOfYearEnd: Int, yearEnd: Int) {
         var monthOfYear = monthOfYear
@@ -350,6 +360,28 @@ class Reportspg : BaseActivity() , View.OnClickListener,DateRangePickerFragment.
                     "Please ensure the from date is before the after date",
                     Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        val clfrom = Calendar.getInstance()
+
+        clfrom.set(year, month, dayOfMonth)
+
+
+        val formattedfrom = format1.format(clfrom.time)
+
+
+        txfromdate.text = formattedfrom
+
+        var frmdymonth = dayOfMonth.toString()
+        if (dayOfMonth < 10) {
+            frmdymonth = "0$frmdymonth"
+        }
+        var frmyear = year.toString()
+        frmyear = frmyear.substring(2, 4)
+        val fromd = "$frmdymonth-$month-$frmyear"
     }
 }
 

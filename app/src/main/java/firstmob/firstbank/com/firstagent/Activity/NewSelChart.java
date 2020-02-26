@@ -86,6 +86,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static firstmob.firstbank.com.firstagent.constants.Constants.NET_URL;
+
 
 public class NewSelChart extends Fragment implements View.OnClickListener, OnChartValueSelectedListener, DateRangePickerFragment.OnDateRangeSelectedListener, OnChartGestureListener {
 
@@ -410,7 +412,7 @@ public class NewSelChart extends Fragment implements View.OnClickListener, OnCha
         prgDialog2.show();
         final PieData[] data = {null};
         ApiInterface apiService =
-                RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
+                RetrofitInstance.getRetrofitInstance(NET_URL).create(ApiInterface.class);
         String usid = Utility.gettUtilUserId(getActivity());
         String agentid = Utility.gettUtilAgentId(getActivity());
         String mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA");
@@ -459,7 +461,7 @@ public class NewSelChart extends Fragment implements View.OnClickListener, OnCha
 
 
         ApiInterface apiService =
-                RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
+                RetrofitInstance.getRetrofitInstance(NET_URL).create(ApiInterface.class);
 
 
         Call<String> call = apiService.setGenericRequestRaw(urlparams);

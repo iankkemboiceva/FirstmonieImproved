@@ -45,13 +45,13 @@ public class RetrofitInstance {
     public  static  OkHttpClient okHttpClient = null;
 
 
-    private static final String BASE_URL = NET_URL;
+
 
     /**
      * Create an instance of Retrofit object
      */
 
-    public static Retrofit getRetrofitInstance() {
+    public static Retrofit getRetrofitInstance(String BASE_URL) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         int KEY_TIMEOUT = 140;
         builder.readTimeout(KEY_TIMEOUT, TimeUnit.SECONDS).connectTimeout(KEY_TIMEOUT, TimeUnit.SECONDS).writeTimeout(KEY_TIMEOUT, TimeUnit.SECONDS);

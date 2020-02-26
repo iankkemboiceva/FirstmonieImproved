@@ -22,4 +22,8 @@ public interface ApiInterface {
     @POST("accountopen/app/bvn/validatebvn.action")
     Call<String> validatebvn(@Body String params);
 
+    @Headers("Content-Type: application/json")
+    @POST("{string}")
+    Call<String> setGenericJSONBodyRequest(@Path(value = "string", encoded = true) String string,@Body String params);
+
 }
