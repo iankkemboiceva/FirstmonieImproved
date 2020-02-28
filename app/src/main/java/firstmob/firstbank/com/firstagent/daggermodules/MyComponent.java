@@ -18,6 +18,7 @@ import firstmob.firstbank.com.firstagent.presenter.ActivateAgentPresenter;
 import firstmob.firstbank.com.firstagent.presenter.BalanceEnquirePresenter;
 import firstmob.firstbank.com.firstagent.presenter.CashDepoPresenter;
 import firstmob.firstbank.com.firstagent.presenter.CashDepoTransPresenter;
+import firstmob.firstbank.com.firstagent.presenter.ChargebackPresenter;
 import firstmob.firstbank.com.firstagent.presenter.ComplaintsPresenter;
 import firstmob.firstbank.com.firstagent.presenter.ConfimCabletvPresenter;
 import firstmob.firstbank.com.firstagent.presenter.ConfirmCashDepoPresenter;
@@ -93,4 +94,5 @@ public  interface MyComponent {
     void inject(MyperfActivityPresenter presenter);
     void inject(StateCollectacivtyPresenter presenter);
     void inject(ConfirmCableActivity presenter);
+    void inject(ChargebackPresenter presenter);
 }

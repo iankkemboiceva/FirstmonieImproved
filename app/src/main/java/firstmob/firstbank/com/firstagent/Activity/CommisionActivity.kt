@@ -77,24 +77,24 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_commision)
-        mToolbar = findViewById(R.id.toolbar) as Toolbar
+        mToolbar = findViewById<Toolbar>(R.id.toolbar)
         //  mToolbar.setTitle("Inbox");
         setSupportActionBar(mToolbar)
         val ab = supportActionBar
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu); // set a custom icon for the default home button
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
-        ab!!.setDisplayHomeAsUpEnabled(true)
-        ab!!.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
-        ab!!.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
-        ab!!.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)));
+        ab.setDisplayHomeAsUpEnabled(true)
+        ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
+        ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
+        ab.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.colorPrimary)))
 
-        lv = findViewById(R.id.lv) as ListView
-        txtitle = findViewById(R.id.bname) as TextView
-        txcomrepo = findViewById(R.id.textViewweryu) as TextView
-        txtcomrepo = findViewById(R.id.textViewwaq) as TextView
-        commamo = findViewById(R.id.txtagcomm) as TextView
-        txtitle = findViewById(R.id.bname) as TextView
-        txfrom = findViewById(R.id.from) as TextView
+        lv = findViewById<ListView>(R.id.lv)
+        txtitle = findViewById<TextView>(R.id.bname)
+        txcomrepo = findViewById<TextView>(R.id.textViewweryu)
+        txtcomrepo = findViewById<TextView>(R.id.textViewwaq)
+        commamo = findViewById<TextView>(R.id.txtagcomm)
+        txtitle = findViewById<TextView>(R.id.bname)
+        txfrom = findViewById<TextView>(R.id.from)
         //   sp1 = (Spinner) rootView.findViewById(R.id.accno);
 
 //        prgDialog2 = ProgressDialog(this)
@@ -102,17 +102,17 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
         //prgDialog2!!.setCancelable(false)
         titlepg.text="Commission"
         viewDialog=ViewDialog(this)
-        lstmt = findViewById(R.id.stmtly) as LinearLayout
+        lstmt = findViewById<LinearLayout>(R.id.stmtly)
         lstmt!!.setOnClickListener(this)
         presenterbalnce= BalanceEnquirePresenter(this, this, FetchServerResponse())
         presenter = CommisiondatPresenter(this, this, FetchServerResponse())
         // Set Cancelable as False
         session = SessionManagement(this)
-        calendar = findViewById(R.id.button4) as Button
+        calendar = findViewById<Button>(R.id.button4)
         calendar!!.setOnClickListener(this)
-        emptyView = findViewById(R.id.empty_view) as TextView
+        emptyView = findViewById<TextView>(R.id.empty_view)
         val usid = Utility.gettUtilUserId(this)
-        txtcomrepo!!.setText("Commission By User $usid")
+        txtcomrepo!!.text = "Commission By User $usid"
         val cal = Calendar.getInstance()
         val now = Calendar.getInstance()
         val year = now.get(Calendar.YEAR)
@@ -129,12 +129,12 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
 // Output "2012-09-26"
         //   txtitle.setText("Commission Report for "+formattedstartdate+" to "+formattednow);
 
-        txtitle!!.setText(formattednow)
-        txfrom!!.setText(formattedstartdate)
+        txtitle!!.text = formattednow
+        txfrom!!.text = formattedstartdate
         presenterbalnce!!.requestCall("getbalnce", null)
         //setBalInquSec()
 
-        lv!!.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, position, l ->
+        lv!!.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->
             val p = planetsList[position]
             val txncode = p.txnCode
             val toAcnum = p.gettoAcNum()
@@ -155,14 +155,14 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
             bundle.putString("datetime", txtdatetime)
             bundle.putString("servtype", servtype)
             bundle.putString("amo", amoo)
-            editNameDialog.setArguments(bundle)
+            editNameDialog.arguments = bundle
             editNameDialog.show(fm, "fragment_edit_name")
-        })
+        }
 
     }
 
     override fun onClick(v: View?) {
-        if (v!!.getId() == R.id.button4) {
+        if (v!!.id == R.id.button4) {
             val dateRangePickerFragment = DateRangePickerFragment.newInstance(this, false)
             dateRangePickerFragment.show(supportFragmentManager, "datePicker")
         }
@@ -183,13 +183,13 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
     }
 
     override fun showProgress() {
-        if (viewDialog != null && applicationContext != null && !this@CommisionActivity.isFinishing()) {
+        if (viewDialog != null && applicationContext != null && !this@CommisionActivity.isFinishing) {
             viewDialog!!.showDialog()
         }
     }
 
     override fun hideProgress() {
-        if (viewDialog != null && applicationContext != null && !this@CommisionActivity.isFinishing()) {
+        if (viewDialog != null && applicationContext != null && !this@CommisionActivity.isFinishing) {
             viewDialog!!.hideDialog()
         }
     }
@@ -211,8 +211,8 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
 
         val formattedfrom = format1.format(clfrom.time)
         val formattedto = format1.format(clto.time)
-        txtitle!!.setText(formattedto)
-        txfrom!!.setText(formattedfrom)
+        txtitle!!.text = formattedto
+        txfrom!!.text = formattedfrom
         ++monthOfYear
         ++monthOfYearEnd
         val calfrom = Calendar.getInstance()
@@ -259,8 +259,8 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
 
         val formattedfrom = format1.format(clfrom.time)
         val formattedto = format1.format(clto.time)
-        txtitle!!.setText(formattedto)
-        txfrom!!.setText(formattedfrom)
+        txtitle!!.text = formattedto
+        txfrom!!.text = formattedfrom
         ++monthOfYear
         ++monthOfYearEnd
         val calfrom = Calendar.getInstance()
@@ -315,7 +315,7 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
     }
 
     fun dismissProgressDialog() {
-        if (viewDialog != null && !this@CommisionActivity.isFinishing()) {
+        if (viewDialog != null && !this@CommisionActivity.isFinishing) {
             viewDialog!!.hideDialog()
         }
     }
@@ -375,11 +375,11 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
 
                     //                                     SecurityLayer.Log("Respnse getResults",datas.toString());
                     if (plan != null) {
-                        val balamo = plan!!.optString("balance")
-                        val comamo = plan!!.optString("commission")
+                        val balamo = plan.optString("balance")
+                        val comamo = plan.optString("commission")
                         val cmbal = Utility.returnNumberFormat(comamo)
                         //   cmbal = Utility.roundto2dp(cmbal);
-                        commamo!!.setText(Constants.KEY_NAIRA + cmbal)
+                        commamo!!.text = Constants.KEY_NAIRA + cmbal
                     } else {
                         Toast.makeText(
                                 applicationContext,
@@ -502,7 +502,7 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
                                     aAdpt = NewCommListAdapter(planetsList, this@CommisionActivity)
 
 
-                                    lv!!.setAdapter(aAdpt)
+                                    lv!!.adapter = aAdpt
                                 }
 
 
@@ -536,7 +536,7 @@ class CommisionActivity : AppCompatActivity(), CommisionContract.IViewCommission
                 }
                 var fincommrpt = java.lang.Double.toString(tott)
                 fincommrpt = Utility.returnNumberFormat(fincommrpt)
-                txcomrepo!!.setText(Constants.KEY_NAIRA + fincommrpt)
+                txcomrepo!!.text = Constants.KEY_NAIRA + fincommrpt
             } else {
                 if (applicationContext != null) {
                     Toast.makeText(

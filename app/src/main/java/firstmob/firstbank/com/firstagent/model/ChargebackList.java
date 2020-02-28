@@ -10,12 +10,13 @@ public class ChargebackList {
     private String code;
     private String refNum;
     private String catdType;
-    private String id;
+    private int id;
     private String pan;
     private String txnDate;
     private String status;
+    private String accno;
 
-    public ChargebackList(String amount,String code,String refNum,String catdType,String id,String pan,String txnDate,String status) {
+    public ChargebackList(String amount,String code,String refNum,String catdType,int id,String pan,String txnDate,String status,String accno) {
         this.amount = amount;
         this.code = code;
         this.refNum = refNum;
@@ -25,6 +26,7 @@ public class ChargebackList {
         this.pan = pan;
         this.txnDate = txnDate;
         this.id = id;
+        this.accno = accno;
     }
     // Getter Methods
 
@@ -55,6 +57,14 @@ public class ChargebackList {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getAccno() {
+        return accno;
+    }
+
+    public int getId() {
+        return id;
     }
 
     // Setter Methods

@@ -4,7 +4,7 @@ import android.util.Log
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 import firstmob.firstbank.com.firstagent.adapter.ComplaintsAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants
-import firstmob.firstbank.com.firstagent.contract.ComplaintsContract
+import firstmob.firstbank.com.firstagent.contract.ChargebackContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
 import firstmob.firstbank.com.firstagent.model.ChargebackList
 import firstmob.firstbank.com.firstagent.model.CommisionsJSON
@@ -17,7 +17,7 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 
-class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : ComplaintsContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
+class ChargebackPresenter(internal var iLoginView: ChargebackContract.ILoginView?, private val getDataIntractor: MainContract.GetDataIntractor) : ChargebackContract.Presenter, MainContract.GetDataIntractor.OnFinishedListener {
 
     @Inject
     internal lateinit var ul: Utility
@@ -35,12 +35,12 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
     }
 
 
-    override fun Complaints() {
+    override fun getChargebackDetails(chgbckid: Int) {
 
 
         iLoginView!!.showProgress()
 
-        val endpoint = "chargeback/getall.action"
+        val endpoint = "chargeback/getdeatils.action"
 
 
 
@@ -54,7 +54,7 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
                 paramObject.put("channel", "1")
                 paramObject.put("userId", "CEVA")
                 paramObject.put("merchantId", "1119040102")
-                paramObject.put("status", "0")
+                paramObject.put("chargeBackId", chgbckid)
 
 
 
@@ -80,7 +80,7 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
             val respcode = obj.optString("responseCode")
             val responsemessage = obj.optString("message")
 
-            val comdatas = obj.optJSONArray("data")
+            val comdatas = obj.optJSONObject("data")
 
 
 
@@ -93,31 +93,29 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
                 if (respcode == "00") {
                     SecurityLayer.Log("JSON Aray", comdatas.toString())
                     if (comdatas.length() > 0) {
-                        var json_data: JSONObject? = null
-                        for (i in 0 until comdatas.length()) {
-                            json_data = comdatas.getJSONObject(i)
+                        var json_data = comdatas.optJSONObject("request")
 
 
 
                             val txnCode = json_data.optString("code")
                             Log.v("txncode",txnCode)
-                            val refNum = json_data.optString("refNum")
+                            val refNum = json_data.optString("txnRefNum")
                             val txndateTime = json_data.optString("txnDate")
                             val amount = json_data.optString("amount")
                             val status = json_data.optString("status")
                             var id = json_data.optInt("id")
-                            val catdType = json_data.optString("catdType")
+                            val catdType = json_data.optString("cardType")
                             var pan = json_data.optString("pan")
+                        var accNum = json_data.optString("accNum")
+                        val chglistt = ChargebackList(amount, txnCode, refNum, catdType, id, pan,txndateTime,status,accNum)
 
 
-                                chglist.add(ChargebackList(amount, txnCode, refNum, catdType, id, pan,txndateTime,status,""))
-                            }
+                        iLoginView!!.setResultText(chglistt)
                         }
-                        if (this != null) { //   planetsList.add(new GetCommPerfData("1334", "13 Sep 2012 9:12", 45.00, "N", "450.00", "3123442", "242244432","1239032"));
 
-                            iLoginView!!.setList(chglist)
 
-                        }
+
+
 
 
                 } else {
@@ -159,6 +157,7 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
         //    iLoginView!!.onLoginError(t.toString())
 
     }
+
 
     override fun ondestroy() {
         iLoginView = null

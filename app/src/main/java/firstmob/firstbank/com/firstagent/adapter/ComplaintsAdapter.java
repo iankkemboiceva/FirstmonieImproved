@@ -123,7 +123,7 @@ if(status.equals("0")) {
 	holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_red_900));
 	holder.txtstatus.setText("NOT PAID");
 }else if (status.equals("1")) {
-	holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_red_900));
+	holder.txtstatus.setTextColor(context.getResources().getColor(R.color.fab_material_light_green_900));
 	holder.txtstatus.setText("PAID");
 }
 

@@ -361,7 +361,9 @@ public class OpenAccUpPicActivity extends BaseActivity implements View.OnClickLi
 
     private void finalizeup(Bitmap myBitmap) {
 
-
+        if (img != null) {
+            img.setImageBitmap(myBitmap);
+        }
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG,90,bytes);
         String filename = System.currentTimeMillis() + ".jpg";

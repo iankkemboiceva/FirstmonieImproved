@@ -5,6 +5,7 @@ package firstmob.firstbank.com.firstagent.Activity
 
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -106,38 +107,18 @@ class ComplaintsActivity : AppCompatActivity(),   ComplaintsContract.ILoginView 
 
 
         presenter.Complaints()
-
-
-     /*   lv.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->
+        lv!!.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->
             val p = complist[position]
-            val bln = p.getchg()
-            if(bln) {
-                val txncode = p.txnCode
-                val toAcnum = p.gettoAcNum()
-                val fromacnum = p.fromAcnum
-                val txtrfno = p.getrefNumber()
-
-                val servtype = convertTxnCodetoServ(txncode)
-                val txtdatetime = p.txndateTime
-                val statuss = p.status
 
 
-                val amoo = KEY_NAIRA + returnNumberFormat(p.amount)
-                val fm = supportFragmentManager
-                val editNameDialog = ComplaintsReceipt()
-                val bundle = Bundle()
-                bundle.putString("narr", fromacnum)
-                bundle.putString("refno", txtrfno)
-                bundle.putString("datetime", txtdatetime)
-                bundle.putString("amo", amoo)
-                bundle.putString("servtype", servtype)
-                bundle.putString("status", statuss)
-                bundle.putString("narrtor", toAcnum)
-                editNameDialog.setArguments(bundle)
-                editNameDialog.show(fm, "fragment_edit_name")
+            val idd = p.id
+            val intent = Intent(this@ComplaintsActivity, ChargebackDetails::class.java)
 
-            }
-        }*/
+
+            intent.putExtra("id", idd)
+            startActivity(intent)
+ }
+
 
 
     }
@@ -165,23 +146,7 @@ class ComplaintsActivity : AppCompatActivity(),   ComplaintsContract.ILoginView 
             R.id.logcomp -> {
                 Log.d("onContextItemSelected", "Remove Pressed")
 
-                /*
 
-                val txamo = planetsList[index].getAmount()
-                val txacno = planetsList[index].gettoAcNum()
-                val txrefno = planetsList[index].getrefNumber()
-                val txtdate = planetsList[index].getTxndateTime()
-                val b = Bundle()
-                b.putString("txamo", txamo)
-                b.putString("txaco", txacno)
-                b.putString("txref", txrefno)
-                b.putString("txdate", txtdate)
-                val pIntent = Intent(this, LogCompActivity::class.java)
-
-
-                pIntent.putExtras(b)
-                startActivity(pIntent)
-                return true*/
                 return true
             }
 

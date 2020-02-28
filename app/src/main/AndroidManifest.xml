@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name=".Reportspg"></activity>
+        <activity android:name=".ChargebackComments"></activity>
+        <activity android:name=".Reportspg" />
         <activity android:name=".ConfirmAirtimeActivity" />
         <activity android:name=".AirtimeTransfActivity" />
         <activity android:name=".ConfirmWithdrawalActivity" />
@@ -80,8 +81,7 @@
         <activity
             android:name=".FMobActivity"
             android:label="@string/title_activity_fmob"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
 
         <service
             android:name="backgroundlocation.LocationUpdatesIntentService"
@@ -103,6 +103,7 @@
         <activity android:name=".CashDepoTransActivity" />
         <activity android:name=".ConfirmCashDepoTransActivity" />
         <activity android:name=".SendOTBActivity" />
+        <activity android:name=".ChargebackDetails" />
     </application>
 
 </manifest>
