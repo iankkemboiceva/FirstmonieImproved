@@ -71,7 +71,7 @@
 
                         android:orientation="vertical" >
                         <Button
-                            android:id="@+id/button1"
+                            android:id="@+id/capture_btn"
 
                             android:layout_gravity="center_horizontal"
                             android:layout_margin="15dip"
@@ -108,17 +108,37 @@
 
                         android:layout_width="200dp"
                         android:layout_height="200dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/buttonnxt"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:layout_margin="15dip"
-                        android:background="@color/nbkyellow"
-                        android:filterTouchesWhenObscured ="true"
-                        android:textColor="@color/white"
-                        android:text="NEXT" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:text="Comment"
+
+                            android:textColor="@color/colorPrimary" />
+
+                        <EditText
+                            android:id="@+id/edacc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center"
+                            android:layout_weight="2"
+                            android:inputType="number"
+                            android:hint="Enter any comment/remark"
+                            android:background="@android:color/transparent"
+
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
@@ -128,6 +148,44 @@
 
             </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/rl7"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rl5"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_pin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pin"
+                            android:layout_below="@+id/textView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="5"
+                            android:ems="10"
+
+                            android:inputType="numberPassword"
+                            android:layout_margin="10dp"
+                            android:hint="Enter Attendant PIN" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/buttonnxt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_margin="15dip"
+                    android:background="@color/nbkyellow"
+                    android:filterTouchesWhenObscured ="true"
+                    android:textColor="@color/white"
+                    android:text="NEXT" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

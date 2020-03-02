@@ -19,8 +19,7 @@ import firstmob.firstbank.com.firstagent.network.FetchServerResponse
 import firstmob.firstbank.com.firstagent.presenter.ChargebackPresenter
 import firstmob.firstbank.com.firstagent.utils.Utility
 import kotlinx.android.synthetic.main.activity_chargeback_details.*
-import kotlinx.android.synthetic.main.activity_confirm_cash_depo.*
-import kotlinx.android.synthetic.main.activity_confirm_cash_depo.button2
+
 import kotlinx.android.synthetic.main.toolbarnewui.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
@@ -68,91 +67,10 @@ class ChargebackDetails : AppCompatActivity(), ChargebackContract.ILoginView {
 
 
         }
-
-        button2.setOnClickListener {
-            if (Utility.checkInternetConnection()) {
-                val agpin = pin.text.toString()
-
-
-                if (Utility.isNotNull(recanno)) {
-                    if (Utility.isNotNull(amou)) {
-                        if (Utility.isNotNull(narra)) {
-                            if (Utility.isNotNull(ednamee)) {
-                                if (Utility.isNotNull(ednumbb)) {
-                                    if (Utility.isNotNull(agpin)) {
-                                        if (boolchkfee == true) {
-
-                                            var encrypted: String? = null
-                                            encrypted = Utility.b64_sha256(agpin)
-
-
-                                            val usid = Prefs.getString(KEY_USERID,"NA")
-                                            val agentid = Prefs.getString(AGENTID,"NA")
-                                            val mobnoo = Prefs.getString(AGMOB,"NA")
-                                            // "0000"
-                                            val params = "1/$usid/$agentid/$mobnoo/2/$amou/$recanno/$txtname/$narra"
-
-                                            val intent = Intent(this, TransactionProcessingActivity::class.java)
-
-                                            intent.putExtra("params", params)
-                                            intent.putExtra("serv", "CASHDEPO")
-                                            intent.putExtra("recanno", recanno)
-                                            intent.putExtra("amou", amou)
-
-                                            intent.putExtra("narra", narra)
-                                            intent.putExtra("ednamee", ednamee)
-                                            intent.putExtra("ednumbb", ednumbb)
-                                            intent.putExtra("txtname", txtname)
-                                            intent.putExtra("txpin", encrypted)
-                                            startActivity(intent)
-
-
-
-                                        } else {
-                                            Toast.makeText(
-                                                    applicationContext,
-                                                    "Please ensure fee modules are set up appropiately",
-                                                    Toast.LENGTH_LONG).show()
-                                        }
-
-                                    } else {
-                                        Toast.makeText(
-                                                applicationContext,
-                                                "Please enter a valid value for Agent PIN",
-                                                Toast.LENGTH_LONG).show()
-                                    }
-                                } else {
-                                    Toast.makeText(
-                                            applicationContext,
-                                            "Please enter a valid value for Depositor Number",
-                                            Toast.LENGTH_LONG).show()
-                                }
-                            } else {
-                                Toast.makeText(
-                                        applicationContext,
-                                        "Please enter a valid value for Depositor Name",
-                                        Toast.LENGTH_LONG).show()
-                            }
-                        } else {
-                            Toast.makeText(
-                                    applicationContext,
-                                    "Please enter a valid value for Narration",
-                                    Toast.LENGTH_LONG).show()
-                        }
-                    } else {
-                        Toast.makeText(
-                                applicationContext,
-                                "Please enter a valid value for Amount",
-                                Toast.LENGTH_LONG).show()
-                    }
-                } else {
-                    Toast.makeText(
-                            applicationContext,
-                            "Please enter a value for Account Number",
-                            Toast.LENGTH_LONG).show()
-                }
-            }
-        }
+gobutton.setOnClickListener{
+    val intent = Intent(this, ChargebackComments::class.java)
+    startActivity(intent)
+}
 
 
     }
