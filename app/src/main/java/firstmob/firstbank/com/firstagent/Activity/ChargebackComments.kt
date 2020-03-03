@@ -18,9 +18,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import firstmob.firstbank.com.firstagent.contract.ChargebackCommentsContract
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
+import firstmob.firstbank.com.firstagent.network.FetchServerResponse
+import firstmob.firstbank.com.firstagent.presenter.ChargebackCommentsPresenter
+import firstmob.firstbank.com.firstagent.presenter.ChargebackPresenter
 import firstmob.firstbank.com.firstagent.utils.FileCompressor
+import firstmob.firstbank.com.firstagent.utils.Utility
 import kotlinx.android.synthetic.main.chargebckcomm.*
 import kotlinx.android.synthetic.main.toolbarnewui.*
+import org.apache.commons.codec.digest.DigestUtils
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.File
 import java.io.IOException
@@ -28,13 +35,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ChargebackComments : AppCompatActivity() {
+class ChargebackComments : AppCompatActivity(), ChargebackCommentsContract.ILoginView {
     var photoFile: File? = null
+    var viewDialog: ViewDialog? = null
     private val PERMISSION_CODE = 1000;
     private val IMAGE_CAPTURE_CODE = 1001
     var image_uri: Uri? = null
     var mCurrentPhotoPath: String? = null
+    var txrefnum: String? = null
     var mCompressor: FileCompressor? = null
+    var chgbckid: Int = 0
+    internal lateinit var presenter: ChargebackCommentsContract.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chargeback_comments)
@@ -49,6 +60,16 @@ class ChargebackComments : AppCompatActivity() {
         ab.setDisplayShowTitleEnabled(false)
         ab.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)))
         titlepg.text="Chargeback"
+
+        val intent = intent
+        if (intent != null) {
+          chgbckid = intent.getIntExtra("id", 0)
+            txrefnum = intent.getStringExtra("ref")
+
+        }
+
+        viewDialog = ViewDialog(this)
+        presenter = ChargebackCommentsPresenter(this, FetchServerResponse())
 
 
         //button click
@@ -76,6 +97,26 @@ class ChargebackComments : AppCompatActivity() {
         }
 
         mCompressor = FileCompressor(this)
+
+        buttonnxt.setOnClickListener{
+            var strpin = pin.text.toString()
+            val strcomm = edacc.text.toString()
+            val receipt = convertToBase64(photoFile)
+            Log.v("receipt",receipt)
+
+            strpin = Utility.b64_sha256(strpin)
+
+
+            presenter.saveChargeback(strpin,strcomm,"1",txrefnum,chgbckid,receipt)
+
+
+        }
+    }
+
+
+    fun convertToBase64(attachment: File?): String {
+        return android.util.Base64.encodeToString(attachment?.readBytes(), android.util.Base64.NO_WRAP).trim { it <= ' ' }
+
     }
 
     override fun attachBaseContext(newBase: Context) {
@@ -155,4 +196,24 @@ class ChargebackComments : AppCompatActivity() {
             }
         }
     }
+
+    override fun hideProgress() {
+        viewDialog?.hideDialog()
+    }
+
+    override fun showToast(text: String) {
+
+        Toast.makeText(
+                applicationContext,
+                text,
+                Toast.LENGTH_LONG).show()
+
+
+    }
+
+    override fun showProgress() {
+        viewDialog?.showDialog()
+    }
+
+
 }

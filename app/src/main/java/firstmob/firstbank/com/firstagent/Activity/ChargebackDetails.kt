@@ -41,6 +41,8 @@ class ChargebackDetails : AppCompatActivity(), ChargebackContract.ILoginView {
     private var boolchkfee: Boolean? = false
     var agbalance: String? = null
     internal lateinit var presenter: ChargebackContract.Presenter
+    var refnum: String? = null
+    var chgbckid: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,8 +70,12 @@ class ChargebackDetails : AppCompatActivity(), ChargebackContract.ILoginView {
 
         }
 gobutton.setOnClickListener{
-    val intent = Intent(this, ChargebackComments::class.java)
-    startActivity(intent)
+    if(Utility.isNotNull(refnum)) {
+        val intent = Intent(this, ChargebackComments::class.java)
+        intent.putExtra("id", chgbckid)
+        intent.putExtra("ref", refnum)
+        startActivity(intent)
+    }
 }
 
 
@@ -102,6 +108,8 @@ gobutton.setOnClickListener{
         txtamo.text = cglist?.amount
         txdate.text = cglist?.txnDate
         txref.text = cglist?.refNum
+        chgbckid = cglist?.id!!
+        refnum = cglist?.refNum
         txcard.text = cglist?.catdType
         var statuss = cglist?.status
         if(statuss == "0"){
