@@ -126,7 +126,7 @@ class NewHomeGridview2 : Fragment() {
 
         supprt?.setOnClickListener(){
 
-            val i = Intent(activity, ChargebackComments::class.java)
+            val i = Intent(activity, ComplaintsActivity::class.java)
 
             startActivity(i)
         }

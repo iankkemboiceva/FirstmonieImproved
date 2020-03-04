@@ -65,7 +65,9 @@ class ChargebackCommentsPresenter(internal var iLoginView: ChargebackCommentsCon
 
                 paramObject.put("comments", comments)
                 paramObject.put("txnRefNum", txrefnum)
-                paramObject.put("receipt", receipt)
+                if(!(receipt.equals("NA"))) {
+                    paramObject.put("receipt", receipt)
+                }
 
                 getDataIntractor.getJsonBodyResults(this, paramObject.toString(),endpoint)
 
@@ -100,11 +102,8 @@ class ChargebackCommentsPresenter(internal var iLoginView: ChargebackCommentsCon
                 SecurityLayer.Log("Response Message", responsemessage)
 
                 if (respcode == "00") {
-                    SecurityLayer.Log("JSON Aray", comdatas.toString())
-                    if (comdatas.length() > 0) {
 
-                        }
-
+                    iLoginView!!.goNextPage()
 
 
 

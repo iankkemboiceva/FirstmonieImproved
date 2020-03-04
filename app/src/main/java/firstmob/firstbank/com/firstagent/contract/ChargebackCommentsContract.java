@@ -23,7 +23,7 @@ public interface ChargebackCommentsContract {
 
         void hideProgress();
 
-
+        void goNextPage();
     }
 
 

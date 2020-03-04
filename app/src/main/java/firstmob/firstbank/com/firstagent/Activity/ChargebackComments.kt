@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -43,6 +44,7 @@ class ChargebackComments : AppCompatActivity(), ChargebackCommentsContract.ILogi
     var image_uri: Uri? = null
     var mCurrentPhotoPath: String? = null
     var txrefnum: String? = null
+    var iscashgiv: String? = null
     var mCompressor: FileCompressor? = null
     var chgbckid: Int = 0
     internal lateinit var presenter: ChargebackCommentsContract.Presenter
@@ -65,6 +67,10 @@ class ChargebackComments : AppCompatActivity(), ChargebackCommentsContract.ILogi
         if (intent != null) {
           chgbckid = intent.getIntExtra("id", 0)
             txrefnum = intent.getStringExtra("ref")
+            iscashgiv = intent.getStringExtra("iscashgiv")
+            if(iscashgiv.equals("0")){
+picture.visibility = View.GONE
+            }
 
         }
 
@@ -101,13 +107,16 @@ class ChargebackComments : AppCompatActivity(), ChargebackCommentsContract.ILogi
         buttonnxt.setOnClickListener{
             var strpin = pin.text.toString()
             val strcomm = edacc.text.toString()
-            val receipt = convertToBase64(photoFile)
+            var receipt = "NA"
+            if(iscashgiv.equals("1")) {
+                receipt = convertToBase64(photoFile)
+            }
             Log.v("receipt",receipt)
 
             strpin = Utility.b64_sha256(strpin)
 
 
-            presenter.saveChargeback(strpin,strcomm,"1",txrefnum,chgbckid,receipt)
+            presenter.saveChargeback(strpin,strcomm,iscashgiv,txrefnum,chgbckid,receipt)
 
 
         }
@@ -117,6 +126,12 @@ class ChargebackComments : AppCompatActivity(), ChargebackCommentsContract.ILogi
     fun convertToBase64(attachment: File?): String {
         return android.util.Base64.encodeToString(attachment?.readBytes(), android.util.Base64.NO_WRAP).trim { it <= ' ' }
 
+    }
+
+    override fun goNextPage(){
+        val intent = Intent(this, FinalConfChargeback::class.java)
+
+        startActivity(intent)
     }
 
     override fun attachBaseContext(newBase: Context) {

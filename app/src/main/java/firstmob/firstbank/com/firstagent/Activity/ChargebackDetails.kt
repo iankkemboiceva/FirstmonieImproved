@@ -74,10 +74,21 @@ gobutton.setOnClickListener{
         val intent = Intent(this, ChargebackComments::class.java)
         intent.putExtra("id", chgbckid)
         intent.putExtra("ref", refnum)
+        intent.putExtra("iscashgiv", "1")
         startActivity(intent)
     }
 }
 
+
+        ispaid.setOnClickListener{
+            if(Utility.isNotNull(refnum)) {
+                val intent = Intent(this, ChargebackComments::class.java)
+                intent.putExtra("id", chgbckid)
+                intent.putExtra("ref", refnum)
+                intent.putExtra("iscashgiv", "0")
+                startActivity(intent)
+            }
+        }
 
     }
 
@@ -133,7 +144,7 @@ gobutton.setOnClickListener{
 
 
     override fun hidebutton() {
-        button2.visibility = View.GONE
+
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId == android.R.id.home) {

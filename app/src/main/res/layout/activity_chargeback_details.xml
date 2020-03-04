@@ -443,7 +443,7 @@
                             android:layout_below="@+id/rl5">
 
                             <Button
-                                android:id="@+id/button2"
+                                android:id="@+id/ispaid"
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
