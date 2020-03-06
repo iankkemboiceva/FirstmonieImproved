@@ -62,7 +62,7 @@
                     android:layout_below="@+id/rl5">
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/gohome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"

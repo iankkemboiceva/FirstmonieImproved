@@ -1,9 +1,11 @@
 package firstmob.firstbank.com.firstagent.presenter
 
 import android.util.Log
+import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.Activity.ApplicationClass
 import firstmob.firstbank.com.firstagent.adapter.ComplaintsAdapter
 import firstmob.firstbank.com.firstagent.constants.Constants
+import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
 import firstmob.firstbank.com.firstagent.contract.ComplaintsContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
 import firstmob.firstbank.com.firstagent.model.ChargebackList
@@ -51,9 +53,12 @@ class ComplaintsPresenter(internal var iLoginView: ComplaintsContract.ILoginView
 
                 val paramObject = JSONObject()
 
-                paramObject.put("channel", "1")
-                paramObject.put("userId", "CEVA")
-                paramObject.put("merchantId", "1119040102")
+                val usid = Prefs.getString(SharedPrefConstants.KEY_USERID, "NA")
+                val agentid = Prefs.getString(SharedPrefConstants.AGENTID, "NA")
+
+                paramObject.put("channel", Constants.CH_ID)
+                paramObject.put("userId", usid)
+                paramObject.put("merchantId", agentid)
                 paramObject.put("status", "0")
 
 
