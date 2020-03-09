@@ -294,7 +294,14 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
                 // Staring Login Activity
                 startActivity(intent);
             }
+            9 -> {
+                //finish()
+                val intent = Intent(this, LoanRequest::class.java)
 
+
+                // Staring Login Activity
+                startActivity(intent);
+            }
             else -> {
             }
         }

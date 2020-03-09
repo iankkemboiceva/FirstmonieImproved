@@ -53,6 +53,7 @@
         <activity android:name=".FinalConfWithdrawActivity" />
         <activity android:name=".MyPerfActivity" />
         <activity android:name=".ChangePinActivity" />
+        <activity android:name=".LoanRequest" />
         <activity android:name=".ForceChangePin" />
         <activity android:name=".ForceResetPin" />
         <activity android:name=".FinalConfirmCableTV" />

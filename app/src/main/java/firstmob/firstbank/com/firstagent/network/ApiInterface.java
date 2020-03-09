@@ -26,4 +26,20 @@ public interface ApiInterface {
     @POST("{string}")
     Call<String> setGenericJSONBodyRequest(@Path(value = "string", encoded = true) String string,@Body String params);
 
+
+    @Headers("Content-Type: application/json")
+    @POST("loan/eligibility.action")
+    Call<String> loaneligibility(@Body String params);
+
+    @Headers("Content-Type: application/json")
+    @POST("loan/request.action")
+    Call<String> loanrequest(@Body String params);
+
+    @Headers("Content-Type: application/json")
+    @POST("agentcredit/api/auth/signin")
+    Call<String> adminlogin(@Body String params);
+
+    @Headers("Content-Type: application/json")
+    @POST("sup/getsupervisors")
+    Call<String> getsup(@Body String params);
 }
