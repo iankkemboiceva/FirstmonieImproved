@@ -3,6 +3,7 @@ package firstmob.firstbank.com.firstagent.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -14,15 +15,19 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback
+import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.constants.Constants
+import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 import firstmob.firstbank.com.firstagent.model.GetStores
 import firstmob.firstbank.com.firstagent.model.ObservableWebView
 import firstmob.firstbank.com.firstagent.model.ObservableWebView.OnScrollChangedCallback
 import firstmob.firstbank.com.firstagent.network.ApiInterface
 import firstmob.firstbank.com.firstagent.network.RetrofitInstance
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
-import firstmob.firstbank.com.firstagent.utils.SessionManagement
+
 import firstmob.firstbank.com.firstagent.utils.Utility
+import kotlinx.android.synthetic.main.loanreq.*
+import kotlinx.android.synthetic.main.toolbarnewui.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -49,9 +54,8 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
     var acname: String? = null
     var storeidd: String? = null
     var amolimit = "NA"
-    var rlid: RelativeLayout? = null
-    var lybut: RelativeLayout? = null
-    var lyamo: LinearLayout? = null
+
+
     var prgDialog: ProgressDialog? = null
     var txelig: TextView? = null
     var txstorename: TextView? = null
@@ -59,7 +63,7 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loanreq)
 
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         // Get the ActionBar here to configure the way it behaves.
         val ab = supportActionBar
@@ -67,9 +71,12 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
         ab!!.setDisplayShowHomeEnabled(true) // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true)
         ab.setDisplayShowCustomEnabled(true) // enable overriding the default toolbar layout
-        ab.setDisplayShowTitleEnabled(false) // disable the default title element here (for centered title)
-        rlid = findViewById<View>(R.id.rlid) as RelativeLayout
-        accountoname = findViewById<View>(R.id.cname) as TextView
+        ab.setDisplayShowTitleEnabled(false)
+        ab!!.setBackgroundDrawable(ColorDrawable(getResources().getColor(R.color.nbkyellow)));
+
+        titlepg.text="Agent Credit"
+
+
         txstorename = findViewById<View>(R.id.storid) as TextView
         txelig = findViewById<View>(R.id.txtelig) as TextView
         amon = findViewById<View>(R.id.amount) as EditText
@@ -77,9 +84,8 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
         prgDialog!!.setMessage("Loading ....")
         prgDialog!!.setCancelable(false)
         txtamount = findViewById<View>(R.id.amount) as EditText
-        txtnarr = findViewById<View>(R.id.ednarr) as EditText
-        lyamo = findViewById<View>(R.id.lyamo) as LinearLayout
-        lybut = findViewById<View>(R.id.rl5) as RelativeLayout
+
+
         val ofcListener: OnFocusChangeListener = MyFocusChangeListener()
         txtamount!!.onFocusChangeListener = ofcListener
         SetStores()
@@ -131,7 +137,7 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         if (view.id == R.id.button4) {
-            rlid!!.visibility = View.VISIBLE
+
             //   checkInternetConnection2();
         }
         if (view.id == R.id.button2) {
@@ -199,8 +205,8 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
 
     private fun NameInquirySec() {
         prgDialog!!.show()
-        val adminid = session!!.getString("SUPERID")
-        val apiService = RetrofitInstance.getClient().create(ApiInterface::class.java)
+        val adminid = Prefs.getString("SUPERID","NA")
+        val apiService = RetrofitInstance.getAgentCreditInstance().create(ApiInterface::class.java)
         try {
             val paramObject = JSONObject()
             paramObject.put("userId", adminid)
@@ -217,7 +223,7 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
                         val respcode = obj.optString("responseCode")
                         val responsemessage = obj.optString("message")
                         val plan = obj.optJSONObject("data")
-                        //session.setString(SecurityLayer.KEY_APP_ID,appid);
+                        //Prefs.setString(SecurityLayer.KEY_APP_ID,appid);
                         if (Utility.isNotNull(respcode) && Utility.isNotNull(respcode)) {
                             if (Utility.checkUserLocked(respcode)) {
                                 LogOut()
@@ -310,7 +316,7 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
                         override fun onNegative(dialog: MaterialDialog) {
                             dialog.dismiss()
                             finish()
-                            session!!.logoutUser()
+
                             // After logout redirect user to Loing Activity
                             val i = Intent(c, SignInActivity::class.java)
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -334,7 +340,7 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
     }
 
     override fun LogOut() {
-        session!!.logoutUser()
+
         // After logout redirect user to Loing Activity
         finish()
         val i = Intent(applicationContext, SignInActivity::class.java)
@@ -349,7 +355,7 @@ class LoanRequest : BaseActivity(), View.OnClickListener {
     }
 
     fun SetStores() {
-        val strjsarray = session!!.getString("STORES")
+        val strjsarray = Prefs.getString("STORES","NA")
         SecurityLayer.Log("stores", strjsarray)
         var servdata: JSONArray? = null
         try {

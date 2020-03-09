@@ -6,7 +6,7 @@ public class Constants {
     public static final String NET_URL = "https://firstmonieagent1.firstbanknigeria.com:7778/agencyapi/app/";
     public static final String IMG_URL = "https://firstmonieagent1.firstbanknigeria.com:7778/agencyapi/";
     public static final String MICRO_URL = "https://firstmonieagent1.firstbanknigeria.com:7778/";
-
+    public static final String AGENTCREDIT_URL = "https://firstmonieagent1.firstbanknigeria.com:7778/supagentapi/app/";
     public static final String SUPAGENT_API = "supagentapi/app/";
     public static final String IMG_UPURL = IMG_URL + "image/acimg?userId=";
     public static final String AND_POINT = "agencyapi/app/";
