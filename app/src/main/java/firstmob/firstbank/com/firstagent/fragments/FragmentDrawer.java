@@ -134,12 +134,13 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         rlhome = (RelativeLayout) layout.findViewById(R.id.rlagentcredit);
         rlminist = (RelativeLayout) layout.findViewById(R.id.rlmyaccount);
 
-
+        ImageView imgclose = (ImageView) layout.findViewById(R.id.closeicon);
         lysignout.setOnClickListener(this);
         rlhome.setOnClickListener(this);
         rlreports.setOnClickListener(this);
         rlminist.setOnClickListener(this);
         imgclose.setOnClickListener(this);
+
 
 
 

@@ -132,7 +132,7 @@ class NewHomeGridview2 : Fragment() {
         }
         rlcomm?.setOnClickListener(){
 
-            val i = Intent(activity, CommisionActivity::class.java)
+            val i = Intent(activity, RequestRefund::class.java)
 
             startActivity(i)
         }
@@ -151,10 +151,10 @@ class NewHomeGridview2 : Fragment() {
         val hashedpin = generateHashString(pin);
         SecurityLayer.Log(hashedpin)
         val strusid = Prefs.getString(SharedPrefConstants.KEY_USERID,"")
-        txtusid.text = "User ID:$strusid"
+        txtusid.text = "User ID: $strusid"
 
         val stragid = Prefs.getString(SharedPrefConstants.AGENTID,"")
-        txtagid.text = "Agent ID:$stragid"
+        txtagid.text = "Agent ID: $stragid"
 
         return views
 

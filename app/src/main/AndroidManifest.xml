@@ -29,7 +29,7 @@
         <activity android:name=".AirtimeTransfActivity" />
         <activity android:name=".ConfirmWithdrawalActivity" />
         <activity android:name=".WithdrawActivity" />
-
+        <activity android:name=".RequestRefund" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
