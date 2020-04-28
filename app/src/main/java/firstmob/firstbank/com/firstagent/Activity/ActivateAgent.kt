@@ -14,6 +14,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
 
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -36,6 +37,8 @@ import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants.SESS_REG
 import firstmob.firstbank.com.firstagent.contract.ActivateAgentContract
 import firstmob.firstbank.com.firstagent.contract.MainContract
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse
+import firstmob.firstbank.com.firstagent.notifications.FirebaseService
+import firstmob.firstbank.com.firstagent.notifications.RegistrationIntentService
 import firstmob.firstbank.com.firstagent.presenter.ActivateAgentPresenter
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl
 import kotlinx.android.synthetic.main.content_activate_agent.*
@@ -47,7 +50,8 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
     var viewDialog: ViewDialog? = null
 
     internal lateinit var presenter: ActivateAgentContract.Presenter
-
+    private val PLAY_SERVICES_RESOLUTION_REQUEST = 9000
+    private val TAG = "Notifications"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +74,12 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             report?.let {
                                 if (report.areAllPermissionsGranted()) {
-                                    checkPlayServices()
+                                    if(checkPlayServices()){
+                                        val agpin = agentpin.text.toString()
+                                        val otp = otp.text.toString()
+
+                                        presenter.DevReg(agpin, otp)
+                                    }
                                 }
                             }
                         }
@@ -92,6 +101,13 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
 
 
         presenter = ActivateAgentPresenter(this, FetchServerResponse())
+
+        if(checkPlayServices()){
+            Log.v(TAG,"am in")
+            val intent = Intent(this, RegistrationIntentService::class.java)
+            startService(intent)
+            FirebaseService.createChannelAndHandleNotifications(applicationContext);
+        }
     }
 
 
@@ -114,26 +130,24 @@ class ActivateAgent : AppCompatActivity(), ActivateAgentContract.ILoginView {
 
 
 
-    private fun checkPlayServices() {
-        val api = GoogleApiAvailability.getInstance()
-        val code = api.isGooglePlayServicesAvailable(applicationContext)
-        if (code == ConnectionResult.SUCCESS) {
-            // Do Your Stuff Here
+    private fun checkPlayServices(): Boolean {
+        val apiAvailability = GoogleApiAvailability.getInstance()
+        val resultCode = apiAvailability.isGooglePlayServicesAvailable(this)
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show()
+            } else {
+                Log.i(TAG, "This device is not supported by Google Play Services.")
 
-
-            val agpin = agentpin.text.toString()
-            val otp = otp.text.toString()
-
-            presenter.DevReg(agpin, otp)
-
-
-        } else {
-            Toast.makeText(
-                    applicationContext,
-                    "Please ensure you have installed Google Play Services", Toast.LENGTH_LONG).show()
-
+            }
+            return false
         }
+        return true
     }
+
+
+
 
 
     override fun showProgress() {

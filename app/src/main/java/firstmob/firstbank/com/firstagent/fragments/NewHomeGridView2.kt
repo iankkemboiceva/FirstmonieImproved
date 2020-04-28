@@ -4,35 +4,26 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-
-import firstmob.firstbank.com.firstagent.Activity.*
-
+import android.widget.GridView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.pixplicity.easyprefs.library.Prefs
 import firstmob.firstbank.com.firstagent.Activity.*
-import firstmob.firstbank.com.firstagent.adapter.ImageAdapter
 import firstmob.firstbank.com.firstagent.constants.SharedPrefConstants
-import firstmob.firstbank.com.firstagent.dialogs.ViewDialog
+import firstmob.firstbank.com.firstagent.notifications.FirebaseService
+import firstmob.firstbank.com.firstagent.notifications.RegistrationIntentService
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import firstmob.firstbank.com.firstagent.utils.Utility.generateHashString
-import kotlinx.android.synthetic.main.fragment_new_home_grid.*
 import kotlinx.android.synthetic.main.fragnewhomegrid.*
-import android.util.DisplayMetrics
-import androidx.cardview.widget.CardView
-import android.opengl.ETC1.getHeight
-import com.github.gcacace.signaturepad.view.ViewTreeObserverCompat.removeOnGlobalLayoutListener
-import android.view.ViewTreeObserver
-import android.R.layout
-import com.github.gcacace.signaturepad.view.ViewTreeObserverCompat.removeOnGlobalLayoutListener
-import android.os.Build
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
-import kotlinx.android.synthetic.main.fragmnewhome2.*
-import kotlinx.android.synthetic.main.fragnewhomegrid.rlcomm
-import kotlinx.android.synthetic.main.fragnewhomegrid.rlsupport
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -156,6 +147,8 @@ class NewHomeGridview2 : Fragment() {
         val stragid = Prefs.getString(SharedPrefConstants.AGENTID,"")
         txtagid.text = "Agent ID: $stragid"
 
+
+
         return views
 
     }
@@ -207,4 +200,7 @@ class NewHomeGridview2 : Fragment() {
 
 
     }
+
+
+
 }

@@ -1,163 +1,95 @@
 {
   "project_info": {
-    "project_number": "727453057432",
-    "firebase_url": "https://project-2885379077672584525.firebaseio.com",
-    "project_id": "project-2885379077672584525",
-    "storage_bucket": "project-2885379077672584525.appspot.com"
+    "project_number": "819829413642",
+    "firebase_url": "https://firstmonie-androidphone.firebaseio.com",
+    "project_id": "firstmonie-androidphone",
+    "storage_bucket": "firstmonie-androidphone.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:727453057432:android:c591850a387664b5",
+        "mobilesdk_app_id": "1:819829413642:android:99ac983f46f7d13b114cf3",
         "android_client_info": {
           "package_name": "firstmob.firstbank.com.firstagent"
         }
       },
       "oauth_client": [
         {
-          "client_id": "727453057432-kd37gf9hsd0nftrvdlie80r3bmfjobbq.apps.googleusercontent.com",
+          "client_id": "819829413642-rbtvo7mab7avv9qcvnh5v4fqv487e5md.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBGDxi1EQvYVmQT0E7l-_avyjR19nSAVOM"
+          "current_key": "AIzaSyDk3MfQ8k9prdTaO3BGfoNT657DQdihCys"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819829413642-rbtvo7mab7avv9qcvnh5v4fqv487e5md.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:727453057432:android:12fa26e2293e7b1a",
-        "android_client_info": {
-          "package_name": "natmobile.natbank.com.natmobile"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "727453057432-kd37gf9hsd0nftrvdlie80r3bmfjobbq.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBGDxi1EQvYVmQT0E7l-_avyjR19nSAVOM"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:727453057432:android:cd4fe34f54d68de3",
+        "mobilesdk_app_id": "1:819829413642:android:aae362d8a12929ff114cf3",
         "android_client_info": {
           "package_name": "firstmob.firstbank.com.firstagent.debug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "727453057432-kd37gf9hsd0nftrvdlie80r3bmfjobbq.apps.googleusercontent.com",
+          "client_id": "819829413642-rbtvo7mab7avv9qcvnh5v4fqv487e5md.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBGDxi1EQvYVmQT0E7l-_avyjR19nSAVOM"
+          "current_key": "AIzaSyDk3MfQ8k9prdTaO3BGfoNT657DQdihCys"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819829413642-rbtvo7mab7avv9qcvnh5v4fqv487e5md.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:727453057432:android:ce72ec879ee262af",
+        "mobilesdk_app_id": "1:819829413642:android:1012a8fde0eaf731114cf3",
         "android_client_info": {
-          "package_name": "firstmob.firstbank.com.firstagent.debugstore"
+          "package_name": "firstmob.firstbank.com.firstagent.v2newappdebug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "727453057432-kd37gf9hsd0nftrvdlie80r3bmfjobbq.apps.googleusercontent.com",
+          "client_id": "819829413642-rbtvo7mab7avv9qcvnh5v4fqv487e5md.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBGDxi1EQvYVmQT0E7l-_avyjR19nSAVOM"
+          "current_key": "AIzaSyDk3MfQ8k9prdTaO3BGfoNT657DQdihCys"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:727453057432:android:0e4033976cb3ea33",
-        "android_client_info": {
-          "package_name": "firstmob.firstbank.com.firstagent.prodfinalstore"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "727453057432-kd37gf9hsd0nftrvdlie80r3bmfjobbq.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBGDxi1EQvYVmQT0E7l-_avyjR19nSAVOM"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819829413642-rbtvo7mab7avv9qcvnh5v4fqv487e5md.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

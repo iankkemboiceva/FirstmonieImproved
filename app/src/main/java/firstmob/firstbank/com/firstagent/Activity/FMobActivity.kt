@@ -15,9 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException
-import com.google.android.gms.common.GooglePlayServicesRepairableException
-import com.google.android.gms.common.GooglePlayServicesUtil
 import com.google.android.gms.security.ProviderInstaller
 
 import org.json.JSONException
@@ -34,12 +31,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.gms.common.*
 import com.google.android.material.navigation.NavigationView
 import firstmob.firstbank.com.firstagent.fragments.FragmentDrawer
 
 import firstmob.firstbank.com.firstagent.fragments.NewHomeGrid
 import firstmob.firstbank.com.firstagent.fragments.NewHomeGridview2
 import firstmob.firstbank.com.firstagent.fragments.NewHomeGridviewLatest
+import firstmob.firstbank.com.firstagent.notifications.FirebaseService
+import firstmob.firstbank.com.firstagent.notifications.RegistrationIntentService
 import firstmob.firstbank.com.firstagent.security.SecurityLayer
 import kotlinx.android.synthetic.main.activity_fmob.*
 
@@ -50,6 +50,8 @@ import retrofit2.Response
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener, View.OnClickListener {
+    private val TAG = "Notifications"
+    private val PLAY_SERVICES_RESOLUTION_REQUEST = 9000
     private var mDropdown: PopupWindow? = null
     internal var mInflater: LayoutInflater? = null
     internal var count = 1
@@ -90,6 +92,7 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         updateAndroidSecurityProvider(this)
 
         displayView(40)
+
 
 
     }
@@ -366,14 +369,6 @@ class FMobActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
-    companion object {
-
-        //  public ResideMenu resideMenuClass;
-
-        private val SPLASH_TIME_OUT = 2000
-
-        val DISCONNECT_TIMEOUT: Long = 180000 // 5 min = 5 * 60 * 1000 ms
-    }
 
 
 }

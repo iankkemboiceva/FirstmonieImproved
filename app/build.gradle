@@ -20,6 +20,10 @@ android {
     }
 
     buildTypes {
+
+        debug {
+              applicationIdSuffix ".v2newappdebug"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -89,7 +93,7 @@ dependencies {
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
 
     implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.github.gcacace:signature-pad:1.2.1'
 
@@ -105,15 +109,17 @@ dependencies {
 
     implementation 'com.microsoft.azure:notification-hubs-android-sdk:0.6@aar'
 
+
     implementation('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
         transitive = true
     }
 
 
-    apply plugin: 'com.google.gms.google-services'
+
 }
 repositories {
     maven {
         url "https://dl.bintray.com/microsoftazuremobile/SDK"
     }
 }
+apply plugin: 'com.google.gms.google-services'

@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,9 @@ import androidx.appcompat.widget.Toolbar;
 import firstmob.firstbank.com.firstagent.network.FetchServerResponse;
 import firstmob.firstbank.com.firstagent.contract.MainContract;
 import firstmob.firstbank.com.firstagent.presenter.LoginPresenterCompl;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -37,7 +41,7 @@ public class ActivateAgentBefore extends BaseBeforeActivity implements MainContr
 
     @BindView(R.id.agentid) EditText agentid;
     @BindView(R.id.button2) Button btnLogin;
-
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     ProgressDialog pDialog;
    // private ProgressBar progressBar;
     MainContract.Presenter loginPresenter;
@@ -78,7 +82,22 @@ public class ActivateAgentBefore extends BaseBeforeActivity implements MainContr
 
     }
 
-
+   /* private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported by Google Play Services.");
+                ToastNotify("This device is not supported by Google Play Services.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }*/
 
     @Override
     public void onfetchResult() {
