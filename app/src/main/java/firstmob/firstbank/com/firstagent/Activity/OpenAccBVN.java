@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -19,8 +21,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import javax.inject.Inject;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import firstmob.firstbank.com.firstagent.network.ApiInterface;
 import firstmob.firstbank.com.firstagent.network.RetrofitInstance;
 import firstmob.firstbank.com.firstagent.security.SecurityLayer;
@@ -31,10 +36,15 @@ import retrofit2.Response;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static firstmob.firstbank.com.firstagent.utils.Utility.checkInternetConnection;
+
 public class OpenAccBVN extends BaseActivity implements View.OnClickListener {
     ProgressDialog pro ;
     Button btnnext,btnopenacc;
     EditText agentid;
+    @Inject
+    Utility ul;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,7 @@ public class OpenAccBVN extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_open_acc_bvn);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 
         setSupportActionBar(toolbar);
 
@@ -52,6 +63,10 @@ public class OpenAccBVN extends BaseActivity implements View.OnClickListener {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false); // disable the default title element here (for centered title)
+
+        TextView accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
+        ab.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)));
 
         pro = new ProgressDialog(this);
         pro.setMessage("Loading...");
@@ -84,10 +99,10 @@ public class OpenAccBVN extends BaseActivity implements View.OnClickListener {
 
             if (Utility.isNotNull(agid)) {
 
-                if (Utility.checkInternetConnection()) {
+       //         if (ul.checkInternetConnection()) {
                     GetBVNMicro(agid);
 
-                }
+            //    }
 
 
             } else {

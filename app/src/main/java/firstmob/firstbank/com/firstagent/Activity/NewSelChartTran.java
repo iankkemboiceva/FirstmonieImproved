@@ -369,7 +369,7 @@ public class NewSelChartTran extends Fragment implements View.OnClickListener, O
         SecurityLayer.Log("End Date", enddt);
         final PieData[] data = {null};
         ApiInterface apiService =
-                RetrofitInstance.getRetrofitInstance(NET_URL).create(ApiInterface.class);
+                RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
         String usid = Utility.gettUtilUserId(getActivity());
         String agentid = Utility.gettUtilAgentId(getActivity());
         String mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA");
@@ -423,7 +423,7 @@ public class NewSelChartTran extends Fragment implements View.OnClickListener, O
 
 
         ApiInterface apiService =
-                RetrofitInstance.getRetrofitInstance(NET_URL).create(ApiInterface.class);
+                RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
 
 
         Call<String> call = apiService.setGenericRequestRaw(urlparams);

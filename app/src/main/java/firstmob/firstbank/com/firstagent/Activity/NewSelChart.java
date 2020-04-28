@@ -412,7 +412,7 @@ public class NewSelChart extends Fragment implements View.OnClickListener, OnCha
         prgDialog2.show();
         final PieData[] data = {null};
         ApiInterface apiService =
-                RetrofitInstance.getRetrofitInstance(NET_URL).create(ApiInterface.class);
+                RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
         String usid = Utility.gettUtilUserId(getActivity());
         String agentid = Utility.gettUtilAgentId(getActivity());
         String mobnoo = Prefs.getString(SharedPrefConstants.AGMOB, "NA");
@@ -461,7 +461,7 @@ public class NewSelChart extends Fragment implements View.OnClickListener, OnCha
 
 
         ApiInterface apiService =
-                RetrofitInstance.getRetrofitInstance(NET_URL).create(ApiInterface.class);
+                RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
 
 
         Call<String> call = apiService.setGenericRequestRaw(urlparams);

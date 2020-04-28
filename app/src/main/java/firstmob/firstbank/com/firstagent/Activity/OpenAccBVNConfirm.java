@@ -3,6 +3,7 @@ package firstmob.firstbank.com.firstagent.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import firstmob.firstbank.com.firstagent.model.GetCitiesData;
 import firstmob.firstbank.com.firstagent.model.GetStatesData;
 import firstmob.firstbank.com.firstagent.utils.Utility;
@@ -58,6 +60,10 @@ public class OpenAccBVNConfirm extends BaseActivity implements View.OnClickListe
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false); // disable the default title element here (for centered title)
+
+        TextView accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
+        ab.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)));
 
 
         txtstrfname = (TextView)findViewById(R.id.fname);

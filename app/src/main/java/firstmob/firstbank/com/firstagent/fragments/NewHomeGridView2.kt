@@ -119,7 +119,7 @@ class NewHomeGridview2 : Fragment() {
 
         openaccount?.setOnClickListener(){
 
-            val i = Intent(activity, OpenAccActivity::class.java)
+            val i = Intent(activity, ChooseBVNorNoBVN::class.java)
 
             startActivity(i)
         }

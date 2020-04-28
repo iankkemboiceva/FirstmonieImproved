@@ -25,7 +25,7 @@ public class FetchServerResponse implements MainContract.GetDataIntractor {
 
         /** Create handle for the RetrofitInstance interface*/
         Log.v("Net url",NET_URL);
-        ApiInterface service = RetrofitInstance.getRetrofitInstance(NET_URL).create(ApiInterface.class);
+        ApiInterface service = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
 
         /** Call the method with parameter in the interface to get the notice data*/
         Call<String> call = service.setGenericRequestRaw(urlparams);
@@ -59,7 +59,7 @@ public class FetchServerResponse implements MainContract.GetDataIntractor {
 
 
         /** Create handle for the RetrofitInstance interface*/
-        ApiInterface service = RetrofitInstance.getRetrofitInstance(MICRO_URL+SUPAGENT_API).create(ApiInterface.class);
+        ApiInterface service = RetrofitInstance.getRetrofitSupInstance().create(ApiInterface.class);
 
         /** Call the method with parameter in the interface to get the notice data*/
         Call<String> call = service.setGenericJSONBodyRequest(endpoint,urlparams);

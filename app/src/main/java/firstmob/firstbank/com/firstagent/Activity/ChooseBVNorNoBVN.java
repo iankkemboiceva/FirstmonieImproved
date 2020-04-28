@@ -3,6 +3,7 @@ package firstmob.firstbank.com.firstagent.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -18,6 +20,7 @@ import java.util.List;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import firstmob.firstbank.com.firstagent.adapter.DepoMenuAdapt;
 import firstmob.firstbank.com.firstagent.adapter.OTBList;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -51,6 +54,9 @@ public class ChooseBVNorNoBVN extends BaseActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
         ab.setDisplayShowTitleEnabled(false); // disable the default title element here (for centered title)
+       TextView accopeningttle=findViewById(R.id.titlepg);
+        accopeningttle.setText("Account Opening");
+        ab.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.nbkyellow)));
         prgDialog = new ProgressDialog(this);
 
         prgDialog.setMessage("Please wait...");
@@ -106,7 +112,7 @@ public class ChooseBVNorNoBVN extends BaseActivity {
 
 
         planetsList.add(new OTBList("Account Opening with BVN","057"));
-        planetsList.add(new OTBList("Account Opening without BVN","058"));
+        planetsList.add(new OTBList("Open Wallet","058"));
 
         aAdpt = new DepoMenuAdapt(planetsList, this);
         lv.setAdapter(aAdpt);
